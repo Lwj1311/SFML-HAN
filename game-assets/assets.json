@@ -1,0 +1,1015 @@
+[
+  {
+    "id": "char_fengan",
+    "category": "characters",
+    "name": "冯安（驿卒书佐·主角）",
+    "local_path": "characters/char_fengan.jpg",
+    "thumbnail": "_thumbnails/characters/char_fengan.jpg",
+    "width": 1680,
+    "height": 2240,
+    "bytes": 225456,
+    "sha256": "011c59b53705da3f8171e2ef5716b645075b6790ca41678d4b73f36439241796",
+    "references": [
+      {
+        "id": "3d7cf2856cec29c5",
+        "title": "武威市博物馆 图文鉴赏 抱鸟童子陶俑",
+        "source": "http://wwsbwg.cn/art/2024/8/2/art_29034_1342305.html"
+      },
+      {
+        "id": "e9ee868628f2eecf",
+        "title": "Ancient bronze horse statue preserved in Gansu Provincial Museum-Xinhua",
+        "source": "http://english.news.cn/20240103/3bf4dbac6c2749938f8eec184af7bbc7/c.html"
+      }
+    ],
+    "image_size": "portrait_4_3"
+  },
+  {
+    "id": "char_aqi",
+    "category": "characters",
+    "name": "阿耆（西域译人）",
+    "local_path": "characters/char_aqi.jpg",
+    "thumbnail": "_thumbnails/characters/char_aqi.jpg",
+    "width": 1680,
+    "height": 2240,
+    "bytes": 267557,
+    "sha256": "bf2b5f2b1be13eee9da54f132bfa9c012e6fe4a5c60ed3f05668cc73d6f9a2c1",
+    "references": [],
+    "image_size": "portrait_4_3"
+  },
+  {
+    "id": "char_hanbo",
+    "category": "characters",
+    "name": "韩伯（驿置老吏）",
+    "local_path": "characters/char_hanbo.jpg",
+    "thumbnail": "_thumbnails/characters/char_hanbo.jpg",
+    "width": 1680,
+    "height": 2240,
+    "bytes": 362039,
+    "sha256": "64aaa4dc63097877f9b9feb21b699c197c30de67bc6b6e9ac13dc1f3141d46c5",
+    "references": [
+      {
+        "id": "9dd9f755653a0310",
+        "title": "莫高窟第45窟-敦煌研究院",
+        "source": "https://www.dha.ac.cn/info/1425/3691.htm"
+      }
+    ],
+    "image_size": "portrait_4_3"
+  },
+  {
+    "id": "char_guowang",
+    "category": "characters",
+    "name": "郭望（戍卒）",
+    "local_path": "characters/char_guowang.jpg",
+    "thumbnail": "_thumbnails/characters/char_guowang.jpg",
+    "width": 1680,
+    "height": 2240,
+    "bytes": 474640,
+    "sha256": "449ffb3c6ca350f56dcbca5ee4d35251d2f6b1c4fd1d435bef71334d2807b5b7",
+    "references": [
+      {
+        "id": "9a11b22910f263b8",
+        "title": "榆林窟第25窟-敦煌研究院",
+        "source": "https://www.dha.ac.cn/info/1426/3635.htm"
+      }
+    ],
+    "image_size": "portrait_4_3"
+  },
+  {
+    "id": "char_duyan",
+    "category": "characters",
+    "name": "杜延（河西豪侠）",
+    "local_path": "characters/char_duyan.jpg",
+    "thumbnail": "_thumbnails/characters/char_duyan.jpg",
+    "width": 1680,
+    "height": 2240,
+    "bytes": 204178,
+    "sha256": "5673fff6328770a8bfa5c4a23587fd564fb2a23691c6addbc0f0d3954afdd5d9",
+    "references": [
+      {
+        "id": "9a11b22910f263b8",
+        "title": "榆林窟第25窟-敦煌研究院",
+        "source": "https://www.dha.ac.cn/info/1426/3635.htm"
+      }
+    ],
+    "image_size": "portrait_4_3"
+  },
+  {
+    "id": "char_yizu",
+    "category": "characters",
+    "name": "驿卒（通用）",
+    "local_path": "characters/char_yizu.jpg",
+    "thumbnail": "_thumbnails/characters/char_yizu.jpg",
+    "width": 1680,
+    "height": 2240,
+    "bytes": 402467,
+    "sha256": "610d5453dfaeef707bcccfb37c380f600de2125fa818e2a300111387086102ca",
+    "references": [],
+    "image_size": "portrait_4_3"
+  },
+  {
+    "id": "char_shuzu",
+    "category": "characters",
+    "name": "戍卒持弩（通用）",
+    "local_path": "characters/char_shuzu.jpg",
+    "thumbnail": "_thumbnails/characters/char_shuzu.jpg",
+    "width": 1680,
+    "height": 2240,
+    "bytes": 452777,
+    "sha256": "f48ce8577065749fb13aac0c85cb0819169d556fe9e17ec21338687149f51f10",
+    "references": [],
+    "image_size": "portrait_4_3"
+  },
+  {
+    "id": "char_yiren",
+    "category": "characters",
+    "name": "译人（通用）",
+    "local_path": "characters/char_yiren.jpg",
+    "thumbnail": "_thumbnails/characters/char_yiren.jpg",
+    "width": 1680,
+    "height": 2240,
+    "bytes": 376233,
+    "sha256": "37ea2ae06ec44bffe830776c447cf52574adf3a7c90fdee26befdf7f4dc74383",
+    "references": [],
+    "image_size": "portrait_4_3"
+  },
+  {
+    "id": "char_shizhe",
+    "category": "characters",
+    "name": "西域使者（通用）",
+    "local_path": "characters/char_shizhe.jpg",
+    "thumbnail": "_thumbnails/characters/char_shizhe.jpg",
+    "width": 1680,
+    "height": 2240,
+    "bytes": 331938,
+    "sha256": "752cf6424de38152e3b0456c13b5e9e2fb1925d296dd136da3b7aa92f14bb5b3",
+    "references": [],
+    "image_size": "portrait_4_3"
+  },
+  {
+    "id": "char_shanglv",
+    "category": "characters",
+    "name": "商旅（通用）",
+    "local_path": "characters/char_shanglv.jpg",
+    "thumbnail": "_thumbnails/characters/char_shanglv.jpg",
+    "width": 1680,
+    "height": 2240,
+    "bytes": 299300,
+    "sha256": "52c234d467ddaedce863a3ad3f2ef482b951e12146197e92742e36e97d8f8bd3",
+    "references": [],
+    "image_size": "portrait_4_3"
+  },
+  {
+    "id": "char_suhe",
+    "category": "characters",
+    "name": "苏娘（悬泉置灶间妇人）",
+    "local_path": "characters/char_suhe.jpg",
+    "thumbnail": "_thumbnails/characters/char_suhe.jpg",
+    "width": 1680,
+    "height": 2240,
+    "bytes": 374544,
+    "sha256": "525cf15413fe891250952949475661d9519fead46e920fff01f990faddceabfd",
+    "references": [],
+    "image_size": "portrait_4_3"
+  },
+  {
+    "id": "char_baiji",
+    "category": "characters",
+    "name": "白姬（广至驿女掌事）",
+    "local_path": "characters/char_baiji.jpg",
+    "thumbnail": "_thumbnails/characters/char_baiji.jpg",
+    "width": 1680,
+    "height": 2240,
+    "bytes": 416128,
+    "sha256": "ae6576d03454defb64252b2e3d2c98a2fd7bbf92cf2ec116bc994df9b552522d",
+    "references": [],
+    "image_size": "portrait_4_3"
+  },
+  {
+    "id": "char_zhougan",
+    "category": "characters",
+    "name": "周敢（失踪戍卒）",
+    "local_path": "characters/char_zhougan.jpg",
+    "thumbnail": "_thumbnails/characters/char_zhougan.jpg",
+    "width": 1680,
+    "height": 2240,
+    "bytes": 451782,
+    "sha256": "f511915c4ac92c25dd89e56c94f24129245ce18d0d7a0ccd5d0dd8eea0ee1bec",
+    "references": [],
+    "image_size": "portrait_4_3"
+  },
+  {
+    "id": "char_zhaoqin",
+    "category": "characters",
+    "name": "赵钦（郡府督邮）",
+    "local_path": "characters/char_zhaoqin.jpg",
+    "thumbnail": "_thumbnails/characters/char_zhaoqin.jpg",
+    "width": 1680,
+    "height": 2240,
+    "bytes": 364059,
+    "sha256": "e1db5966dcf1206e8fb74de64eeb67b91dfc8ab5fe772ae9ca440011e6149a14",
+    "references": [],
+    "image_size": "portrait_4_3"
+  },
+  {
+    "id": "char_chenggong",
+    "category": "characters",
+    "name": "成公朔（玉门关关令）",
+    "local_path": "characters/char_chenggong.jpg",
+    "thumbnail": "_thumbnails/characters/char_chenggong.jpg",
+    "width": 1680,
+    "height": 2240,
+    "bytes": 417982,
+    "sha256": "0b944fd62c290a3ab35d182daef0aee276b35158504a95740fb173d52ad65931",
+    "references": [],
+    "image_size": "portrait_4_3"
+  },
+  {
+    "id": "char_weichang",
+    "category": "characters",
+    "name": "卫敞（郡府仓曹史）",
+    "local_path": "characters/char_weichang.jpg",
+    "thumbnail": "_thumbnails/characters/char_weichang.jpg",
+    "width": 1680,
+    "height": 2240,
+    "bytes": 512279,
+    "sha256": "7edae9dcf3b0d5a49e69b973863322156d5c6f40395e2d76b818bf041a796b0e",
+    "references": [],
+    "image_size": "portrait_4_3"
+  },
+  {
+    "id": "char_taishou",
+    "category": "characters",
+    "name": "严崇（敦煌郡守）",
+    "local_path": "characters/char_taishou.jpg",
+    "thumbnail": "_thumbnails/characters/char_taishou.jpg",
+    "width": 1680,
+    "height": 2240,
+    "bytes": 510812,
+    "sha256": "7791cb8908dd238416262b64f5c514a3256cb2bcc1701d4db8f28dd24cc23840",
+    "references": [],
+    "image_size": "portrait_4_3"
+  },
+  {
+    "id": "char_gongcao",
+    "category": "characters",
+    "name": "郡府功曹",
+    "local_path": "characters/char_gongcao.jpg",
+    "thumbnail": "_thumbnails/characters/char_gongcao.jpg",
+    "width": 1680,
+    "height": 2240,
+    "bytes": 373539,
+    "sha256": "820d07f93f038f18bfd55875ed8c59b68b61854409f2d89f5b35cfc9b3937bff",
+    "references": [],
+    "image_size": "portrait_4_3"
+  },
+  {
+    "id": "char_yuli",
+    "category": "characters",
+    "name": "亭狱狱吏",
+    "local_path": "characters/char_yuli.jpg",
+    "thumbnail": "_thumbnails/characters/char_yuli.jpg",
+    "width": 1680,
+    "height": 2240,
+    "bytes": 478265,
+    "sha256": "5e4a278f428260e67239bde8c418a15e4ef61bf940b928e23912722322d3e434",
+    "references": [],
+    "image_size": "portrait_4_3"
+  },
+  {
+    "id": "item_register_slips",
+    "category": "items",
+    "name": "名籍简册",
+    "local_path": "items/item_register_slips.jpg",
+    "thumbnail": "_thumbnails/items/item_register_slips.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 556834,
+    "sha256": "e3e7e249dd6337f414d56b0ef754e0ab9274d2702883c3705884facdde815a96",
+    "references": [],
+    "image_size": "square"
+  },
+  {
+    "id": "item_indictment",
+    "category": "items",
+    "name": "劾状",
+    "local_path": "items/item_indictment.jpg",
+    "thumbnail": "_thumbnails/items/item_indictment.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 216869,
+    "sha256": "3efdc2cb7c73da07fb44842c29f81fac370c1b208aba3891fac065f2f80a9d1e",
+    "references": [],
+    "image_size": "square"
+  },
+  {
+    "id": "item_sealed_document",
+    "category": "items",
+    "name": "印信封检",
+    "local_path": "items/item_sealed_document.jpg",
+    "thumbnail": "_thumbnails/items/item_sealed_document.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 246500,
+    "sha256": "aaf7f1d9a397bf6d8266e62d5f03a78966d42736545a7fc33b780eb55139ed43",
+    "references": [],
+    "image_size": "square"
+  },
+  {
+    "id": "item_beacon_torch",
+    "category": "items",
+    "name": "烽火苣",
+    "local_path": "items/item_beacon_torch.jpg",
+    "thumbnail": "_thumbnails/items/item_beacon_torch.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 243547,
+    "sha256": "dc60df2371a6d8b9e3e6e3776023132b2270e40b121a24bd78314382490c045a",
+    "references": [],
+    "image_size": "square"
+  },
+  {
+    "id": "item_bamboo_slip",
+    "category": "items",
+    "name": "汉简",
+    "local_path": "items/item_bamboo_slip.jpg",
+    "thumbnail": "_thumbnails/items/item_bamboo_slip.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 339201,
+    "sha256": "3208ec99fdc95328bb9818bf3fe6419af31c4eaa84e7c54925db2142ed4c75c7",
+    "references": [
+      {
+        "id": "6144d899e63b1f00",
+        "title": "元康五年悬泉置过长罗侯费用簿",
+        "source": "https://www.jiandumuseum.cn/collectionDetail?exhibitId=46"
+      },
+      {
+        "id": "8bd5718df8fb9da0",
+        "title": "阳朔二年传车亶轝簿",
+        "source": "https://www.jiandumuseum.cn/collectionDetail?exhibitId=5"
+      },
+      {
+        "id": "337e45053c08c7ae",
+        "title": "塞上烽火品约",
+        "source": "https://www.jiandumuseum.cn/collectionDetail?exhibitId=4"
+      }
+    ],
+    "image_size": "square"
+  },
+  {
+    "id": "item_seal",
+    "category": "items",
+    "name": "汉归义羌长青铜印",
+    "local_path": "items/item_seal.jpg",
+    "thumbnail": "_thumbnails/items/item_seal.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 295929,
+    "sha256": "7bf1e3d14b24f8a6b221bea4a7abb7bedd56a4de5620e821a051f6dd8f303ea1",
+    "references": [
+      {
+        "id": "d6cb9a3b8475f19f",
+        "title": "“汉归义羌长”青铜印_中国国家博物馆官方网站",
+        "source": "https://www.chnmuseum.cn/zp/zpml/kgfjp/202110/t20211028_251968.shtml"
+      },
+      {
+        "id": "8cc8a7ae0e5118c7",
+        "title": "“汉匈奴归义亲汉长”青铜印_中国国家博物馆官方网站",
+        "source": "https://www.chnmuseum.cn/zp/zpml/kgfjp/202110/t20211028_251956.shtml"
+      },
+      {
+        "id": "46cd7803810c6539",
+        "title": "“汉匈奴归义亲汉长”青铜印_中国国家博物馆官方网站",
+        "source": "https://www.chnmuseum.cn/zp/zpml/kgfjp/202110/t20211028_251956.shtml"
+      }
+    ],
+    "image_size": "square"
+  },
+  {
+    "id": "item_seal_clay",
+    "category": "items",
+    "name": "封泥",
+    "local_path": "items/item_seal_clay.jpg",
+    "thumbnail": "_thumbnails/items/item_seal_clay.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 272183,
+    "sha256": "0653afc0451931234f83b8469662a7ed2c634d7745c38484626794f402fe7c24",
+    "references": [
+      {
+        "id": "92e7386b8e77aba3",
+        "title": "封检",
+        "source": "https://www.jiandumuseum.cn/collectionDetail?exhibitId=24"
+      },
+      {
+        "id": "4326379c75da81b5",
+        "title": "封检",
+        "source": "https://www.jiandumuseum.cn/collectionDetail?exhibitId=22"
+      }
+    ],
+    "image_size": "square"
+  },
+  {
+    "id": "item_brush_knife",
+    "category": "items",
+    "name": "书刀与毛笔",
+    "local_path": "items/item_brush_knife.jpg",
+    "thumbnail": "_thumbnails/items/item_brush_knife.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 220892,
+    "sha256": "3b5a4dbb542b296104199061d8d8a021fefd8c415a79c732b9713e29b203f156",
+    "references": [
+      {
+        "id": "4330b729379e7176",
+        "title": "马圈湾汉毛笔",
+        "source": "https://www.jiandumuseum.cn/collectionDetail?exhibitId=48"
+      }
+    ],
+    "image_size": "square"
+  },
+  {
+    "id": "item_hemp_paper",
+    "category": "items",
+    "name": "汉代麻纸",
+    "local_path": "items/item_hemp_paper.jpg",
+    "thumbnail": "_thumbnails/items/item_hemp_paper.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 352550,
+    "sha256": "6aeeefdd3ae632eb9d810a573af6eee8da230f345c0a8301757ad8ec554bd8e3",
+    "references": [],
+    "image_size": "square"
+  },
+  {
+    "id": "item_bronze_mirror",
+    "category": "items",
+    "name": "汉铜镜",
+    "local_path": "items/item_bronze_mirror.jpg",
+    "thumbnail": "_thumbnails/items/item_bronze_mirror.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 607694,
+    "sha256": "89ac8c4f2efe69062dd3d836644fc30113f288914fc82c3741761d7379511c69",
+    "references": [
+      {
+        "id": "1df6d5b256635506",
+        "title": "武威市博物馆 图文鉴赏",
+        "source": "http://wwsbwg.cn/col/col29034/index.html"
+      },
+      {
+        "id": "9d287dbfa6429c36",
+        "title": "中国·甘州-一寺藏三绝，千年冠河西！张掖大佛寺的传世绝技",
+        "source": "http://www.gsgz.gov.cn/jjgz/jrgz/202606/t20260610_1551972_ghb.html"
+      }
+    ],
+    "image_size": "square"
+  },
+  {
+    "id": "item_wuzhu_coin",
+    "category": "items",
+    "name": "五铢钱",
+    "local_path": "items/item_wuzhu_coin.jpg",
+    "thumbnail": "_thumbnails/items/item_wuzhu_coin.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 301508,
+    "sha256": "09c471c72523a2e085e7ee060920b305067d4b23e5f5fdd5d08571a36ef63058",
+    "references": [],
+    "image_size": "square"
+  },
+  {
+    "id": "item_pottery_jar",
+    "category": "items",
+    "name": "汉代绿釉陶罐",
+    "local_path": "items/item_pottery_jar.jpg",
+    "thumbnail": "_thumbnails/items/item_pottery_jar.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 265543,
+    "sha256": "8ac5f22045ef5e6723e7de1517a37401511feebe15315bb69a657adf3a2ee011",
+    "references": [
+      {
+        "id": "e12af3bc417eec03",
+        "title": "『图说陇博』№.183：汉代绿釉陶锺 - 陇西县博物馆， - www.lxbwg.cn",
+        "source": "http://lxbwg.cn/xwArticle/?712.html"
+      },
+      {
+        "id": "73b41a9e00f1d832",
+        "title": "『图说陇博』№.183：汉代绿釉陶锺 - 陇西县博物馆， - www.lxbwg.cn",
+        "source": "http://lxbwg.cn/xwArticle/?712.html"
+      },
+      {
+        "id": "f74c8b0b608278f4",
+        "title": "汉代蒜头铜壶_铜器_馆藏文物_白银市历史文化资源数据库",
+        "source": "http://www.bylswh.com/gcww/tq1/content_1190"
+      }
+    ],
+    "image_size": "square"
+  },
+  {
+    "id": "item_bronze_ding",
+    "category": "items",
+    "name": "汉代铜鼎",
+    "local_path": "items/item_bronze_ding.jpg",
+    "thumbnail": "_thumbnails/items/item_bronze_ding.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 362277,
+    "sha256": "cdcda6aac78321daf8ab459041835e7d35052d7ff4fb597dd2c8dda6ee2ce8d3",
+    "references": [
+      {
+        "id": "04ff420361478495",
+        "title": "“彭阳”铜鼎",
+        "source": "http://www.qysbwg.cn/contents/121/360.html"
+      },
+      {
+        "id": "f24333765a380f58",
+        "title": "汾阴侯铜釜",
+        "source": "https://wlj.pingliang.gov.cn/ztzl/wwzy/art/2022/art_10a23a4ca19342328f510f9e8a57b17b.html"
+      }
+    ],
+    "image_size": "square"
+  },
+  {
+    "id": "item_boshan_burner",
+    "category": "items",
+    "name": "博山炉",
+    "local_path": "items/item_boshan_burner.jpg",
+    "thumbnail": "_thumbnails/items/item_boshan_burner.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 347735,
+    "sha256": "c48caa2c6dde56ebbfd8425c6f84a55a17fc6f61c0d64dae2e19d4da420e3d73",
+    "references": [
+      {
+        "id": "4b5e65dee0e36b0a",
+        "title": "武威市博物馆 图文鉴赏 汉代带盘博山炉",
+        "source": "http://wwsbwg.cn/art/2024/12/12/art_29034_1396439.html"
+      }
+    ],
+    "image_size": "square"
+  },
+  {
+    "id": "item_qixin",
+    "category": "items",
+    "name": "棨信（传信符）",
+    "local_path": "items/item_qixin.jpg",
+    "thumbnail": "_thumbnails/items/item_qixin.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 168000,
+    "sha256": "565e1156749a11c083bc7a4d8e3e4a19f833c6bb1fa625e5940ba72f67b809f0",
+    "references": [],
+    "image_size": "square"
+  },
+  {
+    "id": "item_crossbow",
+    "category": "items",
+    "name": "汉弩机",
+    "local_path": "items/item_crossbow.jpg",
+    "thumbnail": "_thumbnails/items/item_crossbow.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 174335,
+    "sha256": "aa79e24d4235858cd666fbd328036e7f1eae459c5c8baa672459dbea37f17ff1",
+    "references": [],
+    "image_size": "square"
+  },
+  {
+    "id": "item_horse_harness",
+    "category": "items",
+    "name": "马具",
+    "local_path": "items/item_horse_harness.jpg",
+    "thumbnail": "_thumbnails/items/item_horse_harness.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 266923,
+    "sha256": "37bc4f3cf51688ef617d0473476daf1d6e2d8a4a7b89a86d2acdd4a1db4f10f9",
+    "references": [
+      {
+        "id": "8bd5718df8fb9da0",
+        "title": "阳朔二年传车亶轝簿",
+        "source": "https://www.jiandumuseum.cn/collectionDetail?exhibitId=5"
+      }
+    ],
+    "image_size": "square"
+  },
+  {
+    "id": "item_oil_lamp",
+    "category": "items",
+    "name": "汉代铜灯",
+    "local_path": "items/item_oil_lamp.jpg",
+    "thumbnail": "_thumbnails/items/item_oil_lamp.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 231835,
+    "sha256": "90110ccffe8cb18820350dfc22af9e2dc15f53ce3228f4e6828e1ff2b933ff60",
+    "references": [],
+    "image_size": "square"
+  },
+  {
+    "id": "item_chariot",
+    "category": "items",
+    "name": "汉代轺车",
+    "local_path": "items/item_chariot.jpg",
+    "thumbnail": "_thumbnails/items/item_chariot.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 319645,
+    "sha256": "fc9e40267077e530f4c4cccc2be08bc351467b4df3ecf4e20ac20d43769c7cb6",
+    "references": [
+      {
+        "id": "8bd5718df8fb9da0",
+        "title": "阳朔二年传车亶轝簿",
+        "source": "https://www.jiandumuseum.cn/collectionDetail?exhibitId=5"
+      }
+    ],
+    "image_size": "square"
+  },
+  {
+    "id": "item_post_pouch",
+    "category": "items",
+    "name": "邮袋",
+    "local_path": "items/item_post_pouch.jpg",
+    "thumbnail": "_thumbnails/items/item_post_pouch.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 311028,
+    "sha256": "5f1c3c2604795c666058cdcd01488c60e6d6e201fffee50dc5fc32f97afa2c4a",
+    "references": [],
+    "image_size": "square"
+  },
+  {
+    "id": "item_convoy_tally",
+    "category": "items",
+    "name": "车队筹牌",
+    "local_path": "items/item_convoy_tally.jpg",
+    "thumbnail": "_thumbnails/items/item_convoy_tally.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 451752,
+    "sha256": "ea64107dae6b3dcc4076caa1f543e0162c9234ee34d2267cf8cec50ddf877616",
+    "references": [],
+    "image_size": "square"
+  },
+  {
+    "id": "item_gate_token",
+    "category": "items",
+    "name": "关传",
+    "local_path": "items/item_gate_token.jpg",
+    "thumbnail": "_thumbnails/items/item_gate_token.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 304831,
+    "sha256": "c2b864064d80515da006ed456971ac085528bbfea3ac22f828415bb24d8b0fb0",
+    "references": [],
+    "image_size": "square"
+  },
+  {
+    "id": "bg_station_courtyard",
+    "category": "backgrounds",
+    "name": "悬泉置坞院",
+    "local_path": "backgrounds/bg_station_courtyard.jpg",
+    "thumbnail": "_thumbnails/backgrounds/bg_station_courtyard.jpg",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 612915,
+    "sha256": "ec09d08e34b4857e8dfc76224b94838bf9761cc18cdb92296dc5ade7005efa06",
+    "references": [
+      {
+        "id": "df2670a64ec7a96d",
+        "title": "甘肃省-悬泉置遗址",
+        "source": "http://www.ncha.gov.cn/art/2017/6/2/art_2008_141382.html"
+      },
+      {
+        "id": "05d1d5b73410e510",
+        "title": "锁阳城+榆林窟+悬泉置 | “榆悬路”三大文化地标玩转指南",
+        "source": "https://wlj.jiuquan.gov.cn/wlj/c106743/202604/38c906fe13a84c05a6b651bf1b03807a.shtml"
+      },
+      {
+        "id": "75d7356def4f6a3c",
+        "title": "锁阳城+榆林窟+悬泉置 | “榆悬路”三大文化地标玩转指南",
+        "source": "https://wlj.jiuquan.gov.cn/wlj/c106743/202604/38c906fe13a84c05a6b651bf1b03807a.shtml"
+      }
+    ],
+    "image_size": "landscape_16_9"
+  },
+  {
+    "id": "bg_gobi_postroad",
+    "category": "backgrounds",
+    "name": "戈壁驿道",
+    "local_path": "backgrounds/bg_gobi_postroad.jpg",
+    "thumbnail": "_thumbnails/backgrounds/bg_gobi_postroad.jpg",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 480810,
+    "sha256": "30e8367137a2115d327f9b7ebb372fe8db558fc593711cec5956626b2eb0e132",
+    "references": [
+      {
+        "id": "610ebb57e81a3ad3",
+        "title": "甘肃省-玉门关遗址",
+        "source": "http://www.ncha.gov.cn/art/2017/6/2/art_2008_141383.html"
+      }
+    ],
+    "image_size": "landscape_16_9"
+  },
+  {
+    "id": "bg_beacon_tower",
+    "category": "backgrounds",
+    "name": "烽燧",
+    "local_path": "backgrounds/bg_beacon_tower.jpg",
+    "thumbnail": "_thumbnails/backgrounds/bg_beacon_tower.jpg",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 388558,
+    "sha256": "7ba25d765fad1543256d7867d79160613cdbea93753180922d39bd775eebbd77",
+    "references": [],
+    "image_size": "landscape_16_9"
+  },
+  {
+    "id": "bg_oasis",
+    "category": "backgrounds",
+    "name": "绿洲",
+    "local_path": "backgrounds/bg_oasis.jpg",
+    "thumbnail": "_thumbnails/backgrounds/bg_oasis.jpg",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 587460,
+    "sha256": "0c7915d915c882b84eacaa1cb76a3a51ddb6c0461acad6633da868ffca173f7a",
+    "references": [],
+    "image_size": "landscape_16_9"
+  },
+  {
+    "id": "bg_qilian_mountain",
+    "category": "backgrounds",
+    "name": "祁连山",
+    "local_path": "backgrounds/bg_qilian_mountain.jpg",
+    "thumbnail": "_thumbnails/backgrounds/bg_qilian_mountain.jpg",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 411003,
+    "sha256": "58a46d85bd33fa17ddaccd7f444d329d244a5364e372cdc0f9b7d2a88826d7ac",
+    "references": [],
+    "image_size": "landscape_16_9"
+  },
+  {
+    "id": "bg_station_interior",
+    "category": "backgrounds",
+    "name": "悬泉置室内书写",
+    "local_path": "backgrounds/bg_station_interior.jpg",
+    "thumbnail": "_thumbnails/backgrounds/bg_station_interior.jpg",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 453897,
+    "sha256": "ea36e65dff3ce1c797f5178f869b00024eb4b50131b1474dbc33d862c4f852a7",
+    "references": [
+      {
+        "id": "df2670a64ec7a96d",
+        "title": "甘肃省-悬泉置遗址",
+        "source": "http://www.ncha.gov.cn/art/2017/6/2/art_2008_141382.html"
+      }
+    ],
+    "image_size": "landscape_16_9"
+  },
+  {
+    "id": "bg_yumenguan_dusk",
+    "category": "backgrounds",
+    "name": "玉门关夕照",
+    "local_path": "backgrounds/bg_yumenguan_dusk.jpg",
+    "thumbnail": "_thumbnails/backgrounds/bg_yumenguan_dusk.jpg",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 417905,
+    "sha256": "c973aa010a7a49ab4c9070ec9ea530d89c4daec53c73d2f7cdcd37a6eff91cd9",
+    "references": [],
+    "image_size": "landscape_16_9"
+  },
+  {
+    "id": "bg_guangzhi_post",
+    "category": "backgrounds",
+    "name": "广至驿",
+    "local_path": "backgrounds/bg_guangzhi_post.jpg",
+    "thumbnail": "_thumbnails/backgrounds/bg_guangzhi_post.jpg",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 606519,
+    "sha256": "5b46a89693cc65cac796f36e4a943f265b385a0d2d4c377636ca0e94789fd8c9",
+    "references": [],
+    "image_size": "landscape_16_9"
+  },
+  {
+    "id": "bg_red_willow_beach",
+    "category": "backgrounds",
+    "name": "红柳滩",
+    "local_path": "backgrounds/bg_red_willow_beach.jpg",
+    "thumbnail": "_thumbnails/backgrounds/bg_red_willow_beach.jpg",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 550396,
+    "sha256": "a585b70fbbf093a9ace597bb27efbbcaa11bcb44f97b20e0002db44aa0a1218d",
+    "references": [],
+    "image_size": "landscape_16_9"
+  },
+  {
+    "id": "bg_yumenguan_gate",
+    "category": "backgrounds",
+    "name": "玉门关关楼",
+    "local_path": "backgrounds/bg_yumenguan_gate.jpg",
+    "thumbnail": "_thumbnails/backgrounds/bg_yumenguan_gate.jpg",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 821048,
+    "sha256": "7c17bee5b639e4b8f9de6768824b1057305e41aeab1d20f3a48a2cfe8c94790a",
+    "references": [],
+    "image_size": "landscape_16_9"
+  },
+  {
+    "id": "bg_commandery_hall",
+    "category": "backgrounds",
+    "name": "郡府正堂",
+    "local_path": "backgrounds/bg_commandery_hall.jpg",
+    "thumbnail": "_thumbnails/backgrounds/bg_commandery_hall.jpg",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 1062315,
+    "sha256": "1c26b0a203b321185f42080d6684e98a483e292d93142b5782e18417c731f417",
+    "references": [],
+    "image_size": "landscape_16_9"
+  },
+  {
+    "id": "bg_station_snow_night",
+    "category": "backgrounds",
+    "name": "悬泉置雪夜",
+    "local_path": "backgrounds/bg_station_snow_night.jpg",
+    "thumbnail": "_thumbnails/backgrounds/bg_station_snow_night.jpg",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 617959,
+    "sha256": "bf8392e0de79031b2f96b8cecd8ff567bc3aca02ead5ef947607357ffc59568b",
+    "references": [],
+    "image_size": "landscape_16_9"
+  },
+  {
+    "id": "bg_register_archive",
+    "category": "backgrounds",
+    "name": "名籍架阁",
+    "local_path": "backgrounds/bg_register_archive.jpg",
+    "thumbnail": "_thumbnails/backgrounds/bg_register_archive.jpg",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 958299,
+    "sha256": "eb64c56fb2dd00507540608c7ee570a0e9836ec78dd05f8fa126f314df928e02",
+    "references": [],
+    "image_size": "landscape_16_9"
+  },
+  {
+    "id": "bg_beacon_snow_night",
+    "category": "backgrounds",
+    "name": "烽燧雪夜",
+    "local_path": "backgrounds/bg_beacon_snow_night.jpg",
+    "thumbnail": "_thumbnails/backgrounds/bg_beacon_snow_night.jpg",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 641941,
+    "sha256": "33287e8004c5a73086a224b4dd41610c9458d2fbb2e7f97239d3f7f5195f7eeb",
+    "references": [],
+    "image_size": "landscape_16_9"
+  },
+  {
+    "id": "bg_prison_yard",
+    "category": "backgrounds",
+    "name": "亭狱小院",
+    "local_path": "backgrounds/bg_prison_yard.jpg",
+    "thumbnail": "_thumbnails/backgrounds/bg_prison_yard.jpg",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 553139,
+    "sha256": "ce9ae5c0b3b3777831357de989a8131012230dbb8e833c4a6f93cc478e559851",
+    "references": [],
+    "image_size": "landscape_16_9"
+  },
+  {
+    "id": "cg_ending_names",
+    "category": "backgrounds",
+    "name": "结局·名籍落笔",
+    "local_path": "backgrounds/cg_ending_names.jpg",
+    "thumbnail": "_thumbnails/backgrounds/cg_ending_names.jpg",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 708896,
+    "sha256": "fc66fd7f2715d0801b4064f0107de5241b4656d9f6b911dc68a1b2b3b936f6e5",
+    "references": [],
+    "image_size": "landscape_16_9"
+  },
+  {
+    "id": "cg_ending_exile",
+    "category": "backgrounds",
+    "name": "结局·押解东行",
+    "local_path": "backgrounds/cg_ending_exile.jpg",
+    "thumbnail": "_thumbnails/backgrounds/cg_ending_exile.jpg",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 598609,
+    "sha256": "e2c3556346f056fd09aa9b50a9b4736e2733975be27b90b5751ab2850f102c62",
+    "references": [],
+    "image_size": "landscape_16_9"
+  },
+  {
+    "id": "cg_ending_road",
+    "category": "backgrounds",
+    "name": "结局·关外长路",
+    "local_path": "backgrounds/cg_ending_road.jpg",
+    "thumbnail": "_thumbnails/backgrounds/cg_ending_road.jpg",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 625331,
+    "sha256": "66c3c742aea843d04a6f2cf0bb84e9373b0d1727781565c6fa05a0aaa31207f2",
+    "references": [],
+    "image_size": "landscape_16_9"
+  },
+  {
+    "id": "tex_silk_pattern",
+    "category": "textures",
+    "name": "汉代丝织品纹样",
+    "local_path": "textures/tex_silk_pattern.jpg",
+    "thumbnail": "_thumbnails/textures/tex_silk_pattern.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 1014007,
+    "sha256": "e4408773c5ec11daa9f29612990969a4d54921376e3b423ec05146eb8887a297",
+    "references": [
+      {
+        "id": "8619015f7bffc87c",
+        "title": "马圈湾丝织品",
+        "source": "https://www.jiandumuseum.cn/collectionDetail?exhibitId=47"
+      }
+    ],
+    "image_size": "square"
+  },
+  {
+    "id": "tex_rammed_earth",
+    "category": "textures",
+    "name": "夯土墙地面",
+    "local_path": "textures/tex_rammed_earth.jpg",
+    "thumbnail": "_thumbnails/textures/tex_rammed_earth.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 674369,
+    "sha256": "fcc5060bba2d6e542a355376114f989bbb787d8441b84904a8f2038354ed877b",
+    "references": [],
+    "image_size": "square"
+  },
+  {
+    "id": "tex_wood_bamboo",
+    "category": "textures",
+    "name": "木质简牍纹理",
+    "local_path": "textures/tex_wood_bamboo.jpg",
+    "thumbnail": "_thumbnails/textures/tex_wood_bamboo.jpg",
+    "width": 1920,
+    "height": 1920,
+    "bytes": 991091,
+    "sha256": "bfd3b597895a532072ffbd6c71379e4833a8f6ddc5a1b5d094e63170e4c326f5",
+    "references": [],
+    "image_size": "square"
+  },
+  {
+    "id": "ui_register_scroll",
+    "category": "ui",
+    "name": "名籍长卷底",
+    "local_path": "ui/ui_register_scroll.jpg",
+    "thumbnail": "_thumbnails/ui/ui_register_scroll.jpg",
+    "width": 1440,
+    "height": 3840,
+    "bytes": 613107,
+    "sha256": "e891c3cb735b731c036295b201e6e49983d40f1480ebbd860727cf687292027e",
+    "references": [],
+    "image_size": "1440x3840"
+  },
+  {
+    "id": "ui_ending_seal",
+    "category": "ui",
+    "name": "结局评语印",
+    "local_path": "ui/ui_ending_seal.png",
+    "thumbnail": "_thumbnails/ui/ui_ending_seal.jpg",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 1191171,
+    "sha256": "84df143f6b2a06781de5fc5f2eb8ff323ec8af2beb50ab9e0e4ca1664023735c",
+    "references": [],
+    "image_size": "square"
+  },
+  {
+    "id": "title_ch04",
+    "category": "ui",
+    "name": "第四章章节标题",
+    "local_path": "ui/title_ch04.jpg",
+    "thumbnail": "_thumbnails/ui/title_ch04.jpg",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 431035,
+    "sha256": "79d0cb04cf2c40d2251716cc62e9435d9766d889d8d5721ddadb55fa2c82211f",
+    "references": [],
+    "image_size": "landscape_16_9"
+  }
+]

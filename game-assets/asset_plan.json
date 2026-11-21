@@ -1,0 +1,457 @@
+{
+  "version": 1,
+  "generated_for": "悬泉渡 · 核心叙事资产",
+  "art_style": "国风手绘动画（参考《中国唱诗班》），墨线勾勒、薄彩平涂、设色典雅（土黄/赭石/黛绿/朱红/牙白），非照片非3D",
+  "disclaimer": "所有图片均为基于公开文物参考重新绘制的二创图，仅供游戏原型参考，不作为直接商用素材。原参考图见 art-references。",
+  "references_root": "../art-references",
+  "assets": {
+    "characters": [
+      {
+        "id": "char_fengan",
+        "name": "冯安（驿卒书佐·主角）",
+        "prompt": "[游戏人物立绘]: 中国风手绘动画角色立绘，2D动画原画，参考国风动画《中国唱诗班》，墨线勾勒干净流畅，薄彩平涂加淡雅渲染。年轻男子，约二十岁，初汉河西驿卒兼书佐，面容清瘦端正，束发裹黑色巾帻，穿麻布褐色短打、外罩半旧深衣，腰间系革带并挂书刀与一束木简，手指修长有执笔茧。神情沉静专注，略带风沙感。角色全身立绘，独立于纯色背景，适合游戏对话框立绘，设色典雅（土黄、赭石、黛绿、牙白），无照片质感，无现代元素。",
+        "reference_ids": [
+          "3d7cf2856cec29c5",
+          "e9ee868628f2eecf"
+        ],
+        "image_size": "portrait_4_3",
+        "status": "done",
+        "local_path": "characters/char_fengan.jpg"
+      },
+      {
+        "id": "char_aqi",
+        "name": "阿耆（西域译人）",
+        "prompt": "[游戏人物立绘]: 中国风手绘动画角色立绘，2D动画原画，墨线勾勒流畅，薄彩平涂。年轻西域胡人男子，约二十出头，深目高鼻，肤色偏褐，栗色头发编成数条细辫垂于肩，穿窄袖胡服（靛蓝与赭石色），腰间系宽皮带挂小囊与短刀，颈间戴绿松石串饰。神情机敏带笑意。全身立绘，独立背景，适合游戏对话框立绘，典雅设色，无现代元素。",
+        "reference_ids": [
+          "261912444c6ddadfe98",
+          "257084d287d25ae32bc"
+        ],
+        "image_size": "portrait_4_3",
+        "status": "done",
+        "local_path": "characters/char_aqi.jpg"
+      },
+      {
+        "id": "char_hanbo",
+        "name": "韩伯（驿置老吏）",
+        "prompt": "[游戏人物立绘]: 中国风手绘动画角色立绘，2D动画原画。年长男子，五十余岁，面容瘦削多须髯，鬓发花白，戴黑色介帻，穿半旧深衣，外披一件磨边的褐布袍，手持一卷木简与毛笔，腰背微驼。神情沉稳老练，似在审阅文书。全身立绘，独立背景，典雅土黄赭石设色，无现代元素。",
+        "reference_ids": [
+          "9dd9f755653a0310",
+          "243dd53a2292f488af6"
+        ],
+        "image_size": "portrait_4_3",
+        "status": "done",
+        "local_path": "characters/char_hanbo.jpg"
+      },
+      {
+        "id": "char_guowang",
+        "name": "郭望（戍卒）",
+        "prompt": "[游戏人物立绘]: 中国风手绘动画角色立绘，2D动画原画。健壮青年男子，二十五岁，肤色黝黑，方脸浓眉，束发扎巾，穿汉代戍卒短打（玄色与土黄），皮甲护胸，背负箭箙，手持汉弩，腰间环首刀。神情坚毅。全身立绘，独立背景，土黄赭石设色，无现代元素。",
+        "reference_ids": [
+          "255bac384dc05d897dd",
+          "9a11b22910f263b8"
+        ],
+        "image_size": "portrait_4_3",
+        "status": "done",
+        "local_path": "characters/char_guowang.jpg"
+      },
+      {
+        "id": "char_duyan",
+        "name": "杜延（河西豪侠）",
+        "prompt": "[游戏人物立绘]: 中国风手绘动画角色立绘，2D动画原画。三十岁男子，身材高大，留短须，穿质地较好的绛色曲裾深衣，外罩皮质半臂，腰悬环首刀，头戴平顶帻。神情倨傲精明。全身立绘，独立背景，绛红与黛绿对比设色，无现代元素。",
+        "reference_ids": [
+          "9a11b22910f263b8"
+        ],
+        "image_size": "portrait_4_3",
+        "status": "done",
+        "local_path": "characters/char_duyan.jpg"
+      },
+      {
+        "id": "char_yizu",
+        "name": "驿卒（通用）",
+        "prompt": "[游戏人物立绘]: 中国风手绘动画角色立绘，2D动画原画。普通青年驿卒，束发裹巾，穿土黄麻布短打，肩挎文书囊，手持传信棨信，步履匆忙。半身立绘，独立背景，简洁设色，无现代元素。",
+        "reference_ids": [
+          "25319cfe21e76fb27b9",
+          "2426144d899e63b1f00"
+        ],
+        "image_size": "portrait_4_3",
+        "status": "done",
+        "local_path": "characters/char_yizu.jpg"
+      },
+      {
+        "id": "char_shuzu",
+        "name": "戍卒持弩（通用）",
+        "prompt": "[游戏人物立绘]: 中国风手绘动画角色立绘，2D动画原画。汉代戍卒，束发裹巾，穿玄色短打与皮甲，双手端持汉弩瞄准。半身立绘，独立背景，土黄玄色设色，无现代元素。",
+        "reference_ids": [
+          "255bac384dc05d897dd"
+        ],
+        "image_size": "portrait_4_3",
+        "status": "done",
+        "local_path": "characters/char_shuzu.jpg"
+      },
+      {
+        "id": "char_yiren",
+        "name": "译人（通用）",
+        "prompt": "[游戏人物立绘]: 中国风手绘动画角色立绘，2D动画原画。中年译人，混血面孔，戴软帽，穿汉胡混合服饰，手持木简与笔，似在通译。半身立绘，独立背景，典雅设色，无现代元素。",
+        "reference_ids": [
+          "261912444c6ddadfe98"
+        ],
+        "image_size": "portrait_4_3",
+        "status": "done",
+        "local_path": "characters/char_yiren.jpg"
+      },
+      {
+        "id": "char_shizhe",
+        "name": "西域使者（通用）",
+        "prompt": "[游戏人物立绘]: 中国风手绘动画角色立绘，2D动画原画。西域使者，深目高鼻留须，戴尖顶风帽，身披厚实织锦斗篷，手持节杖。全身立绘，独立背景，黛绿与赭石设色，无现代元素。",
+        "reference_ids": [
+          "261912444c6ddadfe98",
+          "2774f24333765a380f58"
+        ],
+        "image_size": "portrait_4_3",
+        "status": "done",
+        "local_path": "characters/char_shizhe.jpg"
+      },
+      {
+        "id": "char_shanglv",
+        "name": "商旅（通用）",
+        "prompt": "[游戏人物立绘]: 中国风手绘动画角色立绘，2D动画原画。丝路商旅领队，中年，穿翻领胡服，腰系布带，身后有骆驼剪影轮廓。半身立绘，独立背景，土黄赭石设色，无现代元素。",
+        "reference_ids": [
+          "2197ebaa130e79f2",
+          "282b9ebae6876f8f8a7"
+        ],
+        "image_size": "portrait_4_3",
+        "status": "done",
+        "local_path": "characters/char_shanglv.jpg"
+      },
+      {
+        "id": "char_suhe",
+        "name": "苏禾（苏娘·悬泉置厨娘）",
+        "prompt": "[游戏人物立绘]: 中国风手绘动画角色立绘，2D动画原画，参考国风动画《中国唱诗班》，墨线勾勒干净流畅，薄彩平涂加淡雅渲染。年轻汉地女子，约二十四五岁，河西风沙磨出的清瘦面容，眉目温和却有韧劲，眼角有细纹，唇色偏淡。头发挽成低髻，以木簪和褪色布巾包住，几缕碎发贴在脸侧。穿赭石色窄袖短襦，外罩洗得发白的黛青布裙与粗麻围裙，袖口挽起，小臂有灶火烫出的旧疤，腰间挂铜勺与一串木牌。双手沾着薄薄面粉与草灰，一手端粗陶碗，一手扶灶台，侧身微转，笑意爽利，眼底压着心事。全身立绘，独立于纯色背景，适合游戏对话框立绘，暖灶火侧光，土黄、赭石、黛青、牙白设色，无照片质感，无现代元素。",
+        "reference_ids": [],
+        "image_size": "portrait_4_3",
+        "status": "pending",
+        "local_path": ""
+      },
+      {
+        "id": "char_baiji",
+        "name": "白姬（白狐·广至驿车马店主人）",
+        "prompt": "[游戏人物立绘]: 中国风手绘动画角色立绘，2D动画原画，参考国风动画《中国唱诗班》，墨线勾勒干净流畅，薄彩平涂加淡雅渲染。三十余岁汉地女子，面容姣好、保养得比边地妇人精细，细长眉，薄唇，眼尾微挑，笑意不达眼底，眼神锐利像在盘算。头发梳成规整垂髻，插一支素金簪与骨笄，耳垂戴小玉珰。外穿绛红色曲裾深衣，衣料比寻常驿店妇人好，内衬却露出胡式窄袖，腰系革带，挂一串铜钥匙、算筹与一柄短刀；裙下露皮靴，耳后有一道浅浅旧疤。一手持酒卮，一手拢在袖中，倚着车马店门框，姿态热情而疏离。全身立绘，独立于纯色背景，适合游戏对话框立绘，绛红、黛绿、牙白设色，局部冷光，无照片质感，无现代元素。",
+        "reference_ids": [],
+        "image_size": "portrait_4_3",
+        "status": "pending",
+        "local_path": ""
+      }
+    ],
+    "items": [
+      {
+        "id": "item_bamboo_slip",
+        "name": "汉简",
+        "prompt": "[游戏物品icon]: 中国风手绘动画物品插画，2D原画，墨线勾勒薄彩平涂。一束编联的汉代木简（简牍），竹简泛黄有墨迹与削改痕迹，用麻绳两道编联，旁边散落一枚单独简。居中独立展示，纯色牙白背景，高辨识度，适合作为游戏物品icon，土黄赭石设色，无照片质感。",
+        "reference_ids": [
+          "6144d899e63b1f00",
+          "8bd5718df8fb9da0",
+          "337e45053c08c7ae"
+        ],
+        "image_size": "square",
+        "status": "done",
+        "local_path": "items/item_bamboo_slip.jpg"
+      },
+      {
+        "id": "item_seal",
+        "name": "汉归义羌长青铜印",
+        "prompt": "[游戏物品icon]: 中国风手绘动画物品插画，2D原画，墨线勾勒薄彩平涂。一方汉代青铜驼钮官印，印台方形，上卧一骆驼钮，青铜带绿锈包浆，旁置一枚朱砂印面拓片，阴刻篆文。居中独立展示，纯色背景，高辨识度游戏物品icon，黛绿与朱红设色，无照片质感。",
+        "reference_ids": [
+          "d6cb9a3b8475f19f",
+          "8cc8a7ae0e5118c7",
+          "46cd7803810c6539"
+        ],
+        "image_size": "square",
+        "status": "done",
+        "local_path": "items/item_seal.jpg"
+      },
+      {
+        "id": "item_seal_clay",
+        "name": "封泥",
+        "prompt": "[游戏物品icon]: 中国风手绘动画物品插画，2D原画。一块汉代封泥，泥土色，表面压有清晰篆文印痕，边缘有绳纹，旁附一枚木简封检凹槽。居中独立，纯色背景，土黄赭石设色，无照片质感。",
+        "reference_ids": [
+          "92e7386b8e77aba3",
+          "4326379c75da81b5"
+        ],
+        "image_size": "square",
+        "status": "done",
+        "local_path": "items/item_seal_clay.jpg"
+      },
+      {
+        "id": "item_brush_knife",
+        "name": "书刀与毛笔",
+        "prompt": "[游戏物品icon]: 中国风手绘动画物品插画，2D原画。一支汉代竹杆毛笔（笔锋尖细）与一把铜环首书刀并排摆放，旁有半枚木简碎屑。居中独立，纯色背景，赭石牙白设色，无照片质感。",
+        "reference_ids": [
+          "4330b729379e7176",
+          "20bab0960d39d42a"
+        ],
+        "image_size": "square",
+        "status": "done",
+        "local_path": "items/item_brush_knife.jpg"
+      },
+      {
+        "id": "item_hemp_paper",
+        "name": "汉代麻纸",
+        "prompt": "[游戏物品icon]: 中国风手绘动画物品插画，2D原画。一块汉代残麻纸，纤维粗糙不均，色泛黄褐，边缘残缺，上面有零星墨书残字。居中独立，纯色背景，土黄设色，无照片质感。",
+        "reference_ids": [
+          "2418619015f7bfc87c",
+          "24658a960999b4b4dd9",
+          "26367f260818dfb8517"
+        ],
+        "image_size": "square",
+        "status": "done",
+        "local_path": "items/item_hemp_paper.jpg"
+      },
+      {
+        "id": "item_bronze_mirror",
+        "name": "汉铜镜",
+        "prompt": "[游戏物品icon]: 中国风手绘动画物品插画，2D原画。一面汉代圆形青铜镜，镜背有星云纹与连弧纹，中央半球形钮，青铜带暗绿锈。居中独立，纯色背景，黛绿赭石设色，无照片质感。",
+        "reference_ids": [
+          "1df6d5b256635506",
+          "9d287dbfa6429c36"
+        ],
+        "image_size": "square",
+        "status": "done",
+        "local_path": "items/item_bronze_mirror.jpg"
+      },
+      {
+        "id": "item_wuzhu_coin",
+        "name": "五铢钱",
+        "prompt": "[游戏物品icon]: 中国风手绘动画物品插画，2D原画。几枚汉代五铢铜钱，圆形方孔，钱文篆体“五铢”，铜色暗褐带绿锈，散落叠放。居中独立，纯色背景，赭石黛绿设色，无照片质感。",
+        "reference_ids": [],
+        "image_size": "square",
+        "status": "done",
+        "local_path": "items/item_wuzhu_coin.jpg"
+      },
+      {
+        "id": "item_pottery_jar",
+        "name": "汉代绿釉陶罐",
+        "prompt": "[游戏物品icon]: 中国风手绘动画物品插画，2D原画。一件汉代绿釉陶锺，高身鼓腹，肩部有弦纹，釉色青绿斑驳有土沁。居中独立，纯色背景，黛绿土黄设色，无照片质感。",
+        "reference_ids": [
+          "e12af3bc417eec03",
+          "73b41a9e00f1d832",
+          "f74c8b0b608278f4"
+        ],
+        "image_size": "square",
+        "status": "done",
+        "local_path": "items/item_pottery_jar.jpg"
+      },
+      {
+        "id": "item_bronze_ding",
+        "name": "汉代铜鼎",
+        "prompt": "[游戏物品icon]: 中国风手绘动画物品插画，2D原画。一件汉代三足铜鼎，圆腹两耳，足为兽蹄形，器身有铭文与弦纹，青铜暗绿。居中独立，纯色背景，黛绿赭石设色，无照片质感。",
+        "reference_ids": [
+          "04ff420361478495",
+          "f24333765a380f58"
+        ],
+        "image_size": "square",
+        "status": "done",
+        "local_path": "items/item_bronze_ding.jpg"
+      },
+      {
+        "id": "item_boshan_burner",
+        "name": "博山炉",
+        "prompt": "[游戏物品icon]: 中国风手绘动画物品插画，2D原画。汉代带盘博山炉，炉盖塑成山峦层叠，其间有云气与神兽镂空，底座为承盘，青铜绿锈，有袅袅青烟。居中独立，纯色背景，黛绿设色，无照片质感。",
+        "reference_ids": [
+          "4b5e65dee0e36b0a"
+        ],
+        "image_size": "square",
+        "status": "done",
+        "local_path": "items/item_boshan_burner.jpg"
+      },
+      {
+        "id": "item_qixin",
+        "name": "棨信（传信符）",
+        "prompt": "[游戏物品icon]: 中国风手绘动画物品插画，2D原画。一枚汉代棨信，长条帛幡，朱红底色，墨书篆文，边缘有流苏，系于木杆顶端。居中独立，纯色背景，朱红墨黑设色，无照片质感。",
+        "reference_ids": [
+          "25319cfe21e76fb27b9"
+        ],
+        "image_size": "square",
+        "status": "done",
+        "local_path": "items/item_qixin.jpg"
+      },
+      {
+        "id": "item_crossbow",
+        "name": "汉弩机",
+        "prompt": "[游戏物品icon]: 中国风手绘动画物品插画，2D原画。一具汉代青铜弩机，有望山、悬刀、牙，结构精密，青铜暗绿锈，安装于木臂之上。居中独立，纯色背景，黛绿赭石设色，无照片质感。",
+        "reference_ids": [
+          "255bac384dc05d897dd"
+        ],
+        "image_size": "square",
+        "status": "done",
+        "local_path": "items/item_crossbow.jpg"
+      },
+      {
+        "id": "item_horse_harness",
+        "name": "马具",
+        "prompt": "[游戏物品icon]: 中国风手绘动画物品插画，2D原画。一套汉代马具：皮质络头、衔镳、鞍鞯与缰绳，皮革棕褐色，配青铜带扣。居中独立，纯色背景，赭石黛绿设色，无照片质感。",
+        "reference_ids": [
+          "8bd5718df8fb9da0"
+        ],
+        "image_size": "square",
+        "status": "done",
+        "local_path": "items/item_horse_harness.jpg"
+      },
+      {
+        "id": "item_oil_lamp",
+        "name": "汉代铜灯",
+        "prompt": "[游戏物品icon]: 中国风手绘动画物品插画，2D原画。一盏汉代雁鱼铜灯或豆形铜灯，造型古朴，青铜暗绿，有灯火微光。居中独立，纯色背景，黛绿暖黄设色，无照片质感。",
+        "reference_ids": [
+          "286e3e8c6d7a5927acb"
+        ],
+        "image_size": "square",
+        "status": "done",
+        "local_path": "items/item_oil_lamp.jpg"
+      },
+      {
+        "id": "item_chariot",
+        "name": "汉代轺车",
+        "prompt": "[游戏物品icon]: 中国风手绘动画物品插画，2D原画。一辆汉代单马轺车（传车），伞盖圆形，车厢敞露，两轮辐条清晰，木质褐色配青铜构件。居中独立，纯色背景，土黄黛绿设色，无照片质感。",
+        "reference_ids": [
+          "282b9ebae6876f8f8a7",
+          "8bd5718df8fb9da0"
+        ],
+        "image_size": "square",
+        "status": "done",
+        "local_path": "items/item_chariot.jpg"
+      }
+    ],
+    "backgrounds": [
+      {
+        "id": "bg_station_courtyard",
+        "name": "悬泉置坞院",
+        "prompt": "[游戏场景背景]: 中国风手绘动画横版2.5D场景背景，2D原画，墨线勾勒薄彩平涂。汉代悬泉置驿站坞院：黄土夯土围墙环绕，院内有几间木构架土坯房舍（驿站房舍、马厩），院中地面夯土夹杂沙石，墙角有一口井与食槽，远处可见戈壁与祁连山轮廓。清晨柔光，土黄赭石黛绿设色，画面层次分明留出角色站位空间，无文字，无现代元素。",
+        "reference_ids": [
+          "df2670a64ec7a96d",
+          "05d1d5b73410e510",
+          "75d7356def4f6a3c"
+        ],
+        "image_size": "landscape_16_9",
+        "status": "done",
+        "local_path": "backgrounds/bg_station_courtyard.jpg"
+      },
+      {
+        "id": "bg_gobi_postroad",
+        "name": "戈壁驿道",
+        "prompt": "[游戏场景背景]: 中国风手绘动画横版2.5D场景背景，2D原画。河西戈壁驿道，辽阔荒漠，一条土黄色驿道延伸向远方，路旁有干枯红柳与零星芨芨草，远处地平线上有烽燧轮廓，天空澄澈有薄云。土黄赭石黛绿设色，留出角色路径，无文字，无现代元素。",
+        "reference_ids": [
+          "610ebb57e81a3ad3",
+          "21848a2b0d71and",
+          "2197ebaa130e79f2"
+        ],
+        "image_size": "landscape_16_9",
+        "status": "done",
+        "local_path": "backgrounds/bg_gobi_postroad.jpg"
+      },
+      {
+        "id": "bg_beacon_tower",
+        "name": "烽燧",
+        "prompt": "[游戏场景背景]: 中国风手绘动画横版2.5D场景背景，2D原画。汉代烽燧：一座黄土夯筑的方形烽台矗立戈壁，台顶有积薪与桔槔，周围有残破矮墙，远处山峦。夕阳余晖，土黄赭石设色，无文字，无现代元素。",
+        "reference_ids": [
+          "198eded54dcda5f9344",
+          "162d2829f5b83e5e2ea",
+          "1773adcb512c5874ccb"
+        ],
+        "image_size": "landscape_16_9",
+        "status": "done",
+        "local_path": "backgrounds/bg_beacon_tower.jpg"
+      },
+      {
+        "id": "bg_oasis",
+        "name": "绿洲",
+        "prompt": "[游戏场景背景]: 中国风手绘动画横版2.5D场景背景，2D原画。戈壁中的小绿洲，一湾清水旁长着胡杨与芦苇，远处是荒漠与雪山，光影柔和。土黄黛绿牙白设色，无文字，无现代元素。",
+        "reference_ids": [
+          "64d13810e615f8cb56",
+          "812e6d3cb31f2e8a52e",
+          "2341dd6fec3e1and"
+        ],
+        "image_size": "landscape_16_9",
+        "status": "done",
+        "local_path": "backgrounds/bg_oasis.jpg"
+      },
+      {
+        "id": "bg_qilian_mountain",
+        "name": "祁连山",
+        "prompt": "[游戏场景背景]: 中国风手绘动画横版2.5D场景背景，2D原画。远眺祁连山，雪峰连绵，山下是河西走廊的草原与河谷，云气缭绕。黛绿牙白赭石设色，开阔留白，无文字，无现代元素。",
+        "reference_ids": [
+          "184a3749733b2a9c48b",
+          "1864f057f1e3c126a78",
+          "191b13a50ce21and"
+        ],
+        "image_size": "landscape_16_9",
+        "status": "done",
+        "local_path": "backgrounds/bg_qilian_mountain.jpg"
+      },
+      {
+        "id": "bg_station_interior",
+        "name": "悬泉置室内书写",
+        "prompt": "[游戏场景背景]: 中国风手绘动画横版2.5D场景背景，2D原画。悬泉置室内：夯土墙与木柱，案几上摊开木简、毛笔、铜灯与封泥，墙上挂着棨信与地图，窗外透进戈壁日光。土黄赭石设色，留出角色站位，无文字，无现代元素。",
+        "reference_ids": [
+          "df2670a64ec7a96d",
+          "2426144d899e63b1f00",
+          "25319cfe21e76fb27b9"
+        ],
+        "image_size": "landscape_16_9",
+        "status": "done",
+        "local_path": "backgrounds/bg_station_interior.jpg"
+      },
+      {
+        "id": "bg_yumenguan_dusk",
+        "name": "玉门关夕照",
+        "prompt": "[游戏场景背景]: 中国风手绘动画横版2.5D场景背景，2D原画。玉门关遗址夕照：黄土夯筑的方形关城立于戈壁，夕阳将墙面染成暖金，长影投射地面，远处雪山。土黄赭石黛绿设色，开阔留白，无文字，无现代元素。",
+        "reference_ids": [
+          "16881fd030cb3cc3168",
+          "1695de2a0d7537d2d13",
+          "181fab2ad6ccee099f5"
+        ],
+        "image_size": "landscape_16_9",
+        "status": "done",
+        "local_path": "backgrounds/bg_yumenguan_dusk.jpg"
+      }
+    ],
+    "textures": [
+      {
+        "id": "tex_silk_pattern",
+        "name": "汉代丝织品纹样",
+        "prompt": "[游戏材质贴图]: 中国风手绘动画无缝材质，2D原画。汉代丝织品纹样，平涂重彩，云气纹与瑞兽纹交错，配色为朱红、赭石、黛绿、牙白，仿汉代织锦风格，画面可平铺无缝拼接，无文字，无照片质感。",
+        "reference_ids": [
+          "8619015f7bffc87c",
+          "272bbbe506edc95284d",
+          "275e8a53691d1cb6be0"
+        ],
+        "image_size": "square",
+        "status": "done",
+        "local_path": "textures/tex_silk_pattern.jpg"
+      },
+      {
+        "id": "tex_rammed_earth",
+        "name": "夯土墙地面",
+        "prompt": "[游戏材质贴图]: 中国风手绘动画无缝材质，2D原画。汉代夯土墙纹理，黄土层叠的夯窝与裂纹，土黄与赭石渐变，有风沙侵蚀痕迹，可平铺无缝拼接，无文字，无照片质感。",
+        "reference_ids": [
+          "160d2829f5b83e5e2ea",
+          "162d2829f5b83and",
+          "16881fd030cb3cc3168"
+        ],
+        "image_size": "square",
+        "status": "done",
+        "local_path": "textures/tex_rammed_earth.jpg"
+      },
+      {
+        "id": "tex_wood_bamboo",
+        "name": "木质简牍纹理",
+        "prompt": "[游戏材质贴图]: 中国风手绘动画无缝材质，2D原画。木简表面纹理，纵向竹木纹，色泛黄褐，有墨迹与使用痕迹，可平铺无缝拼接，无文字，无照片质感。",
+        "reference_ids": [
+          "2426144d899e63b1f00",
+          "2588bd5718df8fb9da0"
+        ],
+        "image_size": "square",
+        "status": "done",
+        "local_path": "textures/tex_wood_bamboo.jpg"
+      }
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+# Build output
+/build/
+/out/
+/install/
+/package/
+CMakeUserPresets.json
+
+# vcpkg manifest install artifacts
+/vcpkg_installed/
+/vcpkg-cache/
+
+# IDE / editor
+/.vs/
+/.vscode/
+*.user
+*.suo
+*.VC.db*
+
+# Local tooling / agent caches
+/.trae/
+/.trae-html-share-packages/
+/.screenshots/
+
+# Harvested art references (kept locally, ~164 MB)
+/art-references/
+
+# Logs and temporary files
+*.log
+*.tmp
+debug.log
+
+# OS
+Thumbs.db
+.DS_Store

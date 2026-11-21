@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch01",
+  "title": "第一章 无印之信",
+  "next_chapter": "ch02",
+  "initial": {
+    "flags": {
+      "prologue_done": true,
+      "ch1_letter_inspected": false,
+      "ch1_hanbo_consulted": false,
+      "ch1_aqi_translated": false,
+      "ch1_zhangji_seen": false,
+      "ch1_zhangji_warned": false,
+      "ch1_patrol_started": false,
+      "ch1_patrol_done": false,
+      "ch1_tracks_found": false,
+      "ch1_scouts_cleared": false,
+      "ch1_guowang_hurt": false,
+      "ch1_baiji_met": false,
+      "ch1_stable_checked": false,
+      "ch1_baiji_direct_question": false,
+      "ch1_followed_by_baiji": false,
+      "ch1_shed_searched": false,
+      "ch1_zhangji_found": false,
+      "ch1_climax": false,
+      "ch1_duyan_offer": false,
+      "ch1_duyan_alerted": false,
+      "ch1_hanbo_truth": false,
+      "ch1_hanbo_night": false,
+      "ch1_done": false,
+      "sq1_01_done": false,
+      "sq1_02_done": false,
+      "sq1_04_done": false,
+      "su_oldhouse_visited": false,
+      "su_ration_known": false,
+      "su_ration_confessed": false,
+      "su_ledger_seen": false,
+      "su_name_promise": false,
+      "evidence_with_su": false,
+      "su_hides_evidence": false,
+      "bj_inkfinger": false,
+      "bj_guarded": false,
+      "bj_knife_seen": false,
+      "bj_warned": false,
+      "bj_surveillance": false,
+      "bj_confronted": false,
+      "bj_informed": false,
+      "bj_sendoff": false
+    },
+    "variables": {
+      "num_su_trust": 0,
+      "num_baiji_suspicion": 0,
+      "num_hanbo_trust": 0,
+      "num_guowang_trust": 0,
+      "num_aqi_trust": 0,
+      "num_prefecture_suspicion": 0,
+      "num_reputation": 0,
+      "receipt_choice": "none"
+    }
+  },
+  "variables": {
+    "num_su_trust": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "苏娘信任，影响旧衣支线、证据托付与终章名字结局"
+    },
+    "num_baiji_suspicion": {
+      "type": "int",
+      "min": 0,
+      "max": 3,
+      "description": "白姬对冯安的警觉，影响柜台刀鞘、跟踪者与二次到访"
+    },
+    "num_hanbo_trust": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "韩伯信任，影响私简抄本是否交付"
+    },
+    "num_guowang_trust": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "郭望信任，影响后续守城与战斗协助"
+    },
+    "num_aqi_trust": {
+      "type": "int",
+      "min": -2,
+      "max": 5,
+      "description": "阿耆信任，影响通译与商队线"
+    },
+    "num_prefecture_suspicion": {
+      "type": "int",
+      "min": 0,
+      "max": 3,
+      "description": "郡府对冯安的怀疑，压下证据时上升"
+    },
+    "num_reputation": {
+      "type": "int",
+      "min": 0,
+      "max": 20,
+      "description": "边塞声望，影响任务报酬与结局评价"
+    },
+    "receipt_choice": {
+      "type": "enum",
+      "values": ["none", "handed", "concealed", "su"],
+      "description": "章末证据处置方式"
+    }
+  },
+  "clues": {
+    "clue_unsealed_letter": "无封泥、无印文的传信，写着“冬至前，三十七人粮，照旧。广至驿收。”",
+    "clue_hu_order": "阿耆指出信中语序接近匈奴语，“冬至前”更像“白霜之前”。",
+    "clue_new_harness": "广至驿马厩里新换的马具，鞍下夹着红柳刺。",
+    "clue_shortcut": "张季走了不合规矩的红柳滩近路。",
+    "clue_receipt_half": "张季邮袋里的半张货单，印文属于废止官署。",
+    "clue_receipt": "红柳滩货单：收件人周敢，货为弩机十具、粮三车，日期冬至前五日。",
+    "clue_forged_letter": "柴房旧封泥与无印信残印同模，传信系伪造。",
+    "clue_seal_match": "苏娘旧宅灶台下的封泥与广至驿柴房封泥同模。",
+    "clue_zhougan_last": "周敢最后一次回家，留下一句“若有人问，就说我死了”。",
+    "clue_zhougan_lastwords": "周敢临行前留下的原话与封泥下落。",
+    "clue_zhougan_used": "周敢的名字被人用于接收弩机与军粮。",
+    "clue_hanbo_slips": "韩伯私简记录三十七人真实阵亡地点。",
+    "clue_hanbo_copy": "韩伯私简抄本，可证明名籍被人改动。",
+    "clue_baiji_lie": "白姬称张季往西，与马蹄印方向相反。",
+    "clue_baiji_key": "跟踪者掉落的广至驿后门钥匙牌。",
+    "clue_winter_solstice": "柴房新灰中未烧尽的“冬至”二字。",
+    "clue_erasure_marks": "廪食簿上被磨平的削改痕迹，证明名籍被人动过。",
+    "clue_fast_horse": "深夜从广至驿方向出关的快马。"
+  },
+  "items": {
+    "item_brush_knife": {
+      "name": "书刀与毛笔",
+      "icon": "item_brush_knife",
+      "description": "韩伯的旧书刀，可用来验看简牍削痕"
+    },
+    "item_bamboo_slip": {
+      "name": "汉简",
+      "icon": "item_bamboo_slip",
+      "description": "廪食簿与韩伯私简"
+    },
+    "item_seal_clay": {
+      "name": "封泥",
+      "icon": "item_seal_clay",
+      "description": "与无印信残印同模的旧封泥"
+    },
+    "item_qixin": {
+      "name": "棨信",
+      "icon": "item_qixin",
+      "description": "张季的传信符，可通行玉门关"
+    },
+    "item_crossbow": {
+      "name": "汉弩机",
+      "icon": "item_crossbow",
+      "description": "修复后的守城弩机"
+    },
+    "item_post_pouch": {
+      "name": "邮袋",
+      "icon": "item_post_pouch",
+      "description": "张季的驿传邮袋"
+    },
+    "item_wuzhu_coin": {
+      "name": "五铢钱",
+      "icon": "item_wuzhu_coin",
+      "description": "杜延留下的五铢钱，后续可追查私铸"
+    }
+  }
+}

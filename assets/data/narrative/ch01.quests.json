@@ -1,0 +1,421 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch01",
+  "title": "第一章 无印之信",
+  "entry_quest": "mq_1_01",
+  "next_chapter": "ch02",
+  "state_model": {
+    "states": ["inactive", "active", "completed"],
+    "initial": "inactive",
+    "transitions": {
+      "inactive": ["active"],
+      "active": ["completed"],
+      "completed": []
+    },
+    "note": "本章不设任务失败态；战斗失败统一为重伤读档，不锁死主线。"
+  },
+  "quests": [
+    {
+      "id": "mq_1_01",
+      "type": "main",
+      "title": "无印之信",
+      "summary": "夜半收到一封无封泥、无印文的传信，信中提及三十七人领粮。",
+      "location": "xuanquan_post",
+      "prerequisites": [
+        { "flag": "prologue_done" }
+      ],
+      "objectives": [
+        {
+          "id": "mq_1_01_obj_inspect",
+          "text": "检查无印传信",
+          "condition": { "flag": "ch1_letter_inspected" }
+        },
+        {
+          "id": "mq_1_01_obj_hanbo",
+          "text": "询问韩伯",
+          "condition": { "flag": "ch1_hanbo_consulted" }
+        },
+        {
+          "id": "mq_1_01_obj_aqi",
+          "text": "请阿耆译读",
+          "optional": true,
+          "condition": { "flag": "ch1_aqi_translated" }
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "mq_1_01_obj_inspect" },
+          { "objective": "mq_1_01_obj_hanbo" }
+        ]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_unsealed_letter" },
+        { "type": "clue", "id": "clue_hu_order", "condition": { "flag": "ch1_aqi_translated" } },
+        { "type": "variable", "id": "num_hanbo_trust", "delta": 1 }
+      ],
+      "unlocks": ["mq_1_02"],
+      "branches": [
+        {
+          "id": "aqi_joined",
+          "condition": { "flag": "ch1_aqi_translated" },
+          "effects": [
+            { "add_var": "num_aqi_trust", "value": 1 }
+          ],
+          "note": "阿耆译读后可在广至驿提供额外观察提示。"
+        },
+        {
+          "id": "brush_knife_found",
+          "condition": { "flag": "sq1_01_done" },
+          "effects": [
+            { "add_clue": "clue_erasure_marks" }
+          ],
+          "note": "持有书刀时，韩伯会暗示廪食簿的削改痕迹。"
+        }
+      ]
+    },
+    {
+      "id": "mq_1_02",
+      "type": "main",
+      "title": "驿道血迹",
+      "summary": "与郭望沿驿道寻找失踪的张季，击退匈奴斥候并找回邮袋。",
+      "location": "gobi_postroad",
+      "prerequisites": [
+        { "quest": "mq_1_01", "state": "completed" }
+      ],
+      "objectives": [
+        {
+          "id": "mq_1_02_obj_patrol",
+          "text": "与郭望出巡",
+          "condition": { "flag": "ch1_patrol_started" }
+        },
+        {
+          "id": "mq_1_02_obj_tracks",
+          "text": "调查被新沙盖住的车辙",
+          "condition": { "flag": "ch1_tracks_found" }
+        },
+        {
+          "id": "mq_1_02_obj_scouts",
+          "text": "击退匈奴斥候",
+          "condition": { "flag": "ch1_scouts_cleared" }
+        },
+        {
+          "id": "mq_1_02_obj_pouch",
+          "text": "搜索张季的邮袋",
+          "condition": { "item": "item_post_pouch" }
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "mq_1_02_obj_patrol" },
+          { "objective": "mq_1_02_obj_tracks" },
+          { "objective": "mq_1_02_obj_scouts" },
+          { "objective": "mq_1_02_obj_pouch" }
+        ]
+      },
+      "rewards": [
+        { "type": "item", "id": "item_post_pouch" },
+        { "type": "clue", "id": "clue_receipt_half" },
+        { "type": "variable", "id": "num_guowang_trust", "delta": 1 },
+        { "type": "variable", "id": "num_reputation", "delta": 1 }
+      ],
+      "unlocks": ["mq_1_03"],
+      "branches": [
+        {
+          "id": "return_first",
+          "condition": { "flag": "ch1_guowang_hurt" },
+          "effects": [
+            { "add_var": "num_guowang_trust", "value": -1 }
+          ],
+          "note": "选择先回报时，郭望独自追踪受伤，驿道战追加一名斥候。"
+        }
+      ]
+    },
+    {
+      "id": "mq_1_03",
+      "type": "main",
+      "title": "广至驿",
+      "summary": "前往广至驿追查张季行踪，在白姬的马厩与柴房发现伪造传信的证据。",
+      "location": "guangzhi_post",
+      "prerequisites": [
+        { "quest": "mq_1_02", "state": "completed" }
+      ],
+      "objectives": [
+        {
+          "id": "mq_1_03_obj_baiji",
+          "text": "与白姬交谈",
+          "condition": { "flag": "ch1_baiji_met" }
+        },
+        {
+          "id": "mq_1_03_obj_stable",
+          "text": "查看马厩里的新马具",
+          "condition": { "flag": "ch1_stable_checked" }
+        },
+        {
+          "id": "mq_1_03_obj_shed",
+          "text": "搜查柴房",
+          "condition": { "flag": "ch1_shed_searched" }
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "mq_1_03_obj_baiji" },
+          { "objective": "mq_1_03_obj_stable" },
+          { "objective": "mq_1_03_obj_shed" }
+        ]
+      },
+      "rewards": [
+        { "type": "item", "id": "item_seal_clay" },
+        { "type": "clue", "id": "clue_forged_letter" }
+      ],
+      "unlocks": ["mq_1_04", "sq_1_02"],
+      "branches": [
+        {
+          "id": "direct_question",
+          "condition": { "flag": "ch1_baiji_direct_question" },
+          "effects": [
+            { "add_var": "num_baiji_suspicion", "value": 1 },
+            { "set_flag": "ch1_followed_by_baiji", "value": true }
+          ],
+          "note": "直接质问白姬会让她警觉，离开广至驿后触发跟踪者。"
+        }
+      ]
+    },
+    {
+      "id": "mq_1_04",
+      "type": "main",
+      "title": "红柳滩",
+      "summary": "在红柳滩找到张季遗体，取回棨信与写着周敢名字的货单。",
+      "location": "red_willow_beach",
+      "prerequisites": [
+        { "quest": "mq_1_03", "state": "completed" }
+      ],
+      "objectives": [
+        {
+          "id": "mq_1_04_obj_body",
+          "text": "找到张季",
+          "condition": { "flag": "ch1_zhangji_found" }
+        },
+        {
+          "id": "mq_1_04_obj_receipt",
+          "text": "取得货单",
+          "condition": { "clue": "clue_receipt" }
+        },
+        {
+          "id": "mq_1_04_obj_qixin",
+          "text": "取回棨信",
+          "condition": { "item": "item_qixin" }
+        },
+        {
+          "id": "mq_1_04_obj_scouts",
+          "text": "击退灭口的斥候",
+          "condition": { "flag": "ch1_scouts_cleared" }
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "mq_1_04_obj_body" },
+          { "objective": "mq_1_04_obj_receipt" },
+          { "objective": "mq_1_04_obj_qixin" },
+          { "objective": "mq_1_04_obj_scouts" }
+        ]
+      },
+      "rewards": [
+        { "type": "item", "id": "item_qixin" },
+        { "type": "clue", "id": "clue_receipt" },
+        { "type": "variable", "id": "num_reputation", "delta": 2 }
+      ],
+      "unlocks": ["mq_1_05"],
+      "branches": [
+        {
+          "id": "no_body_search",
+          "condition": { "not": { "flag": "ch1_zhangji_found" } },
+          "effects": [
+            { "add_var": "num_baiji_suspicion", "value": 1 }
+          ],
+          "note": "未搜尸体时，棨信落入斥候之手，需要额外战斗夺回。"
+        }
+      ]
+    },
+    {
+      "id": "mq_1_05",
+      "type": "main",
+      "title": "第一道裂痕",
+      "summary": "回到悬泉置，听韩伯说出名籍被改的真相，并决定证据交给谁。",
+      "location": "xuanquan_post",
+      "prerequisites": [
+        { "quest": "mq_1_04", "state": "completed" }
+      ],
+      "objectives": [
+        {
+          "id": "mq_1_05_obj_hanbo",
+          "text": "听韩伯夜谈",
+          "condition": { "flag": "ch1_hanbo_truth" }
+        },
+        {
+          "id": "mq_1_05_obj_choice",
+          "text": "决定证据去向",
+          "condition": { "var": "receipt_choice", "op": "neq", "value": "none" }
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "mq_1_05_obj_hanbo" },
+          { "objective": "mq_1_05_obj_choice" }
+        ]
+      },
+      "rewards": [
+        { "type": "flag", "id": "ch1_done" }
+      ],
+      "unlocks": ["ch02"],
+      "branches": [
+        {
+          "id": "handed",
+          "condition": { "var": "receipt_choice", "op": "eq", "value": "handed" },
+          "effects": [
+            { "set_flag": "ch1_duyan_alerted", "value": true }
+          ],
+          "note": "交给郡府或杜延：第二章商队被查、线索被抢先。"
+        },
+        {
+          "id": "concealed",
+          "condition": { "var": "receipt_choice", "op": "eq", "value": "concealed" },
+          "effects": [
+            { "add_var": "num_hanbo_trust", "value": 1 },
+            { "add_var": "num_prefecture_suspicion", "value": 1 }
+          ],
+          "note": "压下证据：韩伯信任上升，郡府开始怀疑冯安。"
+        },
+        {
+          "id": "su_keeps",
+          "condition": { "var": "receipt_choice", "op": "eq", "value": "su" },
+          "effects": [
+            { "add_var": "num_su_trust", "value": 2 },
+            { "set_flag": "evidence_with_su", "value": true }
+          ],
+          "note": "交给苏娘：第二章可能被白狐的人搜走，触发藏证据事件。"
+        }
+      ]
+    },
+    {
+      "id": "sq_1_01",
+      "type": "side",
+      "title": "削简之刃",
+      "summary": "韩伯的书刀遗失在马厩草料与仓廪角落，找回后可验看简牍削痕。",
+      "location": "xuanquan_post",
+      "prerequisites": [
+        { "flag": "prologue_done" }
+      ],
+      "objectives": [
+        {
+          "id": "sq_1_01_obj_find",
+          "text": "找回书刀",
+          "condition": { "item": "item_brush_knife" }
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "sq_1_01_obj_find" }
+        ]
+      },
+      "rewards": [
+        { "type": "item", "id": "item_brush_knife" },
+        { "type": "ability", "id": "inspect_erasure" },
+        { "type": "flag", "id": "sq1_01_done" }
+      ],
+      "unlocks": [],
+      "branches": [
+        {
+          "id": "erasure_clue",
+          "condition": { "flag": "sq1_01_done" },
+          "effects": [
+            { "add_clue": "clue_erasure_marks" }
+          ],
+          "note": "完成支线后，MQ1-01 与韩伯夜谈追加削改线索。"
+        }
+      ]
+    },
+    {
+      "id": "sq_1_02",
+      "type": "side",
+      "title": "半枚封泥",
+      "summary": "苏娘请冯安去旧宅看看周敢留下的东西，灶台下藏着半枚封泥。",
+      "location": "guangzhi_post",
+      "prerequisites": [
+        { "quest": "mq_1_03", "state": "active" }
+      ],
+      "objectives": [
+        {
+          "id": "sq_1_02_obj_visit",
+          "text": "进入苏娘旧宅",
+          "condition": { "flag": "su_oldhouse_visited" }
+        },
+        {
+          "id": "sq_1_02_obj_seal",
+          "text": "找到灶台下的封泥",
+          "condition": { "item": "item_seal_clay" }
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "sq_1_02_obj_visit" },
+          { "objective": "sq_1_02_obj_seal" }
+        ]
+      },
+      "rewards": [
+        { "type": "item", "id": "item_seal_clay" },
+        { "type": "clue", "id": "clue_seal_match" },
+        { "type": "variable", "id": "num_su_trust", "delta": 1 },
+        { "type": "flag", "id": "sq1_02_done" }
+      ],
+      "unlocks": [],
+      "branches": [
+        {
+          "id": "su_promise",
+          "condition": { "flag": "su_name_promise" },
+          "effects": [
+            { "add_var": "num_su_trust", "value": 2 }
+          ],
+          "note": "承诺为周敢补名，解锁终章“名字”结局条件。"
+        }
+      ]
+    },
+    {
+      "id": "sq_1_04",
+      "type": "side",
+      "title": "断弩",
+      "summary": "郭望的弩机卡壳，需要在烽燧废墟或商队货堆找回悬刀与望山。",
+      "location": "beacon_tower",
+      "prerequisites": [
+        { "flag": "ch1_patrol_started" }
+      ],
+      "objectives": [
+        {
+          "id": "sq_1_04_obj_parts",
+          "text": "找回弩机零件",
+          "condition": { "item": "item_crossbow" }
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "sq_1_04_obj_parts" }
+        ]
+      },
+      "rewards": [
+        { "type": "item", "id": "item_crossbow" },
+        { "type": "variable", "id": "num_guowang_trust", "delta": 1 },
+        { "type": "flag", "id": "sq1_04_done" }
+      ],
+      "unlocks": [],
+      "branches": [
+        {
+          "id": "guowang_not_hurt",
+          "condition": { "flag": "sq1_04_done" },
+          "effects": [
+            { "set_flag": "ch1_guowang_hurt", "value": false }
+          ],
+          "note": "完成支线后，驿道战中郭望不会因弩机卡壳受伤。"
+        }
+      ]
+    }
+  ]
+}

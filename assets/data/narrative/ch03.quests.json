@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch03",
+  "quests": [
+    {
+      "id": "mq_3_01",
+      "type": "main",
+      "title": "过关文书",
+      "summary": "玉门关冬至日闭门三日。棨信、传、验封，一样不能少；编队里每一个人都要有个说法。",
+      "location": "玉门关",
+      "prerequisites": { "flag": "ch3_start" },
+      "objectives": [
+        {
+          "id": "mq_3_01_obj_qixin",
+          "text": "验过棨信",
+          "condition": { "flag": "ch3_qixin_checked" }
+        },
+        {
+          "id": "mq_3_01_obj_manifest",
+          "text": "申报随行货物",
+          "condition": { "flag": "ch3_manifest_declared" }
+        },
+        {
+          "id": "mq_3_01_obj_party",
+          "text": "带同伴进关",
+          "condition": { "flag": "ch3_party_passed" }
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "mq_3_01_obj_qixin" },
+          { "objective": "mq_3_01_obj_manifest" },
+          { "objective": "mq_3_01_obj_party" }
+        ]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_gate_registry" },
+        { "type": "variable", "id": "num_reputation", "delta": 1 }
+      ]
+    },
+    {
+      "id": "mq_3_02",
+      "type": "main",
+      "title": "棨信的来路",
+      "summary": "棨信是张季的，但红柳滩之后仍有人用它过关。副券存根是唯一能倒查的实物。",
+      "location": "玉门关存根房",
+      "prerequisites": { "quest": "mq_3_01", "state": "completed" },
+      "objectives": [
+        {
+          "id": "mq_3_02_obj_stub",
+          "text": "查棨信副券",
+          "condition": { "flag": "ch3_stub_checked" }
+        },
+        {
+          "id": "mq_3_02_obj_trace",
+          "text": "追出持信人的路线",
+          "condition": { "flag": "ch3_qixin_traced" }
+        },
+        {
+          "id": "mq_3_02_obj_forge",
+          "text": "确认棨信被人冒用",
+          "condition": { "flag": "ch3_qixin_forgery" }
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "mq_3_02_obj_stub" },
+          { "objective": "mq_3_02_obj_trace" },
+          { "objective": "mq_3_02_obj_forge" }
+        ]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_qixin_stub" },
+        { "type": "item", "id": "item_qixin" }
+      ]
+    },
+    {
+      "id": "mq_3_03",
+      "type": "main",
+      "title": "仓曹的印",
+      "summary": "那枚废止官署的印归郡府仓曹史卫敞掌管。赵钦只是被推到台前署名的人。",
+      "location": "玉门关驿舍",
+      "prerequisites": { "quest": "mq_3_02", "state": "completed" },
+      "objectives": [
+        {
+          "id": "mq_3_03_obj_seal",
+          "text": "比对残印与官署印",
+          "condition": { "flag": "ch3_seal_compared" }
+        },
+        {
+          "id": "mq_3_03_obj_roster",
+          "text": "取得仓曹名录",
+          "condition": { "flag": "ch3_roster_got" }
+        },
+        {
+          "id": "mq_3_03_obj_confront",
+          "text": "与卫敞对质",
+          "condition": { "flag": "ch3_weichang_confronted" }
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "mq_3_03_obj_seal" },
+          { "objective": "mq_3_03_obj_roster" },
+          { "objective": "mq_3_03_obj_confront" }
+        ]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_caocao_roster" },
+        { "type": "clue", "id": "clue_seal_owner_full" }
+      ]
+    },
+    {
+      "id": "mq_3_04",
+      "type": "main",
+      "title": "关下",
+      "summary": "货队在关前被拦。私兵拔刀，郭望站在你这一侧。",
+      "location": "玉门关关下",
+      "prerequisites": { "quest": "mq_3_03", "state": "completed" },
+      "objectives": [
+        {
+          "id": "mq_3_04_obj_track",
+          "text": "锁定货队位置",
+          "condition": { "flag": "ch3_gate_tracked" }
+        },
+        {
+          "id": "mq_3_04_obj_fight",
+          "text": "击退押货私兵",
+          "condition": { "flag": "ch3_gate_cleared" }
+        },
+        {
+          "id": "mq_3_04_obj_seize",
+          "text": "夺取过关文书",
+          "condition": { "flag": "ch3_seal_seized" }
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "mq_3_04_obj_track" },
+          { "objective": "mq_3_04_obj_fight" },
+          { "objective": "mq_3_04_obj_seize" }
+        ]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_gate_manifest" },
+        { "type": "item", "id": "item_gate_token" },
+        { "type": "variable", "id": "num_reputation", "delta": 1 }
+      ]
+    },
+    {
+      "id": "mq_3_05",
+      "type": "main",
+      "title": "过关",
+      "summary": "关开之前，成公朔只要一句话：交人，还是交货。",
+      "location": "玉门关关下",
+      "prerequisites": { "quest": "mq_3_04", "state": "completed" },
+      "objectives": [
+        {
+          "id": "mq_3_05_obj_choose",
+          "text": "在关下做出抉择",
+          "condition": { "flag": "ch3_final_choice" }
+        },
+        {
+          "id": "mq_3_05_obj_ending",
+          "text": "确定本章结局",
+          "condition": { "var": "ch3_ending", "op": "neq", "value": "none" }
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "mq_3_05_obj_choose" },
+          { "objective": "mq_3_05_obj_ending" }
+        ]
+      },
+      "rewards": [
+        { "type": "flag", "id": "ch3_done" },
+        { "type": "variable", "id": "num_reputation", "delta": 2 }
+      ]
+    },
+    {
+      "id": "sq_3_01",
+      "type": "side",
+      "title": "无名卒",
+      "summary": "一个关卒的姓名与籍贯对不上原籍。替他把名字补回去。",
+      "location": "玉门关存根房",
+      "prerequisites": { "flag": "ch3_customs_done" },
+      "objectives": [
+        {
+          "id": "sq_3_01_obj_name",
+          "text": "替关卒补正名籍",
+          "condition": { "flag": "sq3_01_done" }
+        }
+      ],
+      "completion": {
+        "all": [{ "objective": "sq_3_01_obj_name" }]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_erased_name" },
+        { "type": "variable", "id": "num_reputation", "delta": 1 }
+      ]
+    },
+    {
+      "id": "sq_3_02",
+      "type": "side",
+      "title": "白狐的信",
+      "summary": "白姬托人捎来一封没有落款的信。拆、送，还是烧掉？",
+      "location": "玉门关驿舍",
+      "prerequisites": { "clue": "clue_baiji_letter" },
+      "objectives": [
+        {
+          "id": "sq_3_02_obj_letter",
+          "text": "决定这封信的去向",
+          "condition": { "flag": "sq3_02_done" }
+        }
+      ],
+      "completion": {
+        "all": [{ "objective": "sq_3_02_obj_letter" }]
+      },
+      "rewards": [
+        { "type": "variable", "id": "num_baiji_trust", "delta": 1 }
+      ]
+    },
+    {
+      "id": "sq_3_03",
+      "type": "side",
+      "title": "商队的空位",
+      "summary": "阿耆的商队缺一名认路的向导。关外不止官道一条路。",
+      "location": "玉门关外",
+      "prerequisites": {
+        "all": [
+          { "var": "num_aqi_trust", "op": "gte", "value": 2 },
+          { "flag": "ch3_customs_done" }
+        ]
+      },
+      "objectives": [
+        {
+          "id": "sq_3_03_obj_guide",
+          "text": "为商队补一名向导",
+          "condition": { "flag": "sq3_03_done" }
+        }
+      ],
+      "completion": {
+        "all": [{ "objective": "sq_3_03_obj_guide" }]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_oasis_route" },
+        { "type": "variable", "id": "num_aqi_trust", "delta": 1 }
+      ]
+    }
+  ]
+}

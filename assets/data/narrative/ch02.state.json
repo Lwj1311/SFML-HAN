@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch02",
+  "title": "第二章 白霜之约",
+  "next_chapter": "ch03",
+  "carryover": {
+    "from": "ch01",
+    "variables": [
+      "num_su_trust",
+      "num_baiji_suspicion",
+      "num_hanbo_trust",
+      "num_guowang_trust",
+      "num_aqi_trust",
+      "num_prefecture_suspicion",
+      "num_reputation",
+      "receipt_choice"
+    ],
+    "flags": [
+      "ch1_guowang_hurt",
+      "ch1_duyan_alerted",
+      "evidence_with_su"
+    ]
+  },
+  "initial": {
+    "flags": {
+      "ch2_intro": true,
+      "ch2_open_done": false,
+      "ch2_copy_hidden": false,
+      "ch2_zhaoqin_met": false,
+      "ch2_ledger_checked": false,
+      "ch2_copy_decided": false,
+      "ch2_audit_done": false,
+      "ch2_zhougan_found": false,
+      "ch2_zhougan_testified": false,
+      "ch2_zhougan_decided": false,
+      "ch2_zhougan_protected": false,
+      "ch2_zhougan_done": false,
+      "ch2_key_checked": false,
+      "ch2_shop_ledger_seen": false,
+      "ch2_baiji_confronted": false,
+      "ch2_baiji_done": false,
+      "ch2_duyan_deal": false,
+      "ch2_convoy_tracked": false,
+      "ch2_convoy_fought": false,
+      "ch2_cargo_checked": false,
+      "ch2_plan_seize": false,
+      "ch2_plan_trail": false,
+      "ch2_plan_swap": false,
+      "ch2_convoy_done": false,
+      "ch2_climax_done": false,
+      "ch2_done": false,
+      "sq2_01_done": false,
+      "sq2_02_done": false,
+      "sq2_03_done": false,
+      "ch1_guowang_hurt": false,
+      "ch1_duyan_alerted": false,
+      "evidence_with_su": false
+    },
+    "variables": {
+      "num_su_trust": 0,
+      "num_baiji_suspicion": 0,
+      "num_hanbo_trust": 0,
+      "num_guowang_trust": 0,
+      "num_aqi_trust": 0,
+      "num_prefecture_suspicion": 0,
+      "num_reputation": 0,
+      "receipt_choice": "none",
+      "num_zhougan_trust": 0,
+      "num_baiji_trust": 0,
+      "num_zhaoqin_pressure": 0,
+      "ch2_ending": "none"
+    }
+  },
+  "variables": {
+    "num_su_trust": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "苏娘信任，延续第一章，影响本章灶间对峙与证据安置"
+    },
+    "num_baiji_suspicion": {
+      "type": "int",
+      "min": 0,
+      "max": 3,
+      "description": "白姬对冯安的警觉，延续第一章"
+    },
+    "num_hanbo_trust": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "韩伯信任，影响抄本修复与第三章证词"
+    },
+    "num_guowang_trust": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "郭望信任，影响障塞带路与夜行协助"
+    },
+    "num_aqi_trust": {
+      "type": "int",
+      "min": -2,
+      "max": 5,
+      "description": "阿耆信任，影响马印与归义印支线"
+    },
+    "num_prefecture_suspicion": {
+      "type": "int",
+      "min": 0,
+      "max": 3,
+      "description": "郡府对冯安的怀疑，延续第一章"
+    },
+    "num_reputation": {
+      "type": "int",
+      "min": 0,
+      "max": 20,
+      "description": "边塞声望，影响杜延是否主动上门"
+    },
+    "receipt_choice": {
+      "type": "enum",
+      "values": ["none", "handed", "concealed", "su"],
+      "description": "第一章章末证据处置方式，决定本章开局变体"
+    },
+    "num_zhougan_trust": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "周敢信任，影响第三章是否出面作证"
+    },
+    "num_baiji_trust": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "白姬倾向，影响交易结局与第三章放行"
+    },
+    "num_zhaoqin_pressure": {
+      "type": "int",
+      "min": 0,
+      "max": 3,
+      "description": "督邮赵钦的施压程度"
+    },
+    "ch2_ending": {
+      "type": "enum",
+      "values": ["none", "expose", "deal", "hold"],
+      "description": "第二章章末结局"
+    }
+  },
+  "clues": {
+    "clue_unsealed_letter": "无封泥、无印文的传信，写着“冬至前，三十七人粮，照旧。广至驿收。”",
+    "clue_hu_order": "阿耆指出信中语序接近匈奴语，“冬至前”更像“白霜之前”。",
+    "clue_receipt": "红柳滩货单：收件人周敢，货为弩机十具、粮三车，日期冬至前五日。",
+    "clue_receipt_half": "张季邮袋里的半张货单，印文属于废止官署。",
+    "clue_hanbo_copy": "韩伯私简抄本，可证明名籍被人改动。",
+    "clue_baiji_key": "跟踪者掉落的广至驿后门钥匙牌。",
+    "clue_baiji_lie": "白姬称张季往西，与马蹄印方向相反。",
+    "clue_winter_solstice": "柴房新灰中未烧尽的“冬至”二字。",
+    "clue_erasure_marks": "廪食簿上被磨平的削改痕迹，证明名籍被人动过。",
+    "clue_fast_horse": "深夜从广至驿方向出关的快马。",
+    "clue_seal_match": "苏娘旧宅灶台下的封泥与广至驿柴房封泥同模。",
+    "clue_zhougan_used": "周敢的名字被人用于接收弩机与军粮。",
+    "clue_zhougan_last": "周敢最后一次回家，留下一句“若有人问，就说我死了”。",
+    "clue_zhougan_testimony": "周敢亲口供词：死人名字被用来领粮、领弩机，张季因发现账目不对被留在红柳滩。",
+    "clue_ledger_collation": "韩伯抄本与廪食簿逐简比对：削痕、墨色、缺字全都对得上。",
+    "clue_convoy_manifest": "广至驿车马店账页：三车粮与十具弩机被写作“农具”。",
+    "clue_seal_owner": "残印与废止官署同模，持有人指向郡府旧仓曹。",
+    "clue_baiji_letter": "白姬托付的无落款信，约定冬至之后再拆。",
+    "clue_zhaoqin_ledger": "督邮随身的廪食簿副本里，有整页被留白的名字。"
+  },
+  "items": {
+    "item_brush_knife": {
+      "name": "书刀与毛笔",
+      "icon": "item_brush_knife",
+      "description": "韩伯的旧书刀，可用来验看简牍削痕"
+    },
+    "item_bamboo_slip": {
+      "name": "汉简",
+      "icon": "item_bamboo_slip",
+      "description": "廪食簿与韩伯私简"
+    },
+    "item_seal_clay": {
+      "name": "封泥",
+      "icon": "item_seal_clay",
+      "description": "苏娘灶膛里取出的封泥"
+    },
+    "item_zhougan_slip": {
+      "name": "周敢供词简",
+      "icon": "item_bamboo_slip",
+      "description": "周敢口述、冯安记录的供词，字迹潦草"
+    },
+    "item_convoy_tally": {
+      "name": "车队筹牌",
+      "icon": "item_convoy_tally",
+      "description": "广至驿后门车队的通行筹牌"
+    }
+  }
+}

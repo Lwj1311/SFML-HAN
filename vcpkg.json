@@ -1,0 +1,10 @@
+{
+  "name": "xuanquan-du",
+  "version-string": "0.1.0",
+  "description": "悬泉渡 - 汉代边塞叙事原型",
+  "builtin-baseline": "d2845dc758c3ba057efce12d8d4c1ebf9c9dd33d",
+  "dependencies": [
+    "nlohmann-json",
+    "sfml"
+  ]
+}

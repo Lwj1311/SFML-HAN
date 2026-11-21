@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch03",
+  "title": "第三章 过关",
+  "next_chapter": "ch04",
+  "carryover": {
+    "from": "ch02",
+    "variables": [
+      "num_su_trust",
+      "num_baiji_suspicion",
+      "num_hanbo_trust",
+      "num_guowang_trust",
+      "num_aqi_trust",
+      "num_prefecture_suspicion",
+      "num_reputation",
+      "num_zhougan_trust",
+      "num_baiji_trust",
+      "num_zhaoqin_pressure",
+      "ch2_ending"
+    ],
+    "flags": [
+      "ch2_zhougan_protected",
+      "ch2_duyan_deal",
+      "ch2_plan_seize",
+      "ch2_plan_trail",
+      "ch2_plan_swap",
+      "evidence_with_su",
+      "ch1_guowang_hurt",
+      "ch1_duyan_alerted"
+    ]
+  },
+  "initial": {
+    "flags": {
+      "ch3_start": true,
+      "ch3_open_done": false,
+      "ch3_qixin_checked": false,
+      "ch3_manifest_declared": false,
+      "ch3_party_passed": false,
+      "ch3_customs_done": false,
+      "ch3_concealed": false,
+      "ch3_stub_checked": false,
+      "ch3_qixin_traced": false,
+      "ch3_qixin_forgery": false,
+      "ch3_stub_done": false,
+      "ch3_zhaoqin_flipped": false,
+      "ch3_seal_compared": false,
+      "ch3_roster_got": false,
+      "ch3_weichang_confronted": false,
+      "ch3_roster_done": false,
+      "ch3_zhougan_testified_2": false,
+      "ch3_zhougan_stayed": false,
+      "ch3_baiji_paid": false,
+      "ch3_baiji_done": false,
+      "ch3_duyan_paid": false,
+      "ch3_duyan_done": false,
+      "ch3_party_ready": false,
+      "ch3_gate_tracked": false,
+      "ch3_gate_cleared": false,
+      "ch3_seal_seized": false,
+      "ch3_gate_done": false,
+      "ch3_final_choice": false,
+      "ch3_done": false,
+      "sq3_01_done": false,
+      "sq3_02_done": false,
+      "sq3_03_done": false,
+      "ch2_zhougan_protected": false,
+      "ch2_duyan_deal": false,
+      "ch2_plan_seize": false,
+      "ch2_plan_trail": false,
+      "ch2_plan_swap": false,
+      "evidence_with_su": false,
+      "ch1_guowang_hurt": false,
+      "ch1_duyan_alerted": false
+    },
+    "variables": {
+      "num_su_trust": 0,
+      "num_baiji_suspicion": 0,
+      "num_hanbo_trust": 0,
+      "num_guowang_trust": 0,
+      "num_aqi_trust": 0,
+      "num_prefecture_suspicion": 0,
+      "num_reputation": 0,
+      "num_zhougan_trust": 0,
+      "num_baiji_trust": 0,
+      "num_zhaoqin_pressure": 0,
+      "ch2_ending": "none",
+      "num_gate_trust": 0,
+      "num_weichang_pressure": 0,
+      "ch3_ending": "none"
+    }
+  },
+  "variables": {
+    "num_su_trust": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "苏娘信任，延续前两章，影响第四章名字结局"
+    },
+    "num_baiji_suspicion": {
+      "type": "int",
+      "min": 0,
+      "max": 3,
+      "description": "白姬对冯安的警觉，延续前两章"
+    },
+    "num_hanbo_trust": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "韩伯信任，影响抄本作为翻案底本"
+    },
+    "num_guowang_trust": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "郭望信任，影响关下战斗协助"
+    },
+    "num_aqi_trust": {
+      "type": "int",
+      "min": -2,
+      "max": 5,
+      "description": "阿耆信任，影响关外路线与商队通行"
+    },
+    "num_prefecture_suspicion": {
+      "type": "int",
+      "min": 0,
+      "max": 3,
+      "description": "郡府对冯安的怀疑，延续前两章"
+    },
+    "num_reputation": {
+      "type": "int",
+      "min": 0,
+      "max": 20,
+      "description": "边塞声望，影响关令是否肯听你说话"
+    },
+    "num_zhougan_trust": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "周敢信任，决定本章他是否当关作证"
+    },
+    "num_baiji_trust": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "白姬倾向，决定她本章是否留书"
+    },
+    "num_zhaoqin_pressure": {
+      "type": "int",
+      "min": 0,
+      "max": 3,
+      "description": "督邮赵钦的施压程度，影响其第四章是否反水"
+    },
+    "ch2_ending": {
+      "type": "enum",
+      "values": ["none", "expose", "deal", "hold"],
+      "description": "第二章章末结局，决定本章开局变体"
+    },
+    "num_gate_trust": {
+      "type": "int",
+      "min": 0,
+      "max": 3,
+      "description": "关令成公朔的信任，影响查验宽严与关下是否动武"
+    },
+    "num_weichang_pressure": {
+      "type": "int",
+      "min": 0,
+      "max": 3,
+      "description": "仓曹史卫敞的施压，高值时关吏提前得信"
+    },
+    "ch3_ending": {
+      "type": "enum",
+      "values": ["none", "handover", "cargo", "stand"],
+      "description": "第三章章末结局，第四章分支键"
+    }
+  },
+  "clues": {
+    "clue_gate_registry": "关门登记：张季的棨信在冬至前后被记过三次，持信人每次都不是张季。",
+    "clue_qixin_stub": "棨信副券存根，骑缝处的刀刻记号与张季原券对不上。",
+    "clue_caocao_roster": "郡府仓曹旧档名录，废止官署的印归仓曹史卫敞掌管。",
+    "clue_seal_owner_full": "残印与旧仓曹印同模，印主指向卫敞，赵钦只负责在过关文书上署名。",
+    "clue_gate_manifest": "关下货单：三车粮、十具弩机，收货人一栏被刮空。",
+    "clue_erased_name": "一名关卒的籍贯与姓名被顶替，与原戍卒名籍对不上。",
+    "clue_oasis_route": "阿耆给的关外水井与驼道图，避开官道也能到下一座烽燧。",
+    "clue_zhougan_testimony": "周敢口述的供词：死人名字被用来领粮、领弩机，张季因发现账目不对被留在红柳滩。",
+    "clue_convoy_manifest": "广至驿车马店账页：三车粮与十具弩机被写作“农具”。",
+    "clue_seal_owner": "残印与废止官署同模，持有人指向郡府旧仓曹。",
+    "clue_baiji_letter": "白姬托人捎来的无落款信，封口处压着一枚旧封泥。"
+  },
+  "items": {
+    "item_qixin": {
+      "name": "棨信",
+      "icon": "item_qixin",
+      "description": "张季的传信符，可通行玉门关"
+    },
+    "item_bamboo_slip": {
+      "name": "汉简",
+      "icon": "item_bamboo_slip",
+      "description": "廪食簿、韩伯私简与关传抄件"
+    },
+    "item_brush_knife": {
+      "name": "书刀与毛笔",
+      "icon": "item_brush_knife",
+      "description": "韩伯的旧书刀，可用来验看简牍削痕"
+    },
+    "item_zhougan_slip": {
+      "name": "周敢供词简",
+      "icon": "item_bamboo_slip",
+      "description": "周敢口述、冯安记录的供词，字迹潦草"
+    },
+    "item_convoy_tally": {
+      "name": "车队筹牌",
+      "icon": "item_convoy_tally",
+      "description": "广至驿后门车队的通行筹牌"
+    },
+    "item_seal_clay": {
+      "name": "封泥",
+      "icon": "item_seal_clay",
+      "description": "与旧仓曹残印同模的封泥"
+    },
+    "item_gate_token": {
+      "name": "关传",
+      "icon": "item_gate_token",
+      "description": "关下缴获的通行关传，编号被人改过"
+    },
+    "item_caocao_roster": {
+      "name": "仓曹名录",
+      "icon": "item_bamboo_slip",
+      "description": "抄录的旧仓曹名录，可对上残印的印主"
+    }
+  }
+}

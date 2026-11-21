@@ -1,0 +1,1087 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch03",
+  "title": "第三章 过关",
+  "speakers": {
+    "narrator": { "name": "旁白", "portrait": null },
+    "fengan": { "name": "冯安", "portrait": "char_fengan" },
+    "hanbo": { "name": "韩伯", "portrait": "char_hanbo" },
+    "suhe": { "name": "苏娘", "portrait": "char_suhe" },
+    "guowang": { "name": "郭望", "portrait": "char_guowang" },
+    "aqi": { "name": "阿耆", "portrait": "char_aqi" },
+    "duyan": { "name": "杜延", "portrait": "char_duyan" },
+    "baiji": { "name": "白姬", "portrait": "char_baiji" },
+    "zhougan": { "name": "周敢", "portrait": "char_zhougan" },
+    "zhaoqin": { "name": "赵钦", "portrait": "char_zhaoqin" },
+    "chenggong": { "name": "成公朔", "portrait": "char_chenggong" },
+    "weichang": { "name": "卫敞", "portrait": "char_weichang" }
+  },
+  "encounters": {
+    "enc_ch3_gate": {
+      "name": "关下私兵",
+      "enemies": [
+        { "id": "private_soldier", "count": 3 },
+        { "id": "private_archer", "count": 2 },
+        { "id": "gate_guard", "count": 1 }
+      ],
+      "terrain": "gate",
+      "note": "若 ch1_guowang_hurt 为真，郭望带伤，战斗难度提示 +1。"
+    }
+  },
+  "scenes": [
+    {
+      "id": "scene_3_open",
+      "title": "关前一日",
+      "background": "bg_gobi_postroad",
+      "entry": "ch3_open_01",
+      "trigger": { "flag": "ch3_start" },
+      "nodes": [
+        {
+          "id": "ch3_open_01",
+          "type": "narration",
+          "text": "冬至前一日，风从玉门关的方向刮过来，带着盐碱和铁锈的味道。关门一闭，就是三日不开。",
+          "next": "ch3_open_02"
+        },
+        {
+          "id": "ch3_open_02",
+          "type": "branch",
+          "branches": [
+            {
+              "condition": { "var": "ch2_ending", "op": "eq", "value": "expose" },
+              "next": "ch3_open_03"
+            },
+            {
+              "condition": { "var": "ch2_ending", "op": "eq", "value": "deal" },
+              "next": "ch3_open_04"
+            },
+            {
+              "condition": { "var": "ch2_ending", "op": "eq", "value": "hold" },
+              "next": "ch3_open_05"
+            },
+            { "next": "ch3_open_06" }
+          ]
+        },
+        {
+          "id": "ch3_open_03",
+          "type": "narration",
+          "text": "郡府的文书把你“调往玉门关协查”。随行两名公差，一路不问话，只记你见了谁。",
+          "next": "ch3_open_06"
+        },
+        {
+          "id": "ch3_open_04",
+          "type": "narration",
+          "text": "你没有官身，混在杜延的商队里。白姬的人在前面赶车，车底下压着你缝好的货单。",
+          "next": "ch3_open_06"
+        },
+        {
+          "id": "ch3_open_05",
+          "type": "narration",
+          "text": "你独自赴关。郡府的追索文书比你早走一天，关下的戍卒已经把你的名字念过两遍。",
+          "next": "ch3_open_06"
+        },
+        {
+          "id": "ch3_open_06",
+          "type": "narration",
+          "text": "棨信在你袖中发硬。韩伯塞给你的一卷空简，刚好能夹住它。",
+          "effects": [
+            { "give_item": "item_qixin" },
+            { "give_item": "item_bamboo_slip" }
+          ],
+          "next": "ch3_open_07"
+        },
+        {
+          "id": "ch3_open_07",
+          "type": "branch",
+          "branches": [
+            {
+              "condition": { "flag": "ch2_zhougan_protected" },
+              "next": "ch3_open_08"
+            },
+            { "next": "ch3_open_09" }
+          ]
+        },
+        {
+          "id": "ch3_open_08",
+          "type": "narration",
+          "text": "周敢缩在车尾的草席下，伤还没好。他把供词简推给你：“要用的时候，别改我的字。”",
+          "effects": [
+            { "give_item": "item_zhougan_slip" },
+            { "add_clue": "clue_zhougan_testimony" }
+          ],
+          "next": "ch3_open_10"
+        },
+        {
+          "id": "ch3_open_09",
+          "type": "narration",
+          "text": "周敢不在队伍里。供词简上的字被你摩挲得发毛，却没有一个活人能替你作证。",
+          "next": "ch3_open_10"
+        },
+        {
+          "id": "ch3_open_10",
+          "type": "branch",
+          "branches": [
+            {
+              "condition": { "var": "num_baiji_trust", "op": "gte", "value": 2 },
+              "next": "ch3_open_11"
+            },
+            { "next": "ch3_open_12" }
+          ]
+        },
+        {
+          "id": "ch3_open_11",
+          "type": "narration",
+          "text": "一个赶车人塞给你一封没有落款的信，封口压着旧封泥。白姬没有署名。",
+          "effects": [
+            { "add_clue": "clue_baiji_letter" }
+          ],
+          "next": "ch3_open_13"
+        },
+        {
+          "id": "ch3_open_12",
+          "type": "narration",
+          "text": "白姬没有来。广至驿的后门关着，像一张没有表情的脸。",
+          "next": "ch3_open_13"
+        },
+        {
+          "id": "ch3_open_13",
+          "type": "line",
+          "speaker": "guowang",
+          "text": "关上的旗落了一半。成公朔那个人，只认纸，不认人。",
+          "next": "ch3_open_14"
+        },
+        {
+          "id": "ch3_open_14",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "那就让纸说话。天黑前到关门。",
+          "next": "ch3_open_15"
+        },
+        {
+          "id": "ch3_open_15",
+          "type": "narration",
+          "text": "关门在暮色里像一道横着的刀。验封的火把已经点起来了。",
+          "effects": [
+            { "set_flag": "ch3_open_done", "value": true }
+          ],
+          "next": "ch3_open_16"
+        },
+        {
+          "id": "ch3_open_16",
+          "type": "end",
+          "text": "",
+          "exit": "open"
+        }
+      ]
+    },
+    {
+      "id": "scene_3_customs",
+      "title": "关门查验",
+      "background": "bg_yumenguan_dusk",
+      "entry": "ch3_customs_01",
+      "trigger": { "flag": "ch3_open_done" },
+      "nodes": [
+        {
+          "id": "ch3_customs_01",
+          "type": "narration",
+          "text": "关令成公朔站在门洞下，身后是两排持戟的戍卒。他面前摆着一张矮案，案上只有三样东西：棨信、传、封泥刀。",
+          "next": "ch3_customs_02"
+        },
+        {
+          "id": "ch3_customs_02",
+          "type": "line",
+          "speaker": "chenggong",
+          "text": "棨信。",
+          "next": "ch3_customs_03"
+        },
+        {
+          "id": "ch3_customs_03",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "棨信和随行货物，怎么报？",
+          "choices": [
+            {
+              "id": "show_qixin",
+              "text": "递上棨信，照册申报",
+              "effects": [
+                { "set_flag": "ch3_qixin_checked", "value": true },
+                { "set_flag": "ch3_manifest_declared", "value": true }
+              ],
+              "next": "ch3_customs_04"
+            },
+            {
+              "id": "conceal_cargo",
+              "text": "棨信照递，货只报随身行囊",
+              "effects": [
+                { "set_flag": "ch3_qixin_checked", "value": true },
+                { "set_flag": "ch3_manifest_declared", "value": true },
+                { "set_flag": "ch3_concealed", "value": true },
+                { "add_var": "num_prefecture_suspicion", "value": 1 },
+                { "add_var": "num_weichang_pressure", "value": 1 }
+              ],
+              "next": "ch3_customs_05"
+            },
+            {
+              "id": "declare_truth",
+              "text": "照实说，连车底的货一起报",
+              "effects": [
+                { "set_flag": "ch3_qixin_checked", "value": true },
+                { "set_flag": "ch3_manifest_declared", "value": true },
+                { "add_var": "num_gate_trust", "value": 1 }
+              ],
+              "next": "ch3_customs_06"
+            }
+          ]
+        },
+        {
+          "id": "ch3_customs_04",
+          "type": "line",
+          "speaker": "chenggong",
+          "text": "棨信是真的。人不是。张季这个名字，上个月已经有人替他走过一次关。",
+          "next": "ch3_customs_07"
+        },
+        {
+          "id": "ch3_customs_05",
+          "type": "line",
+          "speaker": "chenggong",
+          "text": "行囊轻得可疑。不过关令只管关门，不管你们箱子里装的是不是农具。",
+          "next": "ch3_customs_07"
+        },
+        {
+          "id": "ch3_customs_06",
+          "type": "line",
+          "speaker": "chenggong",
+          "text": "肯说实话的人不多。说真话的代价，你自己掂量。",
+          "next": "ch3_customs_07"
+        },
+        {
+          "id": "ch3_customs_07",
+          "type": "line",
+          "speaker": "zhaoqin",
+          "text": "冯书佐，又见面了。这次你的名字在我前面，还是在我后面？",
+          "next": "ch3_customs_08"
+        },
+        {
+          "id": "ch3_customs_08",
+          "type": "narration",
+          "text": "戍卒搬开路障。关内的驿舍还亮着灯，像在等一个早就该到的人。",
+          "effects": [
+            { "set_flag": "ch3_party_passed", "value": true },
+            { "set_flag": "ch3_customs_done", "value": true }
+          ],
+          "next": "ch3_customs_09"
+        },
+        {
+          "id": "ch3_customs_09",
+          "type": "end",
+          "text": "",
+          "exit": "customs"
+        }
+      ]
+    },
+    {
+      "id": "scene_3_stub",
+      "title": "副券",
+      "background": "bg_yumenguan_dusk",
+      "entry": "ch3_stub_01",
+      "trigger": { "flag": "ch3_customs_done" },
+      "nodes": [
+        {
+          "id": "ch3_stub_01",
+          "type": "narration",
+          "text": "存根房在关门内侧，四面墙都钉着架子，一束束棨信副券按年月码着。张季那一束在冬至前后被人翻乱过。",
+          "next": "ch3_stub_02"
+        },
+        {
+          "id": "ch3_stub_02",
+          "type": "line",
+          "speaker": "chenggong",
+          "text": "副券不能带走。你要看，我陪你站着看。",
+          "next": "ch3_stub_03"
+        },
+        {
+          "id": "ch3_stub_03",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "怎么查这道存根？",
+          "choices": [
+            {
+              "id": "buy_stub",
+              "text": "用五铢钱换一份抄录",
+              "effects": [
+                { "set_flag": "ch3_stub_checked", "value": true },
+                { "add_var": "num_gate_trust", "value": 1 }
+              ],
+              "next": "ch3_stub_04"
+            },
+            {
+              "id": "press_clerk",
+              "text": "以郡府名义封存整束副券",
+              "effects": [
+                { "set_flag": "ch3_stub_checked", "value": true },
+                { "add_var": "num_prefecture_suspicion", "value": 1 },
+                { "add_var": "num_weichang_pressure", "value": 1 }
+              ],
+              "next": "ch3_stub_05"
+            },
+            {
+              "id": "ask_aqi",
+              "text": "让阿耆去和守架的老卒套话",
+              "effects": [
+                { "set_flag": "ch3_stub_checked", "value": true },
+                { "add_var": "num_aqi_trust", "value": 1 }
+              ],
+              "next": "ch3_stub_06"
+            },
+            {
+              "id": "mend_roster",
+              "text": "顺手替一名关卒补正名籍",
+              "effects": [
+                { "set_flag": "ch3_stub_checked", "value": true },
+                { "set_flag": "sq3_01_done", "value": true },
+                { "add_clue": "clue_erased_name" }
+              ],
+              "next": "ch3_stub_07"
+            }
+          ]
+        },
+        {
+          "id": "ch3_stub_04",
+          "type": "line",
+          "speaker": "chenggong",
+          "text": "钱你收回去。抄录可以给你，条件是别让郡府的人再来翻我的架子。",
+          "next": "ch3_stub_08"
+        },
+        {
+          "id": "ch3_stub_05",
+          "type": "line",
+          "speaker": "chenggong",
+          "text": "封存？好。封条上写谁的名字，你自己想清楚。",
+          "next": "ch3_stub_08"
+        },
+        {
+          "id": "ch3_stub_06",
+          "type": "line",
+          "speaker": "aqi",
+          "text": "老卒说，那三次的持信人都说是“驿里派来的”。驿里姓冯的，只有你一个。",
+          "next": "ch3_stub_08"
+        },
+        {
+          "id": "ch3_stub_07",
+          "type": "narration",
+          "text": "被顶名的关卒叫赵二，原籍陇西。他把名字念了三遍，像怕自己又忘掉。",
+          "next": "ch3_stub_08"
+        },
+        {
+          "id": "ch3_stub_08",
+          "type": "narration",
+          "text": "副券上的骑缝记号有三种刀法。张季的棨信，在他“死在红柳滩”之后，又被用过三次。",
+          "effects": [
+            { "set_flag": "ch3_qixin_traced", "value": true }
+          ],
+          "next": "ch3_stub_09"
+        },
+        {
+          "id": "ch3_stub_09",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "三次都在冬至前后。有人算准了关吏换班的时辰。",
+          "next": "ch3_stub_10"
+        },
+        {
+          "id": "ch3_stub_10",
+          "type": "narration",
+          "text": "你把抄录折好塞进简里。棨信是真的，人不是；这一次，纸上终于有了对不上的地方。",
+          "effects": [
+            { "set_flag": "ch3_qixin_forgery", "value": true },
+            { "set_flag": "ch3_stub_done", "value": true }
+          ],
+          "next": "ch3_stub_11"
+        },
+        {
+          "id": "ch3_stub_11",
+          "type": "end",
+          "text": "",
+          "exit": "stub"
+        }
+      ]
+    },
+    {
+      "id": "scene_3_roster",
+      "title": "仓曹的名录",
+      "background": "bg_station_interior",
+      "entry": "ch3_roster_01",
+      "trigger": { "flag": "ch3_stub_done" },
+      "nodes": [
+        {
+          "id": "ch3_roster_01",
+          "type": "narration",
+          "text": "关内驿舍比悬泉置冷。赵钦坐在灯下，面前摊着两本簿子，一本是廪食簿，一本没有题名。",
+          "next": "ch3_roster_02"
+        },
+        {
+          "id": "ch3_roster_02",
+          "type": "branch",
+          "branches": [
+            {
+              "condition": { "flag": "evidence_with_su" },
+              "next": "ch3_roster_03"
+            },
+            { "next": "ch3_roster_04" }
+          ]
+        },
+        {
+          "id": "ch3_roster_03",
+          "type": "narration",
+          "text": "袖中那块封泥还带着灶灰。你把它放在案角，赵钦的指尖停了一下。",
+          "next": "ch3_roster_05"
+        },
+        {
+          "id": "ch3_roster_04",
+          "type": "narration",
+          "text": "封泥不在你手上。你只有抄本和副券，但这两样已经够让灯下的人坐不住。",
+          "next": "ch3_roster_05"
+        },
+        {
+          "id": "ch3_roster_05",
+          "type": "line",
+          "speaker": "zhaoqin",
+          "text": "你要查的不是我。我只是在文书上署名的人。",
+          "next": "ch3_roster_06"
+        },
+        {
+          "id": "ch3_roster_06",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "从哪一头撬开？",
+          "choices": [
+            {
+              "id": "threaten_zhaoqin",
+              "text": "拿廪食簿和副券反制赵钦",
+              "effects": [
+                { "set_flag": "ch3_zhaoqin_flipped", "value": true },
+                { "add_var": "num_gate_trust", "value": 1 }
+              ],
+              "next": "ch3_roster_07"
+            },
+            {
+              "id": "deal_weichang",
+              "text": "先听卫敞开出的条件",
+              "effects": [
+                { "add_var": "num_weichang_pressure", "value": 2 }
+              ],
+              "next": "ch3_roster_08"
+            },
+            {
+              "id": "compare_seal",
+              "text": "什么也不说，先比对残印",
+              "effects": [
+                { "add_clue": "clue_seal_owner_full" }
+              ],
+              "next": "ch3_roster_09"
+            }
+          ]
+        },
+        {
+          "id": "ch3_roster_07",
+          "type": "line",
+          "speaker": "zhaoqin",
+          "text": "……署名的人也可以不署名。关下的事，我可以当没看见。",
+          "next": "ch3_roster_10"
+        },
+        {
+          "id": "ch3_roster_08",
+          "type": "line",
+          "speaker": "weichang",
+          "text": "货过去，名字留下。你保你的官身，我保这车东西不出事。",
+          "next": "ch3_roster_10"
+        },
+        {
+          "id": "ch3_roster_09",
+          "type": "narration",
+          "text": "残印的边角和对纹，与旧仓曹的印完全吻合。你把两片拓痕并在一起，灯焰跳了一下。",
+          "next": "ch3_roster_10"
+        },
+        {
+          "id": "ch3_roster_10",
+          "type": "narration",
+          "text": "残印同模。能管这枚旧印的，只有郡府仓曹史卫敞。",
+          "effects": [
+            { "set_flag": "ch3_seal_compared", "value": true },
+            { "add_clue": "clue_seal_owner_full" }
+          ],
+          "next": "ch3_roster_11"
+        },
+        {
+          "id": "ch3_roster_11",
+          "type": "line",
+          "speaker": "weichang",
+          "text": "旧印是我管的。可盖在哪张纸上、替谁作保，不是我一个人写的。",
+          "next": "ch3_roster_12"
+        },
+        {
+          "id": "ch3_roster_12",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "印是你的，名字是别人的。这两样，总得有一件写清楚。",
+          "next": "ch3_roster_13"
+        },
+        {
+          "id": "ch3_roster_13",
+          "type": "narration",
+          "text": "赵钦从漆箱底抽出一卷旧档，推过案面。名录上，旧仓曹一栏后面写着卫敞的名字。",
+          "effects": [
+            { "set_flag": "ch3_roster_got", "value": true },
+            { "add_clue": "clue_caocao_roster" },
+            { "give_item": "item_caocao_roster" }
+          ],
+          "next": "ch3_roster_14"
+        },
+        {
+          "id": "ch3_roster_14",
+          "type": "line",
+          "speaker": "zhaoqin",
+          "text": "你要的东西在关下。天一亮，车队就走。",
+          "next": "ch3_roster_15"
+        },
+        {
+          "id": "ch3_roster_15",
+          "type": "narration",
+          "text": "灯灭之前，你把名录、副券和供词简摆成一排。纸上的名字第一次连成了一条线。",
+          "effects": [
+            { "set_flag": "ch3_weichang_confronted", "value": true },
+            { "set_flag": "ch3_roster_done", "value": true },
+            { "set_flag": "ch3_party_ready", "value": true }
+          ],
+          "next": "ch3_roster_16"
+        },
+        {
+          "id": "ch3_roster_16",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "天一亮，关下见。",
+          "next": "ch3_roster_17"
+        },
+        {
+          "id": "ch3_roster_17",
+          "type": "end",
+          "text": "",
+          "exit": "roster"
+        }
+      ]
+    },
+    {
+      "id": "scene_3_zhougan",
+      "title": "当关作证",
+      "background": "bg_beacon_tower",
+      "entry": "ch3_zhougan_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch3_roster_done" },
+          { "flag": "ch2_zhougan_protected" }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch3_zhougan_01",
+          "type": "narration",
+          "text": "关外的废燧只剩半截土台。周敢裹着你的旧袍，靠着火塘坐着，脸色比墙还灰。",
+          "next": "ch3_zhougan_02"
+        },
+        {
+          "id": "ch3_zhougan_02",
+          "type": "line",
+          "speaker": "zhougan",
+          "text": "我这条命是你捡回来的。要拿它去换什么，你说。",
+          "next": "ch3_zhougan_03"
+        },
+        {
+          "id": "ch3_zhougan_03",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "周敢怎么办？",
+          "choices": [
+            {
+              "id": "take_stand",
+              "text": "让他当关作证",
+              "effects": [
+                { "set_flag": "ch3_zhougan_testified_2", "value": true },
+                { "add_var": "num_zhougan_trust", "value": 1 },
+                { "add_var": "num_reputation", "value": 1 }
+              ],
+              "next": "ch3_zhougan_04"
+            },
+            {
+              "id": "keep_hidden",
+              "text": "让他留在燧里，别露面",
+              "effects": [
+                { "set_flag": "ch3_zhougan_stayed", "value": true },
+                { "set_flag": "ch3_zhougan_testified_2", "value": true }
+              ],
+              "next": "ch3_zhougan_05"
+            }
+          ]
+        },
+        {
+          "id": "ch3_zhougan_04",
+          "type": "line",
+          "speaker": "guowang",
+          "text": "他这样子站上关，风一吹就得倒。我扶着他。",
+          "next": "ch3_zhougan_06"
+        },
+        {
+          "id": "ch3_zhougan_05",
+          "type": "narration",
+          "text": "周敢把供词简又推回来：“字在，人在不在，你自己掂量。”",
+          "next": "ch3_zhougan_06"
+        },
+        {
+          "id": "ch3_zhougan_06",
+          "type": "narration",
+          "text": "火塘里的柴烧到最后一截。周敢的名字，第一次被写回一份还没交上去的文书里。",
+          "effects": [
+            { "set_flag": "ch3_zhougan_testified_2", "value": true }
+          ],
+          "next": "ch3_zhougan_07"
+        },
+        {
+          "id": "ch3_zhougan_07",
+          "type": "line",
+          "speaker": "zhougan",
+          "text": "张季死前跟我说，账上不对。现在你替他把这页翻过来。",
+          "next": "ch3_zhougan_08"
+        },
+        {
+          "id": "ch3_zhougan_08",
+          "type": "end",
+          "text": "",
+          "exit": "zhougan"
+        }
+      ]
+    },
+    {
+      "id": "scene_3_baiji",
+      "title": "白狐的价码",
+      "background": "bg_guangzhi_post",
+      "entry": "ch3_baiji_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch3_roster_done" },
+          { "var": "num_baiji_trust", "op": "gte", "value": 2 }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch3_baiji_01",
+          "type": "narration",
+          "text": "广至驿后门的灯只点了一盏。白姬站在门里，脚边是三只已经捆好的箱笼。",
+          "next": "ch3_baiji_02"
+        },
+        {
+          "id": "ch3_baiji_02",
+          "type": "line",
+          "speaker": "baiji",
+          "text": "冬至前最后一趟。你要拦，就现在拦；过了今夜，我的人不会再走这条路。",
+          "next": "ch3_baiji_03"
+        },
+        {
+          "id": "ch3_baiji_03",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "白姬这条线，怎么收？",
+          "choices": [
+            {
+              "id": "pay_baiji",
+              "text": "兑现承诺，放她的车出关",
+              "effects": [
+                { "set_flag": "ch3_baiji_paid", "value": true },
+                { "add_var": "num_baiji_trust", "value": 1 }
+              ],
+              "next": "ch3_baiji_04"
+            },
+            {
+              "id": "press_baiji",
+              "text": "逼她说出接货人是谁",
+              "effects": [
+                { "add_var": "num_baiji_suspicion", "value": 1 },
+                { "add_var": "num_weichang_pressure", "value": 1 }
+              ],
+              "next": "ch3_baiji_05"
+            },
+            {
+              "id": "take_tally",
+              "text": "收下她的筹牌，换一个时辰",
+              "effects": [
+                { "set_flag": "ch3_baiji_paid", "value": true },
+                { "give_item": "item_convoy_tally" }
+              ],
+              "next": "ch3_baiji_06"
+            }
+          ]
+        },
+        {
+          "id": "ch3_baiji_04",
+          "type": "line",
+          "speaker": "baiji",
+          "text": "我记你的情。但关上的事，我不会替你担。",
+          "next": "ch3_baiji_07"
+        },
+        {
+          "id": "ch3_baiji_05",
+          "type": "line",
+          "speaker": "baiji",
+          "text": "接货的人姓卫。再多一个字，我这条命就没了。",
+          "next": "ch3_baiji_07"
+        },
+        {
+          "id": "ch3_baiji_06",
+          "type": "line",
+          "speaker": "baiji",
+          "text": "筹牌给你。后半夜换班，那时候关门最松。",
+          "next": "ch3_baiji_07"
+        },
+        {
+          "id": "ch3_baiji_07",
+          "type": "narration",
+          "text": "白姬转身进门，把灯留在门外。灯下的雪化了一小片。",
+          "effects": [
+            { "set_flag": "ch3_baiji_done", "value": true },
+            { "condition": { "clue": "clue_baiji_letter" }, "set_flag": "sq3_02_done", "value": true }
+          ],
+          "next": "ch3_baiji_08"
+        },
+        {
+          "id": "ch3_baiji_08",
+          "type": "line",
+          "speaker": "baiji",
+          "text": "冯安，别死在关上。死了，就没人替那三十七个人说话了。",
+          "next": "ch3_baiji_09"
+        },
+        {
+          "id": "ch3_baiji_09",
+          "type": "end",
+          "text": "",
+          "exit": "baiji"
+        }
+      ]
+    },
+    {
+      "id": "scene_3_duyan",
+      "title": "到期的人情",
+      "background": "bg_oasis",
+      "entry": "ch3_duyan_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch3_roster_done" },
+          { "flag": "ch2_duyan_deal" }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch3_duyan_01",
+          "type": "narration",
+          "text": "泉边结了薄冰。杜延的人牵着两匹换乘的马，等在去关口的岔道上。",
+          "next": "ch3_duyan_02"
+        },
+        {
+          "id": "ch3_duyan_02",
+          "type": "line",
+          "speaker": "duyan",
+          "text": "广至驿那趟，我替你压了。今天该你还了。",
+          "next": "ch3_duyan_03"
+        },
+        {
+          "id": "ch3_duyan_03",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "杜延的人情债，还不还？",
+          "choices": [
+            {
+              "id": "pay_debt",
+              "text": "答应替他保一趟货",
+              "effects": [
+                { "set_flag": "ch3_duyan_paid", "value": true },
+                { "add_var": "num_reputation", "value": -1 }
+              ],
+              "next": "ch3_duyan_04"
+            },
+            {
+              "id": "refuse_debt",
+              "text": "拒绝，把话挑明",
+              "effects": [
+                { "add_var": "num_reputation", "value": 1 }
+              ],
+              "next": "ch3_duyan_05"
+            }
+          ]
+        },
+        {
+          "id": "ch3_duyan_04",
+          "type": "line",
+          "speaker": "duyan",
+          "text": "痛快。关下要是打起来，我的人不掺和，但也不会挡你。",
+          "next": "ch3_duyan_06"
+        },
+        {
+          "id": "ch3_duyan_05",
+          "type": "line",
+          "speaker": "duyan",
+          "text": "行。那就各走各的路。河西的风大，说话要算数。",
+          "next": "ch3_duyan_06"
+        },
+        {
+          "id": "ch3_duyan_06",
+          "type": "narration",
+          "text": "两匹马掉头往东。泉边的冰裂开一道缝，又慢慢合上。",
+          "effects": [
+            { "set_flag": "ch3_duyan_done", "value": true }
+          ],
+          "next": "ch3_duyan_07"
+        },
+        {
+          "id": "ch3_duyan_07",
+          "type": "line",
+          "speaker": "duyan",
+          "text": "过关靠纸，也靠人。你自己选。",
+          "next": "ch3_duyan_08"
+        },
+        {
+          "id": "ch3_duyan_08",
+          "type": "end",
+          "text": "",
+          "exit": "duyan"
+        }
+      ]
+    },
+    {
+      "id": "scene_3_gate",
+      "title": "关下",
+      "background": "bg_yumenguan_gate",
+      "entry": "ch3_gate_01",
+      "trigger": { "flag": "ch3_party_ready" },
+      "nodes": [
+        {
+          "id": "ch3_gate_01",
+          "type": "narration",
+          "text": "天没亮，关下的车辙已经压了两道。三辆粮车停在闸口外，车辙比货单上写的深。",
+          "next": "ch3_gate_02"
+        },
+        {
+          "id": "ch3_gate_02",
+          "type": "line",
+          "speaker": "chenggong",
+          "text": "车上有弩机。谁是货主？",
+          "next": "ch3_gate_03"
+        },
+        {
+          "id": "ch3_gate_03",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "货队就在闸口，怎么动？",
+          "choices": [
+            {
+              "id": "seize_gate",
+              "text": "当关扣货，先拿下闸口",
+              "effects": [
+                { "set_flag": "ch3_gate_tracked", "value": true },
+                { "add_var": "num_gate_trust", "value": -1 }
+              ],
+              "next": "ch3_gate_04"
+            },
+            {
+              "id": "trail_gate",
+              "text": "先放行，尾随到关外",
+              "effects": [
+                { "set_flag": "ch3_gate_tracked", "value": true }
+              ],
+              "next": "ch3_gate_05"
+            }
+          ]
+        },
+        {
+          "id": "ch3_gate_04",
+          "type": "line",
+          "speaker": "chenggong",
+          "text": "闸口是你的，关令的刀还是我的。谁先动，谁就别想再过这座关。",
+          "next": "ch3_gate_06"
+        },
+        {
+          "id": "ch3_gate_05",
+          "type": "narration",
+          "text": "车队缓缓出闸。你带着郭望绕到关外土坡背面，等着看接货的人是谁。",
+          "next": "ch3_gate_06"
+        },
+        {
+          "id": "ch3_gate_06",
+          "type": "narration",
+          "text": "押车的私兵先拔了刀。刀鞘磕在车辕上，响声在关墙之间来回撞。",
+          "next": "ch3_gate_07"
+        },
+        {
+          "id": "ch3_gate_07",
+          "type": "combat",
+          "encounter": "enc_ch3_gate",
+          "on_win": "ch3_gate_08",
+          "on_lose": "ch3_gate_09"
+        },
+        {
+          "id": "ch3_gate_08",
+          "type": "narration",
+          "text": "六名私兵被击退，两人往戈壁深处跑。郭望的左臂旧伤裂开，血把袖子黏在刀柄上。",
+          "effects": [
+            { "set_flag": "ch3_gate_cleared", "value": true },
+            { "add_var": "num_reputation", "value": 1 }
+          ],
+          "next": "ch3_gate_10"
+        },
+        {
+          "id": "ch3_gate_09",
+          "type": "narration",
+          "text": "你被刀背砸中肩头，再醒来时正被郭望往关墙下拖。车队还停在闸口，货没走成。",
+          "effects": [
+            { "set_flag": "ch3_gate_cleared", "value": true }
+          ],
+          "next": "ch3_gate_10"
+        },
+        {
+          "id": "ch3_gate_10",
+          "type": "narration",
+          "text": "车底压着一只上锁的木匣。撬开，里面是关传、货单和半枚没来得及销毁的残印。",
+          "effects": [
+            { "set_flag": "ch3_seal_seized", "value": true },
+            { "add_clue": "clue_gate_manifest" },
+            { "give_item": "item_gate_token" },
+            { "give_item": "item_seal_clay" },
+            { "condition": { "var": "num_aqi_trust", "op": "gte", "value": 2 }, "set_flag": "sq3_03_done", "value": true }
+          ],
+          "next": "ch3_gate_11"
+        },
+        {
+          "id": "ch3_gate_11",
+          "type": "narration",
+          "text": "成公朔走上了关墙。关下的风把火把吹得斜斜的，照见每一张脸上的霜。",
+          "effects": [
+            { "set_flag": "ch3_gate_done", "value": true }
+          ],
+          "next": "ch3_gate_12"
+        },
+        {
+          "id": "ch3_gate_12",
+          "type": "end",
+          "text": "",
+          "exit": "gate"
+        }
+      ]
+    },
+    {
+      "id": "scene_3_end",
+      "title": "过关",
+      "background": "bg_qilian_mountain",
+      "entry": "ch3_end_01",
+      "trigger": { "flag": "ch3_gate_done" },
+      "nodes": [
+        {
+          "id": "ch3_end_01",
+          "type": "narration",
+          "text": "关开之前，成公朔在闸口立了一张案。案上三样东西：人、货、印。他只问一句。",
+          "next": "ch3_end_02"
+        },
+        {
+          "id": "ch3_end_02",
+          "type": "line",
+          "speaker": "chenggong",
+          "text": "交人，还是交货。",
+          "next": "ch3_end_03"
+        },
+        {
+          "id": "ch3_end_03",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "关下最后一句话，说什么？",
+          "choices": [
+            {
+              "id": "end_handover",
+              "text": "交人：让周敢和这车货一起留下",
+              "effects": [
+                { "set_var": "ch3_ending", "value": "handover" },
+                { "set_flag": "ch3_final_choice", "value": true }
+              ],
+              "next": "ch3_end_04"
+            },
+            {
+              "id": "end_cargo",
+              "text": "交货：扣下粮与弩机，放人过关",
+              "effects": [
+                { "set_var": "ch3_ending", "value": "cargo" },
+                { "set_flag": "ch3_final_choice", "value": true }
+              ],
+              "next": "ch3_end_05"
+            },
+            {
+              "id": "end_stand",
+              "text": "自守：把证据和印一起递上去，当关对质",
+              "effects": [
+                { "set_var": "ch3_ending", "value": "stand" },
+                { "set_flag": "ch3_final_choice", "value": true },
+                { "add_var": "num_reputation", "value": 1 }
+              ],
+              "next": "ch3_end_06"
+            }
+          ]
+        },
+        {
+          "id": "ch3_end_04",
+          "type": "narration",
+          "text": "周敢被两名戍卒扶下关墙。他没回头，只把供词简留在你手里。货放行了，人没放。",
+          "next": "ch3_end_07"
+        },
+        {
+          "id": "ch3_end_05",
+          "type": "narration",
+          "text": "粮车与弩机被推进关内仓房。成公朔翻了翻货单，抬手下令放人。白姬的车队在关外等你。",
+          "next": "ch3_end_07"
+        },
+        {
+          "id": "ch3_end_06",
+          "type": "narration",
+          "text": "你把残印、名录和供词简一并摊在案上。成公朔看了很久，最后让人把赵钦请下关墙。",
+          "next": "ch3_end_07"
+        },
+        {
+          "id": "ch3_end_07",
+          "type": "line",
+          "speaker": "zhaoqin",
+          "text": "冯书佐，这一页你翻过去了。下一页，未必还轮得到你写。",
+          "next": "ch3_end_08"
+        },
+        {
+          "id": "ch3_end_08",
+          "type": "narration",
+          "text": "冬至日的太阳从祁连山脊上出来，把关墙照成一条白线。三十七个名字还没写回去。",
+          "next": "ch3_end_09"
+        },
+        {
+          "id": "ch3_end_09",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "（低声）张季，过了这道关，就只剩最后一件事了。",
+          "next": "ch3_end_10"
+        },
+        {
+          "id": "ch3_end_10",
+          "type": "narration",
+          "text": "关开。风从关外灌进来，带着雪。",
+          "effects": [
+            { "set_flag": "ch3_done", "value": true }
+          ],
+          "next": "ch3_end_11"
+        },
+        {
+          "id": "ch3_end_11",
+          "type": "end",
+          "text": "",
+          "exit": "ch03_done"
+        }
+      ]
+    }
+  ]
+}

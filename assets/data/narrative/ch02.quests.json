@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch02",
+  "quests": [
+    {
+      "id": "mq_2_01",
+      "type": "main",
+      "title": "督邮的账",
+      "summary": "郡府督邮赵钦携廪食簿到驿，名义是核冬至粮，实则要赶在冬至前把账做平。",
+      "location": "悬泉置",
+      "prerequisites": { "flag": "ch2_intro" },
+      "objectives": [
+        {
+          "id": "mq_2_01_obj_receive",
+          "text": "接待郡府督邮赵钦",
+          "condition": { "flag": "ch2_zhaoqin_met" }
+        },
+        {
+          "id": "mq_2_01_obj_ledger",
+          "text": "核对廪食簿上的名字",
+          "condition": { "flag": "ch2_ledger_checked" }
+        },
+        {
+          "id": "mq_2_01_obj_copy",
+          "text": "决定韩伯抄本的去向",
+          "condition": { "flag": "ch2_copy_decided" }
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "mq_2_01_obj_receive" },
+          { "objective": "mq_2_01_obj_ledger" },
+          { "objective": "mq_2_01_obj_copy" }
+        ]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_erasure_marks" },
+        { "type": "variable", "id": "num_hanbo_trust", "delta": 1 }
+      ]
+    },
+    {
+      "id": "mq_2_02",
+      "type": "main",
+      "title": "障塞里的活人",
+      "summary": "周敢没死，藏在废弃障塞里。他的名字被用来领粮，又被用来收弩机。",
+      "location": "障塞废墟",
+      "prerequisites": { "quest": "mq_2_01", "state": "completed" },
+      "objectives": [
+        {
+          "id": "mq_2_02_obj_find",
+          "text": "在障塞找到周敢",
+          "condition": { "flag": "ch2_zhougan_found" }
+        },
+        {
+          "id": "mq_2_02_obj_testify",
+          "text": "听完周敢的供词",
+          "condition": { "flag": "ch2_zhougan_testified" }
+        },
+        {
+          "id": "mq_2_02_obj_protect",
+          "text": "决定周敢的去留",
+          "condition": { "flag": "ch2_zhougan_decided" }
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "mq_2_02_obj_find" },
+          { "objective": "mq_2_02_obj_testify" },
+          { "objective": "mq_2_02_obj_protect" }
+        ]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_zhougan_testimony" },
+        { "type": "variable", "id": "num_zhougan_trust", "delta": 1 }
+      ]
+    },
+    {
+      "id": "mq_2_03",
+      "type": "main",
+      "title": "柜台后的账",
+      "summary": "广至驿车马店的账目对不上，白姬是唯一知道车队几时过关的人。",
+      "location": "广至驿",
+      "prerequisites": { "quest": "mq_2_02", "state": "completed" },
+      "objectives": [
+        {
+          "id": "mq_2_03_obj_key",
+          "text": "核对后门钥匙牌",
+          "condition": { "flag": "ch2_key_checked" }
+        },
+        {
+          "id": "mq_2_03_obj_ledger",
+          "text": "查看车马店账页",
+          "condition": { "flag": "ch2_shop_ledger_seen" }
+        },
+        {
+          "id": "mq_2_03_obj_baiji",
+          "text": "与白姬摊牌",
+          "condition": { "flag": "ch2_baiji_confronted" }
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "mq_2_03_obj_key" },
+          { "objective": "mq_2_03_obj_ledger" },
+          { "objective": "mq_2_03_obj_baiji" }
+        ]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_convoy_manifest" },
+        { "type": "variable", "id": "num_baiji_trust", "delta": 1 }
+      ]
+    },
+    {
+      "id": "mq_2_04",
+      "type": "main",
+      "title": "白霜夜行",
+      "summary": "车队在冬至前夜装货。跟上去，看清押车的人是谁。",
+      "location": "广至驿道",
+      "prerequisites": { "quest": "mq_2_03", "state": "completed" },
+      "objectives": [
+        {
+          "id": "mq_2_04_obj_track",
+          "text": "追踪夜行车队",
+          "condition": { "flag": "ch2_convoy_tracked" }
+        },
+        {
+          "id": "mq_2_04_obj_fight",
+          "text": "与押车私兵交手",
+          "condition": { "flag": "ch2_convoy_fought" }
+        },
+        {
+          "id": "mq_2_04_obj_cargo",
+          "text": "查验货箱与货单",
+          "condition": { "flag": "ch2_cargo_checked" }
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "mq_2_04_obj_track" },
+          { "objective": "mq_2_04_obj_fight" },
+          { "objective": "mq_2_04_obj_cargo" }
+        ]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_convoy_manifest" },
+        { "type": "item", "id": "item_convoy_tally" },
+        { "type": "variable", "id": "num_reputation", "delta": 1 }
+      ]
+    },
+    {
+      "id": "mq_2_05",
+      "type": "main",
+      "title": "冬至前夜",
+      "summary": "车队进了广至驿。督邮、白姬、周敢都在场，收场只在一念之间。",
+      "location": "广至驿",
+      "prerequisites": { "quest": "mq_2_04", "state": "completed" },
+      "objectives": [
+        {
+          "id": "mq_2_05_obj_confront",
+          "text": "在广至驿最终处置车队",
+          "condition": { "flag": "ch2_climax_done" }
+        },
+        {
+          "id": "mq_2_05_obj_choose",
+          "text": "选定本章结局",
+          "condition": { "var": "ch2_ending", "op": "neq", "value": "none" }
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "mq_2_05_obj_confront" },
+          { "objective": "mq_2_05_obj_choose" }
+        ]
+      },
+      "rewards": [
+        { "type": "flag", "id": "ch2_done" },
+        { "type": "variable", "id": "num_reputation", "delta": 2 }
+      ]
+    },
+    {
+      "id": "sq_2_01",
+      "type": "side",
+      "title": "断简",
+      "summary": "韩伯的抄本缺了两简。就着灶火，把削痕、墨色和缺字一一对上。",
+      "location": "悬泉置灶间",
+      "prerequisites": {
+        "all": [
+          { "item": "item_brush_knife" },
+          { "quest": "mq_2_01", "state": "completed" }
+        ]
+      },
+      "objectives": [
+        {
+          "id": "sq_2_01_obj_repair",
+          "text": "修复韩伯抄本",
+          "condition": { "flag": "sq2_01_done" }
+        }
+      ],
+      "completion": {
+        "all": [{ "objective": "sq_2_01_obj_repair" }]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_ledger_collation" },
+        { "type": "variable", "id": "num_hanbo_trust", "delta": 1 }
+      ]
+    },
+    {
+      "id": "sq_2_02",
+      "type": "side",
+      "title": "白狐的信",
+      "summary": "白姬塞来一封没有落款的信，说若她冬至后还活着，再拆。",
+      "location": "广至驿",
+      "prerequisites": { "flag": "ch2_baiji_confronted" },
+      "objectives": [
+        {
+          "id": "sq_2_02_obj_letter",
+          "text": "决定这封信的去向",
+          "condition": { "flag": "sq2_02_done" }
+        }
+      ],
+      "completion": {
+        "all": [{ "objective": "sq_2_02_obj_letter" }]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_baiji_letter" }
+      ]
+    },
+    {
+      "id": "sq_2_03",
+      "type": "side",
+      "title": "归义印",
+      "summary": "阿耆带来一枚残印，印文与废止官署同模。",
+      "location": "悬泉置",
+      "prerequisites": {
+        "all": [
+          { "var": "num_aqi_trust", "op": "gte", "value": 1 },
+          { "quest": "mq_2_02", "state": "completed" }
+        ]
+      },
+      "objectives": [
+        {
+          "id": "sq_2_03_obj_seal",
+          "text": "为阿耆验印",
+          "condition": { "flag": "sq2_03_done" }
+        }
+      ],
+      "completion": {
+        "all": [{ "objective": "sq_2_03_obj_seal" }]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_seal_owner" }
+      ]
+    }
+  ]
+}
