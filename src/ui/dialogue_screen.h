@@ -26,14 +26,22 @@ class DialogueScreen {
 public:
     bool initialize(const UiConfig& config, std::string* error = nullptr);
 
+    const sf::Font& font() const { return font_; }
+
     void render(sf::RenderWindow& window, const narrative::NarrativeSession& session);
 
-    /// Handles a pressed key. Returns true when the player asked to quit.
+    /// Handles a pressed key. Returns true when the player asked to return to
+    /// the main menu.
     bool handle_key(sf::Keyboard::Key key, narrative::NarrativeSession& session);
     /// Handles a left click in window coordinates. Returns true when consumed.
     bool handle_click(sf::Vector2f position, narrative::NarrativeSession& session);
     /// Handles a vertical mouse wheel notch. Returns true when consumed.
     bool handle_wheel(float delta, narrative::NarrativeSession& session);
+
+    /// Chapter transition card shown when a chapter begins.
+    void show_chapter_card(const std::string& title);
+    void dismiss_chapter_card() { card_active_ = false; }
+    bool chapter_card_active() const { return card_active_; }
 
     bool chapter_finished() const { return chapter_finished_; }
     void set_chapter_finished(bool value) { chapter_finished_ = value; }
@@ -51,6 +59,11 @@ public:
         register_scroll_ = 0.f;
         register_max_scroll_ = 0.f;
         register_user_scrolled_ = false;
+        journal_open_ = false;
+        journal_scroll_ = 0.f;
+        journal_max_scroll_ = 0.f;
+        card_active_ = false;
+        card_elapsed_ = 0.f;
     }
 
 private:
@@ -68,6 +81,9 @@ private:
                          const narrative::NodeView& view, float dt);
     void render_seal(sf::RenderWindow& window, float width, float height,
                      const narrative::NodeView& view);
+    void render_chapter_card(sf::RenderWindow& window, float width, float height);
+    void render_journal(sf::RenderWindow& window, const narrative::NarrativeSession& session,
+                        float width, float height);
 
     UiConfig config_;
     sf::Font font_;
@@ -95,6 +111,17 @@ private:
     float register_max_scroll_ = 0.f;
     float register_viewport_height_ = 0.f;
     bool register_user_scrolled_ = false;
+
+    // Chapter transition card.
+    bool card_active_ = false;
+    float card_elapsed_ = 0.f;
+    std::string card_title_;
+
+    // Journal overlay.
+    bool journal_open_ = false;
+    float journal_scroll_ = 0.f;
+    float journal_max_scroll_ = 0.f;
+    float journal_viewport_height_ = 0.f;
 };
 
 } // namespace han::ui

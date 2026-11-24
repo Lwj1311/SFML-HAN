@@ -61,8 +61,10 @@ public:
 
 private:
     bool completion_met(const QuestDef& quest, const NarrativeState& state) const;
-    void apply_rewards(const QuestDef& quest, NarrativeState& state) const;
-    void apply_branches(const QuestDef& quest, NarrativeState& state) const;
+    bool apply_rewards(const QuestDef& quest, QuestStatus& status,
+                       NarrativeState& state) const;
+    bool apply_branches(const QuestDef& quest, QuestStatus& status,
+                        NarrativeState& state) const;
 
     std::vector<QuestDef> quests_;
     ConditionEvaluator conditions_;

@@ -63,6 +63,16 @@ public:
     bool choose(const std::string& choice_id, std::string* error = nullptr);
     void resolve_combat(bool win);
 
+    /// Serialises chapter id, played scenes and narrative progress.
+    Json snapshot() const;
+    /// Restores a snapshot after load(); only valid between scenes.
+    bool restore(const Json& snapshot, std::string* error = nullptr);
+
+    /// Display text from the chapter's state document, for journals.
+    std::string clue_text(const std::string& id) const;
+    std::string item_name(const std::string& id) const;
+    std::string item_description(const std::string& id) const;
+
     const std::vector<std::string>& played_scenes() const { return played_; }
 
 private:

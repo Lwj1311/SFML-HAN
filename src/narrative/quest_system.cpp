@@ -112,10 +112,12 @@ void QuestSystem::update(NarrativeState& state) {
                 }
             }
 
-            if (status.state != QuestState::Active) {
+            if (status.state == QuestState::Inactive) {
                 continue;
             }
 
+            // Objectives keep being evaluated after completion so optional
+            // goals that only become reachable later are still recorded.
             for (const ObjectiveDef& objective : quest.objectives) {
                 if (status.objectives_done.find(objective.id) !=
                     status.objectives_done.end()) {
@@ -128,15 +130,20 @@ void QuestSystem::update(NarrativeState& state) {
                 }
             }
 
-            if (!completion_met(quest, state)) {
-                continue;
+            if (status.state == QuestState::Active && completion_met(quest, state)) {
+                status.state = QuestState::Completed;
+                completed_.push_back(quest.id);
+                progress = true;
             }
 
-            status.state = QuestState::Completed;
-            apply_rewards(quest, state);
-            apply_branches(quest, state);
-            completed_.push_back(quest.id);
-            progress = true;
+            if (status.state == QuestState::Completed) {
+                if (apply_rewards(quest, status, state)) {
+                    progress = true;
+                }
+                if (apply_branches(quest, status, state)) {
+                    progress = true;
+                }
+            }
         }
     }
 }
@@ -160,9 +167,16 @@ bool QuestSystem::completion_met(const QuestDef& quest, const NarrativeState& st
     return true;
 }
 
-void QuestSystem::apply_rewards(const QuestDef& quest, NarrativeState& state) const {
+bool QuestSystem::apply_rewards(const QuestDef& quest, QuestStatus& status,
+                                NarrativeState& state) const {
     const EvalContext context{&state, {}};
-    for (const RewardDef& reward : quest.rewards) {
+    bool applied = false;
+    for (std::size_t index = 0; index < quest.rewards.size(); ++index) {
+        const std::string key = std::to_string(index);
+        if (status.rewards_applied.find(key) != status.rewards_applied.end()) {
+            continue;
+        }
+        const RewardDef& reward = quest.rewards[index];
         if (!reward.condition.is_null() &&
             !conditions_.evaluate(reward.condition, context, nullptr)) {
             continue;
@@ -178,18 +192,31 @@ void QuestSystem::apply_rewards(const QuestDef& quest, NarrativeState& state) co
         } else if (reward.type == "ability") {
             state.add_ability(reward.id);
         }
+        status.rewards_applied.insert(key);
+        applied = true;
     }
+    return applied;
 }
 
-void QuestSystem::apply_branches(const QuestDef& quest, NarrativeState& state) const {
+bool QuestSystem::apply_branches(const QuestDef& quest, QuestStatus& status,
+                                 NarrativeState& state) const {
     const EvalContext context{&state, {}};
-    for (const QuestBranchDef& branch : quest.branches) {
+    bool applied = false;
+    for (std::size_t index = 0; index < quest.branches.size(); ++index) {
+        const std::string key = std::to_string(index);
+        if (status.branches_applied.find(key) != status.branches_applied.end()) {
+            continue;
+        }
+        const QuestBranchDef& branch = quest.branches[index];
         if (!branch.condition.is_null() &&
             !conditions_.evaluate(branch.condition, context, nullptr)) {
             continue;
         }
         effects_.apply(branch.effects, state, {}, nullptr);
+        status.branches_applied.insert(key);
+        applied = true;
     }
+    return applied;
 }
 
 } // namespace han::narrative

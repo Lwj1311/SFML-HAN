@@ -25,6 +25,10 @@ struct VariableDef {
 struct QuestStatus {
     QuestState state = QuestState::Inactive;
     std::set<std::string> objectives_done;
+    /// Reward/branch indices already applied, so late conditions can be paid
+    /// out once without duplicating earlier rewards.
+    std::set<std::string> rewards_applied;
+    std::set<std::string> branches_applied;
 };
 
 /// Authoritative, renderer-independent narrative state for one chapter.
@@ -61,6 +65,13 @@ public:
     void set_quest_state(const std::string& id, QuestState state);
     void complete_objective(const std::string& id);
     void clear_quest_progress();
+
+    // --- persistence ---
+    /// Serialises the mutable progress (not the chapter declarations).
+    Json snapshot() const;
+    /// Applies a snapshot produced by snapshot(); declarations must already be
+    /// loaded through load_initial().
+    bool restore(const Json& snapshot, std::string* error = nullptr);
 
     // --- chapter declarations, used by the validator ---
     bool declares_flag(const std::string& id) const;

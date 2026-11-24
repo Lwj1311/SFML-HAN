@@ -68,6 +68,7 @@ if(HAN_ENABLE_SFML)
     add_executable(han_client
         src/app/main.cpp
         src/ui/dialogue_screen.cpp
+        src/ui/title_screen.cpp
     )
     target_link_libraries(han_client PRIVATE han_narrative sfml-graphics sfml-window sfml-system)
 

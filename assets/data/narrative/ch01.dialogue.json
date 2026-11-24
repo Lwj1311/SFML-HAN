@@ -284,9 +284,10 @@
         {
           "id": "ch1_b07",
           "type": "narration",
-          "text": "沙窝里找到张季的邮袋。棨信不见了，只剩半张货单。",
+          "text": "沙窝里找到张季的邮袋和半截弩机悬刀。棨信不见了，只剩半张货单。",
           "effects": [
             { "set_flag": "ch1_scouts_cleared", "value": true },
+            { "set_flag": "ch1_crossbow_parts_found", "value": true },
             { "give_item": "item_post_pouch" },
             { "add_clue": "clue_receipt_half" }
           ],
@@ -675,28 +676,28 @@
     },
     {
       "id": "scene_bj2_stable",
-      "title": "马厩里的新鞍",
+      "title": "马厩草料",
       "background": "bg_guangzhi_post",
       "entry": "ch1_bj_10",
       "trigger": {
         "all": [
           { "flag": "ch1_baiji_met" },
-          { "not": { "flag": "ch1_stable_checked" } }
+          { "not": { "flag": "sq1_01_done" } }
         ]
       },
       "nodes": [
         {
           "id": "ch1_bj_10",
-          "type": "line",
-          "speaker": "baiji",
-          "text": "那匹马是胡商的，鞍子也是胡商的。",
+          "type": "narration",
+          "text": "你绕到马厩，草料堆得半人高。白姬说，韩伯前几日来寻过东西。",
           "next": "ch1_bj_11"
         },
         {
           "id": "ch1_bj_11",
           "type": "narration",
-          "text": "新皮革，鞍下夹着红柳刺。",
+          "text": "你翻到槽底，摸出一柄旧书刀。刀柄上刻着一个“韩”字；旁边的新马具，鞍下夹着红柳刺。",
           "effects": [
+            { "give_item": "item_brush_knife" },
             { "set_flag": "ch1_stable_checked", "value": true },
             { "add_clue": "clue_new_harness" }
           ],
@@ -706,17 +707,17 @@
           "id": "ch1_bj_12",
           "type": "line",
           "speaker": "baiji",
-          "text": "红柳滩的刺，哪儿都沾。",
+          "text": "书佐找的是刀，还是刀上的名字？",
           "next": "ch1_bj_13"
         },
         {
           "id": "ch1_bj_13",
           "type": "choice",
           "speaker": "fengan",
-          "prompt": "你怎么问？",
+          "prompt": "你怎么回应？",
           "choices": [
-            { "id": "ask_merchant", "text": "追问胡商", "next": "ch1_bj_14" },
-            { "id": "ask_price", "text": "问马价", "next": "ch1_bj_14" },
+            { "id": "ask_merchant", "text": "追问韩伯", "next": "ch1_bj_14" },
+            { "id": "ask_price", "text": "收起书刀", "next": "ch1_bj_14" },
             { "id": "say_nothing", "text": "不置可否", "next": "ch1_bj_15" }
           ]
         },
@@ -731,7 +732,7 @@
               "next": "ch1_bj_15"
             },
             {
-              "text": "胡商姓什么，我也不知道。",
+              "text": "韩伯的东西，不该落在草料里。",
               "next": "ch1_bj_15"
             }
           ]
@@ -744,7 +745,7 @@
           "effects": [
             { "set_flag": "bj_guarded", "value": true }
           ],
-          "next": "ch1_c06"
+          "next": null
         }
       ]
     },
@@ -1118,6 +1119,73 @@
       ]
     },
     {
+      "id": "scene_bj7_second_visit",
+      "title": "第二次到访",
+      "background": "bg_guangzhi_post",
+      "entry": "ch1_bj_36",
+      "trigger": {
+        "all": [
+          { "flag": "ch1_shed_searched" },
+          { "not": { "flag": "ch1_climax" } }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch1_bj_36",
+          "type": "narration",
+          "text": "柴房已打扫干净，灰烬却是新的。",
+          "next": "ch1_bj_37"
+        },
+        {
+          "id": "ch1_bj_37",
+          "type": "line",
+          "speaker": "baiji",
+          "text": "书佐又来了？这回是喝酒，还是查案？",
+          "next": "ch1_bj_38"
+        },
+        {
+          "id": "ch1_bj_38",
+          "type": "narration",
+          "text": "你翻动灰烬，找到未烧尽的“冬至”二字。",
+          "effects": [
+            { "add_clue": "clue_winter_solstice" }
+          ],
+          "next": "ch1_bj_39"
+        },
+        {
+          "id": "ch1_bj_39",
+          "type": "line",
+          "speaker": "baiji",
+          "text": "书佐，别逼我。",
+          "effects": [
+            { "set_flag": "bj_confronted", "value": true }
+          ],
+          "next": "ch1_bj_40"
+        },
+        {
+          "id": "ch1_bj_40",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "你怎么做？",
+          "choices": [
+            { "id": "show_evidence", "text": "亮出证据", "next": "ch1_bj_41" },
+            { "id": "withdraw", "text": "退走", "next": "ch1_bj_41" },
+            { "id": "ask_winter", "text": "问冬至要做什么", "next": "ch1_bj_41" }
+          ]
+        },
+        {
+          "id": "ch1_bj_41",
+          "type": "line",
+          "speaker": "baiji",
+          "text": "冬至吃饺子。边地人，也过年。",
+          "effects": [
+            { "add_var": "num_baiji_suspicion", "value": 1 }
+          ],
+          "next": null
+        }
+      ]
+    },
+    {
       "id": "scene_e_redwillow",
       "title": "红柳滩",
       "background": "bg_red_willow_beach",
@@ -1385,6 +1453,7 @@
           "speaker": "hanbo",
           "text": "三十七个人，是我亲手记的阵亡。",
           "effects": [
+            { "set_flag": "ch1_hanbo_night", "value": true },
             { "add_clue": "clue_hanbo_slips" }
           ],
           "next": "ch1_g02"
@@ -1437,6 +1506,7 @@
           "speaker": "hanbo",
           "text": "这是抄本。别让第三个人看见。",
           "effects": [
+            { "give_item": "item_bamboo_slip" },
             { "add_clue": "clue_hanbo_copy" },
             { "add_var": "num_hanbo_trust", "value": 1 }
           ],
@@ -1569,6 +1639,10 @@
               "condition": { "var": "receipt_choice", "op": "eq", "value": "su" },
               "text": "苏娘把砖缝抹平，像什么都没发生过。",
               "next": "ch1_h05"
+            },
+            {
+              "text": "窗外风声渐紧，灯芯爆了一下。",
+              "next": "ch1_h05"
             }
           ]
         },
@@ -1638,73 +1712,6 @@
       ]
     },
     {
-      "id": "scene_bj7_second_visit",
-      "title": "第二次到访",
-      "background": "bg_guangzhi_post",
-      "entry": "ch1_bj_36",
-      "trigger": {
-        "all": [
-          { "flag": "ch1_shed_searched" },
-          { "not": { "flag": "ch1_climax" } }
-        ]
-      },
-      "nodes": [
-        {
-          "id": "ch1_bj_36",
-          "type": "narration",
-          "text": "柴房已打扫干净，灰烬却是新的。",
-          "next": "ch1_bj_37"
-        },
-        {
-          "id": "ch1_bj_37",
-          "type": "line",
-          "speaker": "baiji",
-          "text": "书佐又来了？这回是喝酒，还是查案？",
-          "next": "ch1_bj_38"
-        },
-        {
-          "id": "ch1_bj_38",
-          "type": "narration",
-          "text": "你翻动灰烬，找到未烧尽的“冬至”二字。",
-          "effects": [
-            { "add_clue": "clue_winter_solstice" }
-          ],
-          "next": "ch1_bj_39"
-        },
-        {
-          "id": "ch1_bj_39",
-          "type": "line",
-          "speaker": "baiji",
-          "text": "书佐，别逼我。",
-          "effects": [
-            { "set_flag": "bj_confronted", "value": true }
-          ],
-          "next": "ch1_bj_40"
-        },
-        {
-          "id": "ch1_bj_40",
-          "type": "choice",
-          "speaker": "fengan",
-          "prompt": "你怎么做？",
-          "choices": [
-            { "id": "show_evidence", "text": "亮出证据", "next": "ch1_bj_41" },
-            { "id": "withdraw", "text": "退走", "next": "ch1_bj_41" },
-            { "id": "ask_winter", "text": "问冬至要做什么", "next": "ch1_bj_41" }
-          ]
-        },
-        {
-          "id": "ch1_bj_41",
-          "type": "line",
-          "speaker": "baiji",
-          "text": "冬至吃饺子。边地人，也过年。",
-          "effects": [
-            { "add_var": "num_baiji_suspicion", "value": 1 }
-          ],
-          "next": null
-        }
-      ]
-    },
-    {
       "id": "scene_bj8_end",
       "title": "章末的反向确认",
       "background": "bg_station_courtyard",
@@ -1715,6 +1722,9 @@
           "id": "ch1_bj_42",
           "type": "narration",
           "text": "深夜，广至驿方向有一骑快马出关。",
+          "effects": [
+            { "add_clue": "clue_fast_horse" }
+          ],
           "next": "ch1_bj_43"
         },
         {

@@ -235,6 +235,21 @@ void DialogueScreen::render(sf::RenderWindow& window,
     shade.setFillColor(sf::Color(10, 8, 6, chapter_finished_ ? 165 : 62));
     window.draw(shade);
 
+    if (card_active_) {
+        card_elapsed_ += dt;
+        constexpr float kCardDuration = 3.2f;
+        if (card_elapsed_ < kCardDuration) {
+            render_chapter_card(window, width, height);
+            return;
+        }
+        card_active_ = false;
+    }
+
+    if (journal_open_ && session.scene_active()) {
+        render_journal(window, session, width, height);
+        return;
+    }
+
     if (session.scene_active()) {
         const narrative::NodeView& overlay = session.current();
         if (overlay.kind == narrative::NodeKind::Register) {
@@ -260,8 +275,8 @@ void DialogueScreen::render(sf::RenderWindow& window,
                   50.f, 29.f, sf::Color(232, 224, 206, 235));
     }
 
-    draw_text(window, font_, 15, sf::String(L"Esc 退出"),
-              width - 92.f, 34.f, sf::Color(kDim.r, kDim.g, kDim.b, 190));
+    draw_text(window, font_, 15, sf::String(L"Tab 日志 · Esc 返回主菜单"),
+              width - 244.f, 34.f, sf::Color(kDim.r, kDim.g, kDim.b, 190));
 
     if (chapter_finished_ || !session.scene_active()) {
         sf::RectangleShape panel(sf::Vector2f(540.f, 180.f));
@@ -271,14 +286,17 @@ void DialogueScreen::render(sf::RenderWindow& window,
         panel.setOutlineColor(kGold);
         window.draw(panel);
 
-        const sf::String title(L"第一章 · 演示结束");
+        const std::string title_text = session.chapter_title().empty()
+                                           ? std::string("本章结束")
+                                           : session.chapter_title() + " · 本章结束";
+        const sf::String title = from_utf8(title_text);
         const sf::FloatRect title_bounds = sf::Text(title, font_, 34)
                                                .getLocalBounds();
         draw_text(window, font_, 34, title,
                   width * 0.5f - title_bounds.width * 0.5f,
                   panel.getPosition().y + 52.f, kGold);
 
-        const sf::String hint(L"按 Esc 退出");
+        const sf::String hint(L"回车 继续 · Esc 返回主菜单");
         const sf::FloatRect hint_bounds = sf::Text(hint, font_, 18).getLocalBounds();
         draw_text(window, font_, 18, hint,
                   width * 0.5f - hint_bounds.width * 0.5f,
@@ -301,7 +319,7 @@ void DialogueScreen::render(sf::RenderWindow& window,
         if (found != encounters.end()) {
             encounter_name = found->second.value("name", encounter_name);
         }
-        body = from_utf8("遭遇：" + encounter_name + "\n（战斗系统尚未接入，回车判胜 / Backspace 判负）");
+        body = from_utf8("遭遇：" + encounter_name + "\n（回车迎战 · Backspace 暂避）");
     } else {
         body = from_utf8(view.line.text);
         speaker_name = from_utf8(view.line.speaker_name);
@@ -401,7 +419,7 @@ void DialogueScreen::render(sf::RenderWindow& window,
     if (is_choice) {
         hint = L"↑↓ 选择 · 数字键直选 · 回车确认";
     } else if (is_combat) {
-        hint = L"回车 胜利 · Backspace 失败";
+        hint = L"回车 迎战 · Backspace 暂避";
     } else {
         hint = L"空格 / 回车 / 左键  继续";
     }
@@ -543,7 +561,7 @@ void DialogueScreen::render_register(sf::RenderWindow& window, float width,
     draw_text(window, font_, 17, hint, (width - hint_bounds.width) * 0.5f,
               height - 34.f, kDim);
 
-    const sf::String back = from_utf8("Esc 退出");
+    const sf::String back = from_utf8("Esc 返回主菜单");
     const sf::FloatRect back_bounds = sf::Text(back, font_, 15).getLocalBounds();
     draw_text(window, font_, 15, back, width - 28.f - back_bounds.width, 24.f, kDim);
 }
@@ -615,10 +633,249 @@ void DialogueScreen::render_seal(sf::RenderWindow& window, float width, float he
               py + panel_h + 22.f, kDim);
 }
 
+void DialogueScreen::show_chapter_card(const std::string& title) {
+    card_active_ = true;
+    card_elapsed_ = 0.f;
+    card_title_ = title;
+    journal_open_ = false;
+}
+
+void DialogueScreen::render_chapter_card(sf::RenderWindow& window, float width,
+                                         float height) {
+    sf::RectangleShape veil(sf::Vector2f(width, height));
+    veil.setFillColor(sf::Color(8, 7, 5, 214));
+    window.draw(veil);
+
+    const float fade = std::clamp(card_elapsed_ / 0.5f, 0.f, 1.f);
+    const auto alpha = [fade](sf::Color color, float factor = 1.f) {
+        return sf::Color(color.r, color.g, color.b,
+                         static_cast<sf::Uint8>(
+                             static_cast<float>(color.a) * fade * factor));
+    };
+
+    const sf::String prelude = from_utf8("悬泉渡");
+    const sf::FloatRect prelude_bounds = sf::Text(prelude, font_, 20).getLocalBounds();
+    draw_text(window, font_, 20, prelude, (width - prelude_bounds.width) * 0.5f,
+              height * 0.32f, alpha(kGold));
+
+    const sf::String title = from_utf8(card_title_.empty() ? "本章" : card_title_);
+    const sf::FloatRect title_bounds = sf::Text(title, font_, 52).getLocalBounds();
+    draw_text(window, font_, 52, title, (width - title_bounds.width) * 0.5f,
+              height * 0.40f, alpha(kText));
+
+    sf::RectangleShape rule(sf::Vector2f(260.f, 1.f));
+    rule.setPosition((width - 260.f) * 0.5f, height * 0.40f + 82.f);
+    rule.setFillColor(alpha(sf::Color(kGold.r, kGold.g, kGold.b, 170)));
+    window.draw(rule);
+
+    const sf::String hint = from_utf8("任意键继续");
+    const sf::FloatRect hint_bounds = sf::Text(hint, font_, 16).getLocalBounds();
+    draw_text(window, font_, 16, hint, (width - hint_bounds.width) * 0.5f,
+              height * 0.40f + 104.f, alpha(sf::Color(kDim.r, kDim.g, kDim.b, 220)));
+}
+
+void DialogueScreen::render_journal(sf::RenderWindow& window,
+                                    const narrative::NarrativeSession& session,
+                                    float width, float height) {
+    struct JournalRow {
+        sf::String text;
+        unsigned size = 16;
+        sf::Color color = kText;
+        float indent = 0.f;
+    };
+
+    const float panel_x = 48.f;
+    const float panel_y = 44.f;
+    const float panel_w = width - panel_x * 2.f;
+    const float panel_h = height - panel_y * 2.f;
+    const float inner_pad = 28.f;
+    const float col_gap = 28.f;
+    const float col_w = (panel_w - inner_pad * 2.f - col_gap * 2.f) / 3.f;
+    const float content_top = panel_y + 112.f;
+    const float content_bottom = panel_y + panel_h - 44.f;
+    const float viewport_h = content_bottom - content_top;
+    journal_viewport_height_ = viewport_h;
+
+    std::vector<JournalRow> quest_rows;
+    std::vector<JournalRow> clue_rows;
+    std::vector<JournalRow> item_rows;
+
+    const auto add_wrapped = [&](std::vector<JournalRow>& rows, const std::string& text,
+                                 unsigned size, sf::Color color, float indent) {
+        const std::vector<sf::String> lines =
+            wrap_text(font_, size, from_utf8(text), col_w - indent);
+        for (const sf::String& line : lines) {
+            rows.push_back(JournalRow{line, size, color, indent});
+        }
+    };
+
+    const narrative::NarrativeState& state = session.state();
+    for (const narrative::QuestDef& quest : session.quests().definitions()) {
+        const narrative::QuestStatus& status = state.quest_status(quest.id);
+        if (status.state == narrative::QuestState::Inactive) {
+            continue;
+        }
+        const bool done = status.state == narrative::QuestState::Completed;
+        add_wrapped(quest_rows,
+                    std::string(done ? "〔已了〕" : "〔进行〕") + quest.title, 20,
+                    done ? kDim : kGold, 0.f);
+        for (const narrative::ObjectiveDef& objective : quest.objectives) {
+            const bool objective_done =
+                status.objectives_done.find(objective.id) != status.objectives_done.end();
+            std::string line =
+                std::string(objective_done ? "√ " : "· ") + objective.text;
+            if (objective.optional) {
+                line += "（可选）";
+            }
+            add_wrapped(quest_rows, line, 16, objective_done ? kDim : kText, 12.f);
+        }
+        quest_rows.push_back(JournalRow{sf::String(), 10, kDim, 0.f});
+    }
+
+    for (const std::string& clue : state.clues()) {
+        add_wrapped(clue_rows, "· " + session.clue_text(clue), 16, kText, 0.f);
+    }
+
+    for (const auto& [item, count] : state.items()) {
+        std::string name = session.item_name(item);
+        if (count > 1) {
+            name += " ×" + std::to_string(count);
+        }
+        add_wrapped(item_rows, name, 18, kGold, 0.f);
+        const std::string description = session.item_description(item);
+        if (!description.empty()) {
+            add_wrapped(item_rows, description, 14, kDim, 12.f);
+        }
+        item_rows.push_back(JournalRow{sf::String(), 8, kDim, 0.f});
+    }
+
+    const auto rows_height = [](const std::vector<JournalRow>& rows) {
+        float total = 0.f;
+        for (const JournalRow& row : rows) {
+            total += static_cast<float>(row.size) * 1.5f;
+        }
+        return total;
+    };
+    const float tallest = std::max({rows_height(quest_rows), rows_height(clue_rows),
+                                    rows_height(item_rows)});
+    journal_max_scroll_ = std::max(0.f, tallest + 8.f - viewport_h);
+    journal_scroll_ = std::clamp(journal_scroll_, 0.f, journal_max_scroll_);
+
+    sf::RectangleShape veil(sf::Vector2f(width, height));
+    veil.setFillColor(sf::Color(6, 5, 4, 202));
+    window.draw(veil);
+
+    sf::RectangleShape panel(sf::Vector2f(panel_w, panel_h));
+    panel.setPosition(panel_x, panel_y);
+    panel.setFillColor(sf::Color(22, 19, 15, 246));
+    panel.setOutlineThickness(2.f);
+    panel.setOutlineColor(sf::Color(kGold.r, kGold.g, kGold.b, 130));
+    window.draw(panel);
+
+    draw_text(window, font_, 28, from_utf8("案牍"), panel_x + inner_pad, panel_y + 24.f,
+              kGold);
+    draw_text(window, font_, 15, from_utf8("任务 · 线索 · 物品"),
+              panel_x + inner_pad + 76.f, panel_y + 36.f, kDim);
+    draw_text(window, font_, 15, from_utf8("Tab / Esc 关闭"),
+              panel_x + panel_w - inner_pad - 112.f, panel_y + 36.f, kDim);
+
+    const char* headings[] = {"任务", "线索", "物品"};
+    const std::vector<JournalRow>* columns[] = {&quest_rows, &clue_rows, &item_rows};
+
+    for (int column = 0; column < 3; ++column) {
+        const float cx =
+            panel_x + inner_pad + static_cast<float>(column) * (col_w + col_gap);
+
+        draw_text(window, font_, 19, from_utf8(headings[column]), cx, panel_y + 72.f,
+                  kGold);
+        sf::RectangleShape rule(sf::Vector2f(col_w, 1.f));
+        rule.setPosition(cx, content_top - 8.f);
+        rule.setFillColor(sf::Color(kGold.r, kGold.g, kGold.b, 90));
+        window.draw(rule);
+
+        const sf::View previous = window.getView();
+        sf::View view(sf::FloatRect(0.f, 0.f, col_w, viewport_h));
+        view.setViewport(sf::FloatRect(cx / width, content_top / height, col_w / width,
+                                       viewport_h / height));
+        window.setView(view);
+
+        if (columns[column]->empty()) {
+            draw_text(window, font_, 16, from_utf8("（暂无）"), 0.f, 4.f,
+                      sf::Color(kDim.r, kDim.g, kDim.b, 150));
+        }
+
+        float y = -journal_scroll_;
+        for (const JournalRow& row : *columns[column]) {
+            const float line_h = static_cast<float>(row.size) * 1.5f;
+            if (y + line_h > 0.f && y < viewport_h) {
+                draw_text(window, font_, row.size, row.text, row.indent, y, row.color);
+            }
+            y += line_h;
+        }
+        window.setView(previous);
+    }
+
+    if (journal_max_scroll_ > 0.f) {
+        const float track_x = panel_x + panel_w - 22.f;
+        sf::RectangleShape track(sf::Vector2f(3.f, viewport_h));
+        track.setPosition(track_x, content_top);
+        track.setFillColor(sf::Color(kGold.r, kGold.g, kGold.b, 45));
+        window.draw(track);
+
+        const float handle_h =
+            std::max(48.f, viewport_h * viewport_h / (viewport_h + journal_max_scroll_));
+        const float progress = journal_scroll_ / journal_max_scroll_;
+        sf::RectangleShape handle(sf::Vector2f(3.f, handle_h));
+        handle.setPosition(track_x, content_top + progress * (viewport_h - handle_h));
+        handle.setFillColor(sf::Color(kGold.r, kGold.g, kGold.b, 190));
+        window.draw(handle);
+    }
+
+    const sf::String hint = from_utf8("↑↓ / 滚轮 翻阅 · Tab / Esc 关闭");
+    const sf::FloatRect hint_bounds = sf::Text(hint, font_, 15).getLocalBounds();
+    draw_text(window, font_, 15, hint, (width - hint_bounds.width) * 0.5f,
+              panel_y + panel_h - 30.f, kDim);
+}
+
 bool DialogueScreen::handle_key(sf::Keyboard::Key key,
                                 narrative::NarrativeSession& session) {
+    if (card_active_) {
+        dismiss_chapter_card();
+        return false;
+    }
+
+    if (journal_open_) {
+        const float page = journal_viewport_height_ > 0.f
+                               ? journal_viewport_height_ * 0.8f
+                               : 320.f;
+        if (key == sf::Keyboard::Up || key == sf::Keyboard::W || key == sf::Keyboard::K) {
+            journal_scroll_ = std::max(0.f, journal_scroll_ - 48.f);
+        } else if (key == sf::Keyboard::Down || key == sf::Keyboard::S ||
+                   key == sf::Keyboard::J) {
+            journal_scroll_ = std::min(journal_max_scroll_, journal_scroll_ + 48.f);
+        } else if (key == sf::Keyboard::PageUp) {
+            journal_scroll_ = std::max(0.f, journal_scroll_ - page);
+        } else if (key == sf::Keyboard::PageDown) {
+            journal_scroll_ = std::min(journal_max_scroll_, journal_scroll_ + page);
+        } else if (key == sf::Keyboard::Home) {
+            journal_scroll_ = 0.f;
+        } else if (key == sf::Keyboard::End) {
+            journal_scroll_ = journal_max_scroll_;
+        } else if (key == sf::Keyboard::Tab || key == sf::Keyboard::Escape ||
+                   key == sf::Keyboard::BackSpace) {
+            journal_open_ = false;
+        }
+        return false;
+    }
+
     if (key == sf::Keyboard::Escape) {
         return true;
+    }
+
+    if (key == sf::Keyboard::Tab && session.scene_active() && !chapter_finished_) {
+        journal_open_ = true;
+        journal_scroll_ = 0.f;
+        return false;
     }
 
     if (chapter_finished_ || !session.scene_active()) {
@@ -716,6 +973,13 @@ bool DialogueScreen::handle_key(sf::Keyboard::Key key,
 
 bool DialogueScreen::handle_click(sf::Vector2f position,
                                   narrative::NarrativeSession& session) {
+    if (card_active_) {
+        dismiss_chapter_card();
+        return true;
+    }
+    if (journal_open_) {
+        return true;
+    }
     if (chapter_finished_ || !session.scene_active()) {
         return false;
     }
@@ -746,6 +1010,11 @@ bool DialogueScreen::handle_click(sf::Vector2f position,
 }
 
 bool DialogueScreen::handle_wheel(float delta, narrative::NarrativeSession& session) {
+    if (journal_open_) {
+        journal_scroll_ =
+            std::clamp(journal_scroll_ - delta * 60.f, 0.f, journal_max_scroll_);
+        return true;
+    }
     if (chapter_finished_ || !session.scene_active()) {
         return false;
     }

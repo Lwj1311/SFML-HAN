@@ -220,6 +220,79 @@ void NarrativeSession::resolve_combat(bool win) {
     finish_if_needed();
 }
 
+Json NarrativeSession::snapshot() const {
+    Json doc;
+    doc["schema_version"] = 1;
+    doc["chapter_id"] = chapter_id_;
+    doc["chapter_title"] = chapter_title();
+    doc["played_scenes"] = played_;
+    doc["state"] = state_->snapshot();
+    return doc;
+}
+
+bool NarrativeSession::restore(const Json& snapshot, std::string* error) {
+    if (!active_scene_.empty()) {
+        return fail(error, "cannot restore while a scene is active");
+    }
+    const std::string saved_chapter = snapshot.value("chapter_id", std::string{});
+    if (!saved_chapter.empty() && saved_chapter != chapter_id_) {
+        return fail(error, "save belongs to " + saved_chapter + ", not " + chapter_id_);
+    }
+    const auto state_it = snapshot.find("state");
+    if (state_it == snapshot.end()) {
+        return fail(error, "save has no state block");
+    }
+    if (!state_->restore(*state_it, error)) {
+        return false;
+    }
+    played_ = snapshot.value("played_scenes", std::vector<std::string>{});
+    runner_ = std::make_unique<DialogueRunner>(*document_, *state_);
+    sync();
+    return true;
+}
+
+namespace {
+
+const Json* member(const Json& doc, const std::string& key) {
+    const auto it = doc.find(key);
+    return it == doc.end() ? nullptr : &*it;
+}
+
+} // namespace
+
+std::string NarrativeSession::clue_text(const std::string& id) const {
+    const Json* clues = member(state_doc_, "clues");
+    if (clues != nullptr) {
+        const Json* text = member(*clues, id);
+        if (text != nullptr && text->is_string()) {
+            return text->get<std::string>();
+        }
+    }
+    return id;
+}
+
+std::string NarrativeSession::item_name(const std::string& id) const {
+    const Json* items = member(state_doc_, "items");
+    if (items != nullptr) {
+        const Json* entry = member(*items, id);
+        if (entry != nullptr && entry->is_object()) {
+            return entry->value("name", id);
+        }
+    }
+    return id;
+}
+
+std::string NarrativeSession::item_description(const std::string& id) const {
+    const Json* items = member(state_doc_, "items");
+    if (items != nullptr) {
+        const Json* entry = member(*items, id);
+        if (entry != nullptr && entry->is_object()) {
+            return entry->value("description", std::string{});
+        }
+    }
+    return {};
+}
+
 void NarrativeSession::sync() {
     quests_->update(*state_);
 }

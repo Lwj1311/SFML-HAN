@@ -75,6 +75,50 @@ int quest_state(const NarrativeState& state, const std::string& id) {
     return static_cast<int>(state.quest_state(id));
 }
 
+/// Plays the active chapter to its end, always taking the first choice unless
+/// one of `preferred` is offered.
+void play_to_end(NarrativeSession& session,
+                 const std::vector<std::string>& preferred = {}) {
+    std::string error;
+    int guard = 0;
+    while (guard++ < 800) {
+        if (!session.scene_active()) {
+            if (!session.play_next_scene(&error)) {
+                break;
+            }
+        }
+
+        const NodeView& node = session.current();
+        if (node.kind == NodeKind::Line) {
+            session.advance();
+        } else if (node.kind == NodeKind::Choice) {
+            HAN_CHECK(!node.choices.empty());
+            std::string pick = node.choices.front().id;
+            for (const std::string& wanted : preferred) {
+                for (const ChoiceOption& option : node.choices) {
+                    if (option.id == wanted) {
+                        pick = option.id;
+                    }
+                }
+            }
+            HAN_CHECK(session.choose(pick, &error));
+        } else if (node.kind == NodeKind::Combat) {
+            session.resolve_combat(true);
+        } else {
+            throw testing::Failure{"unexpected node kind while a scene is active"};
+        }
+    }
+    HAN_CHECK(guard < 800);
+}
+
+void check_all_quests_completed(const NarrativeSession& session,
+                                const std::vector<std::string>& ids) {
+    for (const std::string& id : ids) {
+        HAN_CHECK_EQ(quest_state(session.state(), id),
+                     static_cast<int>(QuestState::Completed));
+    }
+}
+
 } // namespace
 
 HAN_TEST(chapter_data_loads_and_validates) {
@@ -329,14 +373,36 @@ HAN_TEST(session_plays_the_whole_chapter) {
     HAN_CHECK_EQ(quest_state(session.state(), "sq_1_02"),
                  static_cast<int>(QuestState::Completed));
     HAN_CHECK_EQ(quest_state(session.state(), "sq_1_01"),
-                 static_cast<int>(QuestState::Active));
+                 static_cast<int>(QuestState::Completed));
     HAN_CHECK_EQ(quest_state(session.state(), "sq_1_04"),
-                 static_cast<int>(QuestState::Active));
+                 static_cast<int>(QuestState::Completed));
+
+    // Optional objectives and their conditional rewards must not be lost when
+    // the main quest completes before the optional scene is reached.
+    HAN_CHECK(session.state().objective_done("mq_1_01_obj_aqi"));
+    HAN_CHECK(session.state().has_clue("clue_hu_order"));
+    HAN_CHECK(session.state().has_clue("clue_erasure_marks"));
+    HAN_CHECK(session.state().has_clue("clue_fast_horse"));
+    HAN_CHECK(session.state().has_item("item_brush_knife"));
+    HAN_CHECK(session.state().has_item("item_crossbow"));
+    HAN_CHECK(session.state().has_item("item_bamboo_slip"));
+    HAN_CHECK(session.state().flag("sq1_01_done"));
+    HAN_CHECK(session.state().flag("sq1_04_done"));
+    HAN_CHECK(session.state().int_var("num_aqi_trust") >= 2);
 
     HAN_CHECK_EQ(session.state().string_var("receipt_choice"), std::string("handed"));
     HAN_CHECK(session.state().has_item("item_qixin"));
     HAN_CHECK(session.state().has_item("item_post_pouch"));
-    HAN_CHECK(session.played_scenes().size() >= 14);
+
+    bool stable_scene_played = false;
+    bool second_visit_played = false;
+    for (const std::string& scene : session.played_scenes()) {
+        stable_scene_played = stable_scene_played || scene == "scene_bj2_stable";
+        second_visit_played = second_visit_played || scene == "scene_bj7_second_visit";
+    }
+    HAN_CHECK(stable_scene_played);
+    HAN_CHECK(second_visit_played);
+    HAN_CHECK(session.played_scenes().size() >= 16);
 
     // The real campaign path: finish ch01, then hand its state to ch02.
     NarrativeSession ch2;
@@ -531,6 +597,121 @@ HAN_TEST(session_plays_the_third_chapter) {
     HAN_CHECK(session.state().has_item("item_gate_token"));
     // 独立开局时没有第二章的周敢/白姬/杜延状态，三场条件插场应跳过。
     HAN_CHECK_EQ(session.played_scenes().size(), std::size_t{6});
+}
+
+HAN_TEST(session_snapshot_round_trip) {
+    const std::filesystem::path dir{HAN_DATA_DIR};
+    NarrativeSession session;
+    std::string error;
+    HAN_CHECK(session.load(dir, "ch01", &error));
+    session.start();
+
+    // Finish the first scene so the snapshot is taken at a scene boundary,
+    // matching how the client autosaves.
+    HAN_CHECK(session.play_next_scene(&error));
+    while (session.scene_active()) {
+        const NodeView& node = session.current();
+        if (node.kind == NodeKind::Line) {
+            session.advance();
+        } else if (node.kind == NodeKind::Choice) {
+            HAN_CHECK(!node.choices.empty());
+            HAN_CHECK(session.choose(node.choices.front().id, &error));
+        } else if (node.kind == NodeKind::Combat) {
+            session.resolve_combat(true);
+        } else {
+            throw testing::Failure{"unexpected node kind while a scene is active"};
+        }
+    }
+    HAN_CHECK(!session.played_scenes().empty());
+
+    const Json save = session.snapshot();
+    HAN_CHECK_EQ(save.value("chapter_id", std::string{}), std::string("ch01"));
+
+    NarrativeSession restored;
+    HAN_CHECK(restored.load(dir, "ch01", &error));
+    HAN_CHECK(restored.restore(save, &error));
+    HAN_CHECK_EQ(restored.played_scenes().size(), session.played_scenes().size());
+    HAN_CHECK_EQ(restored.state().int_var("num_hanbo_trust"),
+                 session.state().int_var("num_hanbo_trust"));
+    HAN_CHECK_EQ(restored.state().string_var("receipt_choice"),
+                 session.state().string_var("receipt_choice"));
+    HAN_CHECK_EQ(restored.state().clues().size(), session.state().clues().size());
+    HAN_CHECK_EQ(restored.state().items().size(), session.state().items().size());
+    HAN_CHECK_EQ(restored.state().completed_objectives().size(),
+                 session.state().completed_objectives().size());
+    HAN_CHECK_EQ(restored.state().quests().size(), session.state().quests().size());
+    HAN_CHECK_EQ(quest_state(restored.state(), "mq_1_01"),
+                 quest_state(session.state(), "mq_1_01"));
+
+    // A restored session keeps advancing from the same boundary.
+    HAN_CHECK(restored.play_next_scene(&error));
+    HAN_CHECK(restored.scene_active());
+    HAN_CHECK_EQ(restored.played_scenes().size(), session.played_scenes().size() + 1);
+
+    // Finishing the chapter from a restored snapshot must not re-apply rewards.
+    play_to_end(restored);
+    HAN_CHECK(restored.state().flag("ch1_done"));
+    HAN_CHECK_EQ(quest_state(restored.state(), "mq_1_01"),
+                 static_cast<int>(QuestState::Completed));
+}
+
+HAN_TEST(chapter_one_receipts_all_reach_chapter_two) {
+    const std::filesystem::path dir{HAN_DATA_DIR};
+    std::string error;
+
+    for (const std::string& receipt : {"handed", "concealed", "su"}) {
+        NarrativeSession ch1;
+        HAN_CHECK(ch1.load(dir, "ch01", &error));
+        ch1.start();
+        play_to_end(ch1, {receipt});
+        HAN_CHECK_EQ(ch1.state().string_var("receipt_choice"), receipt);
+        HAN_CHECK(ch1.state().flag("ch1_done"));
+
+        NarrativeSession ch2;
+        HAN_CHECK(ch2.load(dir, "ch02", ch1, &error));
+        ch2.start();
+        play_to_end(ch2);
+        HAN_CHECK(ch2.state().flag("ch2_done"));
+        HAN_CHECK(ch2.state().string_var("ch2_ending") != "none");
+    }
+}
+
+HAN_TEST(campaign_completes_every_quest_and_scene) {
+    const std::filesystem::path dir{HAN_DATA_DIR};
+    std::string error;
+
+    NarrativeSession ch1;
+    HAN_CHECK(ch1.load(dir, "ch01", &error));
+    ch1.start();
+    play_to_end(ch1);
+    check_all_quests_completed(ch1, {"mq_1_01", "mq_1_02", "mq_1_03", "mq_1_04",
+                                     "mq_1_05", "sq_1_01", "sq_1_02", "sq_1_04"});
+    HAN_CHECK(ch1.state().flag("ch1_done"));
+    HAN_CHECK(ch1.state().string_var("receipt_choice") != "none");
+    // 18 个场景中 scene_bj3_counter 是柜台分支的共享入口，正常流程共 17 场。
+    HAN_CHECK_EQ(ch1.played_scenes().size(), std::size_t{17});
+
+    NarrativeSession ch2;
+    HAN_CHECK(ch2.load(dir, "ch02", ch1, &error));
+    ch2.start();
+    play_to_end(ch2, {"repair_slips"});
+    check_all_quests_completed(ch2, {"mq_2_01", "mq_2_02", "mq_2_03", "mq_2_04",
+                                     "mq_2_05", "sq_2_01", "sq_2_02", "sq_2_03"});
+    HAN_CHECK(ch2.state().flag("ch2_done"));
+    HAN_CHECK(ch2.state().string_var("ch2_ending") != "none");
+    HAN_CHECK(ch2.state().has_clue("clue_ledger_collation"));
+    HAN_CHECK_EQ(ch2.played_scenes().size(), std::size_t{9});
+
+    NarrativeSession ch3;
+    HAN_CHECK(ch3.load(dir, "ch03", ch2, &error));
+    ch3.start();
+    play_to_end(ch3, {"mend_roster"});
+    check_all_quests_completed(ch3, {"mq_3_01", "mq_3_02", "mq_3_03", "mq_3_04",
+                                     "mq_3_05", "sq_3_01", "sq_3_02", "sq_3_03"});
+    HAN_CHECK(ch3.state().flag("ch3_done"));
+    HAN_CHECK(ch3.state().string_var("ch3_ending") != "none");
+    HAN_CHECK(ch3.state().has_clue("clue_erased_name"));
+    HAN_CHECK_EQ(ch3.played_scenes().size(), std::size_t{9});
 }
 
 HAN_TEST(chapter_three_copies_declared_carryover) {

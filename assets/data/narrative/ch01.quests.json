@@ -318,7 +318,6 @@
         ]
       },
       "rewards": [
-        { "type": "item", "id": "item_brush_knife" },
         { "type": "ability", "id": "inspect_erasure" },
         { "type": "flag", "id": "sq1_01_done" }
       ],
@@ -392,7 +391,7 @@
         {
           "id": "sq_1_04_obj_parts",
           "text": "找回弩机零件",
-          "condition": { "item": "item_crossbow" }
+          "condition": { "flag": "ch1_crossbow_parts_found" }
         }
       ],
       "completion": {

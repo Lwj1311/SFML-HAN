@@ -14,6 +14,7 @@
       "ch1_patrol_started": false,
       "ch1_patrol_done": false,
       "ch1_tracks_found": false,
+      "ch1_crossbow_parts_found": false,
       "ch1_scouts_cleared": false,
       "ch1_guowang_hurt": false,
       "ch1_baiji_met": false,
