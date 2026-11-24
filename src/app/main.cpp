@@ -1,6 +1,16 @@
 #include "narrative/session.h"
 #include "ui/dialogue_screen.h"
 
+#ifdef _WIN32
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#include <windows.h>
+#endif
+
 #include <SFML/Graphics.hpp>
 
 #include <filesystem>
@@ -25,18 +35,37 @@ void print_usage() {
                  "  --font <文件>    中文字体 TTF/TTC\n"
                  "  --campaign       章节结束后按 next_chapter 自动进入下一章并携带状态\n"
                  "  --frames <数量>  渲染指定帧数后退出（冒烟测试）\n"
+                 "  --check          仅加载章节数据后退出（打包冒烟验证）\n"
                  "  --help           显示本帮助\n";
+}
+
+std::filesystem::path executable_dir() {
+#ifdef _WIN32
+    wchar_t buffer[MAX_PATH]{};
+    const DWORD length = GetModuleFileNameW(nullptr, buffer, MAX_PATH);
+    if (length > 0) {
+        return std::filesystem::path(buffer, buffer + length).parent_path();
+    }
+#endif
+    return std::filesystem::current_path();
+}
+
+/// Packaged builds compile in paths relative to the executable; keep them
+/// anchored there so the extracted zip runs from any working directory.
+std::filesystem::path resolve_default_dir(const std::filesystem::path& dir) {
+    return dir.is_absolute() ? dir : executable_dir() / dir;
 }
 
 } // namespace
 
 int main(int argc, char** argv) {
-    std::filesystem::path data_dir = HAN_DATA_DIR;
-    std::filesystem::path asset_dir = HAN_ASSET_DIR;
+    std::filesystem::path data_dir = resolve_default_dir(HAN_DATA_DIR);
+    std::filesystem::path asset_dir = resolve_default_dir(HAN_ASSET_DIR);
     std::filesystem::path font_path;
     std::string chapter_id = "ch01";
     int frame_limit = 0;
     bool campaign = false;
+    bool check_only = false;
 
     for (int i = 1; i < argc; ++i) {
         const std::string arg = argv[i];
@@ -56,6 +85,8 @@ int main(int argc, char** argv) {
             frame_limit = std::stoi(argv[++i]);
         } else if (arg == "--campaign") {
             campaign = true;
+        } else if (arg == "--check") {
+            check_only = true;
         } else {
             std::cerr << "未知参数: " << arg << "\n";
             print_usage();
@@ -68,6 +99,10 @@ int main(int argc, char** argv) {
     if (!session.load(data_dir, chapter_id, &error)) {
         std::cerr << "加载剧情失败: " << error << "\n";
         return 1;
+    }
+    if (check_only) {
+        std::cout << "数据检查通过: " << session.chapter_title() << " (" << chapter_id << ")\n";
+        return 0;
     }
     session.start();
 

@@ -37,8 +37,8 @@ jobs:
         run: >
           cmake -S . -B build -A x64
           -DCMAKE_TOOLCHAIN_FILE="$env:VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake"
-          -DHAN_DATA_DIR=assets/data/narrative
-          -DHAN_ASSET_DIR=game-assets
+          -DHAN_DATA_DIR:STRING=assets/data/narrative
+          -DHAN_ASSET_DIR:STRING=game-assets
 
       - name: Build
         run: cmake --build build --config Release --parallel
@@ -58,6 +58,14 @@ jobs:
           Copy-Item "assets/data/narrative" "$pkg/assets/data/narrative" -Recurse
           Invoke-WebRequest -Uri "https://aka.ms/vs/17/release/vc_redist.x64.exe" -OutFile "$pkg/vc_redist.x64.exe"
           Compress-Archive -Path "$pkg/*" -DestinationPath "XuanquanDu-windows-x64.zip" -Force
+
+      - name: Smoke test package
+        shell: pwsh
+        run: |
+          Push-Location package/XuanquanDu
+          ./han_client.exe --check
+          if ($LASTEXITCODE -ne 0) { throw "packaged client failed to load chapter data" }
+          Pop-Location
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
