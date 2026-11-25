@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch10",
+  "quests": [
+    {
+      "id": "mq_10_01",
+      "type": "main",
+      "title": "迟到的邮书",
+      "summary": "郡府急件迟了三日。封泥裂了，绳结却是新系的——有人拆过，又照原样封回去。",
+      "location": "悬泉置",
+      "prerequisites": { "flag": "ch10_start" },
+      "objectives": [
+        {
+          "id": "mq_10_01_obj_order",
+          "text": "认出急件封检的破绽",
+          "condition": { "flag": "ch10_open_done" }
+        },
+        {
+          "id": "mq_10_01_obj_pouch",
+          "text": "验出后补的封泥",
+          "condition": { "flag": "ch10_pouch_done" }
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "mq_10_01_obj_order" },
+          { "objective": "mq_10_01_obj_pouch" }
+        ]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_broken_seal" },
+        { "type": "item", "id": "item_broken_seal" }
+      ]
+    },
+    {
+      "id": "mq_10_02",
+      "type": "main",
+      "title": "驿传签收",
+      "summary": "广至一站的签收栏空着，日期却接得上。驿站里少了一只邮袋。",
+      "location": "广至驿站",
+      "prerequisites": { "quest": "mq_10_01", "state": "completed" },
+      "objectives": [
+        {
+          "id": "mq_10_02_obj_relay",
+          "text": "对出签收简上的空档",
+          "condition": { "flag": "ch10_relay_done" }
+        },
+        {
+          "id": "mq_10_02_obj_clerk",
+          "text": "问出驿卒知道的事",
+          "condition": { "flag": "sq10_01_done" },
+          "optional": true
+        }
+      ],
+      "completion": {
+        "all": [{ "objective": "mq_10_02_obj_relay" }]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_relay_slip" },
+        { "type": "item", "id": "item_relay_slip" }
+      ]
+    },
+    {
+      "id": "mq_10_03",
+      "type": "main",
+      "title": "驿路残袋",
+      "summary": "沟底有一只撕开的邮袋，封检被整个割走。袋里的抄件，墨还没干。",
+      "location": "广至以西驿路",
+      "prerequisites": { "quest": "mq_10_02", "state": "completed" },
+      "objectives": [
+        {
+          "id": "mq_10_03_obj_trace",
+          "text": "沿着拖痕找回邮袋",
+          "condition": { "flag": "ch10_trace_done" }
+        },
+        {
+          "id": "mq_10_03_obj_ink",
+          "text": "验出抄件用的墨",
+          "condition": { "flag": "sq10_02_done" },
+          "optional": true
+        }
+      ],
+      "completion": {
+        "all": [{ "objective": "mq_10_03_obj_trace" }]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_ink_copy" }
+      ]
+    },
+    {
+      "id": "mq_10_04",
+      "type": "main",
+      "title": "关下私信",
+      "summary": "商队的箱子里藏着拆开的官文书。封检是官用的，印文却是空的。",
+      "location": "玉门关下",
+      "prerequisites": { "quest": "mq_10_03", "state": "completed" },
+      "objectives": [
+        {
+          "id": "mq_10_04_obj_gate",
+          "text": "在关下截住私信",
+          "condition": { "flag": "ch10_gate_done" }
+        },
+        {
+          "id": "mq_10_04_obj_letters",
+          "text": "把文书封存入库",
+          "condition": { "flag": "ch10_letters_taken" }
+        },
+        {
+          "id": "mq_10_04_obj_reader",
+          "text": "查出不在册的收信人",
+          "condition": { "flag": "sq10_03_done" },
+          "optional": true
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "mq_10_04_obj_gate" },
+          { "objective": "mq_10_04_obj_letters" }
+        ]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_gate_letter" },
+        { "type": "item", "id": "item_gate_letter" }
+      ]
+    },
+    {
+      "id": "mq_10_05",
+      "type": "main",
+      "title": "封检",
+      "summary": "严封则驿传清而人心远，弥封则驿站安而私拆未绝，追书则文书回而关外结怨。",
+      "location": "敦煌郡府封检堂",
+      "prerequisites": { "quest": "mq_10_04", "state": "completed" },
+      "objectives": [
+        {
+          "id": "mq_10_05_obj_hall",
+          "text": "在封检堂上对残泥",
+          "condition": { "flag": "ch10_hall_done" }
+        },
+        {
+          "id": "mq_10_05_obj_choice",
+          "text": "定下私拆的处置",
+          "condition": { "flag": "ch10_final_choice" }
+        },
+        {
+          "id": "mq_10_05_obj_ending",
+          "text": "等郡府落笔",
+          "condition": { "var": "ch10_ending", "op": "neq", "value": "none" }
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "mq_10_05_obj_hall" },
+          { "objective": "mq_10_05_obj_choice" },
+          { "objective": "mq_10_05_obj_ending" }
+        ]
+      },
+      "rewards": [
+        { "type": "flag", "id": "ch10_done" }
+      ]
+    },
+    {
+      "id": "sq_10_01",
+      "type": "side",
+      "title": "驿卒的口供",
+      "summary": "邮袋是关吏拿走的，说第二天就还。还回来时，封泥已经裂了。",
+      "location": "广至驿站",
+      "prerequisites": { "flag": "ch10_pouch_done" },
+      "objectives": [
+        {
+          "id": "sq_10_01_obj_clerk",
+          "text": "让驿卒赵五开口",
+          "condition": { "flag": "sq10_01_done" }
+        }
+      ],
+      "completion": {
+        "all": [{ "objective": "sq_10_01_obj_clerk" }]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_clerk_word" }
+      ]
+    },
+    {
+      "id": "sq_10_02",
+      "type": "side",
+      "title": "驿站的墨",
+      "summary": "抄件的墨掺了松烟。广至只有驿站买得起这样的墨。",
+      "location": "广至以西驿路",
+      "prerequisites": { "flag": "ch10_relay_done" },
+      "objectives": [
+        {
+          "id": "sq_10_02_obj_ink",
+          "text": "验出抄件上的松烟墨",
+          "condition": { "flag": "sq10_02_done" }
+        }
+      ],
+      "completion": {
+        "all": [{ "objective": "sq_10_02_obj_ink" }]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_ink_copy" }
+      ]
+    },
+    {
+      "id": "sq_10_03",
+      "type": "side",
+      "title": "收信人",
+      "summary": "收信人一栏写着一个不在册上的名字。这个名字，只有关吏写得出来。",
+      "location": "玉门关下",
+      "prerequisites": { "flag": "ch10_trace_done" },
+      "objectives": [
+        {
+          "id": "sq_10_03_obj_reader",
+          "text": "把收信人对回名册",
+          "condition": { "flag": "sq10_03_done" }
+        }
+      ],
+      "completion": {
+        "all": [{ "objective": "sq_10_03_obj_reader" }]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_gate_letter" }
+      ]
+    }
+  ]
+}

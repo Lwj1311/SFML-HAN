@@ -2,6 +2,7 @@
   "schema_version": 1,
   "chapter_id": "ch09",
   "title": "第九章 钱法",
+  "next_chapter": "ch10",
   "carryover": {
     "from": "ch08",
     "variables": ["ch8_ending"]

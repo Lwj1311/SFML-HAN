@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch10",
+  "title": "第十章 封检",
+  "carryover": {
+    "from": "ch09",
+    "variables": ["ch9_ending"]
+  },
+  "initial": {
+    "flags": {
+      "ch10_start": true,
+      "ch10_open_done": false,
+      "ch10_pouch_done": false,
+      "ch10_relay_done": false,
+      "ch10_trace_done": false,
+      "ch10_gate_done": false,
+      "ch10_letters_taken": false,
+      "ch10_hall_done": false,
+      "ch10_chose_seal": false,
+      "ch10_chose_cover": false,
+      "ch10_chose_chase": false,
+      "ch10_final_choice": false,
+      "ch10_finished": false,
+      "ch10_done": false,
+      "sq10_01_done": false,
+      "sq10_02_done": false,
+      "sq10_03_done": false
+    },
+    "variables": {
+      "ch9_ending": "none",
+      "ch10_ending": "none",
+      "num_letters": 0,
+      "num_seals": 0
+    }
+  },
+  "variables": {
+    "ch9_ending": {
+      "type": "enum",
+      "values": ["none", "strict", "soft", "trace"],
+      "description": "第九章结局，决定本章急件从哪一头出问题"
+    },
+    "ch10_ending": {
+      "type": "enum",
+      "values": ["none", "seal", "cover", "chase"],
+      "description": "本章结局：严封 / 弥封 / 追书"
+    },
+    "num_letters": {
+      "type": "int",
+      "min": 0,
+      "max": 8,
+      "description": "查出或追回的私拆文书数目"
+    },
+    "num_seals": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "封检证据：断泥、绳结、印文、墨迹与签收"
+    }
+  },
+  "clues": {
+    "clue_broken_seal": "裂开的封泥：旧泥三日前已断，新泥是后补的，印文比封泥浅。",
+    "clue_relay_slip": "驿传签收简：广至一站的签收栏是空的，日期却前后接得上。",
+    "clue_post_token": "借出的邮袋：驿站五只邮袋只剩四只，少的那只正是急件所用。",
+    "clue_gate_letter": "关下私信：商队箱里的官文书收信人不在册，封检印文是空的。",
+    "clue_ink_copy": "抄件：郡府急件的开头被抄了一份，墨是驿站才买得起的松烟墨。",
+    "clue_clerk_word": "驿卒口供：邮袋是关吏卫氏拿走的，说第二天就还。"
+  },
+  "items": {
+    "item_broken_seal": {
+      "name": "残封泥",
+      "icon": "item_seal_clay",
+      "description": "裂了又补的封泥，底下还压着半圈旧泥"
+    },
+    "item_relay_slip": {
+      "name": "驿传签收简",
+      "icon": "item_bamboo_slip",
+      "description": "沿途各站的签收简，广至一栏空着"
+    },
+    "item_gate_letter": {
+      "name": "关下私信",
+      "icon": "item_sealed_document",
+      "description": "从商队箱中截下的官文书，收信人不在册"
+    }
+  }
+}

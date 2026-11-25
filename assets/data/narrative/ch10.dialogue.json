@@ -1,0 +1,912 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch10",
+  "title": "第十章 封检",
+  "speakers": {
+    "narrator": { "name": "旁白", "portrait": null },
+    "fengan": { "name": "冯安", "portrait": "char_fengan" },
+    "hanbo": { "name": "韩伯", "portrait": "char_hanbo" },
+    "suhe": { "name": "苏娘", "portrait": "char_suhe" },
+    "guowang": { "name": "郭望", "portrait": "char_guowang" },
+    "aqi": { "name": "阿耆", "portrait": "char_aqi" },
+    "baiji": { "name": "白姬", "portrait": "char_baiji" },
+    "taishou": { "name": "严崇", "portrait": "char_taishou" },
+    "gongcao": { "name": "郡府功曹", "portrait": "char_gongcao" },
+    "yizu": { "name": "驿卒赵五", "portrait": null }
+  },
+  "encounters": {
+    "enc_ch10_gate": {
+      "name": "关下抢文书的家丁",
+      "enemies": [
+        { "id": "manor_guard", "count": 3 },
+        { "id": "manor_archer", "count": 1 }
+      ],
+      "terrain": "gate",
+      "note": "家丁要抱箱出关，击退即可；文书比人重要。"
+    }
+  },
+  "scenes": [
+    {
+      "id": "scene_10_open",
+      "title": "迟到的邮书",
+      "background": "bg_station_courtyard",
+      "entry": "ch10_open_01",
+      "trigger": { "flag": "ch10_start" },
+      "nodes": [
+        {
+          "id": "ch10_open_01",
+          "type": "narration",
+          "text": "开春后第一封郡府急件送到悬泉置，比限定的日子迟了三日。送件的驿卒说，路上没有耽搁。",
+          "next": "ch10_open_02"
+        },
+        {
+          "id": "ch10_open_02",
+          "type": "branch",
+          "branches": [
+            {
+              "condition": { "var": "ch9_ending", "op": "eq", "value": "strict" },
+              "next": "ch10_open_03"
+            },
+            {
+              "condition": { "var": "ch9_ending", "op": "eq", "value": "soft" },
+              "next": "ch10_open_04"
+            },
+            {
+              "condition": { "var": "ch9_ending", "op": "eq", "value": "trace" },
+              "next": "ch10_open_05"
+            },
+            { "next": "ch10_open_06" }
+          ]
+        },
+        {
+          "id": "ch10_open_03",
+          "type": "narration",
+          "text": "严断之后，广至市冷了一个冬天。开春第一封郡府急件，偏偏在这条路上出了事。",
+          "next": "ch10_open_07"
+        },
+        {
+          "id": "ch10_open_04",
+          "type": "narration",
+          "text": "缓行之后，市面照旧。可这封急件的封泥，到悬泉置时已经裂了。",
+          "next": "ch10_open_07"
+        },
+        {
+          "id": "ch10_open_05",
+          "type": "narration",
+          "text": "溯源之后，关外结了怨。郡府发往敦煌的急件，偏偏在这条路上迟了三日。",
+          "next": "ch10_open_07"
+        },
+        {
+          "id": "ch10_open_06",
+          "type": "narration",
+          "text": "急件到的那天，封泥裂着，绳结却是新系的。驿卒把袋子放下就走了。",
+          "next": "ch10_open_07"
+        },
+        {
+          "id": "ch10_open_07",
+          "type": "line",
+          "speaker": "gongcao",
+          "text": "郡府急件，限三日送达敦煌。迟了一日，按律要问驿传。",
+          "next": "ch10_open_08"
+        },
+        {
+          "id": "ch10_open_08",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "封泥裂了。裂口是旧的，绳结却是新系的。",
+          "next": "ch10_open_09"
+        },
+        {
+          "id": "ch10_open_09",
+          "type": "narration",
+          "text": "你把邮袋翻过来。封检的绳从封泥底下穿过，泥上印着郡府的印，印文却比封泥浅。",
+          "next": "ch10_open_10"
+        },
+        {
+          "id": "ch10_open_10",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "先验封泥，还是先问送件的驿卒？",
+          "choices": [
+            {
+              "id": "check_seal",
+              "text": "先把封泥验清楚",
+              "effects": [
+                { "add_var": "num_seals", "value": 1 }
+              ],
+              "next": "ch10_open_11"
+            },
+            {
+              "id": "ask_courier",
+              "text": "先问驿卒路上经过哪几站",
+              "effects": [
+                { "add_var": "num_letters", "value": 1 }
+              ],
+              "next": "ch10_open_12"
+            }
+          ]
+        },
+        {
+          "id": "ch10_open_11",
+          "type": "narration",
+          "text": "封泥是后补的。补泥的人手很稳，可泥里掺的沙比郡府的细。",
+          "next": "ch10_open_13"
+        },
+        {
+          "id": "ch10_open_12",
+          "type": "narration",
+          "text": "驿卒说，邮袋在广至驿站换过一次马，换马时袋子离过手。",
+          "next": "ch10_open_13"
+        },
+        {
+          "id": "ch10_open_13",
+          "type": "narration",
+          "text": "你把邮袋重新封好，往广至去。",
+          "effects": [
+            { "set_flag": "ch10_open_done", "value": true }
+          ],
+          "next": "ch10_open_14"
+        },
+        {
+          "id": "ch10_open_14",
+          "type": "end",
+          "text": "",
+          "exit": "ch10_open"
+        }
+      ]
+    },
+    {
+      "id": "scene_10_pouch",
+      "title": "封检",
+      "background": "bg_station_interior",
+      "entry": "ch10_pouch_01",
+      "trigger": { "flag": "ch10_open_done" },
+      "nodes": [
+        {
+          "id": "ch10_pouch_01",
+          "type": "narration",
+          "text": "你还没动身，先在灯下把外层封检拆开。绳是新的，封泥底下还压着半圈旧泥。",
+          "next": "ch10_pouch_02"
+        },
+        {
+          "id": "ch10_pouch_02",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "官印是真的，封泥是假的。有人拆过，又照原样封回去。",
+          "next": "ch10_pouch_03"
+        },
+        {
+          "id": "ch10_pouch_03",
+          "type": "narration",
+          "text": "你刮开新泥，里面露出旧封泥的断面。断面干透，至少是三日前裂的。",
+          "next": "ch10_pouch_04"
+        },
+        {
+          "id": "ch10_pouch_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "补泥的人，把破绽留在了哪儿？",
+          "choices": [
+            {
+              "id": "compare_seal",
+              "text": "对印文的深浅",
+              "effects": [
+                { "add_var": "num_seals", "value": 1 }
+              ],
+              "next": "ch10_pouch_05"
+            },
+            {
+              "id": "check_knot",
+              "text": "对绳结的打法",
+              "effects": [
+                { "add_var": "num_seals", "value": 1 }
+              ],
+              "next": "ch10_pouch_06"
+            }
+          ]
+        },
+        {
+          "id": "ch10_pouch_05",
+          "type": "narration",
+          "text": "印文深浅不一。郡府的印压在湿泥上是平的，这枚印是干泥上硬按的。",
+          "next": "ch10_pouch_07"
+        },
+        {
+          "id": "ch10_pouch_06",
+          "type": "narration",
+          "text": "绳结是驿传常用的双环结。打结的人习惯往左收，悬泉置的驿卒都往右收。",
+          "next": "ch10_pouch_07"
+        },
+        {
+          "id": "ch10_pouch_07",
+          "type": "narration",
+          "text": "你把封泥、绳结与旧断面一一记下。这封急件在到悬泉置之前，就被人拆过了。",
+          "effects": [
+            { "set_flag": "ch10_pouch_done", "value": true },
+            { "add_clue": "clue_broken_seal" },
+            { "add_var": "num_seals", "value": 1 }
+          ],
+          "next": "ch10_pouch_08"
+        },
+        {
+          "id": "ch10_pouch_08",
+          "type": "line",
+          "speaker": "suhe",
+          "text": "拆官文书，是要掉脑袋的。",
+          "next": "ch10_pouch_09"
+        },
+        {
+          "id": "ch10_pouch_09",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "敢拆，是因为里头的东西比脑袋值钱。",
+          "next": "ch10_pouch_10"
+        },
+        {
+          "id": "ch10_pouch_10",
+          "type": "narration",
+          "text": "你带上封泥与邮袋，往广至驿站。",
+          "next": "ch10_pouch_11"
+        },
+        {
+          "id": "ch10_pouch_11",
+          "type": "end",
+          "text": "",
+          "exit": "ch10_pouch"
+        }
+      ]
+    },
+    {
+      "id": "scene_10_relay",
+      "title": "广至驿站",
+      "background": "bg_guangzhi_post",
+      "entry": "ch10_relay_01",
+      "trigger": { "flag": "ch10_pouch_done" },
+      "nodes": [
+        {
+          "id": "ch10_relay_01",
+          "type": "narration",
+          "text": "广至驿站比悬泉置小，马槽只有四个。驿卒赵五正在补一只邮袋，针脚密得发亮。",
+          "next": "ch10_relay_02"
+        },
+        {
+          "id": "ch10_relay_02",
+          "type": "line",
+          "speaker": "yizu",
+          "text": "那封急件在这儿换过一次马。袋子离过手，但没出过驿站。",
+          "next": "ch10_relay_03"
+        },
+        {
+          "id": "ch10_relay_03",
+          "type": "narration",
+          "text": "签收简上，广至驿站的签收栏是空的。日期却和前后两站接得上。",
+          "next": "ch10_relay_04"
+        },
+        {
+          "id": "ch10_relay_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "袋子和签收简，哪一样更诚实？",
+          "choices": [
+            {
+              "id": "ask_clerk",
+              "text": "先让赵五把话说完",
+              "effects": [
+                { "set_flag": "sq10_01_done", "value": true },
+                { "add_clue": "clue_clerk_word" }
+              ],
+              "next": "ch10_relay_05"
+            },
+            {
+              "id": "read_slip",
+              "text": "先查签收简的背面",
+              "effects": [
+                { "add_var": "num_seals", "value": 1 }
+              ],
+              "next": "ch10_relay_06"
+            }
+          ]
+        },
+        {
+          "id": "ch10_relay_05",
+          "type": "line",
+          "speaker": "yizu",
+          "text": "袋子是关吏拿走的，说第二天就还。还回来时，封泥已经裂了。",
+          "next": "ch10_relay_07"
+        },
+        {
+          "id": "ch10_relay_06",
+          "type": "narration",
+          "text": "签收简的背面有淡淡的墨痕，像是有人垫着它写过字。",
+          "next": "ch10_relay_07"
+        },
+        {
+          "id": "ch10_relay_07",
+          "type": "narration",
+          "text": "你数了驿站里的邮袋。原本五只，只剩四只。少的那只，正是急件用的。",
+          "effects": [
+            { "set_flag": "ch10_relay_done", "value": true },
+            { "add_clue": "clue_relay_slip" },
+            { "add_clue": "clue_post_token" },
+            { "add_var": "num_letters", "value": 1 }
+          ],
+          "next": "ch10_relay_08"
+        },
+        {
+          "id": "ch10_relay_08",
+          "type": "line",
+          "speaker": "guowang",
+          "text": "关吏姓什么？",
+          "next": "ch10_relay_09"
+        },
+        {
+          "id": "ch10_relay_09",
+          "type": "line",
+          "speaker": "yizu",
+          "text": "姓卫。卫敞的远房侄儿。",
+          "next": "ch10_relay_10"
+        },
+        {
+          "id": "ch10_relay_10",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "卫敞已经倒了，他的侄儿还在关下。",
+          "next": "ch10_relay_11"
+        },
+        {
+          "id": "ch10_relay_11",
+          "type": "narration",
+          "text": "你让赵五带路，沿驿路往关下追。",
+          "next": "ch10_relay_12"
+        },
+        {
+          "id": "ch10_relay_12",
+          "type": "end",
+          "text": "",
+          "exit": "ch10_relay"
+        }
+      ]
+    },
+    {
+      "id": "scene_10_trace",
+      "title": "驿路残袋",
+      "background": "bg_gobi_postroad",
+      "entry": "ch10_trace_01",
+      "trigger": { "flag": "ch10_relay_done" },
+      "nodes": [
+        {
+          "id": "ch10_trace_01",
+          "type": "narration",
+          "text": "出广至往西，驿路在戈壁上拉成一条白线。走到第三十里，路边有一道新鲜的拖痕。",
+          "next": "ch10_trace_02"
+        },
+        {
+          "id": "ch10_trace_02",
+          "type": "line",
+          "speaker": "aqi",
+          "text": "有人把东西拖进沟里，又拖走了。",
+          "next": "ch10_trace_03"
+        },
+        {
+          "id": "ch10_trace_03",
+          "type": "narration",
+          "text": "沟底躺着一只撕开的邮袋，袋口的封检被整个割下来带走。",
+          "next": "ch10_trace_04"
+        },
+        {
+          "id": "ch10_trace_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "袋里还留着什么？",
+          "choices": [
+            {
+              "id": "check_ink",
+              "text": "查袋里那张抄件的墨迹",
+              "effects": [
+                { "set_flag": "sq10_02_done", "value": true },
+                { "add_clue": "clue_ink_copy" },
+                { "add_var": "num_seals", "value": 1 }
+              ],
+              "next": "ch10_trace_05"
+            },
+            {
+              "id": "chase_drag",
+              "text": "顺着拖痕往关下追",
+              "effects": [
+                { "add_var": "num_letters", "value": 1 }
+              ],
+              "next": "ch10_trace_06"
+            }
+          ]
+        },
+        {
+          "id": "ch10_trace_05",
+          "type": "narration",
+          "text": "袋里剩一张抄件，墨还没干透。驿站用的墨掺了松烟，广至只有驿站买得起。",
+          "next": "ch10_trace_07"
+        },
+        {
+          "id": "ch10_trace_06",
+          "type": "narration",
+          "text": "拖痕往关下走，中间断了一段，像是被人抬起来过。",
+          "next": "ch10_trace_07"
+        },
+        {
+          "id": "ch10_trace_07",
+          "type": "narration",
+          "text": "你把抄件与残袋收好。抄件上的字，是郡府急件的开头。",
+          "effects": [
+            { "set_flag": "ch10_trace_done", "value": true },
+            { "add_clue": "clue_ink_copy" },
+            { "add_var": "num_letters", "value": 2 }
+          ],
+          "next": "ch10_trace_08"
+        },
+        {
+          "id": "ch10_trace_08",
+          "type": "line",
+          "speaker": "baiji",
+          "text": "前头关下有人在等货。我劝你别一个人过去。",
+          "next": "ch10_trace_09"
+        },
+        {
+          "id": "ch10_trace_09",
+          "type": "narration",
+          "text": "关楼的影子已经看得见了。你让阿耆留下看邮袋，自己往关下。",
+          "next": "ch10_trace_10"
+        },
+        {
+          "id": "ch10_trace_10",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "走。",
+          "next": "ch10_trace_11"
+        },
+        {
+          "id": "ch10_trace_11",
+          "type": "end",
+          "text": "",
+          "exit": "ch10_trace"
+        }
+      ]
+    },
+    {
+      "id": "scene_10_gate",
+      "title": "关下私信",
+      "background": "bg_yumenguan_gate",
+      "entry": "ch10_gate_01",
+      "trigger": { "flag": "ch10_trace_done" },
+      "nodes": [
+        {
+          "id": "ch10_gate_01",
+          "type": "narration",
+          "text": "关下的验关棚里，关吏卫氏正在给一支商队验传符。商队的车停在关门外，车上有两只封好的箱子。",
+          "next": "ch10_gate_02"
+        },
+        {
+          "id": "ch10_gate_02",
+          "type": "line",
+          "speaker": "aqi",
+          "text": "那只箱子的封检，和邮袋上割下来的一模一样。",
+          "next": "ch10_gate_03"
+        },
+        {
+          "id": "ch10_gate_03",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "箱子就在验关棚下。",
+          "choices": [
+            {
+              "id": "check_seal",
+              "text": "先验箱子的封检与收信人",
+              "effects": [
+                { "set_flag": "sq10_03_done", "value": true },
+                { "add_clue": "clue_gate_letter" }
+              ],
+              "next": "ch10_gate_04"
+            },
+            {
+              "id": "check_manifest",
+              "text": "先查商队的货单",
+              "effects": [
+                { "add_var": "num_letters", "value": 1 }
+              ],
+              "next": "ch10_gate_05"
+            }
+          ]
+        },
+        {
+          "id": "ch10_gate_04",
+          "type": "narration",
+          "text": "箱子的封检是官文书用的封泥，印文却是空的。收信人一栏写着一个不在册上的名字。",
+          "next": "ch10_gate_06"
+        },
+        {
+          "id": "ch10_gate_05",
+          "type": "narration",
+          "text": "货单上写的是“旧简”，数目却按封检的只数算。",
+          "next": "ch10_gate_06"
+        },
+        {
+          "id": "ch10_gate_06",
+          "type": "narration",
+          "text": "卫氏见你盯着箱子，笑着过来，手却按在刀上。",
+          "effects": [
+            { "add_clue": "clue_gate_letter" },
+            { "add_var": "num_letters", "value": 3 }
+          ],
+          "next": "ch10_gate_07"
+        },
+        {
+          "id": "ch10_gate_07",
+          "type": "line",
+          "speaker": "baiji",
+          "text": "我的车在后面。这一趟，我还是不替他们说话。",
+          "next": "ch10_gate_08"
+        },
+        {
+          "id": "ch10_gate_08",
+          "type": "narration",
+          "text": "卫氏一挥手，验关棚后的家丁围了上来。有人抱起箱子就往关外跑。",
+          "next": "ch10_gate_09"
+        },
+        {
+          "id": "ch10_gate_09",
+          "type": "combat",
+          "encounter": "enc_ch10_gate",
+          "on_win": "ch10_gate_10",
+          "on_lose": "ch10_gate_11"
+        },
+        {
+          "id": "ch10_gate_10",
+          "type": "narration",
+          "text": "家丁被制服。箱子被截下，里面是拆开的官文书与抄件。",
+          "effects": [
+            { "set_flag": "ch10_gate_done", "value": true },
+            { "set_flag": "ch10_letters_taken", "value": true },
+            { "add_var": "num_letters", "value": 2 }
+          ],
+          "next": "ch10_gate_12"
+        },
+        {
+          "id": "ch10_gate_11",
+          "type": "narration",
+          "text": "乱中一只箱子被抬出了关。你截下另一只，封检还在。",
+          "effects": [
+            { "set_flag": "ch10_gate_done", "value": true },
+            { "set_flag": "ch10_letters_taken", "value": true },
+            { "add_var": "num_letters", "value": 1 }
+          ],
+          "next": "ch10_gate_12"
+        },
+        {
+          "id": "ch10_gate_12",
+          "type": "narration",
+          "text": "卫氏被押在关楼下。他说，这些文书是有人花大价钱买的。",
+          "next": "ch10_gate_13"
+        },
+        {
+          "id": "ch10_gate_13",
+          "type": "narration",
+          "text": "你把箱子封好，连同封泥、签收简与抄件，一并带回郡府。",
+          "next": "ch10_gate_14"
+        },
+        {
+          "id": "ch10_gate_14",
+          "type": "end",
+          "text": "",
+          "exit": "ch10_gate"
+        }
+      ]
+    },
+    {
+      "id": "scene_10_hall",
+      "title": "封检堂上",
+      "background": "bg_commandery_hall",
+      "entry": "ch10_hall_01",
+      "trigger": { "flag": "ch10_gate_done" },
+      "nodes": [
+        {
+          "id": "ch10_hall_01",
+          "type": "narration",
+          "text": "郡府封检堂上，残封泥、签收简、抄件与截下的箱子并排铺开。卫氏跪在堂下。",
+          "next": "ch10_hall_02"
+        },
+        {
+          "id": "ch10_hall_02",
+          "type": "line",
+          "speaker": "gongcao",
+          "text": "私拆官文书三封，截获抄件两份，涉案者五人。",
+          "next": "ch10_hall_03"
+        },
+        {
+          "id": "ch10_hall_03",
+          "type": "line",
+          "speaker": "taishou",
+          "text": "封检是朝廷的信用。你要给这件事一个什么了结？",
+          "next": "ch10_hall_04"
+        },
+        {
+          "id": "ch10_hall_04",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "严封，则驿传清而关吏寒心；弥封，则驿站安而私拆未绝；追书，则文书回而关外结怨。",
+          "next": "ch10_hall_05"
+        },
+        {
+          "id": "ch10_hall_05",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "堂上等着你落笔。",
+          "choices": [
+            {
+              "id": "choose_seal",
+              "text": "依律严封，关吏驿卒一并论罪",
+              "effects": [
+                { "set_var": "ch10_ending", "value": "seal" },
+                { "set_flag": "ch10_chose_seal", "value": true },
+                { "set_flag": "ch10_final_choice", "value": true }
+              ],
+              "next": "ch10_hall_06"
+            },
+            {
+              "id": "choose_cover",
+              "text": "只追究卫氏，驿站照旧",
+              "effects": [
+                { "set_var": "ch10_ending", "value": "cover" },
+                { "set_flag": "ch10_chose_cover", "value": true },
+                { "set_flag": "ch10_final_choice", "value": true }
+              ],
+              "next": "ch10_hall_07"
+            },
+            {
+              "id": "choose_chase",
+              "text": "顺抄件追出关外的买主",
+              "effects": [
+                { "set_var": "ch10_ending", "value": "chase" },
+                { "set_flag": "ch10_chose_chase", "value": true },
+                { "set_flag": "ch10_final_choice", "value": true }
+              ],
+              "next": "ch10_hall_08"
+            }
+          ]
+        },
+        {
+          "id": "ch10_hall_06",
+          "type": "narration",
+          "text": "你请求依律严封，卫氏与经手驿卒一并论罪，关下另设验封官。",
+          "effects": [
+            { "set_flag": "ch10_hall_done", "value": true }
+          ],
+          "next": "ch10_hall_09"
+        },
+        {
+          "id": "ch10_hall_07",
+          "type": "narration",
+          "text": "你请求只追究卫氏，驿卒罚俸，驿站照旧，不再深挖。",
+          "effects": [
+            { "set_flag": "ch10_hall_done", "value": true }
+          ],
+          "next": "ch10_hall_09"
+        },
+        {
+          "id": "ch10_hall_08",
+          "type": "narration",
+          "text": "你请求顺抄件追出买主，把关外的线一并起出来。",
+          "effects": [
+            { "set_flag": "ch10_hall_done", "value": true }
+          ],
+          "next": "ch10_hall_09"
+        },
+        {
+          "id": "ch10_hall_09",
+          "type": "line",
+          "speaker": "taishou",
+          "text": "准。落笔吧。",
+          "next": "ch10_hall_10"
+        },
+        {
+          "id": "ch10_hall_10",
+          "type": "narration",
+          "text": "功曹铺开封检册，笔尖悬在“私拆”一栏上。",
+          "next": "ch10_hall_11"
+        },
+        {
+          "id": "ch10_hall_11",
+          "type": "end",
+          "text": "",
+          "exit": "ch10_hall"
+        }
+      ]
+    },
+    {
+      "id": "scene_10_end_seal",
+      "title": "严封",
+      "background": "bg_commandery_hall",
+      "entry": "ch10_seal_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch10_hall_done" },
+          { "var": "ch10_ending", "op": "eq", "value": "seal" }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch10_seal_01",
+          "type": "narration",
+          "text": "严封的告示贴到关下。卫氏与经手驿卒一并收押，关下另设验封官。",
+          "next": "ch10_seal_02"
+        },
+        {
+          "id": "ch10_seal_02",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "驿传清了一个冬天。只是关吏见你，都绕着走。",
+          "next": "ch10_seal_03"
+        },
+        {
+          "id": "ch10_seal_03",
+          "type": "narration",
+          "text": "急件从此不再迟到。封泥上的印，也再没有浅过。",
+          "next": "ch10_seal_04"
+        },
+        {
+          "id": "ch10_seal_04",
+          "type": "seal",
+          "title": "第十章 · 严封",
+          "text": "封检清了，人心远了。",
+          "seal": "ui_ending_seal",
+          "next": "ch10_seal_05"
+        },
+        {
+          "id": "ch10_seal_05",
+          "type": "narration",
+          "text": "你把残封泥收进匣里，和旧案卷放在一处。",
+          "effects": [
+            { "set_flag": "ch10_finished", "value": true },
+            { "set_flag": "ch10_done", "value": true }
+          ],
+          "next": "ch10_seal_06"
+        },
+        {
+          "id": "ch10_seal_06",
+          "type": "narration",
+          "text": "开春后，第一封急件按时送到敦煌。",
+          "next": "ch10_seal_07"
+        },
+        {
+          "id": "ch10_seal_07",
+          "type": "end",
+          "text": "",
+          "exit": "ch10_seal"
+        }
+      ]
+    },
+    {
+      "id": "scene_10_end_cover",
+      "title": "弥封",
+      "background": "bg_station_interior",
+      "entry": "ch10_cover_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch10_hall_done" },
+          { "var": "ch10_ending", "op": "eq", "value": "cover" }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch10_cover_01",
+          "type": "narration",
+          "text": "卫氏被撤了职，驿卒罚俸，驿站照旧开门。被拆过的文书，悄悄补送了出去。",
+          "next": "ch10_cover_02"
+        },
+        {
+          "id": "ch10_cover_02",
+          "type": "line",
+          "speaker": "suhe",
+          "text": "驿传没乱。可那几封被拆过的文书，谁也不知道里头少了什么。",
+          "next": "ch10_cover_03"
+        },
+        {
+          "id": "ch10_cover_03",
+          "type": "narration",
+          "text": "签收简补上了日期。空着的签收栏，用新墨填得整整齐齐。",
+          "next": "ch10_cover_04"
+        },
+        {
+          "id": "ch10_cover_04",
+          "type": "seal",
+          "title": "第十章 · 弥封",
+          "text": "驿站安了，私拆未绝。",
+          "seal": "ui_ending_seal",
+          "next": "ch10_cover_05"
+        },
+        {
+          "id": "ch10_cover_05",
+          "type": "narration",
+          "text": "夜里你把那只残袋拿出来看。割口很齐，像随时能再割一次。",
+          "effects": [
+            { "set_flag": "ch10_finished", "value": true },
+            { "set_flag": "ch10_done", "value": true }
+          ],
+          "next": "ch10_cover_06"
+        },
+        {
+          "id": "ch10_cover_06",
+          "type": "narration",
+          "text": "入夏前，又有一封急件在广至换马时离了手。",
+          "next": "ch10_cover_07"
+        },
+        {
+          "id": "ch10_cover_07",
+          "type": "end",
+          "text": "",
+          "exit": "ch10_cover"
+        }
+      ]
+    },
+    {
+      "id": "scene_10_end_chase",
+      "title": "追书",
+      "background": "bg_yumenguan_dusk",
+      "entry": "ch10_chase_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch10_hall_done" },
+          { "not": { "flag": "ch10_finished" } }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch10_chase_01",
+          "type": "narration",
+          "text": "你带着关吏追出关外，在红柳滩截住了买文书的人。箱子还没开，封检完好。",
+          "next": "ch10_chase_02"
+        },
+        {
+          "id": "ch10_chase_02",
+          "type": "line",
+          "speaker": "aqi",
+          "text": "文书追回来了。买主跑了，关外的线却断了一截。",
+          "next": "ch10_chase_03"
+        },
+        {
+          "id": "ch10_chase_03",
+          "type": "narration",
+          "text": "白姬的车队被查了两天。她只说：往后再有官文书过我的手，我先烧了。",
+          "next": "ch10_chase_04"
+        },
+        {
+          "id": "ch10_chase_04",
+          "type": "seal",
+          "title": "第十章 · 追书",
+          "text": "文书回了库，关外结了怨。",
+          "seal": "ui_ending_seal",
+          "next": "ch10_chase_05"
+        },
+        {
+          "id": "ch10_chase_05",
+          "type": "narration",
+          "text": "你亲手把箱子送进郡府架阁，一封一封点过。",
+          "effects": [
+            { "set_flag": "ch10_finished", "value": true },
+            { "set_flag": "ch10_done", "value": true }
+          ],
+          "next": "ch10_chase_06"
+        },
+        {
+          "id": "ch10_chase_06",
+          "type": "narration",
+          "text": "关下的风还是冷的，驿路上的车辙却规矩了许多。",
+          "next": "ch10_chase_07"
+        },
+        {
+          "id": "ch10_chase_07",
+          "type": "end",
+          "text": "",
+          "exit": "ch10_chase"
+        }
+      ]
+    }
+  ]
+}
