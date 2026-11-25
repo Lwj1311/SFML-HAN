@@ -749,7 +749,20 @@ HAN_TEST(campaign_completes_every_quest_and_scene) {
     HAN_CHECK_EQ(ch6.state().string_var("ch6_ending"), std::string("balance"));
     HAN_CHECK_EQ(ch6.played_scenes().size(), std::size_t{8});
     HAN_CHECK_EQ(ch6.played_scenes().back(), std::string("scene_6_end_balance"));
-    HAN_CHECK(ch6.next_chapter().empty());
+    HAN_CHECK_EQ(ch6.next_chapter(), std::string("ch07"));
+
+    NarrativeSession ch7;
+    HAN_CHECK(ch7.load(dir, "ch07", ch6, &error));
+    ch7.start();
+    play_to_end(ch7);
+    check_all_quests_completed(ch7, {"mq_7_01", "mq_7_02", "mq_7_03", "mq_7_04",
+                                     "mq_7_05", "sq_7_01", "sq_7_02", "sq_7_03"});
+    HAN_CHECK(ch7.state().flag("ch7_done"));
+    HAN_CHECK_EQ(ch7.state().string_var("ch6_ending"), std::string("balance"));
+    HAN_CHECK_EQ(ch7.state().string_var("ch7_ending"), std::string("annex"));
+    HAN_CHECK_EQ(ch7.played_scenes().size(), std::size_t{7});
+    HAN_CHECK_EQ(ch7.played_scenes().back(), std::string("scene_7_end_annex"));
+    HAN_CHECK(ch7.next_chapter().empty());
 }
 
 HAN_TEST(chapter_three_copies_declared_carryover) {
@@ -1107,7 +1120,100 @@ HAN_TEST(chapter_six_standalone_plays_to_an_ending) {
     HAN_CHECK_EQ(session.played_scenes().size(), std::size_t{8});
     HAN_CHECK_EQ(session.played_scenes().front(), std::string("scene_6_open"));
     HAN_CHECK_EQ(session.played_scenes().back(), std::string("scene_6_end_balance"));
+    HAN_CHECK_EQ(session.next_chapter(), std::string("ch07"));
+}
+
+HAN_TEST(chapter_seven_data_loads_and_validates) {
+    const std::filesystem::path dir{HAN_DATA_DIR};
+    const Json state_doc = read_json(dir / "ch07.state.json");
+    const Json quest_doc = read_json(dir / "ch07.quests.json");
+    const Json dialogue_doc = read_json(dir / "ch07.dialogue.json");
+
+    NarrativeState state;
+    QuestSystem quests;
+    DialogueDocument dialogue;
+    std::string error;
+    HAN_CHECK(state.load_initial(state_doc, &error));
+    HAN_CHECK(quests.load(quest_doc, &error));
+    quests.reset(state);
+    HAN_CHECK(dialogue.load(dialogue_doc, &error));
+
+    HAN_CHECK_EQ(dialogue.scene_count(), std::size_t{9});
+    HAN_CHECK_EQ(dialogue.node_count(), std::size_t{88});
+    HAN_CHECK_EQ(quests.size(), std::size_t{8});
+
+    const std::vector<ValidationIssue> issues =
+        validate_chapter(state_doc, quests, dialogue, state);
+    print_issues(issues);
+    HAN_CHECK_EQ(count_errors(issues), std::size_t{0});
+}
+
+HAN_TEST(chapter_seven_standalone_plays_to_an_ending) {
+    const std::filesystem::path dir{HAN_DATA_DIR};
+    NarrativeSession session;
+    std::string error;
+    HAN_CHECK(session.load(dir, "ch07", &error));
+    session.start();
+    play_to_end(session);
+
+    HAN_CHECK_EQ(session.state().string_var("ch6_ending"), std::string("none"));
+    HAN_CHECK_EQ(session.state().string_var("ch7_ending"), std::string("annex"));
+    HAN_CHECK(session.state().flag("ch7_done"));
+    HAN_CHECK_EQ(session.state().int_var("num_kinship"), 5);
+    HAN_CHECK_EQ(session.played_scenes().size(), std::size_t{7});
+    HAN_CHECK_EQ(session.played_scenes().front(), std::string("scene_7_open"));
+    HAN_CHECK_EQ(session.played_scenes().back(), std::string("scene_7_end_annex"));
     HAN_CHECK(session.next_chapter().empty());
+}
+
+HAN_TEST(chapter_seven_supports_three_endings) {
+    const std::filesystem::path dir{HAN_DATA_DIR};
+    struct EndingCase {
+        const char* choice;
+        const char* ending;
+        const char* scene;
+    };
+    const EndingCase cases[] = {
+        {"choose_annex", "annex", "scene_7_end_annex"},
+        {"choose_fine", "fine", "scene_7_end_fine"},
+        {"choose_leave", "leave", "scene_7_end_leave"},
+    };
+
+    for (const EndingCase& test : cases) {
+        NarrativeSession session;
+        std::string error;
+        HAN_CHECK(session.load(dir, "ch07", &error));
+        session.start();
+        play_to_end(session, {test.choice});
+
+        HAN_CHECK(session.state().flag("ch7_done"));
+        HAN_CHECK_EQ(session.state().string_var("ch7_ending"), std::string(test.ending));
+        HAN_CHECK_EQ(session.played_scenes().size(), std::size_t{7});
+        HAN_CHECK_EQ(session.played_scenes().back(), std::string(test.scene));
+        HAN_CHECK(session.next_chapter().empty());
+    }
+}
+
+HAN_TEST(chapter_seven_copies_carryover_from_chapter_six) {
+    const std::filesystem::path dir{HAN_DATA_DIR};
+    NarrativeSession ch6;
+    std::string error;
+    HAN_CHECK(ch6.load(dir, "ch06", &error));
+    ch6.start();
+    ch6.state().set_string_var("ch6_ending", "expose");
+
+    NarrativeSession ch7;
+    HAN_CHECK(ch7.load(dir, "ch07", ch6, &error));
+    HAN_CHECK_EQ(ch7.chapter_id(), std::string("ch07"));
+    HAN_CHECK_EQ(ch7.state().string_var("ch6_ending"), std::string("expose"));
+    HAN_CHECK_EQ(ch7.state().string_var("ch7_ending"), std::string("none"));
+    HAN_CHECK(ch7.next_chapter().empty());
+
+    NarrativeSession ch5;
+    HAN_CHECK(ch5.load(dir, "ch05", &error));
+    NarrativeSession mismatched;
+    HAN_CHECK(!mismatched.load(dir, "ch07", ch5, &error));
+    HAN_CHECK(!error.empty());
 }
 
 HAN_TEST(chapter_six_supports_three_endings) {
@@ -1134,7 +1240,7 @@ HAN_TEST(chapter_six_supports_three_endings) {
         HAN_CHECK_EQ(session.state().string_var("ch6_ending"), std::string(test.ending));
         HAN_CHECK_EQ(session.played_scenes().size(), std::size_t{8});
         HAN_CHECK_EQ(session.played_scenes().back(), std::string(test.scene));
-        HAN_CHECK(session.next_chapter().empty());
+        HAN_CHECK_EQ(session.next_chapter(), std::string("ch07"));
     }
 }
 
@@ -1155,7 +1261,7 @@ HAN_TEST(chapter_six_copies_carryover_from_chapter_five) {
     HAN_CHECK_EQ(ch6.chapter_id(), std::string("ch06"));
     HAN_CHECK_EQ(ch6.state().string_var("ch4_ending"), std::string("road"));
     HAN_CHECK_EQ(ch6.state().string_var("ch6_ending"), std::string("none"));
-    HAN_CHECK(ch6.next_chapter().empty());
+    HAN_CHECK_EQ(ch6.next_chapter(), std::string("ch07"));
 
     NarrativeSession mismatched;
     HAN_CHECK(!mismatched.load(dir, "ch06", ch4, &error));

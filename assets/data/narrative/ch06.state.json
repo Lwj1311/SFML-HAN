@@ -2,6 +2,7 @@
   "schema_version": 1,
   "chapter_id": "ch06",
   "title": "第六章 对账",
+  "next_chapter": "ch07",
   "carryover": {
     "from": "ch05",
     "variables": ["ch4_ending"]

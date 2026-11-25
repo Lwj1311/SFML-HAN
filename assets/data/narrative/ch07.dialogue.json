@@ -1,0 +1,894 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch07",
+  "title": "第七章 附籍",
+  "speakers": {
+    "narrator": { "name": "旁白", "portrait": null },
+    "fengan": { "name": "冯安", "portrait": "char_fengan" },
+    "hanbo": { "name": "韩伯", "portrait": "char_hanbo" },
+    "suhe": { "name": "苏娘", "portrait": "char_suhe" },
+    "guowang": { "name": "郭望", "portrait": "char_guowang" },
+    "aqi": { "name": "阿耆", "portrait": "char_aqi" },
+    "baiji": { "name": "白姬", "portrait": "char_baiji" },
+    "taishou": { "name": "严崇", "portrait": "char_taishou" },
+    "gongcao": { "name": "郡府功曹", "portrait": "char_gongcao" },
+    "yuli": { "name": "亭狱狱吏", "portrait": "char_yuli" },
+    "laofu": { "name": "持牌老妇", "portrait": null }
+  },
+  "encounters": {
+    "enc_ch7_manor": {
+      "name": "任氏家丁",
+      "enemies": [
+        { "id": "manor_guard", "count": 3 },
+        { "id": "manor_archer", "count": 1 }
+      ],
+      "terrain": "gate",
+      "note": "家丁受雇护债，击退即可；债券比人重要。"
+    }
+  },
+  "scenes": [
+    {
+      "id": "scene_7_open",
+      "title": "追缴令",
+      "background": "bg_station_courtyard",
+      "entry": "ch7_open_01",
+      "trigger": { "flag": "ch7_start" },
+      "nodes": [
+        {
+          "id": "ch7_open_01",
+          "type": "narration",
+          "text": "入夏以后，悬泉置的驿道晒得发白。粮账才平了一个月，郡府户曹的文书又到了，封泥上盖的是户曹的印。",
+          "next": "ch7_open_02"
+        },
+        {
+          "id": "ch7_open_02",
+          "type": "branch",
+          "branches": [
+            {
+              "condition": { "var": "ch6_ending", "op": "eq", "value": "balance" },
+              "next": "ch7_open_03"
+            },
+            {
+              "condition": { "var": "ch6_ending", "op": "eq", "value": "expose" },
+              "next": "ch7_open_04"
+            },
+            {
+              "condition": { "var": "ch6_ending", "op": "eq", "value": "quiet" },
+              "next": "ch7_open_05"
+            },
+            { "next": "ch7_open_06" }
+          ]
+        },
+        {
+          "id": "ch7_open_03",
+          "type": "narration",
+          "text": "账平之后，廪仓的粮一石不少。可户曹的文书紧跟着到了：补领既已查实，领粮的家口便是冒领，限一季追缴。",
+          "next": "ch7_open_07"
+        },
+        {
+          "id": "ch7_open_04",
+          "type": "narration",
+          "text": "明账之后，空印案牵连出领粮的户名。户曹按律立册：冒领五年，限一季追缴，交不出粮的没入为奴。",
+          "next": "ch7_open_07"
+        },
+        {
+          "id": "ch7_open_05",
+          "type": "narration",
+          "text": "私了之后，账面平整，无人认罪。可郡府例行清查廪食，抄出补领名册，领粮的家口仍被列为冒领。",
+          "next": "ch7_open_07"
+        },
+        {
+          "id": "ch7_open_06",
+          "type": "narration",
+          "text": "追缴的文书送到案上时，你还没有见过那些领粮的人。名册上只有一行字：冒领五年，限一季追缴。",
+          "next": "ch7_open_07"
+        },
+        {
+          "id": "ch7_open_07",
+          "type": "line",
+          "speaker": "gongcao",
+          "text": "户曹令：冒领之户，限一季缴还五年廪食。逾期不缴，没入为奴，或徙边。",
+          "next": "ch7_open_08"
+        },
+        {
+          "id": "ch7_open_08",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "粮是他们领的。可领粮的名字，是别人写上去的。",
+          "next": "ch7_open_09"
+        },
+        {
+          "id": "ch7_open_09",
+          "type": "narration",
+          "text": "你翻到名册末尾，附着一张户版抄件。三十七个人的名字后面，户栏多半是空的，或者只剩一个被涂掉的字。",
+          "next": "ch7_open_10"
+        },
+        {
+          "id": "ch7_open_10",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "一季的期限不等人。先做什么？",
+          "choices": [
+            {
+              "id": "accept_order",
+              "text": "先接令，期限不等人",
+              "next": "ch7_open_11"
+            },
+            {
+              "id": "ask_scope",
+              "text": "先问清追缴追到哪一步",
+              "next": "ch7_open_12"
+            }
+          ]
+        },
+        {
+          "id": "ch7_open_11",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "户版一空，人就成了没有来处的人。追缴令追的是粮，断的是户。",
+          "next": "ch7_open_12"
+        },
+        {
+          "id": "ch7_open_12",
+          "type": "narration",
+          "text": "律令摆在那里，唯一能动的是户版——只要证明这些家口与三十七人有亲缘，他们就不是冒领，是遗属。",
+          "effects": [
+            { "set_flag": "ch7_open_done", "value": true }
+          ],
+          "next": "ch7_open_13"
+        },
+        {
+          "id": "ch7_open_13",
+          "type": "narration",
+          "text": "你把名册合上，先去了广至。",
+          "next": "ch7_open_14"
+        },
+        {
+          "id": "ch7_open_14",
+          "type": "end",
+          "text": "",
+          "exit": "ch07_open"
+        }
+      ]
+    },
+    {
+      "id": "scene_7_households",
+      "title": "领粮的人家",
+      "background": "bg_oasis",
+      "entry": "ch7_households_01",
+      "trigger": { "flag": "ch7_open_done" },
+      "nodes": [
+        {
+          "id": "ch7_households_01",
+          "type": "narration",
+          "text": "广至渠尾的土屋比春天更破。门框上还留着过年贴的红纸，被风撕得只剩一角。",
+          "next": "ch7_households_02"
+        },
+        {
+          "id": "ch7_households_02",
+          "type": "line",
+          "speaker": "laofu",
+          "text": "我领的粮，是替我儿子领的。他名字写回去了，我却成了冒领的人。",
+          "next": "ch7_households_03"
+        },
+        {
+          "id": "ch7_households_03",
+          "type": "narration",
+          "text": "她身后站着一个七八岁的男孩，手里攥着半块干粮，见你看过来，往奶奶身后缩了缩。",
+          "next": "ch7_households_04"
+        },
+        {
+          "id": "ch7_households_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "她说的每一句，都可能是户版上补不回去的凭据。",
+          "choices": [
+            {
+              "id": "hear_widow",
+              "text": "先听她把话说完",
+              "effects": [
+                { "set_flag": "sq7_01_done", "value": true },
+                { "add_clue": "clue_widow_kin" },
+                { "add_var": "num_kinship", "value": 1 }
+              ],
+              "next": "ch7_households_05"
+            },
+            {
+              "id": "check_names",
+              "text": "先核她与名籍上的名字",
+              "effects": [
+                { "set_flag": "sq7_01_done", "value": true },
+                { "add_clue": "clue_widow_kin" },
+                { "add_var": "num_kinship", "value": 1 }
+              ],
+              "next": "ch7_households_06"
+            }
+          ]
+        },
+        {
+          "id": "ch7_households_05",
+          "type": "line",
+          "speaker": "laofu",
+          "text": "他爹的名字在名籍上，孩子的名字却没处写。户版上，我们家只剩我一个。",
+          "next": "ch7_households_07"
+        },
+        {
+          "id": "ch7_households_06",
+          "type": "narration",
+          "text": "名籍上写得清清楚楚：老妇之子，卒于五年前。可户版上，这一户早在同一年被勾销。",
+          "next": "ch7_households_07"
+        },
+        {
+          "id": "ch7_households_07",
+          "type": "narration",
+          "text": "你在广至走了一整日。领过补粮的人家，有的只剩老人，有的只剩孩子，有的门已经锁了，锁上结着去年的霜。",
+          "effects": [
+            { "add_var": "num_households", "value": 2 }
+          ],
+          "next": "ch7_households_08"
+        },
+        {
+          "id": "ch7_households_08",
+          "type": "line",
+          "speaker": "aqi",
+          "text": "这些人不是冒领。他们是被写掉了，又被粮养着活下来。",
+          "next": "ch7_households_09"
+        },
+        {
+          "id": "ch7_households_09",
+          "type": "narration",
+          "text": "你把能问到的姓名、年岁、住处一一记下。三十七户，凑得齐的不到一半。",
+          "effects": [
+            { "set_flag": "ch7_households_done", "value": true },
+            { "add_var": "num_households", "value": 3 }
+          ],
+          "next": "ch7_households_10"
+        },
+        {
+          "id": "ch7_households_10",
+          "type": "end",
+          "text": "",
+          "exit": "ch07_households"
+        }
+      ]
+    },
+    {
+      "id": "scene_7_archive",
+      "title": "户版",
+      "background": "bg_register_archive",
+      "entry": "ch7_archive_01",
+      "trigger": { "flag": "ch7_households_done" },
+      "nodes": [
+        {
+          "id": "ch7_archive_01",
+          "type": "narration",
+          "text": "悬泉置的架阁最里侧有一只柜子，专放户版。柜门一开，霉味先涌出来，比廪食簿的味道更陈。",
+          "next": "ch7_archive_02"
+        },
+        {
+          "id": "ch7_archive_02",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "户版按年造册。人被勾销的那一年，正好是名籍第一次被改的那一年。",
+          "next": "ch7_archive_03"
+        },
+        {
+          "id": "ch7_archive_03",
+          "type": "narration",
+          "text": "柜底压着一捆受潮的旧户版，绳子一碰就断。简上的墨迹晕开，名字却还认得出。",
+          "next": "ch7_archive_04"
+        },
+        {
+          "id": "ch7_archive_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "旧户版就在手里。",
+          "choices": [
+            {
+              "id": "read_roll",
+              "text": "先把旧户版逐条对出来",
+              "effects": [
+                { "add_var": "num_kinship", "value": 1 }
+              ],
+              "next": "ch7_archive_05"
+            },
+            {
+              "id": "ask_zhaoqin",
+              "text": "去找赵钦，问他手里还有什么",
+              "effects": [
+                { "add_var": "num_kinship", "value": 1 },
+                { "add_clue": "clue_zhaoqin_copy" }
+              ],
+              "next": "ch7_archive_06"
+            }
+          ]
+        },
+        {
+          "id": "ch7_archive_05",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "对得上的有十七户。剩下的，要人证。",
+          "next": "ch7_archive_07"
+        },
+        {
+          "id": "ch7_archive_06",
+          "type": "narration",
+          "text": "赵钦在账房抄了一夜。他留下的旧户籍抄本上，有被勾销的户主，也有没来得及勾掉的妻儿。",
+          "next": "ch7_archive_07"
+        },
+        {
+          "id": "ch7_archive_07",
+          "type": "narration",
+          "text": "你把两边的名字并排放着。名籍上的人是死的，户版上的人被写成了不存在；只有这些抄件，证明他们曾经是一户。",
+          "effects": [
+            { "set_flag": "ch7_archive_done", "value": true },
+            { "add_clue": "clue_household_roll" },
+            { "add_var": "num_kinship", "value": 1 }
+          ],
+          "next": "ch7_archive_08"
+        },
+        {
+          "id": "ch7_archive_08",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "户版能补。可补户版，要有人担保。",
+          "next": "ch7_archive_09"
+        },
+        {
+          "id": "ch7_archive_09",
+          "type": "narration",
+          "text": "话音未落，亭狱方向来人传话：户曹已经先收押了几户，等不到一季之期。",
+          "next": "ch7_archive_10"
+        },
+        {
+          "id": "ch7_archive_10",
+          "type": "end",
+          "text": "",
+          "exit": "ch07_archive"
+        }
+      ]
+    },
+    {
+      "id": "scene_7_prison",
+      "title": "亭狱",
+      "background": "bg_prison_yard",
+      "entry": "ch7_prison_01",
+      "trigger": { "flag": "ch7_archive_done" },
+      "nodes": [
+        {
+          "id": "ch7_prison_01",
+          "type": "narration",
+          "text": "亭狱的小院里积着水，木栅后的屋子比外面更暗。户曹送来的人没有上枷，只是被关着。",
+          "next": "ch7_prison_02"
+        },
+        {
+          "id": "ch7_prison_02",
+          "type": "line",
+          "speaker": "yuli",
+          "text": "户曹送来的，一共六口。按律，没入为奴之前，先寄在亭狱。",
+          "next": "ch7_prison_03"
+        },
+        {
+          "id": "ch7_prison_03",
+          "type": "narration",
+          "text": "栅后的人缩在墙角。一个孩子把脸埋在膝上，另一个老人盯着地面，像在数砖缝。",
+          "next": "ch7_prison_04"
+        },
+        {
+          "id": "ch7_prison_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "他们等不到春耕。",
+          "choices": [
+            {
+              "id": "bring_food",
+              "text": "把口粮分给栅后的人",
+              "effects": [
+                { "set_flag": "sq7_02_done", "value": true }
+              ],
+              "next": "ch7_prison_05"
+            },
+            {
+              "id": "read_list",
+              "text": "先核对收押的名册",
+              "effects": [
+                { "set_flag": "sq7_02_done", "value": true },
+                { "add_clue": "clue_prison_list" },
+                { "add_var": "num_kinship", "value": 1 }
+              ],
+              "next": "ch7_prison_06"
+            }
+          ]
+        },
+        {
+          "id": "ch7_prison_05",
+          "type": "narration",
+          "text": "一个孩子把粥推给身边更小的孩子。你认出他是老妇的孙子。",
+          "effects": [
+            { "add_var": "num_kinship", "value": 1 }
+          ],
+          "next": "ch7_prison_07"
+        },
+        {
+          "id": "ch7_prison_06",
+          "type": "narration",
+          "text": "收押名册上六口人，四户。户主一栏写的都是三十七人里的名字——死了五年的人，被当成了活着的债主。",
+          "next": "ch7_prison_07"
+        },
+        {
+          "id": "ch7_prison_07",
+          "type": "line",
+          "speaker": "guowang",
+          "text": "任氏的人刚才来过，说这些人的债，他们愿意替缴。条件是人都归任家。",
+          "next": "ch7_prison_08"
+        },
+        {
+          "id": "ch7_prison_08",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "替缴是假，收人是真。",
+          "next": "ch7_prison_09"
+        },
+        {
+          "id": "ch7_prison_09",
+          "type": "narration",
+          "text": "你让狱吏守住亭狱，转身往广至任氏的庄园去。",
+          "effects": [
+            { "set_flag": "ch7_prison_done", "value": true },
+            { "add_clue": "clue_prison_list" }
+          ],
+          "next": "ch7_prison_10"
+        },
+        {
+          "id": "ch7_prison_10",
+          "type": "end",
+          "text": "",
+          "exit": "ch07_prison"
+        }
+      ]
+    },
+    {
+      "id": "scene_7_manor",
+      "title": "任氏庄园",
+      "background": "bg_gobi_postroad",
+      "entry": "ch7_manor_01",
+      "trigger": { "flag": "ch7_prison_done" },
+      "nodes": [
+        {
+          "id": "ch7_manor_01",
+          "type": "narration",
+          "text": "任氏的庄园在广至以东的土路尽头，院墙比县署还高。院外停着两辆车，车上有麻布盖着的东西。",
+          "next": "ch7_manor_02"
+        },
+        {
+          "id": "ch7_manor_02",
+          "type": "line",
+          "speaker": "baiji",
+          "text": "任家的车队就在前面。债券在他们手上，人也在他们车上。",
+          "next": "ch7_manor_03"
+        },
+        {
+          "id": "ch7_manor_03",
+          "type": "narration",
+          "text": "家丁在院门口排成一行，手里拿着短棍，腰上挂着弓。领头的人认得你的吏服，却没有让路。",
+          "next": "ch7_manor_04"
+        },
+        {
+          "id": "ch7_manor_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "人就在车上。",
+          "choices": [
+            {
+              "id": "demand_bond",
+              "text": "亮郡符，命他们交出债券",
+              "next": "ch7_manor_05"
+            },
+            {
+              "id": "cut_ropes",
+              "text": "先截住车，把人放下来",
+              "effects": [
+                { "add_var": "num_kinship", "value": 1 }
+              ],
+              "next": "ch7_manor_05"
+            }
+          ]
+        },
+        {
+          "id": "ch7_manor_05",
+          "type": "narration",
+          "text": "家丁没有让路。领头的人把一卷债券举起来，说：人是我们拿粮换的，凭什么给你。",
+          "next": "ch7_manor_06"
+        },
+        {
+          "id": "ch7_manor_06",
+          "type": "combat",
+          "encounter": "enc_ch7_manor",
+          "on_win": "ch7_manor_07",
+          "on_lose": "ch7_manor_08"
+        },
+        {
+          "id": "ch7_manor_07",
+          "type": "narration",
+          "text": "家丁被击退。债券落在地上，卷首的名字被踩脏了，押字还清楚。",
+          "effects": [
+            { "set_flag": "ch7_bond_taken", "value": true }
+          ],
+          "next": "ch7_manor_09"
+        },
+        {
+          "id": "ch7_manor_08",
+          "type": "narration",
+          "text": "乱中债券被撕成两半，任家的人跑了。你捡起剩下的半卷，押字与户名还在。",
+          "effects": [
+            { "set_flag": "ch7_bond_taken", "value": true }
+          ],
+          "next": "ch7_manor_09"
+        },
+        {
+          "id": "ch7_manor_09",
+          "type": "narration",
+          "text": "债券上写着：以五年粮抵身，没为奴婢。落款的日子，比追缴令早了十天。",
+          "effects": [
+            { "add_clue": "clue_debt_bond" }
+          ],
+          "next": "ch7_manor_10"
+        },
+        {
+          "id": "ch7_manor_10",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "这卷债券，怎么处置？",
+          "choices": [
+            {
+              "id": "read_bond",
+              "text": "把债券上的名字逐个对回名籍",
+              "effects": [
+                { "set_flag": "sq7_03_done", "value": true },
+                { "add_clue": "clue_debt_bond" },
+                { "add_var": "num_kinship", "value": 1 }
+              ],
+              "next": "ch7_manor_11"
+            },
+            {
+              "id": "burn_bond",
+              "text": "当众烧掉债券，先断他们的念想",
+              "effects": [
+                { "set_flag": "sq7_03_done", "value": true }
+              ],
+              "next": "ch7_manor_11"
+            }
+          ]
+        },
+        {
+          "id": "ch7_manor_11",
+          "type": "narration",
+          "text": "三十七户里，有九户的名字出现在债券上。任氏不是等追缴令下来才动手的——他们早就知道这些户要出事。",
+          "effects": [
+            { "set_flag": "ch7_manor_done", "value": true }
+          ],
+          "next": "ch7_manor_12"
+        },
+        {
+          "id": "ch7_manor_12",
+          "type": "end",
+          "text": "",
+          "exit": "ch07_manor"
+        }
+      ]
+    },
+    {
+      "id": "scene_7_hall",
+      "title": "堂上附籍",
+      "background": "bg_commandery_hall",
+      "entry": "ch7_hall_01",
+      "trigger": { "flag": "ch7_manor_done" },
+      "nodes": [
+        {
+          "id": "ch7_hall_01",
+          "type": "narration",
+          "text": "郡府正堂上，旧户版、抄本、收押名册与债券并排摆开。堂下站着从广至赶来的老妇，怀里还抱着那个男孩。",
+          "next": "ch7_hall_02"
+        },
+        {
+          "id": "ch7_hall_02",
+          "type": "line",
+          "speaker": "gongcao",
+          "text": "户版查得十七户有据，九户见于债券。冒领之数，与追缴之数相抵。",
+          "next": "ch7_hall_03"
+        },
+        {
+          "id": "ch7_hall_03",
+          "type": "line",
+          "speaker": "taishou",
+          "text": "律是律，户是户。你要给他们一个什么去处？",
+          "next": "ch7_hall_04"
+        },
+        {
+          "id": "ch7_hall_04",
+          "type": "line",
+          "speaker": "laofu",
+          "text": "我们不要粮了。只求把孩子的名字写回去。",
+          "next": "ch7_hall_05"
+        },
+        {
+          "id": "ch7_hall_05",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "附籍，则户在；追缴，则粮在；徙边，则人在关外。三条路，代价不同。",
+          "next": "ch7_hall_06"
+        },
+        {
+          "id": "ch7_hall_06",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "堂上等着你落笔。",
+          "choices": [
+            {
+              "id": "choose_annex",
+              "text": "请求附籍，由我与韩伯作保",
+              "effects": [
+                { "set_var": "ch7_ending", "value": "annex" },
+                { "set_flag": "ch7_chose_annex", "value": true },
+                { "set_flag": "ch7_final_choice", "value": true }
+              ],
+              "next": "ch7_hall_07"
+            },
+            {
+              "id": "choose_fine",
+              "text": "依律追缴，粮归廪仓",
+              "effects": [
+                { "set_var": "ch7_ending", "value": "fine" },
+                { "set_flag": "ch7_chose_fine", "value": true },
+                { "set_flag": "ch7_final_choice", "value": true }
+              ],
+              "next": "ch7_hall_08"
+            },
+            {
+              "id": "choose_leave",
+              "text": "准他们徙边，另立新籍",
+              "effects": [
+                { "set_var": "ch7_ending", "value": "leave" },
+                { "set_flag": "ch7_chose_leave", "value": true },
+                { "set_flag": "ch7_final_choice", "value": true }
+              ],
+              "next": "ch7_hall_09"
+            }
+          ]
+        },
+        {
+          "id": "ch7_hall_07",
+          "type": "narration",
+          "text": "严崇看了很久，终于落笔：三十七户附于名籍之后，担保人具名，追缴免去。堂下有抽气声，也有人跪了下去。",
+          "effects": [
+            { "set_flag": "ch7_hall_done", "value": true }
+          ],
+          "next": "ch7_hall_10"
+        },
+        {
+          "id": "ch7_hall_08",
+          "type": "narration",
+          "text": "严崇落笔：依律追缴，限春耕前缴清，六口没入为奴。堂下没有人说话，老妇把孩子的头按得更低。",
+          "effects": [
+            { "set_flag": "ch7_hall_done", "value": true }
+          ],
+          "next": "ch7_hall_10"
+        },
+        {
+          "id": "ch7_hall_09",
+          "type": "narration",
+          "text": "严崇落笔：准其徙边，关外另立新籍，三年不征算赋。老妇抬头看了一眼堂上的灯，像是没听懂。",
+          "effects": [
+            { "set_flag": "ch7_hall_done", "value": true }
+          ],
+          "next": "ch7_hall_10"
+        },
+        {
+          "id": "ch7_hall_10",
+          "type": "line",
+          "speaker": "taishou",
+          "text": "准。落笔吧。",
+          "next": "ch7_hall_11"
+        },
+        {
+          "id": "ch7_hall_11",
+          "type": "end",
+          "text": "",
+          "exit": "ch07_hall"
+        }
+      ]
+    },
+    {
+      "id": "scene_7_end_annex",
+      "title": "附籍",
+      "background": "bg_register_archive",
+      "entry": "ch7_annex_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch7_hall_done" },
+          { "var": "ch7_ending", "op": "eq", "value": "annex" }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch7_annex_01",
+          "type": "narration",
+          "text": "新造的户版抬进架阁那日，韩伯亲自校了三遍。三十七户的名字接在名籍之后，纸还是新的。",
+          "next": "ch7_annex_02"
+        },
+        {
+          "id": "ch7_annex_02",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "三十七户，附在名籍之后。担保人一栏，写的是你和我。",
+          "next": "ch7_annex_03"
+        },
+        {
+          "id": "ch7_annex_03",
+          "type": "line",
+          "speaker": "suhe",
+          "text": "往后领粮，不用再借别人的名字了。",
+          "next": "ch7_annex_04"
+        },
+        {
+          "id": "ch7_annex_04",
+          "type": "narration",
+          "text": "户版上第一次写全了这些人家：户主已故，妻儿在籍。粮照旧领，只是名正言顺。",
+          "next": "ch7_annex_05"
+        },
+        {
+          "id": "ch7_annex_05",
+          "type": "seal",
+          "title": "第七章 · 附籍",
+          "text": "名字写回名籍，人写回户版。",
+          "seal": "ui_ending_seal",
+          "next": "ch7_annex_06"
+        },
+        {
+          "id": "ch7_annex_06",
+          "type": "narration",
+          "text": "三年俸禄抵作担保。你觉得值。",
+          "effects": [
+            { "set_flag": "ch7_finished", "value": true },
+            { "set_flag": "ch7_done", "value": true }
+          ],
+          "next": "ch7_annex_07"
+        },
+        {
+          "id": "ch7_annex_07",
+          "type": "end",
+          "text": "",
+          "exit": "ch07_annex"
+        }
+      ]
+    },
+    {
+      "id": "scene_7_end_fine",
+      "title": "追缴",
+      "background": "bg_commandery_hall",
+      "entry": "ch7_fine_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch7_hall_done" },
+          { "var": "ch7_ending", "op": "eq", "value": "fine" }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch7_fine_01",
+          "type": "narration",
+          "text": "追缴的粮一车一车拉回廪仓。广至的土屋空了几间，门上的锁换成了官府的封条。",
+          "next": "ch7_fine_02"
+        },
+        {
+          "id": "ch7_fine_02",
+          "type": "line",
+          "speaker": "gongcao",
+          "text": "六口没入为奴，其余限春耕前缴清。",
+          "next": "ch7_fine_03"
+        },
+        {
+          "id": "ch7_fine_03",
+          "type": "narration",
+          "text": "广至的渠水照旧流。孩子的名字终究没有写回户版，只在收押名册上留了一个数目。",
+          "next": "ch7_fine_04"
+        },
+        {
+          "id": "ch7_fine_04",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "律没有错。错的是律只认户，不认人。",
+          "next": "ch7_fine_05"
+        },
+        {
+          "id": "ch7_fine_05",
+          "type": "seal",
+          "title": "第七章 · 追缴",
+          "text": "粮归了仓，人散了户。",
+          "seal": "ui_ending_seal",
+          "next": "ch7_fine_06"
+        },
+        {
+          "id": "ch7_fine_06",
+          "type": "narration",
+          "text": "你合上户版，没有再说话。",
+          "effects": [
+            { "set_flag": "ch7_finished", "value": true },
+            { "set_flag": "ch7_done", "value": true }
+          ],
+          "next": "ch7_fine_07"
+        },
+        {
+          "id": "ch7_fine_07",
+          "type": "end",
+          "text": "",
+          "exit": "ch07_fine"
+        }
+      ]
+    },
+    {
+      "id": "scene_7_end_leave",
+      "title": "徙边",
+      "background": "bg_qilian_mountain",
+      "entry": "ch7_leave_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch7_hall_done" },
+          { "not": { "flag": "ch7_finished" } }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch7_leave_01",
+          "type": "narration",
+          "text": "关下的车队排了半里。车上装着口粮、农具和拆下来的门板，人坐在粮袋上，往关外看。",
+          "next": "ch7_leave_02"
+        },
+        {
+          "id": "ch7_leave_02",
+          "type": "line",
+          "speaker": "aqi",
+          "text": "出关以后，水要省着用。人比粮难带。",
+          "next": "ch7_leave_03"
+        },
+        {
+          "id": "ch7_leave_03",
+          "type": "line",
+          "speaker": "laofu",
+          "text": "关外没有户版，也就没有人勾我们的名字。",
+          "next": "ch7_leave_04"
+        },
+        {
+          "id": "ch7_leave_04",
+          "type": "narration",
+          "text": "三十七户里，愿走的上了车，不愿走的留在原籍等追缴。车队在关楼下排了半里，没有人哭。",
+          "next": "ch7_leave_05"
+        },
+        {
+          "id": "ch7_leave_05",
+          "type": "seal",
+          "title": "第七章 · 徙边",
+          "text": "没有户版的地方，名字只能靠人记着。",
+          "seal": "ui_ending_seal",
+          "next": "ch7_leave_06"
+        },
+        {
+          "id": "ch7_leave_06",
+          "type": "narration",
+          "text": "你送到关下，没有再往前。",
+          "effects": [
+            { "set_flag": "ch7_finished", "value": true },
+            { "set_flag": "ch7_done", "value": true }
+          ],
+          "next": "ch7_leave_07"
+        },
+        {
+          "id": "ch7_leave_07",
+          "type": "end",
+          "text": "",
+          "exit": "ch07_leave"
+        }
+      ]
+    }
+  ]
+}

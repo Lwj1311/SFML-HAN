@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch07",
+  "title": "第七章 附籍",
+  "carryover": {
+    "from": "ch06",
+    "variables": ["ch6_ending"]
+  },
+  "initial": {
+    "flags": {
+      "ch7_start": true,
+      "ch7_open_done": false,
+      "ch7_households_done": false,
+      "ch7_archive_done": false,
+      "ch7_prison_done": false,
+      "ch7_manor_done": false,
+      "ch7_bond_taken": false,
+      "ch7_hall_done": false,
+      "ch7_chose_annex": false,
+      "ch7_chose_fine": false,
+      "ch7_chose_leave": false,
+      "ch7_final_choice": false,
+      "ch7_finished": false,
+      "ch7_done": false,
+      "sq7_01_done": false,
+      "sq7_02_done": false,
+      "sq7_03_done": false
+    },
+    "variables": {
+      "ch6_ending": "none",
+      "ch7_ending": "none",
+      "num_households": 0,
+      "num_kinship": 0
+    }
+  },
+  "variables": {
+    "ch6_ending": {
+      "type": "enum",
+      "values": ["none", "balance", "expose", "quiet"],
+      "description": "第六章结局，决定本章如何接到追缴令"
+    },
+    "ch7_ending": {
+      "type": "enum",
+      "values": ["none", "annex", "fine", "leave"],
+      "description": "本章结局：附籍 / 追缴 / 徙边"
+    },
+    "num_households": {
+      "type": "int",
+      "min": 0,
+      "max": 7,
+      "description": "已走访核实的领粮家口数目"
+    },
+    "num_kinship": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "可证明的亲缘证据：户版、抄本、人证与债券"
+    }
+  },
+  "clues": {
+    "clue_claim_households": "追缴令附来的领粮户名单：三十七户，多为老弱，户主一栏多半空白。",
+    "clue_household_roll": "受潮的旧户版：十七户有据可查，勾销的年份与名籍被改的年份相同。",
+    "clue_zhaoqin_copy": "赵钦私留的旧户籍抄本：有被勾销的户主，也有没来得及勾掉的妻儿。",
+    "clue_debt_bond": "任氏债券：以五年粮抵身，落款比追缴令早了十天。",
+    "clue_widow_kin": "老妇与孙子的亲缘：名籍上有儿子，户版上只剩她一个。",
+    "clue_prison_list": "亭狱收押名册：六口人，四户，户主都写着三十七人里的名字。"
+  },
+  "items": {
+    "item_household_roll": {
+      "name": "旧户版",
+      "icon": "item_bamboo_slip",
+      "description": "受潮的旧户籍册，记着被勾销的人家"
+    },
+    "item_debt_bond": {
+      "name": "任氏债券",
+      "icon": "item_hemp_paper",
+      "description": "以粮抵身的债券，落款早于追缴令"
+    },
+    "item_kinship_slip": {
+      "name": "亲缘简",
+      "icon": "item_register_slips",
+      "description": "逐户核出的亲缘凭据，可附于户版之后"
+    }
+  }
+}
