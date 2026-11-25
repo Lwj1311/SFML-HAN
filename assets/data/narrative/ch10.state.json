@@ -2,6 +2,7 @@
   "schema_version": 1,
   "chapter_id": "ch10",
   "title": "第十章 封检",
+  "next_chapter": "ch11",
   "carryover": {
     "from": "ch09",
     "variables": ["ch9_ending"]

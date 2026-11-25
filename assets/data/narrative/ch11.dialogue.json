@@ -1,0 +1,911 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch11",
+  "title": "第十一章 总账",
+  "speakers": {
+    "narrator": { "name": "旁白", "portrait": null },
+    "fengan": { "name": "冯安", "portrait": "char_fengan" },
+    "hanbo": { "name": "韩伯", "portrait": "char_hanbo" },
+    "suhe": { "name": "苏娘", "portrait": "char_suhe" },
+    "guowang": { "name": "郭望", "portrait": "char_guowang" },
+    "aqi": { "name": "阿耆", "portrait": "char_aqi" },
+    "baiji": { "name": "白姬", "portrait": "char_baiji" },
+    "taishou": { "name": "严崇", "portrait": "char_taishou" },
+    "gongcao": { "name": "郡府功曹", "portrait": "char_gongcao" },
+    "yuli": { "name": "亭狱狱吏", "portrait": "char_yuli" },
+    "laofu": { "name": "持牌老妇", "portrait": null }
+  },
+  "encounters": {
+    "enc_ch11_beacon": {
+      "name": "任氏焚档的人",
+      "enemies": [
+        { "id": "manor_guard", "count": 3 },
+        { "id": "manor_archer", "count": 1 }
+      ],
+      "terrain": "beacon",
+      "note": "他们要把旧仓烧尽，击退即可；简册比人重要。"
+    }
+  },
+  "scenes": [
+    {
+      "id": "scene_11_open",
+      "title": "调令",
+      "background": "bg_commandery_hall",
+      "entry": "ch11_open_01",
+      "trigger": { "flag": "ch11_start" },
+      "nodes": [
+        {
+          "id": "ch11_open_01",
+          "type": "narration",
+          "text": "入秋，郡府一纸调令送到悬泉置：十年旧案总核，名籍、粮账、马簿、钱账、封检并案。",
+          "next": "ch11_open_02"
+        },
+        {
+          "id": "ch11_open_02",
+          "type": "branch",
+          "branches": [
+            {
+              "condition": { "var": "ch10_ending", "op": "eq", "value": "seal" },
+              "next": "ch11_open_03"
+            },
+            {
+              "condition": { "var": "ch10_ending", "op": "eq", "value": "cover" },
+              "next": "ch11_open_04"
+            },
+            {
+              "condition": { "var": "ch10_ending", "op": "eq", "value": "chase" },
+              "next": "ch11_open_05"
+            },
+            { "next": "ch11_open_06" }
+          ]
+        },
+        {
+          "id": "ch11_open_03",
+          "type": "narration",
+          "text": "严封之后，关吏换了一茬。旧案卷从各署调来，堆满了半间堂屋。",
+          "next": "ch11_open_07"
+        },
+        {
+          "id": "ch11_open_04",
+          "type": "narration",
+          "text": "弥封之后，驿站安稳了一年。可旧账不会因为没人翻，就自己消失。",
+          "next": "ch11_open_07"
+        },
+        {
+          "id": "ch11_open_05",
+          "type": "narration",
+          "text": "追书之后，关外的线断了一截。总核的公文一到，断处又接上了。",
+          "next": "ch11_open_07"
+        },
+        {
+          "id": "ch11_open_06",
+          "type": "narration",
+          "text": "旧案总核的公文到得很平静。平静得像一场迟早要下的雪。",
+          "next": "ch11_open_07"
+        },
+        {
+          "id": "ch11_open_07",
+          "type": "line",
+          "speaker": "gongcao",
+          "text": "郡府令：十年之内，凡经悬泉置的文书、粮、马、钱，逐案复核。",
+          "next": "ch11_open_08"
+        },
+        {
+          "id": "ch11_open_08",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "名籍、粮账、马簿、钱账、封检。五本账，一本比一本重。",
+          "next": "ch11_open_09"
+        },
+        {
+          "id": "ch11_open_09",
+          "type": "narration",
+          "text": "案上摊开五本卷宗。每一本都能单独结案，合在一起，却是同一只手在写。",
+          "next": "ch11_open_10"
+        },
+        {
+          "id": "ch11_open_10",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "总核的期限不长。",
+          "choices": [
+            {
+              "id": "merge_cases",
+              "text": "先把五本卷宗并到一处",
+              "effects": [
+                { "add_var": "num_evidence", "value": 1 }
+              ],
+              "next": "ch11_open_11"
+            },
+            {
+              "id": "summon_people",
+              "text": "先提人到堂上",
+              "effects": [
+                { "add_var": "num_allies", "value": 1 }
+              ],
+              "next": "ch11_open_12"
+            }
+          ]
+        },
+        {
+          "id": "ch11_open_11",
+          "type": "narration",
+          "text": "你把五本卷宗按年份铺开。改名的年份、冒领的年份、换马的年份、铸钱的年份，落在同一条线上。",
+          "next": "ch11_open_13"
+        },
+        {
+          "id": "ch11_open_12",
+          "type": "narration",
+          "text": "你让人去广至、亭狱与关下提人。名单上有老妇，也有卫敞的旧部。",
+          "next": "ch11_open_13"
+        },
+        {
+          "id": "ch11_open_13",
+          "type": "narration",
+          "text": "天黑之前，五本卷宗的封皮上都压了一张签。",
+          "effects": [
+            { "set_flag": "ch11_open_done", "value": true }
+          ],
+          "next": "ch11_open_14"
+        },
+        {
+          "id": "ch11_open_14",
+          "type": "end",
+          "text": "",
+          "exit": "ch11_open"
+        }
+      ]
+    },
+    {
+      "id": "scene_11_archive",
+      "title": "旧档",
+      "background": "bg_register_archive",
+      "entry": "ch11_archive_01",
+      "trigger": { "flag": "ch11_open_done" },
+      "nodes": [
+        {
+          "id": "ch11_archive_01",
+          "type": "narration",
+          "text": "架阁最深处，十年的旧档按年码着，最上面一层已经结了蛛网。",
+          "next": "ch11_archive_02"
+        },
+        {
+          "id": "ch11_archive_02",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "我抄了二十年底本。这一回，是你把它们合起来看。",
+          "next": "ch11_archive_03"
+        },
+        {
+          "id": "ch11_archive_03",
+          "type": "narration",
+          "text": "你从地节元年翻起。名籍上被削的名字，粮账上被领的粮，马簿上没除籍的马——年份一条条对上。",
+          "next": "ch11_archive_04"
+        },
+        {
+          "id": "ch11_archive_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "五本账，从哪一条线收拢？",
+          "choices": [
+            {
+              "id": "compare_years",
+              "text": "先对年份",
+              "effects": [
+                { "add_var": "num_evidence", "value": 1 }
+              ],
+              "next": "ch11_archive_05"
+            },
+            {
+              "id": "compare_hands",
+              "text": "先对笔迹",
+              "effects": [
+                { "add_var": "num_evidence", "value": 1 }
+              ],
+              "next": "ch11_archive_06"
+            }
+          ]
+        },
+        {
+          "id": "ch11_archive_05",
+          "type": "narration",
+          "text": "削名、冒领、换马、铸钱，都从同一年开始。那一年，任氏第一次把粮车赶进广至。",
+          "next": "ch11_archive_07"
+        },
+        {
+          "id": "ch11_archive_06",
+          "type": "narration",
+          "text": "五本账的签收，笔迹各不相同，收笔却都往同一个方向带。",
+          "next": "ch11_archive_07"
+        },
+        {
+          "id": "ch11_archive_07",
+          "type": "narration",
+          "text": "你把五本账的年份列成一张表。表尾写着两个字：任氏。",
+          "effects": [
+            { "set_flag": "ch11_archive_done", "value": true },
+            { "add_clue": "clue_case_ledger" },
+            { "add_var": "num_evidence", "value": 2 }
+          ],
+          "next": "ch11_archive_08"
+        },
+        {
+          "id": "ch11_archive_08",
+          "type": "line",
+          "speaker": "suhe",
+          "text": "十年了。他们连名字都换过，账却一直没换。",
+          "next": "ch11_archive_09"
+        },
+        {
+          "id": "ch11_archive_09",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "账不会换。换的是写账的人。",
+          "next": "ch11_archive_10"
+        },
+        {
+          "id": "ch11_archive_10",
+          "type": "narration",
+          "text": "你让人守好架阁，亲自去广至任氏的老宅。",
+          "next": "ch11_archive_11"
+        },
+        {
+          "id": "ch11_archive_11",
+          "type": "end",
+          "text": "",
+          "exit": "ch11_archive"
+        }
+      ]
+    },
+    {
+      "id": "scene_11_manor",
+      "title": "任氏",
+      "background": "bg_guangzhi_post",
+      "entry": "ch11_manor_01",
+      "trigger": { "flag": "ch11_archive_done" },
+      "nodes": [
+        {
+          "id": "ch11_manor_01",
+          "type": "narration",
+          "text": "任氏的老宅比三年前更旧，院墙塌了一角。门前没有家丁，只有两辆车。",
+          "next": "ch11_manor_02"
+        },
+        {
+          "id": "ch11_manor_02",
+          "type": "line",
+          "speaker": "baiji",
+          "text": "任家的人昨夜烧了一夜东西。烟到现在还没散。",
+          "next": "ch11_manor_03"
+        },
+        {
+          "id": "ch11_manor_03",
+          "type": "narration",
+          "text": "院里堆着没烧尽的简屑。你踩上去，脚下发出碎响。",
+          "next": "ch11_manor_04"
+        },
+        {
+          "id": "ch11_manor_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "灰里的字，车上的账，只能先抢一头。",
+          "choices": [
+            {
+              "id": "grab_ashes",
+              "text": "先抢灰里没烧尽的简屑",
+              "effects": [
+                { "add_var": "num_evidence", "value": 1 }
+              ],
+              "next": "ch11_manor_05"
+            },
+            {
+              "id": "chase_cart",
+              "text": "先截后门出去的车",
+              "effects": [
+                { "add_var": "num_allies", "value": 1 }
+              ],
+              "next": "ch11_manor_06"
+            }
+          ]
+        },
+        {
+          "id": "ch11_manor_05",
+          "type": "narration",
+          "text": "简屑里还认得出字：户版、马簿、钱账，都是抄本。烧的人烧得很急。",
+          "next": "ch11_manor_07"
+        },
+        {
+          "id": "ch11_manor_06",
+          "type": "narration",
+          "text": "两辆车往后门去了。阿耆带人截住一辆，车上坐着任氏的管事。",
+          "next": "ch11_manor_07"
+        },
+        {
+          "id": "ch11_manor_07",
+          "type": "narration",
+          "text": "管事被带到你面前。他说，任氏愿意交出十年的总账，换一条生路。",
+          "effects": [
+            { "set_flag": "ch11_manor_done", "value": true },
+            { "add_clue": "clue_ren_seal" },
+            { "add_var": "num_evidence", "value": 1 }
+          ],
+          "next": "ch11_manor_08"
+        },
+        {
+          "id": "ch11_manor_08",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "总账换生路。你信吗？",
+          "next": "ch11_manor_09"
+        },
+        {
+          "id": "ch11_manor_09",
+          "type": "line",
+          "speaker": "taishou",
+          "text": "郡府只要账，不要人。把他带回去。",
+          "next": "ch11_manor_10"
+        },
+        {
+          "id": "ch11_manor_10",
+          "type": "narration",
+          "text": "你把管事与没烧尽的简屑一并带回悬泉置。",
+          "next": "ch11_manor_11"
+        },
+        {
+          "id": "ch11_manor_11",
+          "type": "end",
+          "text": "",
+          "exit": "ch11_manor"
+        }
+      ]
+    },
+    {
+      "id": "scene_11_village",
+      "title": "广至",
+      "background": "bg_oasis",
+      "entry": "ch11_village_01",
+      "trigger": { "flag": "ch11_manor_done" },
+      "nodes": [
+        {
+          "id": "ch11_village_01",
+          "type": "narration",
+          "text": "广至渠尾的土屋比从前整齐了些。老妇家的门上，贴着一张新的户版抄件。",
+          "next": "ch11_village_02"
+        },
+        {
+          "id": "ch11_village_02",
+          "type": "line",
+          "speaker": "laofu",
+          "text": "我儿子的名字写回去了。孩子的名字，也写在他后面。",
+          "next": "ch11_village_03"
+        },
+        {
+          "id": "ch11_village_03",
+          "type": "narration",
+          "text": "老妇从柜底取出一块木牌。那是她替死去的儿子领粮时用的，一直没舍得烧。",
+          "next": "ch11_village_04"
+        },
+        {
+          "id": "ch11_village_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "这块木牌，能证的不止一户。",
+          "choices": [
+            {
+              "id": "take_token",
+              "text": "收下木牌，把名字拓下来",
+              "effects": [
+                { "add_var": "num_evidence", "value": 1 }
+              ],
+              "next": "ch11_village_05"
+            },
+            {
+              "id": "ask_witness",
+              "text": "请她到堂上说一句话",
+              "effects": [
+                { "add_var": "num_allies", "value": 1 }
+              ],
+              "next": "ch11_village_06"
+            }
+          ]
+        },
+        {
+          "id": "ch11_village_05",
+          "type": "narration",
+          "text": "木牌背面刻着三十七个名字，刻痕有新有旧。她说，是这些年一个一个补上去的。",
+          "next": "ch11_village_07"
+        },
+        {
+          "id": "ch11_village_06",
+          "type": "narration",
+          "text": "老妇点头。她说，堂上要她说什么，她就说什么。",
+          "next": "ch11_village_07"
+        },
+        {
+          "id": "ch11_village_07",
+          "type": "narration",
+          "text": "你把木牌收进证物袋。三十七户里，还有十一户能到堂上。",
+          "effects": [
+            { "set_flag": "ch11_village_done", "value": true },
+            { "set_flag": "sq11_01_done", "value": true },
+            { "add_clue": "clue_witness_roll" },
+            { "add_var": "num_allies", "value": 1 }
+          ],
+          "next": "ch11_village_08"
+        },
+        {
+          "id": "ch11_village_08",
+          "type": "line",
+          "speaker": "guowang",
+          "text": "广至的人肯来。关下的人，未必。",
+          "next": "ch11_village_09"
+        },
+        {
+          "id": "ch11_village_09",
+          "type": "narration",
+          "text": "你让郭望留下安排车马，自己往亭狱。",
+          "next": "ch11_village_10"
+        },
+        {
+          "id": "ch11_village_10",
+          "type": "end",
+          "text": "",
+          "exit": "ch11_village"
+        }
+      ]
+    },
+    {
+      "id": "scene_11_prison",
+      "title": "亭狱",
+      "background": "bg_prison_yard",
+      "entry": "ch11_prison_01",
+      "trigger": { "flag": "ch11_village_done" },
+      "nodes": [
+        {
+          "id": "ch11_prison_01",
+          "type": "narration",
+          "text": "亭狱的木栅换成了新的，栅后关着任氏的管事与几个旧吏。",
+          "next": "ch11_prison_02"
+        },
+        {
+          "id": "ch11_prison_02",
+          "type": "line",
+          "speaker": "yuli",
+          "text": "卫敞的旧部关在最里面。他说，只肯跟你一个人说话。",
+          "next": "ch11_prison_03"
+        },
+        {
+          "id": "ch11_prison_03",
+          "type": "narration",
+          "text": "你走进最里的牢房。卫敞旧部的手上，还留着当年掌印的墨痕。",
+          "next": "ch11_prison_04"
+        },
+        {
+          "id": "ch11_prison_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "他的手上，还有东西没洗掉。",
+          "choices": [
+            {
+              "id": "hear_him",
+              "text": "先听他把话说完",
+              "effects": [
+                { "add_var": "num_evidence", "value": 1 }
+              ],
+              "next": "ch11_prison_05"
+            },
+            {
+              "id": "ask_imprint",
+              "text": "先问他掌心的印",
+              "effects": [
+                { "add_var": "num_allies", "value": 1 }
+              ],
+              "next": "ch11_prison_06"
+            }
+          ]
+        },
+        {
+          "id": "ch11_prison_05",
+          "type": "narration",
+          "text": "他说，空印不是一个人盖的。郡府里有人递印，关下有人接印，任氏只负责把粮车赶上路。",
+          "next": "ch11_prison_07"
+        },
+        {
+          "id": "ch11_prison_06",
+          "type": "narration",
+          "text": "他抬起手。掌心有一枚旧印的印痕，印文是郡府仓曹的。",
+          "next": "ch11_prison_07"
+        },
+        {
+          "id": "ch11_prison_07",
+          "type": "narration",
+          "text": "你让人取下印痕，封进证物袋。这是十年来，第一次有人把郡府和任氏写在同一张纸上。",
+          "effects": [
+            { "set_flag": "ch11_prison_done", "value": true },
+            { "set_flag": "sq11_02_done", "value": true },
+            { "add_clue": "clue_commandery_order" },
+            { "add_var": "num_evidence", "value": 2 },
+            { "add_var": "num_allies", "value": 1 }
+          ],
+          "next": "ch11_prison_08"
+        },
+        {
+          "id": "ch11_prison_08",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "这张纸递上去，堂上坐着的就不只是任氏了。",
+          "next": "ch11_prison_09"
+        },
+        {
+          "id": "ch11_prison_09",
+          "type": "narration",
+          "text": "你带着印痕与口供回悬泉置。",
+          "next": "ch11_prison_10"
+        },
+        {
+          "id": "ch11_prison_10",
+          "type": "end",
+          "text": "",
+          "exit": "ch11_prison"
+        }
+      ]
+    },
+    {
+      "id": "scene_11_beacon",
+      "title": "焚档",
+      "background": "bg_beacon_tower",
+      "entry": "ch11_beacon_01",
+      "trigger": { "flag": "ch11_prison_done" },
+      "nodes": [
+        {
+          "id": "ch11_beacon_01",
+          "type": "narration",
+          "text": "当夜，广至方向起了火光。烽燧上的士卒来报：任氏的人在烧最后一批简册。",
+          "next": "ch11_beacon_02"
+        },
+        {
+          "id": "ch11_beacon_02",
+          "type": "line",
+          "speaker": "aqi",
+          "text": "火在旧仓那边。风往关下吹，烧起来就拦不住。",
+          "next": "ch11_beacon_03"
+        },
+        {
+          "id": "ch11_beacon_03",
+          "type": "narration",
+          "text": "你带人赶到烽燧。旧仓门口堆着简册，火已经点着，几个人正往里泼油。",
+          "next": "ch11_beacon_04"
+        },
+        {
+          "id": "ch11_beacon_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "火不等人。",
+          "choices": [
+            {
+              "id": "save_slips",
+              "text": "先抢简册",
+              "effects": [
+                { "add_var": "num_evidence", "value": 1 }
+              ],
+              "next": "ch11_beacon_05"
+            },
+            {
+              "id": "seize_men",
+              "text": "先拿泼油的人",
+              "effects": [
+                { "add_var": "num_allies", "value": 1 }
+              ],
+              "next": "ch11_beacon_06"
+            }
+          ]
+        },
+        {
+          "id": "ch11_beacon_05",
+          "type": "narration",
+          "text": "你带人把没烧着的简册拖出来。火舌舔到袖口，你才觉出疼。",
+          "next": "ch11_beacon_07"
+        },
+        {
+          "id": "ch11_beacon_06",
+          "type": "narration",
+          "text": "阿耆带人按住泼油的人。火还在烧，人已经跑不了。",
+          "next": "ch11_beacon_07"
+        },
+        {
+          "id": "ch11_beacon_07",
+          "type": "combat",
+          "encounter": "enc_ch11_beacon",
+          "on_win": "ch11_beacon_08",
+          "on_lose": "ch11_beacon_09"
+        },
+        {
+          "id": "ch11_beacon_08",
+          "type": "narration",
+          "text": "火烧到半夜才灭。旧仓塌了半边，简册抢出大半。",
+          "effects": [
+            { "set_flag": "ch11_beacon_done", "value": true },
+            { "set_flag": "sq11_03_done", "value": true },
+            { "add_clue": "clue_beacon_oath" },
+            { "add_var": "num_evidence", "value": 2 }
+          ],
+          "next": "ch11_beacon_10"
+        },
+        {
+          "id": "ch11_beacon_09",
+          "type": "narration",
+          "text": "火借风势，旧仓烧尽。你在灰里找到半枚没烧化的封泥。",
+          "effects": [
+            { "set_flag": "ch11_beacon_done", "value": true },
+            { "set_flag": "sq11_03_done", "value": true },
+            { "add_clue": "clue_beacon_oath" },
+            { "add_var": "num_evidence", "value": 1 }
+          ],
+          "next": "ch11_beacon_10"
+        },
+        {
+          "id": "ch11_beacon_10",
+          "type": "narration",
+          "text": "天快亮时，你把抢出的简册装上马车。",
+          "next": "ch11_beacon_11"
+        },
+        {
+          "id": "ch11_beacon_11",
+          "type": "end",
+          "text": "",
+          "exit": "ch11_beacon"
+        }
+      ]
+    },
+    {
+      "id": "scene_11_hall",
+      "title": "总核堂上",
+      "background": "bg_commandery_hall",
+      "entry": "ch11_hall_01",
+      "trigger": { "flag": "ch11_beacon_done" },
+      "nodes": [
+        {
+          "id": "ch11_hall_01",
+          "type": "narration",
+          "text": "郡府总核堂上，五本旧账、印痕、木牌与没烧尽的简册并排铺开。堂下站着任氏管事与卫敞旧部。",
+          "next": "ch11_hall_02"
+        },
+        {
+          "id": "ch11_hall_02",
+          "type": "line",
+          "speaker": "gongcao",
+          "text": "十年五案，卷宗俱全。郡府仓曹一名，关吏两名，任氏管事一名，皆已到堂。",
+          "next": "ch11_hall_03"
+        },
+        {
+          "id": "ch11_hall_03",
+          "type": "line",
+          "speaker": "taishou",
+          "text": "旧案总核，今日结。你要怎么陈述？",
+          "next": "ch11_hall_04"
+        },
+        {
+          "id": "ch11_hall_04",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "怎么说，决定这案子落在谁头上。",
+          "next": "ch11_hall_05"
+        },
+        {
+          "id": "ch11_hall_05",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "堂上等着你开口。",
+          "choices": [
+            {
+              "id": "speak_law",
+              "text": "按律陈词，一罪一状",
+              "effects": [
+                { "set_flag": "ch11_spoke_law", "value": true },
+                { "set_flag": "ch11_final_choice", "value": true }
+              ],
+              "next": "ch11_hall_06"
+            },
+            {
+              "id": "speak_people",
+              "text": "先说这十年里被写掉的人",
+              "effects": [
+                { "set_flag": "ch11_spoke_people", "value": true },
+                { "set_flag": "ch11_final_choice", "value": true }
+              ],
+              "next": "ch11_hall_07"
+            },
+            {
+              "id": "speak_truth",
+              "text": "直指郡府仓曹",
+              "effects": [
+                { "set_flag": "ch11_spoke_truth", "value": true },
+                { "set_flag": "ch11_final_choice", "value": true }
+              ],
+              "next": "ch11_hall_08"
+            }
+          ]
+        },
+        {
+          "id": "ch11_hall_06",
+          "type": "narration",
+          "text": "你按律陈词：削名、冒领、换马、铸钱、私拆，一罪一状，不赦不纵。",
+          "next": "ch11_hall_09"
+        },
+        {
+          "id": "ch11_hall_07",
+          "type": "narration",
+          "text": "你先说人：三十七户、六口没入为奴的人、饿死在亭狱的孩子。律条念完，堂上很久没有声音。",
+          "next": "ch11_hall_09"
+        },
+        {
+          "id": "ch11_hall_08",
+          "type": "narration",
+          "text": "你把仓曹的印痕推上前：这案子的根，不在广至，在郡府。",
+          "next": "ch11_hall_09"
+        },
+        {
+          "id": "ch11_hall_09",
+          "type": "narration",
+          "text": "严崇听完，没有立刻落笔。他让功曹把五本账重新核了一遍。",
+          "effects": [
+            { "set_flag": "ch11_hall_done", "value": true },
+            { "add_var": "num_evidence", "value": 1 }
+          ],
+          "next": "ch11_hall_10"
+        },
+        {
+          "id": "ch11_hall_10",
+          "type": "line",
+          "speaker": "taishou",
+          "text": "核完了。落笔。",
+          "next": "ch11_hall_11"
+        },
+        {
+          "id": "ch11_hall_11",
+          "type": "end",
+          "text": "",
+          "exit": "ch11_hall"
+        }
+      ]
+    },
+    {
+      "id": "scene_11_end",
+      "title": "结案",
+      "background": "bg_yumenguan_dusk",
+      "entry": "ch11_end_01",
+      "trigger": { "flag": "ch11_hall_done" },
+      "nodes": [
+        {
+          "id": "ch11_end_01",
+          "type": "narration",
+          "text": "判决下来：任氏私产没入官，管事与经手关吏论罪；郡府仓曹免职，交廷尉问。三十七户附籍如故，没入为奴的六口放还。",
+          "next": "ch11_end_02"
+        },
+        {
+          "id": "ch11_end_02",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "十年了。名籍上的人，终于不用再靠别人替他们说话。",
+          "next": "ch11_end_03"
+        },
+        {
+          "id": "ch11_end_03",
+          "type": "narration",
+          "text": "老妇在堂下跪了很久。她怀里抱着的那块木牌，被功曹收进了证物箱。",
+          "next": "ch11_end_04"
+        },
+        {
+          "id": "ch11_end_04",
+          "type": "narration",
+          "text": "你走出郡府时，天正下第一场雪。雪落在关楼上，也落在广至的土屋上。",
+          "next": "ch11_end_05"
+        },
+        {
+          "id": "ch11_end_05",
+          "type": "seal",
+          "title": "终章 · 结案",
+          "text": "五本账合上，十年案结清。",
+          "seal": "ui_ending_seal",
+          "next": "ch11_end_06"
+        },
+        {
+          "id": "ch11_end_06",
+          "type": "narration",
+          "text": "你把结案的副本带回悬泉置，亲手归进架阁最里侧。",
+          "effects": [
+            { "set_flag": "ch11_finished", "value": true },
+            { "set_flag": "ch11_done", "value": true }
+          ],
+          "next": "ch11_end_07"
+        },
+        {
+          "id": "ch11_end_07",
+          "type": "line",
+          "speaker": "suhe",
+          "text": "往后还查吗？",
+          "next": "ch11_end_08"
+        },
+        {
+          "id": "ch11_end_08",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "查。只要有人的名字被写掉，就还有人要查。",
+          "next": "ch11_end_09"
+        },
+        {
+          "id": "ch11_end_09",
+          "type": "narration",
+          "text": "雪下了整夜。悬泉置的灯，一直亮到天明。",
+          "next": "ch11_end_10"
+        },
+        {
+          "id": "ch11_end_10",
+          "type": "end",
+          "text": "",
+          "exit": "ch11_end"
+        }
+      ]
+    },
+    {
+      "id": "scene_11_epilogue",
+      "title": "尾声",
+      "background": "bg_station_courtyard",
+      "entry": "ch11_epilogue_01",
+      "trigger": { "flag": "ch11_finished" },
+      "nodes": [
+        {
+          "id": "ch11_epilogue_01",
+          "type": "narration",
+          "text": "一年后，悬泉置的驿道上又有了新的车辙。架阁里多了一只柜子，专放结过的案卷。",
+          "next": "ch11_epilogue_02"
+        },
+        {
+          "id": "ch11_epilogue_02",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "我老了。这些卷宗，往后归你。",
+          "next": "ch11_epilogue_03"
+        },
+        {
+          "id": "ch11_epilogue_03",
+          "type": "narration",
+          "text": "韩伯把架阁的钥匙放在你手心。钥匙比十年前更冷，也更沉。",
+          "next": "ch11_epilogue_04"
+        },
+        {
+          "id": "ch11_epilogue_04",
+          "type": "line",
+          "speaker": "aqi",
+          "text": "关外的路我熟。下一趟，我跟你去。",
+          "next": "ch11_epilogue_05"
+        },
+        {
+          "id": "ch11_epilogue_05",
+          "type": "narration",
+          "text": "广至的户版上，三十七户的名字后面，又添了几户新名。",
+          "next": "ch11_epilogue_06"
+        },
+        {
+          "id": "ch11_epilogue_06",
+          "type": "seal",
+          "title": "终章 · 悬泉",
+          "text": "人有来处，名有归处。",
+          "seal": "ui_ending_seal",
+          "next": "ch11_epilogue_07"
+        },
+        {
+          "id": "ch11_epilogue_07",
+          "type": "narration",
+          "text": "你把新案卷放在柜顶，转身去关下接一封新的急件。",
+          "next": "ch11_epilogue_08"
+        },
+        {
+          "id": "ch11_epilogue_08",
+          "type": "end",
+          "text": "",
+          "exit": "ch11_epilogue"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch11",
+  "title": "第十一章 总账",
+  "carryover": {
+    "from": "ch10",
+    "variables": ["ch10_ending"]
+  },
+  "initial": {
+    "flags": {
+      "ch11_start": true,
+      "ch11_open_done": false,
+      "ch11_archive_done": false,
+      "ch11_manor_done": false,
+      "ch11_village_done": false,
+      "ch11_prison_done": false,
+      "ch11_beacon_done": false,
+      "ch11_hall_done": false,
+      "ch11_final_choice": false,
+      "ch11_spoke_law": false,
+      "ch11_spoke_people": false,
+      "ch11_spoke_truth": false,
+      "ch11_finished": false,
+      "ch11_done": false,
+      "sq11_01_done": false,
+      "sq11_02_done": false,
+      "sq11_03_done": false
+    },
+    "variables": {
+      "ch10_ending": "none",
+      "num_evidence": 0,
+      "num_allies": 0
+    }
+  },
+  "variables": {
+    "ch10_ending": {
+      "type": "enum",
+      "values": ["none", "seal", "cover", "chase"],
+      "description": "第十章结局，决定本章旧案从哪一头合拢"
+    },
+    "num_evidence": {
+      "type": "int",
+      "min": 0,
+      "max": 8,
+      "description": "总核证据：五本账、印痕、木牌与残简"
+    },
+    "num_allies": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "肯到堂上作证的人与旧吏"
+    }
+  },
+  "clues": {
+    "clue_case_ledger": "总账：名籍、粮帐、马簿、钱账与封检的年份，落在同一条线上。",
+    "clue_ren_seal": "任氏私印：管事交出的总账上，落款与郡府仓曹的印痕同源。",
+    "clue_witness_roll": "证人名册：三十七户中还有十一户能到堂，老妇的木牌刻着他们的名字。",
+    "clue_beacon_oath": "焚档残简：任氏临烧前写下的誓书，提到郡府递印的人。",
+    "clue_commandery_order": "仓曹印痕：卫敞旧部掌心的旧印，与任氏总账的落款对得上。"
+  },
+  "items": {
+    "item_case_ledger": {
+      "name": "总账",
+      "icon": "item_hemp_paper",
+      "description": "任氏交出的十年总账，五案并列"
+    },
+    "item_ren_seal": {
+      "name": "任氏私印",
+      "icon": "item_seal",
+      "description": "任氏管事随身携带的私印，落款与总账一致"
+    },
+    "item_witness_roll": {
+      "name": "证人名册",
+      "icon": "item_register_slips",
+      "description": "肯到堂作证的三十七户遗属名册"
+    }
+  }
+}

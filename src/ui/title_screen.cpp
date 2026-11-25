@@ -292,7 +292,7 @@ void TitleScreen::render(sf::RenderWindow& window, const sf::Font& font) {
     draw_text(window, font, 16, hint,
               (width - text_width(font, 16, hint)) * 0.5f, height - 76.f, kDim);
 
-    const sf::String version = from_utf8("开发版 · 全十章");
+    const sf::String version = from_utf8("开发版 · 全十一章 · 完");
     draw_text(window, font, 14, version, width - 64.f - text_width(font, 14, version),
               height - 62.f, sf::Color(kDim.r, kDim.g, kDim.b, 130));
 }
