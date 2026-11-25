@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch06",
+  "title": "第六章 对账",
+  "carryover": {
+    "from": "ch05",
+    "variables": ["ch4_ending"]
+  },
+  "initial": {
+    "flags": {
+      "ch6_start": true,
+      "ch6_open_done": false,
+      "ch6_ledger_done": false,
+      "ch6_claims_checked": false,
+      "ch6_clerk_found": false,
+      "ch6_guangzhi_done": false,
+      "ch6_granary_done": false,
+      "ch6_su_asked": false,
+      "ch6_zhaoqin_done": false,
+      "ch6_caravan_cleared": false,
+      "ch6_caravan_done": false,
+      "ch6_manifest_checked": false,
+      "ch6_hall_done": false,
+      "ch6_chose_balance": false,
+      "ch6_chose_expose": false,
+      "ch6_chose_quiet": false,
+      "ch6_final_choice": false,
+      "ch6_finished": false,
+      "ch6_done": false,
+      "sq6_01_done": false,
+      "sq6_02_done": false,
+      "sq6_03_done": false
+    },
+    "variables": {
+      "ch4_ending": "none",
+      "ch6_ending": "none",
+      "num_proof": 0,
+      "num_zhaoqin_leverage": 0
+    }
+  },
+  "variables": {
+    "ch4_ending": {
+      "type": "enum",
+      "values": ["none", "names", "exile", "road"],
+      "description": "第四章结局，决定本章如何接到追补令"
+    },
+    "ch6_ending": {
+      "type": "enum",
+      "values": ["none", "balance", "expose", "quiet"],
+      "description": "本章结局：账平 / 明账 / 私了"
+    },
+    "num_proof": {
+      "type": "int",
+      "min": 0,
+      "max": 6,
+      "description": "补领案的证据完整度：名册、供状、底账、空印、货单与领粮人"
+    },
+    "num_zhaoqin_leverage": {
+      "type": "int",
+      "min": 0,
+      "max": 3,
+      "description": "赵钦受压程度，决定底账与供词的完整"
+    }
+  },
+  "clues": {
+    "clue_claim_roster": "郡府追补令与补领名册抄件：三十七人名下各有一笔补领，手续齐全。",
+    "clue_claim_manifest": "补廪车队的货单，粮数与补领名册上的总额分毫不差。",
+    "clue_zhaoqin_ledger": "赵钦交出的底账，记着每一笔补领是谁经手、谁盖印。",
+    "clue_caocao_blank_seal": "仓曹空印的用法：印是真的，背书的人却不在官署。",
+    "clue_claim_widow": "持牌老妇的木牌：她领的是别人的名字，替死人说了一辈子谢。",
+    "clue_granary_short": "廪仓实数与账面的差额，正好等于补领的总额。",
+    "clue_clerk_confession": "广至乡吏的供状：补领是上头让办的，空印由郡府递来。"
+  },
+  "items": {
+    "item_claim_ledger": {
+      "name": "补领名册",
+      "icon": "item_bamboo_slip",
+      "description": "郡府追补令附来的补领名册，三十七笔俱全"
+    },
+    "item_claim_token": {
+      "name": "补领木牌",
+      "icon": "item_gate_token",
+      "description": "领粮人凭以取粮的木牌，名字与名籍对不上"
+    },
+    "item_caravan_manifest": {
+      "name": "补廪货单",
+      "icon": "item_hemp_paper",
+      "description": "运粮车队的货单，粮数与补领总额相同"
+    }
+  }
+}

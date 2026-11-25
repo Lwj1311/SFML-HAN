@@ -1,0 +1,1016 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch06",
+  "title": "第六章 对账",
+  "speakers": {
+    "narrator": { "name": "旁白", "portrait": null },
+    "fengan": { "name": "冯安", "portrait": "char_fengan" },
+    "hanbo": { "name": "韩伯", "portrait": "char_hanbo" },
+    "suhe": { "name": "苏娘", "portrait": "char_suhe" },
+    "guowang": { "name": "郭望", "portrait": "char_guowang" },
+    "aqi": { "name": "阿耆", "portrait": "char_aqi" },
+    "baiji": { "name": "白姬", "portrait": "char_baiji" },
+    "zhaoqin": { "name": "赵钦", "portrait": "char_zhaoqin" },
+    "taishou": { "name": "严崇", "portrait": "char_taishou" },
+    "gongcao": { "name": "郡府功曹", "portrait": "char_gongcao" },
+    "laofu": { "name": "持牌老妇", "portrait": null }
+  },
+  "encounters": {
+    "enc_ch6_caravan": {
+      "name": "押粮的雇工",
+      "enemies": [
+        { "id": "hired_guard", "count": 3 },
+        { "id": "hired_archer", "count": 1 }
+      ],
+      "terrain": "gate",
+      "note": "车队里多是雇来的流民，击退即可，不必赶尽杀绝。"
+    }
+  },
+  "scenes": [
+    {
+      "id": "scene_6_open",
+      "title": "追补令",
+      "background": "bg_station_courtyard",
+      "entry": "ch6_open_01",
+      "trigger": { "flag": "ch6_start" },
+      "nodes": [
+        {
+          "id": "ch6_open_01",
+          "type": "narration",
+          "text": "开春以后，悬泉置的雪化得很快。驿道上的车辙一天比一天深，来往的人都在说同一件事：名籍改了，粮该补了。",
+          "next": "ch6_open_02"
+        },
+        {
+          "id": "ch6_open_02",
+          "type": "branch",
+          "branches": [
+            {
+              "condition": { "var": "ch4_ending", "op": "eq", "value": "names" },
+              "next": "ch6_open_03"
+            },
+            {
+              "condition": { "var": "ch4_ending", "op": "eq", "value": "exile" },
+              "next": "ch6_open_04"
+            },
+            {
+              "condition": { "var": "ch4_ending", "op": "eq", "value": "road" },
+              "next": "ch6_open_05"
+            },
+            { "next": "ch6_open_06" }
+          ]
+        },
+        {
+          "id": "ch6_open_03",
+          "type": "narration",
+          "text": "你在悬泉置留了下来，名籍更正的文书已经归档。郡府的通告贴到坞院门口，三十七个名字下面各添了一行小字：待补廪食。",
+          "next": "ch6_open_07"
+        },
+        {
+          "id": "ch6_open_04",
+          "type": "narration",
+          "text": "你已调离悬泉置，在东边一处驿置听差。追补的文书绕了半圈，还是追到了你手上——郡府点名要原办人回去对账。",
+          "next": "ch6_open_07"
+        },
+        {
+          "id": "ch6_open_05",
+          "type": "narration",
+          "text": "你还在关外的商路上。一支挂着官符的运粮车队从广至方向驶来，车辙很深，比名籍上该有的数目还要沉。",
+          "next": "ch6_open_07"
+        },
+        {
+          "id": "ch6_open_06",
+          "type": "narration",
+          "text": "追补的文书送到案上时，你还没有见过那个冬天。名册摊开，三十七个名字底下各有一笔待补的廪食。",
+          "next": "ch6_open_07"
+        },
+        {
+          "id": "ch6_open_07",
+          "type": "line",
+          "speaker": "gongcao",
+          "text": "郡符：三十七人名下，追补五年廪食，由原办人核办。补领名册一并附来，逐笔对过，不得有误。",
+          "next": "ch6_open_08"
+        },
+        {
+          "id": "ch6_open_08",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "五年廪食……三十七个人，一石一石补回去，数目不小。",
+          "next": "ch6_open_09"
+        },
+        {
+          "id": "ch6_open_09",
+          "type": "narration",
+          "text": "你翻开附来的补领名册，笔迹整齐，手续齐全，每一笔都有经手人的押字和仓曹的印。整齐得不像补领，倒像是早就写好的。",
+          "next": "ch6_open_10"
+        },
+        {
+          "id": "ch6_open_10",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "追补令与补领名册同时到了案上。先做哪一件？",
+          "choices": [
+            {
+              "id": "accept_order",
+              "text": "先接令，把事情揽下来",
+              "next": "ch6_open_11"
+            },
+            {
+              "id": "ask_why_now",
+              "text": "先问一句：为什么偏偏是现在",
+              "next": "ch6_open_12"
+            }
+          ]
+        },
+        {
+          "id": "ch6_open_11",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "接了就脱不了手。可这册子里的数目，看着比人名还齐整。",
+          "next": "ch6_open_12"
+        },
+        {
+          "id": "ch6_open_12",
+          "type": "narration",
+          "text": "你没有多问。文书上的日子、笔迹、印色都对得上，唯一对不上的是常理——死去五年的人，不会自己来补领。",
+          "effects": [
+            { "set_flag": "ch6_open_done", "value": true }
+          ],
+          "next": "ch6_open_13"
+        },
+        {
+          "id": "ch6_open_13",
+          "type": "end",
+          "text": "",
+          "exit": "ch06_open"
+        }
+      ]
+    },
+    {
+      "id": "scene_6_ledger",
+      "title": "廪食簿",
+      "background": "bg_station_interior",
+      "entry": "ch6_ledger_01",
+      "trigger": { "flag": "ch6_open_done" },
+      "nodes": [
+        {
+          "id": "ch6_ledger_01",
+          "type": "narration",
+          "text": "架阁里翻出五年的廪食簿，捆绳一解开，尘土先落了一层。案上只够摊开三卷，其余的堆在脚边。",
+          "next": "ch6_ledger_02"
+        },
+        {
+          "id": "ch6_ledger_02",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "补领三十七笔，我念，你记。数目先对上，人再慢慢找。",
+          "next": "ch6_ledger_03"
+        },
+        {
+          "id": "ch6_ledger_03",
+          "type": "line",
+          "speaker": "suhe",
+          "text": "领粮的人来得比文书早。我舀了二十年粮，认得每一只碗，就是不认得那些来领补廪的脸。",
+          "next": "ch6_ledger_04"
+        },
+        {
+          "id": "ch6_ledger_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "先从哪儿入手？",
+          "choices": [
+            {
+              "id": "count_first",
+              "text": "把三十七笔补领先算清",
+              "effects": [
+                { "set_flag": "ch6_claims_checked", "value": true },
+                { "add_var": "num_proof", "value": 1 }
+              ],
+              "next": "ch6_ledger_05"
+            },
+            {
+              "id": "ask_su_first",
+              "text": "先请苏娘把那几张脸说清楚",
+              "effects": [
+                { "set_flag": "ch6_claims_checked", "value": true },
+                { "add_var": "num_proof", "value": 1 }
+              ],
+              "next": "ch6_ledger_06"
+            }
+          ]
+        },
+        {
+          "id": "ch6_ledger_05",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "三十七笔，一石不差。日子都挤在名籍更正后的半个月里——改完就补，像是有人守在架阁门口等消息。",
+          "next": "ch6_ledger_07"
+        },
+        {
+          "id": "ch6_ledger_06",
+          "type": "line",
+          "speaker": "suhe",
+          "text": "来领补廪的，前后换了三拨。有的拿着木牌，有的只报名字。报了名字的，我记不住；拿牌的那种，牌上的字都磨平了。",
+          "next": "ch6_ledger_07"
+        },
+        {
+          "id": "ch6_ledger_07",
+          "type": "narration",
+          "text": "你把三十七笔补领加总，又翻出当年失踪的粮数。两个数并排放着，中间没有差一个字。",
+          "effects": [
+            { "set_flag": "ch6_ledger_done", "value": true },
+            { "add_var": "num_proof", "value": 1 }
+          ],
+          "next": "ch6_ledger_08"
+        },
+        {
+          "id": "ch6_ledger_08",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "不是巧合。有人拿这批名字，把当年缺的粮又走了一遍账。",
+          "next": "ch6_ledger_09"
+        },
+        {
+          "id": "ch6_ledger_09",
+          "type": "end",
+          "text": "",
+          "exit": "ch06_ledger"
+        }
+      ]
+    },
+    {
+      "id": "scene_6_guangzhi",
+      "title": "广至县",
+      "background": "bg_oasis",
+      "entry": "ch6_guangzhi_01",
+      "trigger": { "flag": "ch6_ledger_done" },
+      "nodes": [
+        {
+          "id": "ch6_guangzhi_01",
+          "type": "narration",
+          "text": "广至县在绿洲边上，渠水刚开冻。县署的仓房比悬泉置的矮，门口却新换了一副锁。",
+          "next": "ch6_guangzhi_02"
+        },
+        {
+          "id": "ch6_guangzhi_02",
+          "type": "line",
+          "speaker": "aqi",
+          "text": "补领的押字都出自县署一个姓任的乡吏。人不在，桌案还热着，像是刚走。",
+          "next": "ch6_guangzhi_03"
+        },
+        {
+          "id": "ch6_guangzhi_03",
+          "type": "narration",
+          "text": "案上压着半卷没写完的简，笔尖的墨还没干。旁边一只木匣，锁扣开着，里面空了。",
+          "next": "ch6_guangzhi_04"
+        },
+        {
+          "id": "ch6_guangzhi_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "人刚走，案还热。先追哪一头？",
+          "choices": [
+            {
+              "id": "press_clerk",
+              "text": "去乡里堵人，把供状拿到手",
+              "effects": [
+                { "set_flag": "ch6_clerk_found", "value": true },
+                { "add_clue": "clue_clerk_confession" },
+                { "add_var": "num_proof", "value": 1 }
+              ],
+              "next": "ch6_guangzhi_05"
+            },
+            {
+              "id": "follow_token",
+              "text": "跟着补领木牌，找领粮的人",
+              "effects": [
+                { "set_flag": "ch6_clerk_found", "value": true },
+                { "add_var": "num_proof", "value": 1 }
+              ],
+              "next": "ch6_guangzhi_06"
+            }
+          ]
+        },
+        {
+          "id": "ch6_guangzhi_05",
+          "type": "narration",
+          "text": "任弘在渠边被堵住时，手里还攥着半块木牌。他没有挣扎，只说了一句：印是上头递下来的，我只管写日子。",
+          "next": "ch6_guangzhi_07"
+        },
+        {
+          "id": "ch6_guangzhi_06",
+          "type": "narration",
+          "text": "木牌一路问下去，问到渠尾一间土屋。屋里只有一位老妇，把木牌擦得很亮，像供着什么。",
+          "next": "ch6_guangzhi_07"
+        },
+        {
+          "id": "ch6_guangzhi_07",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "她见你穿着吏服，先把木牌往怀里藏了藏。",
+          "choices": [
+            {
+              "id": "hear_her",
+              "text": "坐下来，听她说完",
+              "effects": [
+                { "set_flag": "sq6_01_done", "value": true },
+                { "add_clue": "clue_claim_widow" },
+                { "add_var": "num_proof", "value": 1 }
+              ],
+              "next": "ch6_guangzhi_08"
+            },
+            {
+              "id": "take_token",
+              "text": "收走木牌，作为凭证",
+              "effects": [
+                { "set_flag": "sq6_01_done", "value": true },
+                { "add_clue": "clue_claim_widow" }
+              ],
+              "next": "ch6_guangzhi_09"
+            }
+          ]
+        },
+        {
+          "id": "ch6_guangzhi_08",
+          "type": "line",
+          "speaker": "laofu",
+          "text": "我儿子在三十七个名字里头。牌上的名字不是他。可这五年，是我替那个名字领的粮，也是我替他说了五年的谢。",
+          "next": "ch6_guangzhi_09"
+        },
+        {
+          "id": "ch6_guangzhi_09",
+          "type": "narration",
+          "text": "木牌背面刻着一个名字，与名籍上的对不上。刻痕很旧，被人摸得发亮。",
+          "next": "ch6_guangzhi_10"
+        },
+        {
+          "id": "ch6_guangzhi_10",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "替死人领粮的，未必都是贪。有人是被这册名册逼着活下来的。",
+          "next": "ch6_guangzhi_11"
+        },
+        {
+          "id": "ch6_guangzhi_11",
+          "type": "narration",
+          "text": "你把木牌收进袖里。县署的方向传来关门的声响，任弘被押在廊下，头一直低着。",
+          "effects": [
+            { "set_flag": "ch6_guangzhi_done", "value": true }
+          ],
+          "next": "ch6_guangzhi_12"
+        },
+        {
+          "id": "ch6_guangzhi_12",
+          "type": "end",
+          "text": "",
+          "exit": "ch06_guangzhi"
+        }
+      ]
+    },
+    {
+      "id": "scene_6_granary",
+      "title": "空廪",
+      "background": "bg_station_interior",
+      "entry": "ch6_granary_01",
+      "trigger": { "flag": "ch6_guangzhi_done" },
+      "nodes": [
+        {
+          "id": "ch6_granary_01",
+          "type": "narration",
+          "text": "悬泉置的廪仓在坞院西角。开春第一次开仓，门轴涩得推不动，几个人合力才推开一条缝。",
+          "next": "ch6_granary_02"
+        },
+        {
+          "id": "ch6_granary_02",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "账上该有八百六十石。你数，我记。",
+          "next": "ch6_granary_03"
+        },
+        {
+          "id": "ch6_granary_03",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "廪里的粮比账面上少了一大截。先点完，还是先问人？",
+          "choices": [
+            {
+              "id": "count_now",
+              "text": "一廪一廪点过去",
+              "next": "ch6_granary_04"
+            },
+            {
+              "id": "ask_su",
+              "text": "先问苏娘这五年是怎么舀的",
+              "next": "ch6_granary_05"
+            }
+          ]
+        },
+        {
+          "id": "ch6_granary_04",
+          "type": "narration",
+          "text": "点到第七廪，麻袋后面露出两块空出来的地面。土是干的，印子却新，像不久前还堆着东西。",
+          "next": "ch6_granary_06"
+        },
+        {
+          "id": "ch6_granary_05",
+          "type": "line",
+          "speaker": "suhe",
+          "text": "我每日按簿舀粮，舀完就记。账面从没短过，廪里却越来越空。我只当是自己记错了。",
+          "next": "ch6_granary_06"
+        },
+        {
+          "id": "ch6_granary_06",
+          "type": "narration",
+          "text": "苏娘把五年的日迹簿摊在膝上，一页一页翻。她指着一行字说：这些日子来领粮的，不是簿上的人。",
+          "effects": [
+            { "set_flag": "ch6_su_asked", "value": true },
+            { "add_clue": "clue_granary_short" }
+          ],
+          "next": "ch6_granary_07"
+        },
+        {
+          "id": "ch6_granary_07",
+          "type": "narration",
+          "text": "廪角传来窸窣声。两个半大的孩子缩在空麻袋后面，脸冻得发青，怀里还抱着半块干粮。",
+          "next": "ch6_granary_08"
+        },
+        {
+          "id": "ch6_granary_08",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "役夫的孩子，没有名籍，也没有口粮。",
+          "choices": [
+            {
+              "id": "give_grain",
+              "text": "把自己的口粮留下，先让他们吃饱",
+              "effects": [
+                { "set_flag": "sq6_02_done", "value": true },
+                { "add_var": "num_proof", "value": 1 }
+              ],
+              "next": "ch6_granary_09"
+            },
+            {
+              "id": "report_children",
+              "text": "交给亭狱安置，按律登记",
+              "effects": [
+                { "set_flag": "sq6_02_done", "value": true }
+              ],
+              "next": "ch6_granary_09"
+            }
+          ]
+        },
+        {
+          "id": "ch6_granary_09",
+          "type": "narration",
+          "text": "孩子在灶房喝上热粥的时候，你把廪里的实数写到簿尾。账面的数减去实数，正好等于补领的总额。",
+          "effects": [
+            { "set_flag": "ch6_granary_done", "value": true },
+            { "add_var": "num_proof", "value": 1 }
+          ],
+          "next": "ch6_granary_10"
+        },
+        {
+          "id": "ch6_granary_10",
+          "type": "end",
+          "text": "",
+          "exit": "ch06_granary"
+        }
+      ]
+    },
+    {
+      "id": "scene_6_zhaoqin",
+      "title": "旧账房",
+      "background": "bg_prison_yard",
+      "entry": "ch6_zhaoqin_01",
+      "trigger": { "flag": "ch6_granary_done" },
+      "nodes": [
+        {
+          "id": "ch6_zhaoqin_01",
+          "type": "narration",
+          "text": "亭狱旁有一间空屋，被郡府改成账房。窗纸糊了两层，屋里还是冷。赵钦坐在案后，手边一摞简，一支秃笔。",
+          "next": "ch6_zhaoqin_02"
+        },
+        {
+          "id": "ch6_zhaoqin_02",
+          "type": "line",
+          "speaker": "zhaoqin",
+          "text": "我现在替郡府清账。会写字的罪吏，比良民好用，这话是郡府说的，不是我说的。",
+          "next": "ch6_zhaoqin_03"
+        },
+        {
+          "id": "ch6_zhaoqin_03",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "他抬头看你，没有回避。",
+          "choices": [
+            {
+              "id": "pressure_zhaoqin",
+              "text": "把旧案摊在案上，先压住他",
+              "effects": [
+                { "add_var": "num_zhaoqin_leverage", "value": 1 }
+              ],
+              "next": "ch6_zhaoqin_04"
+            },
+            {
+              "id": "offer_a_way",
+              "text": "告诉他：交出底账，可以替他说话",
+              "effects": [
+                { "add_var": "num_zhaoqin_leverage", "value": 1 },
+                { "add_var": "num_proof", "value": 1 }
+              ],
+              "next": "ch6_zhaoqin_05"
+            }
+          ]
+        },
+        {
+          "id": "ch6_zhaoqin_04",
+          "type": "line",
+          "speaker": "zhaoqin",
+          "text": "你还是那套。可这回我不怕了——我早就是个罪人，再多一条也是一样。",
+          "next": "ch6_zhaoqin_06"
+        },
+        {
+          "id": "ch6_zhaoqin_05",
+          "type": "line",
+          "speaker": "zhaoqin",
+          "text": "替我说一句话？当年在关下，你也是这么说的。行，我信你这一回。",
+          "next": "ch6_zhaoqin_06"
+        },
+        {
+          "id": "ch6_zhaoqin_06",
+          "type": "narration",
+          "text": "他从案下抽出一卷用布裹着的简，放在两人中间，没有立刻推过来。",
+          "next": "ch6_zhaoqin_07"
+        },
+        {
+          "id": "ch6_zhaoqin_07",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "底账就在眼前。",
+          "choices": [
+            {
+              "id": "full_testimony",
+              "text": "让他把经手人、印信、日子都写全",
+              "effects": [
+                { "set_flag": "sq6_03_done", "value": true },
+                { "add_clue": "clue_zhaoqin_ledger" },
+                { "add_var": "num_proof", "value": 1 }
+              ],
+              "next": "ch6_zhaoqin_08"
+            },
+            {
+              "id": "copy_numbers",
+              "text": "只抄数目，给他留一条退路",
+              "effects": [
+                { "set_flag": "sq6_03_done", "value": true },
+                { "add_clue": "clue_zhaoqin_ledger" }
+              ],
+              "next": "ch6_zhaoqin_09"
+            }
+          ]
+        },
+        {
+          "id": "ch6_zhaoqin_08",
+          "type": "narration",
+          "text": "赵钦写了整整一夜。写到最后一笔，他把笔搁下，说：这些人名我不认得，可这些印，我认得。",
+          "next": "ch6_zhaoqin_09"
+        },
+        {
+          "id": "ch6_zhaoqin_09",
+          "type": "narration",
+          "text": "底账上的押字与补领名册对得上，印色却分两种。一种是仓曹的旧印，另一种，是同一枚印在没有官署背书时盖出来的空印。",
+          "effects": [
+            { "set_flag": "ch6_zhaoqin_done", "value": true },
+            { "add_clue": "clue_caocao_blank_seal" },
+            { "add_var": "num_proof", "value": 1 }
+          ],
+          "next": "ch6_zhaoqin_10"
+        },
+        {
+          "id": "ch6_zhaoqin_10",
+          "type": "end",
+          "text": "",
+          "exit": "ch06_zhaoqin"
+        }
+      ]
+    },
+    {
+      "id": "scene_6_caravan",
+      "title": "补廪车队",
+      "background": "bg_gobi_postroad",
+      "entry": "ch6_caravan_01",
+      "trigger": { "flag": "ch6_zhaoqin_done" },
+      "nodes": [
+        {
+          "id": "ch6_caravan_01",
+          "type": "narration",
+          "text": "天没亮，广至方向的驿道上就起了车辙声。十几辆车，麻布盖得严实，车夫都换了短打，没人说话。",
+          "next": "ch6_caravan_02"
+        },
+        {
+          "id": "ch6_caravan_02",
+          "type": "line",
+          "speaker": "guowang",
+          "text": "车比人沉。麻布底下要是粮，这一趟够悬泉置吃一冬。",
+          "next": "ch6_caravan_03"
+        },
+        {
+          "id": "ch6_caravan_03",
+          "type": "line",
+          "speaker": "baiji",
+          "text": "这趟活是县署雇的，货单齐全。冯安，你要拦，就把官符亮出来；不然我的人不会停。",
+          "next": "ch6_caravan_04"
+        },
+        {
+          "id": "ch6_caravan_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "车队越走越近。",
+          "choices": [
+            {
+              "id": "show_warrant",
+              "text": "亮出郡符，命车队停下",
+              "next": "ch6_caravan_05"
+            },
+            {
+              "id": "ask_manifest",
+              "text": "先让白姬把货单交出来",
+              "effects": [
+                { "add_var": "num_proof", "value": 1 }
+              ],
+              "next": "ch6_caravan_05"
+            }
+          ]
+        },
+        {
+          "id": "ch6_caravan_05",
+          "type": "narration",
+          "text": "车队没有停。领头的人一挥手，几个雇工抄起短棍和弓，把车围在中间。",
+          "next": "ch6_caravan_06"
+        },
+        {
+          "id": "ch6_caravan_06",
+          "type": "combat",
+          "encounter": "enc_ch6_caravan",
+          "on_win": "ch6_caravan_07",
+          "on_lose": "ch6_caravan_08"
+        },
+        {
+          "id": "ch6_caravan_07",
+          "type": "narration",
+          "text": "雇工被打散，几个人扔了棍子往戈壁里跑。车队停在驿道中央，麻布被风掀开一角，底下的粮袋码得整整齐齐。",
+          "effects": [
+            { "set_flag": "ch6_caravan_cleared", "value": true }
+          ],
+          "next": "ch6_caravan_09"
+        },
+        {
+          "id": "ch6_caravan_08",
+          "type": "narration",
+          "text": "乱斗中车队冲过去一半，剩下的车被郭望死死拦住。粮洒了一路，货单却留在车上。",
+          "effects": [
+            { "set_flag": "ch6_caravan_cleared", "value": true }
+          ],
+          "next": "ch6_caravan_09"
+        },
+        {
+          "id": "ch6_caravan_09",
+          "type": "line",
+          "speaker": "aqi",
+          "text": "货单在这儿。粮数、车数、发运的日子，都跟补领名册对得上——一笔不多，一笔不少。",
+          "next": "ch6_caravan_10"
+        },
+        {
+          "id": "ch6_caravan_10",
+          "type": "narration",
+          "text": "你把货单与补领名册并排摊开。三十七笔补领，正好装满这支车队。粮从来没有凭空消失，它只是在账上换了个名字，又走了一趟。",
+          "effects": [
+            { "set_flag": "ch6_caravan_done", "value": true },
+            { "set_flag": "ch6_manifest_checked", "value": true },
+            { "add_clue": "clue_claim_manifest" },
+            { "add_var": "num_proof", "value": 1 }
+          ],
+          "next": "ch6_caravan_11"
+        },
+        {
+          "id": "ch6_caravan_11",
+          "type": "end",
+          "text": "",
+          "exit": "ch06_caravan"
+        }
+      ]
+    },
+    {
+      "id": "scene_6_hall",
+      "title": "堂上对账",
+      "background": "bg_commandery_hall",
+      "entry": "ch6_hall_01",
+      "trigger": { "flag": "ch6_caravan_done" },
+      "nodes": [
+        {
+          "id": "ch6_hall_01",
+          "type": "narration",
+          "text": "郡府正堂，灯烛点到天亮。案上摊着补领名册、底账、货单和廪仓实数，四样东西并排摆开，谁也说不出这是巧合。",
+          "next": "ch6_hall_02"
+        },
+        {
+          "id": "ch6_hall_02",
+          "type": "line",
+          "speaker": "gongcao",
+          "text": "补领三十七笔，手续齐全；廪仓实数短缺，与补领总额相同；底账押字属实，空印无官署背书。",
+          "next": "ch6_hall_03"
+        },
+        {
+          "id": "ch6_hall_03",
+          "type": "line",
+          "speaker": "taishou",
+          "text": "账是平的。人不是。冯安，这笔账你要怎么平？",
+          "next": "ch6_hall_04"
+        },
+        {
+          "id": "ch6_hall_04",
+          "type": "line",
+          "speaker": "zhaoqin",
+          "text": "我可以在堂上作证。但我要说清楚——补领的印不是我盖的，我只写了日子。",
+          "next": "ch6_hall_05"
+        },
+        {
+          "id": "ch6_hall_05",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "粮要归仓，人也要有说法。可这两件事，未必能同时办到。",
+          "next": "ch6_hall_06"
+        },
+        {
+          "id": "ch6_hall_06",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "堂上等着你落笔。",
+          "choices": [
+            {
+              "id": "choose_balance",
+              "text": "追粮归仓，先把亏空填上",
+              "effects": [
+                { "set_var": "ch6_ending", "value": "balance" },
+                { "set_flag": "ch6_chose_balance", "value": true },
+                { "set_flag": "ch6_final_choice", "value": true }
+              ],
+              "next": "ch6_hall_07"
+            },
+            {
+              "id": "choose_expose",
+              "text": "把两本账一并公开，问责到仓曹",
+              "effects": [
+                { "set_var": "ch6_ending", "value": "expose" },
+                { "set_flag": "ch6_chose_expose", "value": true },
+                { "set_flag": "ch6_final_choice", "value": true }
+              ],
+              "next": "ch6_hall_08"
+            },
+            {
+              "id": "choose_quiet",
+              "text": "让赵钦与白姬私下补足，账面不惊动人",
+              "effects": [
+                { "set_var": "ch6_ending", "value": "quiet" },
+                { "set_flag": "ch6_chose_quiet", "value": true },
+                { "set_flag": "ch6_final_choice", "value": true }
+              ],
+              "next": "ch6_hall_09"
+            }
+          ]
+        },
+        {
+          "id": "ch6_hall_07",
+          "type": "narration",
+          "text": "严崇提笔，在文书上写下两个字：追粮。三十七车粮一石一石押回廪仓，广至县这个春天，家家减了口粮。",
+          "effects": [
+            { "set_flag": "ch6_hall_done", "value": true }
+          ],
+          "next": "ch6_hall_10"
+        },
+        {
+          "id": "ch6_hall_08",
+          "type": "narration",
+          "text": "严崇没有落笔，先把两本账推到堂前。郡府仓曹被问责，空印的来源一查到底。三十七个名字又被念了一遍，堂上堂下都听见了。",
+          "effects": [
+            { "set_flag": "ch6_hall_done", "value": true }
+          ],
+          "next": "ch6_hall_10"
+        },
+        {
+          "id": "ch6_hall_09",
+          "type": "narration",
+          "text": "严崇看了你很久，最后把笔搁下。赵钦与白姬在堂外立了字据，粮从商队补回廪仓。账面上没有多出一笔。",
+          "effects": [
+            { "set_flag": "ch6_hall_done", "value": true }
+          ],
+          "next": "ch6_hall_10"
+        },
+        {
+          "id": "ch6_hall_10",
+          "type": "line",
+          "speaker": "taishou",
+          "text": "账要平，日子也要过。你退下吧。",
+          "next": "ch6_hall_11"
+        },
+        {
+          "id": "ch6_hall_11",
+          "type": "end",
+          "text": "",
+          "exit": "ch06_hall"
+        }
+      ]
+    },
+    {
+      "id": "scene_6_end_balance",
+      "title": "账平",
+      "background": "bg_register_archive",
+      "entry": "ch6_balance_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch6_hall_done" },
+          { "var": "ch6_ending", "op": "eq", "value": "balance" }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch6_balance_01",
+          "type": "narration",
+          "text": "粮押回廪仓那日，悬泉置的廪门一直开到天黑。韩伯守着秤，一石一石过，过了三遍。",
+          "next": "ch6_balance_02"
+        },
+        {
+          "id": "ch6_balance_02",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "数目平了。账上再没有补领这一项。",
+          "next": "ch6_balance_03"
+        },
+        {
+          "id": "ch6_balance_03",
+          "type": "line",
+          "speaker": "suhe",
+          "text": "广至的孩子来讨粥，我多添了一勺。粮是从他们嘴里省出来的，我知道。",
+          "next": "ch6_balance_04"
+        },
+        {
+          "id": "ch6_balance_04",
+          "type": "narration",
+          "text": "名籍干净了，廪仓也满了。只是那年春天，广至县多了一批没有名字的坟。",
+          "next": "ch6_balance_05"
+        },
+        {
+          "id": "ch6_balance_05",
+          "type": "seal",
+          "title": "第六章 · 账平",
+          "text": "一石一石追回来的粮，也有别人过冬的口粮。",
+          "seal": "ui_ending_seal",
+          "next": "ch6_balance_06"
+        },
+        {
+          "id": "ch6_balance_06",
+          "type": "narration",
+          "text": "你把补领名册与底账一并归架，捆绳系了三道。",
+          "effects": [
+            { "set_flag": "ch6_finished", "value": true },
+            { "set_flag": "ch6_done", "value": true }
+          ],
+          "next": "ch6_balance_07"
+        },
+        {
+          "id": "ch6_balance_07",
+          "type": "end",
+          "text": "",
+          "exit": "ch06_balance"
+        }
+      ]
+    },
+    {
+      "id": "scene_6_end_expose",
+      "title": "明账",
+      "background": "bg_commandery_hall",
+      "entry": "ch6_expose_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch6_hall_done" },
+          { "var": "ch6_ending", "op": "eq", "value": "expose" }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch6_expose_01",
+          "type": "narration",
+          "text": "郡府的告示贴出来那天，广至与悬泉置都聚了人。告示上没有写粮，只写了印：仓曹空印，谁盖的，谁递的，谁闭了眼。",
+          "next": "ch6_expose_02"
+        },
+        {
+          "id": "ch6_expose_02",
+          "type": "line",
+          "speaker": "gongcao",
+          "text": "空印一案，仓曹史以下七人免职待勘。补领名册封存，另立新簿。",
+          "next": "ch6_expose_03"
+        },
+        {
+          "id": "ch6_expose_03",
+          "type": "line",
+          "speaker": "taishou",
+          "text": "名字已经被改过一次。这一次，谁也不许再改。",
+          "next": "ch6_expose_04"
+        },
+        {
+          "id": "ch6_expose_04",
+          "type": "narration",
+          "text": "三十七个名字又被念了一遍。念的时候，堂下有人低下了头，也有人跟着念。",
+          "next": "ch6_expose_05"
+        },
+        {
+          "id": "ch6_expose_05",
+          "type": "seal",
+          "title": "第六章 · 明账",
+          "text": "账目摊开以后，名字又被人念了一遍。",
+          "seal": "ui_ending_seal",
+          "next": "ch6_expose_06"
+        },
+        {
+          "id": "ch6_expose_06",
+          "type": "narration",
+          "text": "郡仓调来的粮补上了亏空。广至的春天照常过，只是县署的锁换了一把新的。",
+          "effects": [
+            { "set_flag": "ch6_finished", "value": true },
+            { "set_flag": "ch6_done", "value": true }
+          ],
+          "next": "ch6_expose_07"
+        },
+        {
+          "id": "ch6_expose_07",
+          "type": "end",
+          "text": "",
+          "exit": "ch06_expose"
+        }
+      ]
+    },
+    {
+      "id": "scene_6_end_quiet",
+      "title": "私了",
+      "background": "bg_oasis",
+      "entry": "ch6_quiet_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch6_hall_done" },
+          { "not": { "flag": "ch6_finished" } }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch6_quiet_01",
+          "type": "narration",
+          "text": "字据立在外堂，没有惊动郡府。白姬的车队连夜运粮回廪仓，赵钦在账房补完最后一笔，把秃笔扔进了火盆。",
+          "next": "ch6_quiet_02"
+        },
+        {
+          "id": "ch6_quiet_02",
+          "type": "line",
+          "speaker": "zhaoqin",
+          "text": "这回的账是真的。粮是粮，数是数，没有人再替谁背着。",
+          "next": "ch6_quiet_03"
+        },
+        {
+          "id": "ch6_quiet_03",
+          "type": "line",
+          "speaker": "baiji",
+          "text": "商队补的粮，我不图你还。只图往后有人问起，别说这事与我无关。",
+          "next": "ch6_quiet_04"
+        },
+        {
+          "id": "ch6_quiet_04",
+          "type": "narration",
+          "text": "账面平了。没有告示，没有问责，也没有人认罪。廪仓里堆着新粮，广至的孩子照旧来讨粥。",
+          "next": "ch6_quiet_05"
+        },
+        {
+          "id": "ch6_quiet_05",
+          "type": "seal",
+          "title": "第六章 · 私了",
+          "text": "账面平了，没有人认罪，粮却真的回到了廪里。",
+          "seal": "ui_ending_seal",
+          "next": "ch6_quiet_06"
+        },
+        {
+          "id": "ch6_quiet_06",
+          "type": "narration",
+          "text": "你把底账锁进木匣，钥匙交给韩伯。他问要不要备案，你想了很久，说：先留着。",
+          "effects": [
+            { "set_flag": "ch6_finished", "value": true },
+            { "set_flag": "ch6_done", "value": true }
+          ],
+          "next": "ch6_quiet_07"
+        },
+        {
+          "id": "ch6_quiet_07",
+          "type": "end",
+          "text": "",
+          "exit": "ch06_quiet"
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "chapter_id": "ch05",
-  "title": "后日谈 名字之后",
+  "title": "第五章 名字之后",
   "speakers": {
     "narrator": { "name": "旁白", "portrait": null },
     "fengan": { "name": "冯安", "portrait": "char_fengan" },
@@ -71,7 +71,7 @@
         {
           "id": "ch5_names_08",
           "type": "seal",
-          "title": "后日谈 · 名籍",
+          "title": "第五章 · 名籍",
           "text": "名字已经落笔，日子还要继续。",
           "seal": "ui_ending_seal",
           "next": "ch5_names_09"
@@ -150,7 +150,7 @@
         {
           "id": "ch5_exile_08",
           "type": "seal",
-          "title": "后日谈 · 东行",
+          "title": "第五章 · 东行",
           "text": "有些名字仍在路上，有些账还没有写完。",
           "seal": "ui_ending_seal",
           "next": "ch5_exile_09"
@@ -230,7 +230,7 @@
         {
           "id": "ch5_road_08",
           "type": "seal",
-          "title": "后日谈 · 长路",
+          "title": "第五章 · 长路",
           "text": "名字在路上，也在记得他们的人中间。",
           "seal": "ui_ending_seal",
           "next": "ch5_road_09"
@@ -309,7 +309,7 @@
         {
           "id": "ch5_standalone_08",
           "type": "seal",
-          "title": "后日谈 · 待书",
+          "title": "第五章 · 待书",
           "text": "名字之后，仍有人记得这个冬天。",
           "seal": "ui_ending_seal",
           "next": "ch5_standalone_09"

@@ -1,7 +1,8 @@
 {
   "schema_version": 1,
   "chapter_id": "ch05",
-  "title": "后日谈 名字之后",
+  "title": "第五章 名字之后",
+  "next_chapter": "ch06",
   "carryover": {
     "from": "ch04",
     "variables": ["ch4_ending"]
