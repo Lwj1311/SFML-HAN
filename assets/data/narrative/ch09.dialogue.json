@@ -1,0 +1,895 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch09",
+  "title": "第九章 钱法",
+  "speakers": {
+    "narrator": { "name": "旁白", "portrait": null },
+    "fengan": { "name": "冯安", "portrait": "char_fengan" },
+    "hanbo": { "name": "韩伯", "portrait": "char_hanbo" },
+    "suhe": { "name": "苏娘", "portrait": "char_suhe" },
+    "guowang": { "name": "郭望", "portrait": "char_guowang" },
+    "aqi": { "name": "阿耆", "portrait": "char_aqi" },
+    "baiji": { "name": "白姬", "portrait": "char_baiji" },
+    "taishou": { "name": "严崇", "portrait": "char_taishou" },
+    "gongcao": { "name": "郡府功曹", "portrait": "char_gongcao" },
+    "shiyuan": { "name": "广至市掾", "portrait": null },
+    "qianjiang": { "name": "钱匠卫氏", "portrait": null }
+  },
+  "encounters": {
+    "enc_ch9_gate": {
+      "name": "押私钱的家丁",
+      "enemies": [
+        { "id": "manor_guard", "count": 3 },
+        { "id": "manor_archer", "count": 1 }
+      ],
+      "terrain": "gate",
+      "note": "家丁要砍断车辕突围，击退即可；钱串比人重要。"
+    }
+  },
+  "scenes": [
+    {
+      "id": "scene_9_open",
+      "title": "轻钱",
+      "background": "bg_station_courtyard",
+      "entry": "ch9_open_01",
+      "trigger": { "flag": "ch9_start" },
+      "nodes": [
+        {
+          "id": "ch9_open_01",
+          "type": "narration",
+          "text": "秋计过后，郡府拨下的廪食钱发到悬泉置。苏娘数到第三串，指尖停住了——有几枚钱轻得不像官钱。",
+          "next": "ch9_open_02"
+        },
+        {
+          "id": "ch9_open_02",
+          "type": "branch",
+          "branches": [
+            {
+              "condition": { "var": "ch8_ending", "op": "eq", "value": "indict" },
+              "next": "ch9_open_03"
+            },
+            {
+              "condition": { "var": "ch8_ending", "op": "eq", "value": "settle" },
+              "next": "ch9_open_04"
+            },
+            {
+              "condition": { "var": "ch8_ending", "op": "eq", "value": "pursue" },
+              "next": "ch9_open_05"
+            },
+            { "next": "ch9_open_06" }
+          ]
+        },
+        {
+          "id": "ch9_open_03",
+          "type": "narration",
+          "text": "举劾之后，厩佐被换，官署里人人自危。新到的廪食钱里，却混进了剪边的轻钱。",
+          "next": "ch9_open_07"
+        },
+        {
+          "id": "ch9_open_04",
+          "type": "narration",
+          "text": "弥缝之后，账面上一切平整。可苏娘说，这个月领回来的钱，比往常轻了一成。",
+          "next": "ch9_open_07"
+        },
+        {
+          "id": "ch9_open_05",
+          "type": "narration",
+          "text": "追马之后，关下的车查得紧了。商队改走小路，轻钱却从另一头流了进来。",
+          "next": "ch9_open_07"
+        },
+        {
+          "id": "ch9_open_06",
+          "type": "narration",
+          "text": "廪食钱发下来那天，市上开始有人拒收。钱还是钱，只是轻了。",
+          "next": "ch9_open_07"
+        },
+        {
+          "id": "ch9_open_07",
+          "type": "line",
+          "speaker": "suhe",
+          "text": "官钱一枚五铢。这些剪了边的，只有三铢多。",
+          "next": "ch9_open_08"
+        },
+        {
+          "id": "ch9_open_08",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "谁把官钱剪了边，谁就在拿朝廷的铜铸自己的利。",
+          "next": "ch9_open_09"
+        },
+        {
+          "id": "ch9_open_09",
+          "type": "narration",
+          "text": "你把轻钱摊在案上。钱缘的剪口很整齐，像是用同一把錾子剪的。",
+          "next": "ch9_open_10"
+        },
+        {
+          "id": "ch9_open_10",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "先查市上，还是先查钱账？",
+          "choices": [
+            {
+              "id": "go_market",
+              "text": "揣着轻钱去广至市",
+              "next": "ch9_open_11"
+            },
+            {
+              "id": "check_ledger",
+              "text": "先调廪食折钱的钱账",
+              "next": "ch9_open_12"
+            }
+          ]
+        },
+        {
+          "id": "ch9_open_11",
+          "type": "narration",
+          "text": "你揣着几枚轻钱去了广至市。市门刚开，已经有人在为钱争吵。",
+          "next": "ch9_open_13"
+        },
+        {
+          "id": "ch9_open_12",
+          "type": "narration",
+          "text": "你调出这个月的廪食钱账。折钱的数目对得上，成色却没人验过。",
+          "next": "ch9_open_13"
+        },
+        {
+          "id": "ch9_open_13",
+          "type": "narration",
+          "text": "你把轻钱用布包好，压在袖里。",
+          "effects": [
+            { "set_flag": "ch9_open_done", "value": true }
+          ],
+          "next": "ch9_open_14"
+        },
+        {
+          "id": "ch9_open_14",
+          "type": "end",
+          "text": "",
+          "exit": "ch09_open"
+        }
+      ]
+    },
+    {
+      "id": "scene_9_market",
+      "title": "广至市",
+      "background": "bg_guangzhi_post",
+      "entry": "ch9_market_01",
+      "trigger": { "flag": "ch9_open_done" },
+      "nodes": [
+        {
+          "id": "ch9_market_01",
+          "type": "narration",
+          "text": "广至市上，粮、盐、麻布都摆开了，只有收钱的摊子前围着人。",
+          "next": "ch9_market_02"
+        },
+        {
+          "id": "ch9_market_02",
+          "type": "line",
+          "speaker": "shiyuan",
+          "text": "这个月的钱，市面上只肯按七成收。再这样下去，粮价就要涨。",
+          "next": "ch9_market_03"
+        },
+        {
+          "id": "ch9_market_03",
+          "type": "narration",
+          "text": "一个卖盐的老汉把一串钱掼在案上，钱串散了，滚出来的钱边缘都发亮。",
+          "next": "ch9_market_04"
+        },
+        {
+          "id": "ch9_market_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "市掾的簿子，比摊上的钱更清楚。",
+          "choices": [
+            {
+              "id": "ask_shiyuan",
+              "text": "让市掾把收钱的簿子拿出来",
+              "effects": [
+                { "set_flag": "sq9_01_done", "value": true },
+                { "add_clue": "clue_market_word" }
+              ],
+              "next": "ch9_market_05"
+            },
+            {
+              "id": "watch_stalls",
+              "text": "先蹲下，把摊上的钱一枚枚看过去",
+              "effects": [
+                { "add_var": "num_coins", "value": 1 }
+              ],
+              "next": "ch9_market_06"
+            }
+          ]
+        },
+        {
+          "id": "ch9_market_05",
+          "type": "line",
+          "speaker": "shiyuan",
+          "text": "轻钱从西边来，换的都是官钱。来换的人不露面，只把袋子放在门口。",
+          "next": "ch9_market_07"
+        },
+        {
+          "id": "ch9_market_06",
+          "type": "narration",
+          "text": "你蹲下捡钱。十枚里有三枚剪边，剪口一致，钱文却深浅不同——不是官炉铸的。",
+          "next": "ch9_market_07"
+        },
+        {
+          "id": "ch9_market_07",
+          "type": "narration",
+          "text": "市掾翻出收钱的簿子。近一个月，市上收进轻钱一百二十余枚，换出去的官钱三十余串。",
+          "effects": [
+            { "set_flag": "ch9_market_done", "value": true },
+            { "add_clue": "clue_light_coin" },
+            { "add_var": "num_coins", "value": 3 }
+          ],
+          "next": "ch9_market_08"
+        },
+        {
+          "id": "ch9_market_08",
+          "type": "line",
+          "speaker": "guowang",
+          "text": "广至市再这么下去，秋粮还没入仓，人心先散了。",
+          "next": "ch9_market_09"
+        },
+        {
+          "id": "ch9_market_09",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "剪边只是末。有人能铸出钱文来，才是本。",
+          "next": "ch9_market_10"
+        },
+        {
+          "id": "ch9_market_10",
+          "type": "narration",
+          "text": "你把轻钱、收钱簿和市掾的话一并收好，回悬泉置查钱账。",
+          "next": "ch9_market_11"
+        },
+        {
+          "id": "ch9_market_11",
+          "type": "end",
+          "text": "",
+          "exit": "ch09_market"
+        }
+      ]
+    },
+    {
+      "id": "scene_9_ledger",
+      "title": "钱账",
+      "background": "bg_register_archive",
+      "entry": "ch9_ledger_01",
+      "trigger": { "flag": "ch9_market_done" },
+      "nodes": [
+        {
+          "id": "ch9_ledger_01",
+          "type": "narration",
+          "text": "廪食折钱的账在仓曹柜里，一册记支出，一册记成色。",
+          "next": "ch9_ledger_02"
+        },
+        {
+          "id": "ch9_ledger_02",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "官钱入库要验成色。这一册的成色栏，近三个月都是空的。",
+          "next": "ch9_ledger_03"
+        },
+        {
+          "id": "ch9_ledger_03",
+          "type": "narration",
+          "text": "你逐笔对下去。折钱的名目越来越多：修渠、买草、给驿骑添冬衣。",
+          "next": "ch9_ledger_04"
+        },
+        {
+          "id": "ch9_ledger_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "账是真的，钱未必是真的。",
+          "choices": [
+            {
+              "id": "check_sign",
+              "text": "先对签收人的笔迹",
+              "effects": [
+                { "add_var": "num_forgery", "value": 1 }
+              ],
+              "next": "ch9_ledger_05"
+            },
+            {
+              "id": "check_purity",
+              "text": "先把轻钱磨开看成色",
+              "effects": [
+                { "add_var": "num_forgery", "value": 1 }
+              ],
+              "next": "ch9_ledger_06"
+            }
+          ]
+        },
+        {
+          "id": "ch9_ledger_05",
+          "type": "narration",
+          "text": "签收的人名换了好几个，笔迹却出自同一只手。末笔带钩，和料账上仿厩佐的那只手很像。",
+          "next": "ch9_ledger_07"
+        },
+        {
+          "id": "ch9_ledger_06",
+          "type": "narration",
+          "text": "你把轻钱在瓦上磨开。外层的铜色发白，里面掺了铅——官炉不会这么铸。",
+          "next": "ch9_ledger_07"
+        },
+        {
+          "id": "ch9_ledger_07",
+          "type": "narration",
+          "text": "钱账最后一页记着一笔大的：入冬前，广至市解来官钱三十串，成色未验。",
+          "effects": [
+            { "set_flag": "ch9_ledger_done", "value": true },
+            { "add_clue": "clue_coin_ledger" },
+            { "add_var": "num_forgery", "value": 1 }
+          ],
+          "next": "ch9_ledger_08"
+        },
+        {
+          "id": "ch9_ledger_08",
+          "type": "line",
+          "speaker": "suhe",
+          "text": "三十串钱，够悬泉置发半年俸。",
+          "next": "ch9_ledger_09"
+        },
+        {
+          "id": "ch9_ledger_09",
+          "type": "narration",
+          "text": "你把钱账合上。西边的旧屋，最近夜里总有烟。",
+          "next": "ch9_ledger_10"
+        },
+        {
+          "id": "ch9_ledger_10",
+          "type": "end",
+          "text": "",
+          "exit": "ch09_ledger"
+        }
+      ]
+    },
+    {
+      "id": "scene_9_workshop",
+      "title": "私铸",
+      "background": "bg_station_interior",
+      "entry": "ch9_workshop_01",
+      "trigger": { "flag": "ch9_ledger_done" },
+      "nodes": [
+        {
+          "id": "ch9_workshop_01",
+          "type": "narration",
+          "text": "悬泉置西边有一排废屋，从前是修车的地方。这几天夜里，屋后总有烟升起来。",
+          "next": "ch9_workshop_02"
+        },
+        {
+          "id": "ch9_workshop_02",
+          "type": "line",
+          "speaker": "aqi",
+          "text": "屋里有火光。我去看过，门从里面闩着。",
+          "next": "ch9_workshop_03"
+        },
+        {
+          "id": "ch9_workshop_03",
+          "type": "narration",
+          "text": "你带人围住废屋。门开时，屋里的人正把一炉铜水往范里浇。",
+          "next": "ch9_workshop_04"
+        },
+        {
+          "id": "ch9_workshop_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "人赃都在屋里。",
+          "choices": [
+            {
+              "id": "seize_man",
+              "text": "先按住钱匠",
+              "effects": [
+                { "add_var": "num_forgery", "value": 1 }
+              ],
+              "next": "ch9_workshop_05"
+            },
+            {
+              "id": "seize_mould",
+              "text": "先踢翻铜炉，抢出陶范",
+              "effects": [
+                { "add_var": "num_forgery", "value": 1 }
+              ],
+              "next": "ch9_workshop_06"
+            }
+          ]
+        },
+        {
+          "id": "ch9_workshop_05",
+          "type": "narration",
+          "text": "钱匠被按在地上。他的手背上全是烫疤，怀里还揣着半串没剪完的官钱。",
+          "next": "ch9_workshop_07"
+        },
+        {
+          "id": "ch9_workshop_06",
+          "type": "narration",
+          "text": "你一脚踢翻铜炉，从灰里抢出两块陶范。范上的钱文，和市上的轻钱一模一样。",
+          "next": "ch9_workshop_07"
+        },
+        {
+          "id": "ch9_workshop_07",
+          "type": "narration",
+          "text": "屋角堆着铅锭与锡渣。锡是官炉才配用的，民间买不到。",
+          "effects": [
+            { "set_flag": "ch9_workshop_done", "value": true },
+            { "set_flag": "sq9_02_done", "value": true },
+            { "add_clue": "clue_clay_mould" },
+            { "add_clue": "clue_smelt_lead" },
+            { "add_var": "num_forgery", "value": 2 }
+          ],
+          "next": "ch9_workshop_08"
+        },
+        {
+          "id": "ch9_workshop_08",
+          "type": "line",
+          "speaker": "qianjiang",
+          "text": "铸钱的是任家的人。他们说，只要铸得比官钱轻，利就是我们的。",
+          "next": "ch9_workshop_09"
+        },
+        {
+          "id": "ch9_workshop_09",
+          "type": "narration",
+          "text": "钱匠供出下一批货：入冬前，三百枚轻钱随商队出关。",
+          "effects": [
+            { "add_var": "num_coins", "value": 3 }
+          ],
+          "next": "ch9_workshop_10"
+        },
+        {
+          "id": "ch9_workshop_10",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "关下。",
+          "next": "ch9_workshop_11"
+        },
+        {
+          "id": "ch9_workshop_11",
+          "type": "end",
+          "text": "",
+          "exit": "ch09_workshop"
+        }
+      ]
+    },
+    {
+      "id": "scene_9_gate",
+      "title": "关下",
+      "background": "bg_yumenguan_gate",
+      "entry": "ch9_gate_01",
+      "trigger": { "flag": "ch9_workshop_done" },
+      "nodes": [
+        {
+          "id": "ch9_gate_01",
+          "type": "narration",
+          "text": "入冬前最后一批商队排在关下。货单上写的是麻布与药材，车辙却比往常深。",
+          "next": "ch9_gate_02"
+        },
+        {
+          "id": "ch9_gate_02",
+          "type": "line",
+          "speaker": "aqi",
+          "text": "车上压秤。布没这么重。",
+          "next": "ch9_gate_03"
+        },
+        {
+          "id": "ch9_gate_03",
+          "type": "narration",
+          "text": "关吏一枚一枚验传符。有一张传符的名字，和货单上的对不上。",
+          "next": "ch9_gate_04"
+        },
+        {
+          "id": "ch9_gate_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "车就在关下，跑不了。",
+          "choices": [
+            {
+              "id": "check_warrant",
+              "text": "先把传符上的名字对回原主",
+              "effects": [
+                { "set_flag": "sq9_03_done", "value": true },
+                { "add_clue": "clue_gate_warrant" }
+              ],
+              "next": "ch9_gate_05"
+            },
+            {
+              "id": "check_cargo",
+              "text": "先掀开麻布看货",
+              "effects": [
+                { "add_var": "num_coins", "value": 1 }
+              ],
+              "next": "ch9_gate_06"
+            }
+          ]
+        },
+        {
+          "id": "ch9_gate_05",
+          "type": "narration",
+          "text": "传符是借来的。名字的主人是广至一个卖盐的老汉，他连关都没出过。",
+          "next": "ch9_gate_07"
+        },
+        {
+          "id": "ch9_gate_06",
+          "type": "narration",
+          "text": "你掀开麻布，底下是码得整齐的钱串。串绳是新的，钱缘都发亮。",
+          "next": "ch9_gate_07"
+        },
+        {
+          "id": "ch9_gate_07",
+          "type": "narration",
+          "text": "车上有三百枚轻钱，混在官钱里。押车的人说，是任氏让带的。",
+          "effects": [
+            { "add_clue": "clue_gate_warrant" },
+            { "add_var": "num_coins", "value": 3 }
+          ],
+          "next": "ch9_gate_08"
+        },
+        {
+          "id": "ch9_gate_08",
+          "type": "line",
+          "speaker": "baiji",
+          "text": "我的车也在队里。这一趟，我不替他们说话。",
+          "next": "ch9_gate_09"
+        },
+        {
+          "id": "ch9_gate_09",
+          "type": "narration",
+          "text": "押车的人见势不妙，抽刀要砍断车辕。",
+          "next": "ch9_gate_10"
+        },
+        {
+          "id": "ch9_gate_10",
+          "type": "combat",
+          "encounter": "enc_ch9_gate",
+          "on_win": "ch9_gate_11",
+          "on_lose": "ch9_gate_12"
+        },
+        {
+          "id": "ch9_gate_11",
+          "type": "narration",
+          "text": "家丁被制服。钱串散了一地，关吏一枚一枚往回收。",
+          "effects": [
+            { "set_flag": "ch9_gate_done", "value": true },
+            { "set_flag": "ch9_cargo_taken", "value": true },
+            { "add_var": "num_coins", "value": 2 }
+          ],
+          "next": "ch9_gate_13"
+        },
+        {
+          "id": "ch9_gate_12",
+          "type": "narration",
+          "text": "乱中两辆车冲出了关。你截下剩下一辆，钱还在，人跑了。",
+          "effects": [
+            { "set_flag": "ch9_gate_done", "value": true },
+            { "set_flag": "ch9_cargo_taken", "value": true },
+            { "add_var": "num_coins", "value": 1 }
+          ],
+          "next": "ch9_gate_13"
+        },
+        {
+          "id": "ch9_gate_13",
+          "type": "narration",
+          "text": "你把收缴的轻钱封存，带着钱账与陶范回郡府。",
+          "next": "ch9_gate_14"
+        },
+        {
+          "id": "ch9_gate_14",
+          "type": "end",
+          "text": "",
+          "exit": "ch09_gate"
+        }
+      ]
+    },
+    {
+      "id": "scene_9_hall",
+      "title": "钱法堂上",
+      "background": "bg_commandery_hall",
+      "entry": "ch9_hall_01",
+      "trigger": { "flag": "ch9_gate_done" },
+      "nodes": [
+        {
+          "id": "ch9_hall_01",
+          "type": "narration",
+          "text": "郡府钱法堂上，轻钱、钱账、陶范与传符并排铺开。市掾、钱匠与押车的人跪在堂下。",
+          "next": "ch9_hall_02"
+        },
+        {
+          "id": "ch9_hall_02",
+          "type": "line",
+          "speaker": "gongcao",
+          "text": "查获轻钱三百余枚，私范两块，铅锡若干。涉案者七人。",
+          "next": "ch9_hall_03"
+        },
+        {
+          "id": "ch9_hall_03",
+          "type": "line",
+          "speaker": "taishou",
+          "text": "钱法是国家根本。你要给这件事一个什么了结？",
+          "next": "ch9_hall_04"
+        },
+        {
+          "id": "ch9_hall_04",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "严断，则钱法清而市面萧条；缓行，则市面全而私范未绝；溯源，则钱回而关外结怨。",
+          "next": "ch9_hall_05"
+        },
+        {
+          "id": "ch9_hall_05",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "堂上等着你落笔。",
+          "choices": [
+            {
+              "id": "choose_strict",
+              "text": "依律严断，私铸之家连坐",
+              "effects": [
+                { "set_var": "ch9_ending", "value": "strict" },
+                { "set_flag": "ch9_chose_strict", "value": true },
+                { "set_flag": "ch9_final_choice", "value": true }
+              ],
+              "next": "ch9_hall_06"
+            },
+            {
+              "id": "choose_soft",
+              "text": "只收缴轻钱，补足官钱",
+              "effects": [
+                { "set_var": "ch9_ending", "value": "soft" },
+                { "set_flag": "ch9_chose_soft", "value": true },
+                { "set_flag": "ch9_final_choice", "value": true }
+              ],
+              "next": "ch9_hall_07"
+            },
+            {
+              "id": "choose_trace",
+              "text": "顺私钱追到关外",
+              "effects": [
+                { "set_var": "ch9_ending", "value": "trace" },
+                { "set_flag": "ch9_chose_trace", "value": true },
+                { "set_flag": "ch9_final_choice", "value": true }
+              ],
+              "next": "ch9_hall_08"
+            }
+          ]
+        },
+        {
+          "id": "ch9_hall_06",
+          "type": "narration",
+          "text": "你请求依律严断，钱匠、市掾与押车人一并论罪，私铸之家连坐。",
+          "effects": [
+            { "set_flag": "ch9_hall_done", "value": true }
+          ],
+          "next": "ch9_hall_09"
+        },
+        {
+          "id": "ch9_hall_07",
+          "type": "narration",
+          "text": "你请求只收缴轻钱、补足官钱，市掾罚俸，钱匠充役，不再深究。",
+          "effects": [
+            { "set_flag": "ch9_hall_done", "value": true }
+          ],
+          "next": "ch9_hall_09"
+        },
+        {
+          "id": "ch9_hall_08",
+          "type": "narration",
+          "text": "你请求顺私钱追到关外，把任氏与商队的线一并起出来。",
+          "effects": [
+            { "set_flag": "ch9_hall_done", "value": true }
+          ],
+          "next": "ch9_hall_09"
+        },
+        {
+          "id": "ch9_hall_09",
+          "type": "line",
+          "speaker": "taishou",
+          "text": "准。落笔吧。",
+          "next": "ch9_hall_10"
+        },
+        {
+          "id": "ch9_hall_10",
+          "type": "narration",
+          "text": "功曹铺开钱法册，笔尖悬在“私铸”一栏上。",
+          "next": "ch9_hall_11"
+        },
+        {
+          "id": "ch9_hall_11",
+          "type": "end",
+          "text": "",
+          "exit": "ch09_hall"
+        }
+      ]
+    },
+    {
+      "id": "scene_9_end_strict",
+      "title": "严断",
+      "background": "bg_commandery_hall",
+      "entry": "ch9_strict_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch9_hall_done" },
+          { "var": "ch9_ending", "op": "eq", "value": "strict" }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch9_strict_01",
+          "type": "narration",
+          "text": "钱法严断的告示贴在广至市门。钱匠、市掾与押车人一并收押，任氏的私炉被封。",
+          "next": "ch9_strict_02"
+        },
+        {
+          "id": "ch9_strict_02",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "市面冷了一个冬天。可官钱再过手时，没有人再剪边了。",
+          "next": "ch9_strict_03"
+        },
+        {
+          "id": "ch9_strict_03",
+          "type": "narration",
+          "text": "广至市萧条了一阵。开春后，粮价慢慢落回原处。",
+          "next": "ch9_strict_04"
+        },
+        {
+          "id": "ch9_strict_04",
+          "type": "seal",
+          "title": "第九章 · 严断",
+          "text": "钱法清了，市面冷了。",
+          "seal": "ui_ending_seal",
+          "next": "ch9_strict_05"
+        },
+        {
+          "id": "ch9_strict_05",
+          "type": "narration",
+          "text": "你把收缴的轻钱熔成铜锭，入库封存。",
+          "effects": [
+            { "set_flag": "ch9_finished", "value": true },
+            { "set_flag": "ch9_done", "value": true }
+          ],
+          "next": "ch9_strict_06"
+        },
+        {
+          "id": "ch9_strict_06",
+          "type": "narration",
+          "text": "铜锭上还留着钱文的影子，像一层没洗掉的旧字。",
+          "next": "ch9_strict_07"
+        },
+        {
+          "id": "ch9_strict_07",
+          "type": "end",
+          "text": "",
+          "exit": "ch09_strict"
+        }
+      ]
+    },
+    {
+      "id": "scene_9_end_soft",
+      "title": "缓行",
+      "background": "bg_station_interior",
+      "entry": "ch9_soft_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch9_hall_done" },
+          { "var": "ch9_ending", "op": "eq", "value": "soft" }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch9_soft_01",
+          "type": "narration",
+          "text": "收缴的轻钱补足了官钱，市掾罚俸，钱匠充役。广至市第二天照常开门。",
+          "next": "ch9_soft_02"
+        },
+        {
+          "id": "ch9_soft_02",
+          "type": "line",
+          "speaker": "suhe",
+          "text": "钱又能花了。只是钱串里偶尔还能摸到一枚轻的。",
+          "next": "ch9_soft_03"
+        },
+        {
+          "id": "ch9_soft_03",
+          "type": "narration",
+          "text": "钱账补平了。私范被砸碎扔进渠里，没有人再提那间废屋。",
+          "next": "ch9_soft_04"
+        },
+        {
+          "id": "ch9_soft_04",
+          "type": "seal",
+          "title": "第九章 · 缓行",
+          "text": "市面全了，私范未绝。",
+          "seal": "ui_ending_seal",
+          "next": "ch9_soft_05"
+        },
+        {
+          "id": "ch9_soft_05",
+          "type": "narration",
+          "text": "夜里你把一枚轻钱放在灯下看。剪口很整齐，像随时能再剪一次。",
+          "effects": [
+            { "set_flag": "ch9_finished", "value": true },
+            { "set_flag": "ch9_done", "value": true }
+          ],
+          "next": "ch9_soft_06"
+        },
+        {
+          "id": "ch9_soft_06",
+          "type": "narration",
+          "text": "第二年春天，市上又有人拿轻钱来换官钱。",
+          "next": "ch9_soft_07"
+        },
+        {
+          "id": "ch9_soft_07",
+          "type": "end",
+          "text": "",
+          "exit": "ch09_soft"
+        }
+      ]
+    },
+    {
+      "id": "scene_9_end_trace",
+      "title": "溯源",
+      "background": "bg_yumenguan_dusk",
+      "entry": "ch9_trace_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch9_hall_done" },
+          { "not": { "flag": "ch9_finished" } }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch9_trace_01",
+          "type": "narration",
+          "text": "你带着关吏连夜出关，在红柳滩外截住了那批私钱。押车的人弃车而走，钱一串没少。",
+          "next": "ch9_trace_02"
+        },
+        {
+          "id": "ch9_trace_02",
+          "type": "line",
+          "speaker": "aqi",
+          "text": "钱回来了，人没回来。关外的路，往后要多设一道验。",
+          "next": "ch9_trace_03"
+        },
+        {
+          "id": "ch9_trace_03",
+          "type": "narration",
+          "text": "白姬的车队被查了三天。她只说：下次过货，我会先问清钱是谁铸的。",
+          "next": "ch9_trace_04"
+        },
+        {
+          "id": "ch9_trace_04",
+          "type": "seal",
+          "title": "第九章 · 溯源",
+          "text": "钱回了库，关外结了怨。",
+          "seal": "ui_ending_seal",
+          "next": "ch9_trace_05"
+        },
+        {
+          "id": "ch9_trace_05",
+          "type": "narration",
+          "text": "三百枚轻钱熔成铜锭。你亲手把铜锭送进郡府的钱库。",
+          "effects": [
+            { "set_flag": "ch9_finished", "value": true },
+            { "set_flag": "ch9_done", "value": true }
+          ],
+          "next": "ch9_trace_06"
+        },
+        {
+          "id": "ch9_trace_06",
+          "type": "narration",
+          "text": "关下的风一夜比一夜冷，商队的车辙绕得更远了。",
+          "next": "ch9_trace_07"
+        },
+        {
+          "id": "ch9_trace_07",
+          "type": "end",
+          "text": "",
+          "exit": "ch09_trace"
+        }
+      ]
+    }
+  ]
+}

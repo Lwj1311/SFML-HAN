@@ -2,6 +2,7 @@
   "schema_version": 1,
   "chapter_id": "ch08",
   "title": "第八章 马簿",
+  "next_chapter": "ch09",
   "carryover": {
     "from": "ch07",
     "variables": ["ch7_ending"]

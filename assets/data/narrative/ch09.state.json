@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch09",
+  "title": "第九章 钱法",
+  "carryover": {
+    "from": "ch08",
+    "variables": ["ch8_ending"]
+  },
+  "initial": {
+    "flags": {
+      "ch9_start": true,
+      "ch9_open_done": false,
+      "ch9_market_done": false,
+      "ch9_ledger_done": false,
+      "ch9_workshop_done": false,
+      "ch9_gate_done": false,
+      "ch9_cargo_taken": false,
+      "ch9_hall_done": false,
+      "ch9_chose_strict": false,
+      "ch9_chose_soft": false,
+      "ch9_chose_trace": false,
+      "ch9_final_choice": false,
+      "ch9_finished": false,
+      "ch9_done": false,
+      "sq9_01_done": false,
+      "sq9_02_done": false,
+      "sq9_03_done": false
+    },
+    "variables": {
+      "ch8_ending": "none",
+      "ch9_ending": "none",
+      "num_coins": 0,
+      "num_forgery": 0
+    }
+  },
+  "variables": {
+    "ch8_ending": {
+      "type": "enum",
+      "values": ["none", "indict", "settle", "pursue"],
+      "description": "第八章结局，决定本章轻钱从哪一头流入"
+    },
+    "ch9_ending": {
+      "type": "enum",
+      "values": ["none", "strict", "soft", "trace"],
+      "description": "本章结局：严断 / 缓行 / 溯源"
+    },
+    "num_coins": {
+      "type": "int",
+      "min": 0,
+      "max": 12,
+      "description": "查获或收缴的轻钱数目，以串计"
+    },
+    "num_forgery": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "私铸证据：钱账、范、铅锡、传符与口供"
+    }
+  },
+  "clues": {
+    "clue_light_coin": "剪边轻钱：钱缘被剪，一枚只剩三铢多，剪口出自同一把錾子。",
+    "clue_coin_ledger": "钱账：廪食折钱成色栏近三月全空，三十贯官钱成色未验。",
+    "clue_clay_mould": "陶钱范：废屋灰里抢出的两块铸范，钱文与市上轻钱一致。",
+    "clue_gate_warrant": "关下传符：名字是借来的，主人连关都没出过；轻钱随商队出关。",
+    "clue_smelt_lead": "铅锡渣：铸钱处留下的渣里混着官炉才配用的锡。",
+    "clue_market_word": "市掾口供：轻钱从西边来，换的都是官钱，来人从不露面。"
+  },
+  "items": {
+    "item_light_coin": {
+      "name": "轻钱",
+      "icon": "item_wuzhu_coin",
+      "description": "剪去钱缘的五铢钱，轻得能漂在水上"
+    },
+    "item_coin_ledger": {
+      "name": "钱账",
+      "icon": "item_hemp_paper",
+      "description": "廪食折钱的账册，成色一栏尽空"
+    },
+    "item_clay_mould": {
+      "name": "陶钱范",
+      "icon": "item_pottery_jar",
+      "description": "私铸用的陶范，钱文与轻钱一模一样"
+    }
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch09",
+  "quests": [
+    {
+      "id": "mq_9_01",
+      "type": "main",
+      "title": "轻钱",
+      "summary": "廪食钱发下来，市上却只肯按七成收。钱缘被剪，剪口出自同一把錾子。",
+      "location": "悬泉置与广至市",
+      "prerequisites": { "flag": "ch9_start" },
+      "objectives": [
+        {
+          "id": "mq_9_01_obj_order",
+          "text": "认出廪食钱里的轻钱",
+          "condition": { "flag": "ch9_open_done" }
+        },
+        {
+          "id": "mq_9_01_obj_market",
+          "text": "去广至市看钱怎么被拒收",
+          "condition": { "flag": "ch9_market_done" }
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "mq_9_01_obj_order" },
+          { "objective": "mq_9_01_obj_market" }
+        ]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_light_coin" },
+        { "type": "item", "id": "item_light_coin" }
+      ]
+    },
+    {
+      "id": "mq_9_02",
+      "type": "main",
+      "title": "钱账",
+      "summary": "官钱入库要验成色。钱账上的成色栏空了三个月，三十贯官钱无人验过。",
+      "location": "悬泉置仓曹",
+      "prerequisites": { "quest": "mq_9_01", "state": "completed" },
+      "objectives": [
+        {
+          "id": "mq_9_02_obj_ledger",
+          "text": "对出钱账上的空档",
+          "condition": { "flag": "ch9_ledger_done" }
+        },
+        {
+          "id": "mq_9_02_obj_market",
+          "text": "问出市掾知道的事",
+          "condition": { "flag": "sq9_01_done" },
+          "optional": true
+        }
+      ],
+      "completion": {
+        "all": [{ "objective": "mq_9_02_obj_ledger" }]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_coin_ledger" },
+        { "type": "item", "id": "item_coin_ledger" }
+      ]
+    },
+    {
+      "id": "mq_9_03",
+      "type": "main",
+      "title": "私铸",
+      "summary": "西边废屋夜夜有烟。屋里的人把铜水浇进陶范，铸出的钱比官钱轻。",
+      "location": "悬泉置西废屋",
+      "prerequisites": { "quest": "mq_9_02", "state": "completed" },
+      "objectives": [
+        {
+          "id": "mq_9_03_obj_workshop",
+          "text": "破获私铸的废屋",
+          "condition": { "flag": "ch9_workshop_done" }
+        },
+        {
+          "id": "mq_9_03_obj_lead",
+          "text": "查清炉边的铅锡渣",
+          "condition": { "flag": "sq9_02_done" },
+          "optional": true
+        }
+      ],
+      "completion": {
+        "all": [{ "objective": "mq_9_03_obj_workshop" }]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_clay_mould" },
+        { "type": "item", "id": "item_clay_mould" }
+      ]
+    },
+    {
+      "id": "mq_9_04",
+      "type": "main",
+      "title": "关下",
+      "summary": "入冬前最后一批商队，货单写麻布，车上却是三百枚轻钱。传符上的名字是借的。",
+      "location": "玉门关下",
+      "prerequisites": { "quest": "mq_9_03", "state": "completed" },
+      "objectives": [
+        {
+          "id": "mq_9_04_obj_gate",
+          "text": "在关下截住私钱",
+          "condition": { "flag": "ch9_gate_done" }
+        },
+        {
+          "id": "mq_9_04_obj_cargo",
+          "text": "把轻钱封存入库",
+          "condition": { "flag": "ch9_cargo_taken" }
+        },
+        {
+          "id": "mq_9_04_obj_warrant",
+          "text": "验出借来的传符",
+          "condition": { "flag": "sq9_03_done" },
+          "optional": true
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "mq_9_04_obj_gate" },
+          { "objective": "mq_9_04_obj_cargo" }
+        ]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_gate_warrant" }
+      ]
+    },
+    {
+      "id": "mq_9_05",
+      "type": "main",
+      "title": "钱法",
+      "summary": "严断则钱法清而市面冷，缓行则市面全而私范未绝，溯源则钱回而关外结怨。",
+      "location": "敦煌郡府钱法堂",
+      "prerequisites": { "quest": "mq_9_04", "state": "completed" },
+      "objectives": [
+        {
+          "id": "mq_9_05_obj_hall",
+          "text": "在钱法堂上对轻钱",
+          "condition": { "flag": "ch9_hall_done" }
+        },
+        {
+          "id": "mq_9_05_obj_choice",
+          "text": "定下私铸的处置",
+          "condition": { "flag": "ch9_final_choice" }
+        },
+        {
+          "id": "mq_9_05_obj_ending",
+          "text": "等郡府落笔",
+          "condition": { "var": "ch9_ending", "op": "neq", "value": "none" }
+        }
+      ],
+      "completion": {
+        "all": [
+          { "objective": "mq_9_05_obj_hall" },
+          { "objective": "mq_9_05_obj_choice" },
+          { "objective": "mq_9_05_obj_ending" }
+        ]
+      },
+      "rewards": [
+        { "type": "flag", "id": "ch9_done" }
+      ]
+    },
+    {
+      "id": "sq_9_01",
+      "type": "side",
+      "title": "市掾的账",
+      "summary": "轻钱从西边来，换的都是官钱。来换钱的人，从不露面。",
+      "location": "广至市",
+      "prerequisites": { "flag": "ch9_open_done" },
+      "objectives": [
+        {
+          "id": "sq_9_01_obj_market",
+          "text": "让市掾把收钱的簿子拿出来",
+          "condition": { "flag": "sq9_01_done" }
+        }
+      ],
+      "completion": {
+        "all": [{ "objective": "sq_9_01_obj_market" }]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_market_word" }
+      ]
+    },
+    {
+      "id": "sq_9_02",
+      "type": "side",
+      "title": "炉边的铅锡",
+      "summary": "官炉才配用的锡，出现在废屋的灰里。铸钱的人，本钱比想象中厚。",
+      "location": "悬泉置西废屋",
+      "prerequisites": { "flag": "ch9_market_done" },
+      "objectives": [
+        {
+          "id": "sq_9_02_obj_lead",
+          "text": "收起炉边的铅锡渣",
+          "condition": { "flag": "sq9_02_done" }
+        }
+      ],
+      "completion": {
+        "all": [{ "objective": "sq_9_02_obj_lead" }]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_smelt_lead" }
+      ]
+    },
+    {
+      "id": "sq_9_03",
+      "type": "side",
+      "title": "借来的传符",
+      "summary": "传符上的名字，是广至卖盐的老汉。他连关都没出过。",
+      "location": "玉门关下",
+      "prerequisites": { "flag": "ch9_ledger_done" },
+      "objectives": [
+        {
+          "id": "sq_9_03_obj_warrant",
+          "text": "把传符上的名字对回原主",
+          "condition": { "flag": "sq9_03_done" }
+        }
+      ],
+      "completion": {
+        "all": [{ "objective": "sq_9_03_obj_warrant" }]
+      },
+      "rewards": [
+        { "type": "clue", "id": "clue_gate_warrant" }
+      ]
+    }
+  ]
+}

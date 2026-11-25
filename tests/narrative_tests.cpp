@@ -776,7 +776,21 @@ HAN_TEST(campaign_completes_every_quest_and_scene) {
     HAN_CHECK_EQ(ch8.state().int_var("num_horses"), 6);
     HAN_CHECK_EQ(ch8.played_scenes().size(), std::size_t{7});
     HAN_CHECK_EQ(ch8.played_scenes().back(), std::string("scene_8_end_indict"));
-    HAN_CHECK(ch8.next_chapter().empty());
+    HAN_CHECK_EQ(ch8.next_chapter(), std::string("ch09"));
+
+    NarrativeSession ch9;
+    HAN_CHECK(ch9.load(dir, "ch09", ch8, &error));
+    ch9.start();
+    play_to_end(ch9);
+    check_all_quests_completed(ch9, {"mq_9_01", "mq_9_02", "mq_9_03", "mq_9_04",
+                                     "mq_9_05", "sq_9_01", "sq_9_02", "sq_9_03"});
+    HAN_CHECK(ch9.state().flag("ch9_done"));
+    HAN_CHECK_EQ(ch9.state().string_var("ch8_ending"), std::string("indict"));
+    HAN_CHECK_EQ(ch9.state().string_var("ch9_ending"), std::string("strict"));
+    HAN_CHECK_EQ(ch9.state().int_var("num_coins"), 11);
+    HAN_CHECK_EQ(ch9.played_scenes().size(), std::size_t{7});
+    HAN_CHECK_EQ(ch9.played_scenes().back(), std::string("scene_9_end_strict"));
+    HAN_CHECK(ch9.next_chapter().empty());
 }
 
 HAN_TEST(chapter_three_copies_declared_carryover) {
@@ -1271,7 +1285,7 @@ HAN_TEST(chapter_eight_standalone_plays_to_an_ending) {
     HAN_CHECK_EQ(session.played_scenes().size(), std::size_t{7});
     HAN_CHECK_EQ(session.played_scenes().front(), std::string("scene_8_open"));
     HAN_CHECK_EQ(session.played_scenes().back(), std::string("scene_8_end_indict"));
-    HAN_CHECK(session.next_chapter().empty());
+    HAN_CHECK_EQ(session.next_chapter(), std::string("ch09"));
 }
 
 HAN_TEST(chapter_eight_supports_three_endings) {
@@ -1298,7 +1312,7 @@ HAN_TEST(chapter_eight_supports_three_endings) {
         HAN_CHECK_EQ(session.state().string_var("ch8_ending"), std::string(test.ending));
         HAN_CHECK_EQ(session.played_scenes().size(), std::size_t{7});
         HAN_CHECK_EQ(session.played_scenes().back(), std::string(test.scene));
-        HAN_CHECK(session.next_chapter().empty());
+        HAN_CHECK_EQ(session.next_chapter(), std::string("ch09"));
     }
 }
 
@@ -1315,12 +1329,106 @@ HAN_TEST(chapter_eight_copies_carryover_from_chapter_seven) {
     HAN_CHECK_EQ(ch8.chapter_id(), std::string("ch08"));
     HAN_CHECK_EQ(ch8.state().string_var("ch7_ending"), std::string("leave"));
     HAN_CHECK_EQ(ch8.state().string_var("ch8_ending"), std::string("none"));
-    HAN_CHECK(ch8.next_chapter().empty());
+    HAN_CHECK_EQ(ch8.next_chapter(), std::string("ch09"));
 
     NarrativeSession ch6;
     HAN_CHECK(ch6.load(dir, "ch06", &error));
     NarrativeSession mismatched;
     HAN_CHECK(!mismatched.load(dir, "ch08", ch6, &error));
+    HAN_CHECK(!error.empty());
+}
+
+HAN_TEST(chapter_nine_data_loads_and_validates) {
+    const std::filesystem::path dir{HAN_DATA_DIR};
+    const Json state_doc = read_json(dir / "ch09.state.json");
+    const Json quest_doc = read_json(dir / "ch09.quests.json");
+    const Json dialogue_doc = read_json(dir / "ch09.dialogue.json");
+
+    NarrativeState state;
+    QuestSystem quests;
+    DialogueDocument dialogue;
+    std::string error;
+    HAN_CHECK(state.load_initial(state_doc, &error));
+    HAN_CHECK(quests.load(quest_doc, &error));
+    quests.reset(state);
+    HAN_CHECK(dialogue.load(dialogue_doc, &error));
+
+    HAN_CHECK_EQ(dialogue.scene_count(), std::size_t{9});
+    HAN_CHECK_EQ(dialogue.node_count(), std::size_t{92});
+    HAN_CHECK_EQ(quests.size(), std::size_t{8});
+
+    const std::vector<ValidationIssue> issues =
+        validate_chapter(state_doc, quests, dialogue, state);
+    print_issues(issues);
+    HAN_CHECK_EQ(count_errors(issues), std::size_t{0});
+}
+
+HAN_TEST(chapter_nine_standalone_plays_to_an_ending) {
+    const std::filesystem::path dir{HAN_DATA_DIR};
+    NarrativeSession session;
+    std::string error;
+    HAN_CHECK(session.load(dir, "ch09", &error));
+    session.start();
+    play_to_end(session);
+
+    HAN_CHECK_EQ(session.state().string_var("ch8_ending"), std::string("none"));
+    HAN_CHECK_EQ(session.state().string_var("ch9_ending"), std::string("strict"));
+    HAN_CHECK(session.state().flag("ch9_done"));
+    HAN_CHECK_EQ(session.state().int_var("num_coins"), 11);
+    HAN_CHECK_EQ(session.state().int_var("num_forgery"), 5);
+    HAN_CHECK_EQ(session.played_scenes().size(), std::size_t{7});
+    HAN_CHECK_EQ(session.played_scenes().front(), std::string("scene_9_open"));
+    HAN_CHECK_EQ(session.played_scenes().back(), std::string("scene_9_end_strict"));
+    HAN_CHECK(session.next_chapter().empty());
+}
+
+HAN_TEST(chapter_nine_supports_three_endings) {
+    const std::filesystem::path dir{HAN_DATA_DIR};
+    struct EndingCase {
+        const char* choice;
+        const char* ending;
+        const char* scene;
+    };
+    const EndingCase cases[] = {
+        {"choose_strict", "strict", "scene_9_end_strict"},
+        {"choose_soft", "soft", "scene_9_end_soft"},
+        {"choose_trace", "trace", "scene_9_end_trace"},
+    };
+
+    for (const EndingCase& test : cases) {
+        NarrativeSession session;
+        std::string error;
+        HAN_CHECK(session.load(dir, "ch09", &error));
+        session.start();
+        play_to_end(session, {test.choice});
+
+        HAN_CHECK(session.state().flag("ch9_done"));
+        HAN_CHECK_EQ(session.state().string_var("ch9_ending"), std::string(test.ending));
+        HAN_CHECK_EQ(session.played_scenes().size(), std::size_t{7});
+        HAN_CHECK_EQ(session.played_scenes().back(), std::string(test.scene));
+        HAN_CHECK(session.next_chapter().empty());
+    }
+}
+
+HAN_TEST(chapter_nine_copies_carryover_from_chapter_eight) {
+    const std::filesystem::path dir{HAN_DATA_DIR};
+    NarrativeSession ch8;
+    std::string error;
+    HAN_CHECK(ch8.load(dir, "ch08", &error));
+    ch8.start();
+    ch8.state().set_string_var("ch8_ending", "pursue");
+
+    NarrativeSession ch9;
+    HAN_CHECK(ch9.load(dir, "ch09", ch8, &error));
+    HAN_CHECK_EQ(ch9.chapter_id(), std::string("ch09"));
+    HAN_CHECK_EQ(ch9.state().string_var("ch8_ending"), std::string("pursue"));
+    HAN_CHECK_EQ(ch9.state().string_var("ch9_ending"), std::string("none"));
+    HAN_CHECK(ch9.next_chapter().empty());
+
+    NarrativeSession ch7;
+    HAN_CHECK(ch7.load(dir, "ch07", &error));
+    NarrativeSession mismatched;
+    HAN_CHECK(!mismatched.load(dir, "ch09", ch7, &error));
     HAN_CHECK(!error.empty());
 }
 
