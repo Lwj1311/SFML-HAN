@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch05",
+  "quests": [
+    {
+      "id": "mq_5_01",
+      "type": "main",
+      "title": "名字之后",
+      "summary": "结局不是最后一笔。看看那些名字被写下以后，日子怎样继续。",
+      "location": "结局之后",
+      "prerequisites": { "flag": "ch5_start" },
+      "objectives": [
+        {
+          "id": "mq_5_01_obj_epilogue",
+          "text": "看完这个冬天的余波",
+          "condition": { "flag": "ch5_done" }
+        }
+      ],
+      "completion": {
+        "all": [{ "objective": "mq_5_01_obj_epilogue" }]
+      },
+      "rewards": []
+    }
+  ]
+}

@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch04",
+  "title": "第四章 三十七个名字",
+  "next_chapter": "ch05",
+  "carryover": {
+    "from": "ch03",
+    "variables": [
+      "num_su_trust",
+      "num_hanbo_trust",
+      "num_guowang_trust",
+      "num_aqi_trust",
+      "num_reputation",
+      "num_zhougan_trust",
+      "num_baiji_trust",
+      "num_zhaoqin_pressure",
+      "num_prefecture_suspicion",
+      "ch3_ending"
+    ],
+    "flags": [
+      "ch2_zhougan_protected",
+      "ch2_duyan_deal",
+      "evidence_with_su",
+      "ch1_guowang_hurt",
+      "ch3_zhougan_stayed",
+      "ch3_zhougan_testified_2",
+      "ch3_zhaoqin_flipped",
+      "ch3_seal_seized"
+    ]
+  },
+  "initial": {
+    "flags": {
+      "ch4_start": true,
+      "ch4_open_done": false,
+      "ch4_roster_checked": false,
+      "ch4_names_collected": false,
+      "ch4_erasure_found": false,
+      "ch4_archive_done": false,
+      "ch4_hanbo_copy": false,
+      "ch4_hanbo_done": false,
+      "ch4_su_testified": false,
+      "ch4_su_done": false,
+      "ch4_zhougan_seen": false,
+      "ch4_weichang_confessed": false,
+      "ch4_prison_done": false,
+      "ch4_beacon_lit": false,
+      "ch4_beacon_cleared": false,
+      "ch4_archive_saved": false,
+      "ch4_beacon_done": false,
+      "ch4_indict_written": false,
+      "ch4_indict_done": false,
+      "ch4_zhaoqin_recanted": false,
+      "ch4_chose_names": false,
+      "ch4_chose_deal": false,
+      "ch4_chose_road": false,
+      "ch4_final_choice": false,
+      "ch4_names_restored": false,
+      "ch4_hall_done": false,
+      "ch4_done": false,
+      "sq4_01_done": false,
+      "sq4_02_done": false,
+      "sq4_03_done": false,
+      "ch2_zhougan_protected": false,
+      "ch2_duyan_deal": false,
+      "evidence_with_su": false,
+      "ch1_guowang_hurt": false,
+      "ch3_zhougan_stayed": false,
+      "ch3_zhougan_testified_2": false,
+      "ch3_zhaoqin_flipped": false,
+      "ch3_seal_seized": false
+    },
+    "variables": {
+      "num_su_trust": 0,
+      "num_hanbo_trust": 0,
+      "num_guowang_trust": 0,
+      "num_aqi_trust": 0,
+      "num_reputation": 0,
+      "num_zhougan_trust": 0,
+      "num_baiji_trust": 0,
+      "num_zhaoqin_pressure": 0,
+      "num_prefecture_suspicion": 0,
+      "ch3_ending": "none",
+      "num_evidence": 0,
+      "ch4_ending": "none",
+      "ch4_indict_scope": "none"
+    }
+  },
+  "variables": {
+    "num_su_trust": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "苏娘信任，决定她是否肯具名作证"
+    },
+    "num_hanbo_trust": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "韩伯信任，决定私抄底本是否交出"
+    },
+    "num_guowang_trust": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "郭望信任，影响烽燧防守的同伴"
+    },
+    "num_aqi_trust": {
+      "type": "int",
+      "min": -2,
+      "max": 5,
+      "description": "阿耆信任，影响出关结局是否有人接应"
+    },
+    "num_reputation": {
+      "type": "int",
+      "min": 0,
+      "max": 20,
+      "description": "边塞声望，影响郡守对劾状的态度"
+    },
+    "num_zhougan_trust": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "周敢信任，影响狱中供词与送别"
+    },
+    "num_baiji_trust": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "白姬倾向，影响出关后的商路"
+    },
+    "num_zhaoqin_pressure": {
+      "type": "int",
+      "min": 0,
+      "max": 3,
+      "description": "赵钦承压程度，达到 2 或自守开局时他在堂上反水"
+    },
+    "num_prefecture_suspicion": {
+      "type": "int",
+      "min": 0,
+      "max": 3,
+      "description": "郡府对冯安的怀疑，高值时对质措辞更冷"
+    },
+    "ch3_ending": {
+      "type": "enum",
+      "values": ["none", "handover", "cargo", "stand"],
+      "description": "第三章结局，决定本章开局与狱中对象"
+    },
+    "num_evidence": {
+      "type": "int",
+      "min": 0,
+      "max": 8,
+      "description": "证据链完整度：名籍、削痕、底本、证词、口供、残印与反水证词"
+    },
+    "ch4_ending": {
+      "type": "enum",
+      "values": ["none", "names", "exile", "road"],
+      "description": "本章结局：名籍落笔 / 押解东行 / 关外长路"
+    },
+    "ch4_indict_scope": {
+      "type": "enum",
+      "values": ["none", "weichang", "both", "names"],
+      "description": "劾状的覆盖范围，影响赵钦承压与声望"
+    }
+  },
+  "clues": {
+    "clue_register_slips": "悬泉置名籍原册：三十七人名下注着“卒”，廪食簿上他们却仍在领粮。",
+    "clue_erasure_proof": "名籍上的削改对勘：削痕下还能认出原来的籍贯与卒年，被人用同一把刀改过。",
+    "clue_hanbo_copy": "韩伯私抄了二十年的底本，与原册互为印证，可抵一本被烧的名籍。",
+    "clue_su_testimony": "苏娘具名的证词：三十七人的粮，是她一勺一勺舀出去的，领粮的不是本人。",
+    "clue_zhougan_last": "周敢在狱中补完的最后一段供词，指认领粮与换名的经手人。",
+    "clue_weichang_confession": "卫敞的口供：印是他管的，但让人去领粮的不是他。",
+    "clue_zhaoqin_recant": "赵钦当堂反水的证词，承认过关文书上的署名是受人指使。",
+    "clue_su_name": "苏娘的本名。二十年没人叫过，如今写在一张名条上。",
+    "clue_prison_roster": "亭狱收押名簿：谁在什么时候被收押、被提走，都有日子。",
+    "clue_beacon_names": "烽燧旧卒的名字，刻在燧墙内侧，不在任何一本名籍上。",
+    "clue_commandery_reply": "郡府回文：烽火传警当夜有援兵出动，日子与人数都可对。"
+  },
+  "items": {
+    "item_register_slips": {
+      "name": "名籍简册",
+      "icon": "item_register_slips",
+      "description": "抄录的三十七人名册，与原册一一对过"
+    },
+    "item_indictment": {
+      "name": "劾状",
+      "icon": "item_indictment",
+      "description": "弹劾卫敞与相关官吏的劾状，已具名"
+    },
+    "item_sealed_document": {
+      "name": "印信封检",
+      "icon": "item_sealed_document",
+      "description": "封好绳结与封泥的公文，递往郡府"
+    },
+    "item_beacon_torch": {
+      "name": "烽火苣",
+      "icon": "item_beacon_torch",
+      "description": "麻布缠头的火苣，可点烽传警"
+    },
+    "item_bamboo_slip": {
+      "name": "汉简",
+      "icon": "item_bamboo_slip",
+      "description": "廪食簿抄件与韩伯的私简"
+    },
+    "item_brush_knife": {
+      "name": "书刀与毛笔",
+      "icon": "item_brush_knife",
+      "description": "韩伯的旧书刀，可验看简牍削痕"
+    },
+    "item_seal_clay": {
+      "name": "封泥",
+      "icon": "item_seal_clay",
+      "description": "与旧仓曹残印同模的封泥，可印证印主"
+    },
+    "item_zhougan_slip": {
+      "name": "周敢供词简",
+      "icon": "item_bamboo_slip",
+      "description": "周敢口述、冯安记录的供词"
+    }
+  }
+}

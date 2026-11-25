@@ -1,0 +1,333 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch05",
+  "title": "后日谈 名字之后",
+  "speakers": {
+    "narrator": { "name": "旁白", "portrait": null },
+    "fengan": { "name": "冯安", "portrait": "char_fengan" },
+    "hanbo": { "name": "韩伯", "portrait": "char_hanbo" },
+    "suhe": { "name": "苏娘", "portrait": "char_suhe" },
+    "aqi": { "name": "阿耆", "portrait": "char_aqi" }
+  },
+  "encounters": {},
+  "scenes": [
+    {
+      "id": "scene_5_names",
+      "title": "名籍落笔以后",
+      "background": "bg_register_archive",
+      "entry": "ch5_names_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch5_start" },
+          { "var": "ch4_ending", "op": "eq", "value": "names" }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch5_names_01",
+          "type": "narration",
+          "text": "开春以后，架阁里的寒气还没有散尽。新修的名籍放在靠窗的木架上，日光每天往前挪一点，终于照到了最后一张简。",
+          "next": "ch5_names_02"
+        },
+        {
+          "id": "ch5_names_02",
+          "type": "narration",
+          "text": "三十七个名字后面补了原籍、卒年和更正的日期。没有颂辞，也没有谁被判作英雄，只有一笔一笔对得上的事实。",
+          "next": "ch5_names_03"
+        },
+        {
+          "id": "ch5_names_03",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "我从前怕写错一个字。如今才知道，漏掉一个人，比写错一百个字还重。",
+          "next": "ch5_names_04"
+        },
+        {
+          "id": "ch5_names_04",
+          "type": "line",
+          "speaker": "suhe",
+          "text": "以后再来领粮，我还是会叫他们的名字。叫一声，就应一声；没人应的，也留一声。",
+          "next": "ch5_names_05"
+        },
+        {
+          "id": "ch5_names_05",
+          "type": "narration",
+          "text": "灶房重新有了热气，驿马仍旧在鸡鸣时进站。名籍没有改变戈壁的风，却让每一张来吃饭的嘴重新有了来处。",
+          "next": "ch5_names_06"
+        },
+        {
+          "id": "ch5_names_06",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "不是让他们活过来。是别让死去的人，还要替活人背一笔假账。",
+          "next": "ch5_names_07"
+        },
+        {
+          "id": "ch5_names_07",
+          "type": "narration",
+          "text": "你把旧抄本收进木匣，没有烧掉。后来再有新来的小吏问起那个冬天，韩伯便让他先读那三十七个名字。",
+          "next": "ch5_names_08"
+        },
+        {
+          "id": "ch5_names_08",
+          "type": "seal",
+          "title": "后日谈 · 名籍",
+          "text": "名字已经落笔，日子还要继续。",
+          "seal": "ui_ending_seal",
+          "next": "ch5_names_09"
+        },
+        {
+          "id": "ch5_names_09",
+          "type": "narration",
+          "text": "暮色降下来时，架阁的门照常上锁。第二天，也照常有人来把它打开。",
+          "effects": [{ "set_flag": "ch5_done", "value": true }],
+          "next": "ch5_names_10"
+        },
+        {
+          "id": "ch5_names_10",
+          "type": "end",
+          "text": "",
+          "exit": "ch05_names"
+        }
+      ]
+    },
+    {
+      "id": "scene_5_exile",
+      "title": "东行以后",
+      "background": "cg_ending_exile",
+      "entry": "ch5_exile_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch5_start" },
+          { "var": "ch4_ending", "op": "eq", "value": "exile" }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch5_exile_01",
+          "type": "narration",
+          "text": "东行的路很长。关于那个冬天的消息走得很慢，等它传到更东边的驿置，雪已经在敦煌化了两次。",
+          "next": "ch5_exile_02"
+        },
+        {
+          "id": "ch5_exile_02",
+          "type": "narration",
+          "text": "公文里定下了一些罪，也留下了一些空白。卫敞和赵钦的名字都在上面，三十七个人的名字却没有全部写回去。",
+          "next": "ch5_exile_03"
+        },
+        {
+          "id": "ch5_exile_03",
+          "type": "narration",
+          "text": "你仍留着一份抄下的名单。纸简换过，墨迹淡过，次序没有乱过。每到一个有人歇脚的地方，你就重新抄一遍。",
+          "next": "ch5_exile_04"
+        },
+        {
+          "id": "ch5_exile_04",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "官府的名册可以押后，人的记性不能。我记得一个，就少丢一个。",
+          "next": "ch5_exile_05"
+        },
+        {
+          "id": "ch5_exile_05",
+          "type": "narration",
+          "text": "有人听完便走了，也有人停下来，指着其中一个名字，说自己知道他的家乡，或者欠过他一顿酒。",
+          "next": "ch5_exile_06"
+        },
+        {
+          "id": "ch5_exile_06",
+          "type": "narration",
+          "text": "这些话不能立刻改正名籍，却被写在了名单背后。籍贯、亲族、旧约，一点一点，比最初那一行多。",
+          "next": "ch5_exile_07"
+        },
+        {
+          "id": "ch5_exile_07",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "只要还有人肯念，这本名册就没有合上。",
+          "next": "ch5_exile_08"
+        },
+        {
+          "id": "ch5_exile_08",
+          "type": "seal",
+          "title": "后日谈 · 东行",
+          "text": "有些名字仍在路上，有些账还没有写完。",
+          "seal": "ui_ending_seal",
+          "next": "ch5_exile_09"
+        },
+        {
+          "id": "ch5_exile_09",
+          "type": "narration",
+          "text": "下一场雪落下之前，又有一个人认出了名单上的名字。你把他的口音和原籍一并记下，继续往东走。",
+          "effects": [{ "set_flag": "ch5_done", "value": true }],
+          "next": "ch5_exile_10"
+        },
+        {
+          "id": "ch5_exile_10",
+          "type": "end",
+          "text": "",
+          "exit": "ch05_exile"
+        }
+      ]
+    },
+    {
+      "id": "scene_5_road",
+      "title": "长路以后",
+      "background": "cg_ending_road",
+      "entry": "ch5_road_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch5_start" },
+          { "var": "ch4_ending", "op": "eq", "value": "road" }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch5_road_01",
+          "type": "narration",
+          "text": "关外的春天来得迟。河水解冻以后，你沿着商路继续往西，名册裹在油布里，贴身放在最不怕雨雪的地方。",
+          "next": "ch5_road_02"
+        },
+        {
+          "id": "ch5_road_02",
+          "type": "narration",
+          "text": "每到一个村落，你先借一张矮案，再借一盏灯。有人认得字，有人只认得名字里的声音，你都让他们慢慢看、慢慢念。",
+          "next": "ch5_road_03"
+        },
+        {
+          "id": "ch5_road_03",
+          "type": "line",
+          "speaker": "aqi",
+          "text": "同一个名字，换三种口音念，还是同一个人。你别急着替他们写死，先听别人怎么叫。",
+          "next": "ch5_road_04"
+        },
+        {
+          "id": "ch5_road_04",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "所以我把读音也记下。简会断，声音还能接着往下传。",
+          "next": "ch5_road_05"
+        },
+        {
+          "id": "ch5_road_05",
+          "type": "narration",
+          "text": "有人添上一个失散多年的亲属，有人补上一段不在公文里的旧事。名单渐渐变厚，不再只有卒年和粮数。",
+          "next": "ch5_road_06"
+        },
+        {
+          "id": "ch5_road_06",
+          "type": "line",
+          "speaker": "aqi",
+          "text": "前面还有村子。天黑以前到不了，就给他们讲一夜。",
+          "next": "ch5_road_07"
+        },
+        {
+          "id": "ch5_road_07",
+          "type": "narration",
+          "text": "你重新捆好名册，跟着车辙上路。回头时没有关楼，也没有郡府，只有刚听过那些名字的人还站在村口。",
+          "next": "ch5_road_08"
+        },
+        {
+          "id": "ch5_road_08",
+          "type": "seal",
+          "title": "后日谈 · 长路",
+          "text": "名字在路上，也在记得他们的人中间。",
+          "seal": "ui_ending_seal",
+          "next": "ch5_road_09"
+        },
+        {
+          "id": "ch5_road_09",
+          "type": "narration",
+          "text": "第二天，第一声驼铃响起时，有人已经能不看名册，叫出其中三个名字。",
+          "effects": [{ "set_flag": "ch5_done", "value": true }],
+          "next": "ch5_road_10"
+        },
+        {
+          "id": "ch5_road_10",
+          "type": "end",
+          "text": "",
+          "exit": "ch05_road"
+        }
+      ]
+    },
+    {
+      "id": "scene_5_standalone",
+      "title": "名字之后",
+      "background": "bg_qilian_mountain",
+      "entry": "ch5_standalone_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch5_start" },
+          { "var": "ch4_ending", "op": "eq", "value": "none" }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch5_standalone_01",
+          "type": "narration",
+          "text": "有些故事停下来时，名籍还摊在案上。墨迹没有干透，最后一笔也还没有落下。",
+          "next": "ch5_standalone_02"
+        },
+        {
+          "id": "ch5_standalone_02",
+          "type": "narration",
+          "text": "祁连山仍在驿道尽头。雪覆盖来路，也覆盖还没人走过的岔道，仿佛每一种结局都在远处等着。",
+          "next": "ch5_standalone_03"
+        },
+        {
+          "id": "ch5_standalone_03",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "名字先放在这里。谁来接着写，谁就得一个一个对下去。",
+          "next": "ch5_standalone_04"
+        },
+        {
+          "id": "ch5_standalone_04",
+          "type": "narration",
+          "text": "三十七个人可以被写回名籍，可以随抄本东行，也可以被带往关外。路不同，笔不能停。",
+          "next": "ch5_standalone_05"
+        },
+        {
+          "id": "ch5_standalone_05",
+          "type": "narration",
+          "text": "灯焰缩了一下，又慢慢直起来。窗外有驿卒换岗的脚步声，天还没有亮。",
+          "next": "ch5_standalone_06"
+        },
+        {
+          "id": "ch5_standalone_06",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "等天亮。天亮以后，再选一条路走。",
+          "next": "ch5_standalone_07"
+        },
+        {
+          "id": "ch5_standalone_07",
+          "type": "narration",
+          "text": "你把笔洗净，搁在名籍旁边。没有人替这个冬天作结，但也没有谁把那些名字拿走。",
+          "next": "ch5_standalone_08"
+        },
+        {
+          "id": "ch5_standalone_08",
+          "type": "seal",
+          "title": "后日谈 · 待书",
+          "text": "名字之后，仍有人记得这个冬天。",
+          "seal": "ui_ending_seal",
+          "next": "ch5_standalone_09"
+        },
+        {
+          "id": "ch5_standalone_09",
+          "type": "narration",
+          "text": "远处的山脊先亮起来。案上的字仍在，路也仍在。",
+          "effects": [{ "set_flag": "ch5_done", "value": true }],
+          "next": "ch5_standalone_10"
+        },
+        {
+          "id": "ch5_standalone_10",
+          "type": "end",
+          "text": "",
+          "exit": "ch05_standalone"
+        }
+      ]
+    }
+  ]
+}

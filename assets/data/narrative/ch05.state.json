@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch05",
+  "title": "后日谈 名字之后",
+  "carryover": {
+    "from": "ch04",
+    "variables": ["ch4_ending"]
+  },
+  "initial": {
+    "flags": {
+      "ch5_start": true,
+      "ch5_done": false
+    },
+    "variables": {
+      "ch4_ending": "none"
+    }
+  },
+  "variables": {
+    "ch4_ending": {
+      "type": "enum",
+      "values": ["none", "names", "exile", "road"],
+      "description": "第四章结局，决定本章承接的后日谈"
+    }
+  },
+  "clues": {},
+  "items": {}
+}

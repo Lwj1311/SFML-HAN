@@ -1,0 +1,1467 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch04",
+  "title": "第四章 三十七个名字",
+  "speakers": {
+    "narrator": { "name": "旁白", "portrait": null },
+    "fengan": { "name": "冯安", "portrait": "char_fengan" },
+    "hanbo": { "name": "韩伯", "portrait": "char_hanbo" },
+    "suhe": { "name": "苏娘", "portrait": "char_suhe" },
+    "guowang": { "name": "郭望", "portrait": "char_guowang" },
+    "aqi": { "name": "阿耆", "portrait": "char_aqi" },
+    "baiji": { "name": "白姬", "portrait": "char_baiji" },
+    "zhougan": { "name": "周敢", "portrait": "char_zhougan" },
+    "zhaoqin": { "name": "赵钦", "portrait": "char_zhaoqin" },
+    "weichang": { "name": "卫敞", "portrait": "char_weichang" },
+    "taishou": { "name": "严崇", "portrait": "char_taishou" },
+    "gongcao": { "name": "郡府功曹", "portrait": "char_gongcao" },
+    "yuli": { "name": "亭狱狱吏", "portrait": "char_yuli" }
+  },
+  "encounters": {
+    "enc_ch4_beacon": {
+      "name": "雪夜烧册的私兵",
+      "enemies": [
+        { "id": "private_soldier", "count": 3 },
+        { "id": "private_archer", "count": 1 },
+        { "id": "private_torchbearer", "count": 1 }
+      ],
+      "terrain": "beacon",
+      "note": "若已点燃火苣传警，郡府回文可证当夜有援兵出动。"
+    }
+  },
+  "scenes": [
+    {
+      "id": "scene_4_open",
+      "title": "雪夜归置",
+      "background": "bg_station_snow_night",
+      "entry": "ch4_open_01",
+      "trigger": { "flag": "ch4_start" },
+      "nodes": [
+        {
+          "id": "ch4_open_01",
+          "type": "narration",
+          "text": "过了玉门关，冬天就换了一副面孔。雪把戈壁铺平，把来路也铺平了。你在冬至后的第三天回到悬泉置。",
+          "next": "ch4_open_02"
+        },
+        {
+          "id": "ch4_open_02",
+          "type": "branch",
+          "branches": [
+            {
+              "condition": { "var": "ch3_ending", "op": "eq", "value": "handover" },
+              "next": "ch4_open_03"
+            },
+            {
+              "condition": { "var": "ch3_ending", "op": "eq", "value": "cargo" },
+              "next": "ch4_open_04"
+            },
+            {
+              "condition": { "var": "ch3_ending", "op": "eq", "value": "stand" },
+              "next": "ch4_open_05"
+            },
+            { "next": "ch4_open_06" }
+          ]
+        },
+        {
+          "id": "ch4_open_03",
+          "type": "narration",
+          "text": "你保住了官身，官牒上甚至还添了一句“办事得力”。周敢和白姬没有回来，他们被押在郡府，等一个说法。",
+          "next": "ch4_open_07"
+        },
+        {
+          "id": "ch4_open_04",
+          "type": "narration",
+          "text": "三车粮和十具弩机扣在关内，人被放了出来。白姬的商路断了一截，她却捎来一句话：货没了可以再有，人没了就真没了。",
+          "next": "ch4_open_07"
+        },
+        {
+          "id": "ch4_open_05",
+          "type": "narration",
+          "text": "关下那一案闹到了郡府。赵钦在堂上改了口，卫敞被收押。你的名字随着公文走了一趟敦煌，回来时带着一层寒意。",
+          "effects": [
+            { "add_var": "num_zhaoqin_pressure", "value": 1 }
+          ],
+          "next": "ch4_open_07"
+        },
+        {
+          "id": "ch4_open_06",
+          "type": "narration",
+          "text": "关下的事像一场没下完的雪，落在你身上，也落在别人身上。悬泉置的灯还亮着，亮得有些勉强。",
+          "next": "ch4_open_07"
+        },
+        {
+          "id": "ch4_open_07",
+          "type": "narration",
+          "text": "韩伯把你拉进屋，闩上门，从怀里取出一卷用麻绳捆着的简。书刀和毛笔也一并推到你面前。",
+          "effects": [
+            { "give_item": "item_bamboo_slip" },
+            { "give_item": "item_brush_knife" }
+          ],
+          "next": "ch4_open_08"
+        },
+        {
+          "id": "ch4_open_08",
+          "type": "branch",
+          "branches": [
+            {
+              "condition": { "flag": "ch3_seal_seized" },
+              "next": "ch4_open_09"
+            },
+            { "next": "ch4_open_10" }
+          ]
+        },
+        {
+          "id": "ch4_open_09",
+          "type": "narration",
+          "text": "你把关下缴获的半枚残印和封泥摆在案上。印文缺了一角，可那一角在谁手里，已经不重要了。",
+          "effects": [
+            { "give_item": "item_seal_clay" },
+            { "add_var": "num_evidence", "value": 1 }
+          ],
+          "next": "ch4_open_11"
+        },
+        {
+          "id": "ch4_open_10",
+          "type": "narration",
+          "text": "你手里没有印，只有抄件和记忆。抄件会被人说成伪造，记忆会被人说成疯话。",
+          "next": "ch4_open_11"
+        },
+        {
+          "id": "ch4_open_11",
+          "type": "branch",
+          "branches": [
+            {
+              "condition": {
+                "any": [
+                  { "flag": "ch2_zhougan_protected" },
+                  { "flag": "ch3_zhougan_stayed" },
+                  { "flag": "ch3_zhougan_testified_2" }
+                ]
+              },
+              "next": "ch4_open_12"
+            },
+            { "next": "ch4_open_13" }
+          ]
+        },
+        {
+          "id": "ch4_open_12",
+          "type": "narration",
+          "text": "周敢的供词简还在你袖中。他说过，别改他的字。你用拇指抚过那些歪斜的笔画，像抚过一个人的骨头。",
+          "effects": [
+            { "give_item": "item_zhougan_slip" }
+          ],
+          "next": "ch4_open_14"
+        },
+        {
+          "id": "ch4_open_13",
+          "type": "narration",
+          "text": "供词简上的字已经被磨得发白。你忽然发现，连一张薄简都比你更有耐性。",
+          "next": "ch4_open_14"
+        },
+        {
+          "id": "ch4_open_14",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "这一回不是查谁杀了人。查谁杀的，官有的是办法推。你要做的，是把死人写回来。",
+          "next": "ch4_open_15"
+        },
+        {
+          "id": "ch4_open_15",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "三十七个名字。我一个一个写。",
+          "next": "ch4_open_16"
+        },
+        {
+          "id": "ch4_open_16",
+          "type": "narration",
+          "text": "灯花爆了一声。韩伯把名籍架阁的钥匙放在你手心，钥匙冷得像一小块冰。",
+          "effects": [
+            { "set_flag": "ch4_open_done", "value": true }
+          ],
+          "next": "ch4_open_17"
+        },
+        {
+          "id": "ch4_open_17",
+          "type": "end",
+          "text": "",
+          "exit": "open"
+        }
+      ]
+    },
+    {
+      "id": "scene_4_archive",
+      "title": "名籍架阁",
+      "background": "bg_register_archive",
+      "entry": "ch4_arc_01",
+      "trigger": { "flag": "ch4_open_done" },
+      "nodes": [
+        {
+          "id": "ch4_arc_01",
+          "type": "narration",
+          "text": "架阁里比外面还冷。成排的简册按年份码着，束束麻绳上落着灰。油灯一点，灰尘就在光里慢慢浮起来。",
+          "next": "ch4_arc_02"
+        },
+        {
+          "id": "ch4_arc_02",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "第三架，地节元年起。原册只能在这儿看，抄本随你带走。",
+          "next": "ch4_arc_03"
+        },
+        {
+          "id": "ch4_arc_03",
+          "type": "narration",
+          "text": "你抽出原册，一卷一卷解开。第三十七次看到那个“卒”字时，你的手已经不抖了。他们名下注着死，廪食簿上注着粮。",
+          "effects": [
+            { "set_flag": "ch4_roster_checked", "value": true },
+            { "add_clue": "clue_register_slips" },
+            { "add_var": "num_evidence", "value": 1 }
+          ],
+          "next": "ch4_arc_04"
+        },
+        {
+          "id": "ch4_arc_04",
+          "type": "narration",
+          "text": "你铺开空简，从第一个名字抄起。张季。笔画落在简上，比落在雪里还轻。",
+          "effects": [
+            { "set_flag": "ch4_names_collected", "value": true },
+            { "give_item": "item_register_slips" }
+          ],
+          "next": "ch4_arc_05"
+        },
+        {
+          "id": "ch4_arc_05",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "抄到一半，你发现原册上有几处削改的痕迹。削痕很浅，像是同一把刀、同一只手。",
+          "choices": [
+            {
+              "id": "examine_erasure",
+              "text": "停下笔，把削痕一一对勘",
+              "effects": [
+                { "set_flag": "ch4_erasure_found", "value": true },
+                { "add_clue": "clue_erasure_proof" },
+                { "add_var": "num_evidence", "value": 1 }
+              ],
+              "next": "ch4_arc_06"
+            },
+            {
+              "id": "skip_erasure",
+              "text": "先把名字抄全，削痕以后再说",
+              "next": "ch4_arc_07"
+            }
+          ]
+        },
+        {
+          "id": "ch4_arc_06",
+          "type": "narration",
+          "text": "书刀斜着挑进削痕，底下还留着原来的籍贯和卒年。韩伯凑过来看了一眼，没说话，只把灯往你手边挪了挪。",
+          "next": "ch4_arc_08"
+        },
+        {
+          "id": "ch4_arc_07",
+          "type": "narration",
+          "text": "你略过那几处削痕，把名字抄全。抄到最后一笔时，你心里清楚，有一道东西被你留在了原册上。",
+          "next": "ch4_arc_08"
+        },
+        {
+          "id": "ch4_arc_08",
+          "type": "narration",
+          "text": "更鼓敲过三下。你把抄好的名册揣进怀里，原册归架，麻绳照旧捆好，像什么都没有发生过。",
+          "effects": [
+            { "set_flag": "ch4_archive_done", "value": true }
+          ],
+          "next": "ch4_arc_09"
+        },
+        {
+          "id": "ch4_arc_09",
+          "type": "end",
+          "text": "",
+          "exit": "archive"
+        }
+      ]
+    },
+    {
+      "id": "scene_4_hanbo",
+      "title": "韩伯的底本",
+      "background": "bg_station_interior",
+      "entry": "ch4_hanbo_01",
+      "trigger": { "flag": "ch4_archive_done" },
+      "nodes": [
+        {
+          "id": "ch4_hanbo_01",
+          "type": "narration",
+          "text": "韩伯坐在灯下补简。削下来的简屑落在他脚边，一小堆，像烧过的纸灰。",
+          "next": "ch4_hanbo_02"
+        },
+        {
+          "id": "ch4_hanbo_02",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "原册能被人改，抄本能被人说成假。只有一样他们改不了——我这二十年，每年私抄的一份底本。",
+          "next": "ch4_hanbo_03"
+        },
+        {
+          "id": "ch4_hanbo_03",
+          "type": "branch",
+          "branches": [
+            {
+              "condition": { "var": "num_hanbo_trust", "op": "gte", "value": 3 },
+              "next": "ch4_hanbo_04"
+            },
+            { "next": "ch4_hanbo_06" }
+          ]
+        },
+        {
+          "id": "ch4_hanbo_04",
+          "type": "narration",
+          "text": "他没等你开口，就把一只木匣推过来。匣盖一开，二十年的简册码得整整齐齐，每一束都标着年份。",
+          "effects": [
+            { "set_flag": "ch4_hanbo_copy", "value": true },
+            { "add_clue": "clue_hanbo_copy" },
+            { "add_var": "num_evidence", "value": 1 },
+            { "add_var": "num_hanbo_trust", "value": 1 }
+          ],
+          "next": "ch4_hanbo_05"
+        },
+        {
+          "id": "ch4_hanbo_05",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "我抄了二十年，就等有人肯看。拿去吧，别让它跟我一起进土。",
+          "next": "ch4_hanbo_09"
+        },
+        {
+          "id": "ch4_hanbo_06",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "他按着木匣，没有松手。“给你，就是把这条老命也给你。”",
+          "choices": [
+            {
+              "id": "pledge_names",
+              "text": "以三十七人的名字作保，出了事算我的",
+              "effects": [
+                { "set_flag": "ch4_hanbo_copy", "value": true },
+                { "add_clue": "clue_hanbo_copy" },
+                { "add_var": "num_evidence", "value": 1 },
+                { "add_var": "num_hanbo_trust", "value": 1 },
+                { "add_var": "num_reputation", "value": -1 }
+              ],
+              "next": "ch4_hanbo_07"
+            },
+            {
+              "id": "leave_hanbo",
+              "text": "不勉强他，另想办法",
+              "next": "ch4_hanbo_08"
+            }
+          ]
+        },
+        {
+          "id": "ch4_hanbo_07",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "名字作保……好。我信你这一次，也只信这一次。",
+          "next": "ch4_hanbo_09"
+        },
+        {
+          "id": "ch4_hanbo_08",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "也好。留着这条命，比留这卷简强。你别怪老朽。",
+          "next": "ch4_hanbo_09"
+        },
+        {
+          "id": "ch4_hanbo_09",
+          "type": "narration",
+          "text": "你起身告辞。门外的雪光漏进来，照见案上那支笔，笔杆被磨得发亮。",
+          "effects": [
+            { "set_flag": "ch4_hanbo_done", "value": true }
+          ],
+          "next": "ch4_hanbo_10"
+        },
+        {
+          "id": "ch4_hanbo_10",
+          "type": "end",
+          "text": "",
+          "exit": "hanbo"
+        }
+      ]
+    },
+    {
+      "id": "scene_4_su",
+      "title": "灶房的名条",
+      "background": "bg_station_snow_night",
+      "entry": "ch4_su_01",
+      "trigger": { "flag": "ch4_hanbo_done" },
+      "nodes": [
+        {
+          "id": "ch4_su_01",
+          "type": "narration",
+          "text": "灶房的烟囱冒着白汽。苏娘在案前切菜，刀起刀落，一下也不快，一下也不慢。",
+          "next": "ch4_su_02"
+        },
+        {
+          "id": "ch4_su_02",
+          "type": "line",
+          "speaker": "suhe",
+          "text": "你要把名字写回去。可写回去是要人作证的，光有简，官不认。",
+          "next": "ch4_su_03"
+        },
+        {
+          "id": "ch4_su_03",
+          "type": "branch",
+          "branches": [
+            {
+              "condition": {
+                "any": [
+                  { "var": "num_su_trust", "op": "gte", "value": 3 },
+                  { "flag": "evidence_with_su" }
+                ]
+              },
+              "next": "ch4_su_04"
+            },
+            { "next": "ch4_su_06" }
+          ]
+        },
+        {
+          "id": "ch4_su_04",
+          "type": "narration",
+          "text": "她擦了擦手，从灶膛后的砖缝里摸出一张名条。名条被油烟熏得发黄，边角却压得很平。",
+          "effects": [
+            { "set_flag": "ch4_su_testified", "value": true },
+            { "add_clue": "clue_su_testimony" },
+            { "add_var": "num_evidence", "value": 1 }
+          ],
+          "next": "ch4_su_05"
+        },
+        {
+          "id": "ch4_su_05",
+          "type": "line",
+          "speaker": "suhe",
+          "text": "我具名。那些人的粮，是我一勺一勺舀出去的。来领粮的，不是本人。",
+          "next": "ch4_su_10"
+        },
+        {
+          "id": "ch4_su_06",
+          "type": "line",
+          "speaker": "suhe",
+          "text": "我只是一个做饭的。名字写上去，明天就会有人摸到这灶房来。",
+          "next": "ch4_su_07"
+        },
+        {
+          "id": "ch4_su_07",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "她的手按在刀背上，没有看你。",
+          "choices": [
+            {
+              "id": "insist_su",
+              "text": "请她只管写，罪名由你来担",
+              "effects": [
+                { "set_flag": "ch4_su_testified", "value": true },
+                { "add_clue": "clue_su_testimony" },
+                { "add_var": "num_evidence", "value": 1 },
+                { "add_var": "num_reputation", "value": -1 }
+              ],
+              "next": "ch4_su_08"
+            },
+            {
+              "id": "respect_su",
+              "text": "不逼她，另外找人作证",
+              "next": "ch4_su_09"
+            }
+          ]
+        },
+        {
+          "id": "ch4_su_08",
+          "type": "line",
+          "speaker": "suhe",
+          "text": "……好。你担，我就写。可别让我白写。",
+          "next": "ch4_su_10"
+        },
+        {
+          "id": "ch4_su_09",
+          "type": "line",
+          "speaker": "suhe",
+          "text": "对不住。灶上还有一百张嘴，我得先顾活的。",
+          "next": "ch4_su_10"
+        },
+        {
+          "id": "ch4_su_10",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "名条递到你手里，落款那一栏还空着。",
+          "choices": [
+            {
+              "id": "write_su_name",
+              "text": "把她的本名也写上去",
+              "effects": [
+                { "set_flag": "sq4_01_done", "value": true },
+                { "add_clue": "clue_su_name" },
+                { "add_var": "num_su_trust", "value": 1 }
+              ],
+              "next": "ch4_su_11"
+            },
+            {
+              "id": "keep_su_anon",
+              "text": "只写“苏氏”，替她留一层遮挡",
+              "effects": [
+                { "add_var": "num_su_trust", "value": 1 }
+              ],
+              "next": "ch4_su_12"
+            }
+          ]
+        },
+        {
+          "id": "ch4_su_11",
+          "type": "line",
+          "speaker": "suhe",
+          "text": "这个名字……二十年没人叫过了。你写得慢一点，让我看清楚。",
+          "next": "ch4_su_13"
+        },
+        {
+          "id": "ch4_su_12",
+          "type": "line",
+          "speaker": "suhe",
+          "text": "苏氏。也好，苏氏也是我。你比那些官细心。",
+          "next": "ch4_su_13"
+        },
+        {
+          "id": "ch4_su_13",
+          "type": "narration",
+          "text": "她把名条折好，塞进你手里，转身去揭锅盖。白汽腾起来，把她的脸遮住了。",
+          "effects": [
+            { "set_flag": "ch4_su_done", "value": true }
+          ],
+          "next": "ch4_su_14"
+        },
+        {
+          "id": "ch4_su_14",
+          "type": "end",
+          "text": "",
+          "exit": "su"
+        }
+      ]
+    },
+    {
+      "id": "scene_4_prison",
+      "title": "亭狱小院",
+      "background": "bg_prison_yard",
+      "entry": "ch4_prison_01",
+      "trigger": { "flag": "ch4_su_done" },
+      "nodes": [
+        {
+          "id": "ch4_prison_01",
+          "type": "narration",
+          "text": "亭狱的土墙矮，雪却堆得高。院里的水瓮结了冰，冰面上落着几片简屑，不知是谁削的。",
+          "next": "ch4_prison_02"
+        },
+        {
+          "id": "ch4_prison_02",
+          "type": "line",
+          "speaker": "yuli",
+          "text": "收押的犯人，不见外客。你有公文吗？没有公文，有话也可以谈。",
+          "next": "ch4_prison_03"
+        },
+        {
+          "id": "ch4_prison_03",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "狱吏掂着钥匙串，眼睛在你腰间转。",
+          "choices": [
+            {
+              "id": "bribe_yuli",
+              "text": "塞给他半串钱",
+              "effects": [
+                { "add_var": "num_reputation", "value": -1 }
+              ],
+              "next": "ch4_prison_04"
+            },
+            {
+              "id": "press_yuli",
+              "text": "把郡府的封检亮出来，说是协查",
+              "next": "ch4_prison_04"
+            }
+          ]
+        },
+        {
+          "id": "ch4_prison_04",
+          "type": "branch",
+          "branches": [
+            {
+              "condition": { "var": "ch3_ending", "op": "eq", "value": "handover" },
+              "next": "ch4_prison_05"
+            },
+            { "next": "ch4_prison_09" }
+          ]
+        },
+        {
+          "id": "ch4_prison_05",
+          "type": "line",
+          "speaker": "zhougan",
+          "text": "你来了。名字别改我的，别的随你。我这副骨头还能再签一次字。",
+          "effects": [
+            { "set_flag": "ch4_zhougan_seen", "value": true }
+          ],
+          "next": "ch4_prison_06"
+        },
+        {
+          "id": "ch4_prison_06",
+          "type": "narration",
+          "text": "你隔着木栅记下他补完的供词：谁经手换名，谁按月来领粮，哪一天的粮车进的置。他说得很慢，你记得很急。",
+          "effects": [
+            { "add_clue": "clue_zhougan_last" },
+            { "add_var": "num_evidence", "value": 1 }
+          ],
+          "next": "ch4_prison_07"
+        },
+        {
+          "id": "ch4_prison_07",
+          "type": "line",
+          "speaker": "zhougan",
+          "text": "出去以后，替我把名字写正。我娘认字不多，可我的名字她认得。",
+          "next": "ch4_prison_13"
+        },
+        {
+          "id": "ch4_prison_09",
+          "type": "line",
+          "speaker": "weichang",
+          "text": "一个小小的书佐，也配来问我？卫某在仓曹三十年，见过的劾状比你写过的字多。",
+          "next": "ch4_prison_10"
+        },
+        {
+          "id": "ch4_prison_10",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "他靠在木栅上，连站都懒得站直。",
+          "choices": [
+            {
+              "id": "press_weichang",
+              "text": "把残印、名录与名籍抄件一一摊在栅前",
+              "effects": [
+                { "set_flag": "ch4_weichang_confessed", "value": true },
+                { "add_clue": "clue_weichang_confession" },
+                { "add_var": "num_evidence", "value": 1 }
+              ],
+              "next": "ch4_prison_11"
+            },
+            {
+              "id": "leave_weichang",
+              "text": "不与他纠缠，记住他的脸色就走",
+              "next": "ch4_prison_12"
+            }
+          ]
+        },
+        {
+          "id": "ch4_prison_11",
+          "type": "line",
+          "speaker": "weichang",
+          "text": "……印是我管的，可让人去领粮的不是我。你要写，就往上面写，别只写我一个。",
+          "next": "ch4_prison_13"
+        },
+        {
+          "id": "ch4_prison_12",
+          "type": "line",
+          "speaker": "weichang",
+          "text": "滚。等你也被关进来那天，咱们再慢慢聊。",
+          "next": "ch4_prison_13"
+        },
+        {
+          "id": "ch4_prison_13",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "出来时天已经黑了。狱吏搓着手，看你的食盒。",
+          "choices": [
+            {
+              "id": "leave_food",
+              "text": "把食盒留给里面的人，当夜不走了",
+              "effects": [
+                { "set_flag": "sq4_02_done", "value": true },
+                { "add_clue": "clue_prison_roster" },
+                { "add_var": "num_zhougan_trust", "value": 1 }
+              ],
+              "next": "ch4_prison_14"
+            },
+            {
+              "id": "leave_prison",
+              "text": "当夜赶回置上，名籍不能离人",
+              "next": "ch4_prison_15"
+            }
+          ]
+        },
+        {
+          "id": "ch4_prison_14",
+          "type": "narration",
+          "text": "狱吏收了食盒，掀开收押名簿让你看了一眼：谁什么时候进来，谁什么时候被提走，日子清清楚楚。这一眼，比一串钱值钱。",
+          "next": "ch4_prison_16"
+        },
+        {
+          "id": "ch4_prison_15",
+          "type": "narration",
+          "text": "你连夜往回赶，雪没了脚面。走到半路，你回头看了一眼，亭狱的灯只有豆大的一点。",
+          "next": "ch4_prison_16"
+        },
+        {
+          "id": "ch4_prison_16",
+          "type": "narration",
+          "text": "这一夜的所见所闻，你都记在了空简上。字很丑，但都是真的。",
+          "effects": [
+            { "set_flag": "ch4_prison_done", "value": true }
+          ],
+          "next": "ch4_prison_17"
+        },
+        {
+          "id": "ch4_prison_17",
+          "type": "end",
+          "text": "",
+          "exit": "prison"
+        }
+      ]
+    },
+    {
+      "id": "scene_4_beacon",
+      "title": "烽燧雪夜",
+      "background": "bg_beacon_snow_night",
+      "entry": "ch4_beacon_01",
+      "trigger": { "flag": "ch4_prison_done" },
+      "nodes": [
+        {
+          "id": "ch4_beacon_01",
+          "type": "narration",
+          "text": "名籍和抄本不敢再放在屋里。你把它们裹进油布，带上烽燧。燧顶的风比刀还快，火把插上去就被吹斜。",
+          "next": "ch4_beacon_02"
+        },
+        {
+          "id": "ch4_beacon_02",
+          "type": "line",
+          "speaker": "guowang",
+          "text": "有人摸上来了。三四个人，带着油，不是来投奔的。",
+          "next": "ch4_beacon_03"
+        },
+        {
+          "id": "ch4_beacon_03",
+          "type": "narration",
+          "text": "你把火苣抱上燧顶。麻布缠头浸了油，一点就着。",
+          "effects": [
+            { "give_item": "item_beacon_torch" }
+          ],
+          "next": "ch4_beacon_04"
+        },
+        {
+          "id": "ch4_beacon_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "点火，下一燧就会看见；不点火，这一夜就只有你们两个。",
+          "choices": [
+            {
+              "id": "light_beacon",
+              "text": "点燃火苣，向下一燧传警",
+              "effects": [
+                { "set_flag": "ch4_beacon_lit", "value": true },
+                { "add_var": "num_reputation", "value": 1 }
+              ],
+              "next": "ch4_beacon_05"
+            },
+            {
+              "id": "hide_register",
+              "text": "不点火，先把名籍压进雪下",
+              "next": "ch4_beacon_06"
+            }
+          ]
+        },
+        {
+          "id": "ch4_beacon_05",
+          "type": "narration",
+          "text": "火光腾起来，把雪照成了赤色。远处地平线上，第二座燧也亮了，接着是第三座。",
+          "next": "ch4_beacon_07"
+        },
+        {
+          "id": "ch4_beacon_06",
+          "type": "narration",
+          "text": "你把简册压进雪下，用脚踩实，提刀守在梯口。黑暗里只有火油的味道越来越近。",
+          "next": "ch4_beacon_07"
+        },
+        {
+          "id": "ch4_beacon_07",
+          "type": "narration",
+          "text": "梯道的霜被踩碎了。第一个人探出头来，手里不是刀，是一只火把。",
+          "next": "ch4_beacon_08"
+        },
+        {
+          "id": "ch4_beacon_08",
+          "type": "combat",
+          "encounter": "enc_ch4_beacon",
+          "on_win": "ch4_beacon_09",
+          "on_lose": "ch4_beacon_11"
+        },
+        {
+          "id": "ch4_beacon_09",
+          "type": "narration",
+          "text": "私兵被击退，火把掉在雪里，嘶地一声灭了。油布包还在，边角被烧黑了一小块。",
+          "effects": [
+            { "set_flag": "ch4_beacon_cleared", "value": true },
+            { "set_flag": "ch4_archive_saved", "value": true },
+            { "add_var": "num_reputation", "value": 1 }
+          ],
+          "next": "ch4_beacon_10"
+        },
+        {
+          "id": "ch4_beacon_10",
+          "type": "line",
+          "speaker": "guowang",
+          "text": "册子还在，人也没少。这一夜算咱们赢了。",
+          "next": "ch4_beacon_16"
+        },
+        {
+          "id": "ch4_beacon_11",
+          "type": "branch",
+          "branches": [
+            {
+              "condition": { "flag": "ch4_hanbo_copy" },
+              "next": "ch4_beacon_12"
+            },
+            { "next": "ch4_beacon_13" }
+          ]
+        },
+        {
+          "id": "ch4_beacon_12",
+          "type": "narration",
+          "text": "你被打下梯道，看着火舌卷上简册。等火灭了，只剩一把灰。好在韩伯的底本还在，你靠着它，一夜把名字重新抄了出来。",
+          "effects": [
+            { "set_flag": "ch4_beacon_cleared", "value": true },
+            { "set_flag": "ch4_archive_saved", "value": true },
+            { "add_var": "num_evidence", "value": -1 }
+          ],
+          "next": "ch4_beacon_14"
+        },
+        {
+          "id": "ch4_beacon_13",
+          "type": "narration",
+          "text": "名籍在火里卷起来，像一捆被点燃的枯草。你伸手去抢，只抢下一片焦黑的简头。",
+          "effects": [
+            { "set_flag": "ch4_beacon_cleared", "value": true },
+            { "add_var": "num_evidence", "value": -1 }
+          ],
+          "next": "ch4_beacon_14"
+        },
+        {
+          "id": "ch4_beacon_14",
+          "type": "line",
+          "speaker": "guowang",
+          "text": "人还在，就能再写。怕什么。",
+          "next": "ch4_beacon_16"
+        },
+        {
+          "id": "ch4_beacon_16",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "天亮前，你看见燧墙内侧空着一块。郭望说，那是留给旧卒的。",
+          "choices": [
+            {
+              "id": "carve_names",
+              "text": "把旧卒的名字也刻上去",
+              "effects": [
+                { "set_flag": "sq4_03_done", "value": true },
+                { "add_clue": "clue_beacon_names" }
+              ],
+              "next": "ch4_beacon_17"
+            },
+            {
+              "id": "skip_carve",
+              "text": "先顾活人，名字以后再说",
+              "next": "ch4_beacon_18"
+            }
+          ]
+        },
+        {
+          "id": "ch4_beacon_17",
+          "type": "narration",
+          "text": "书刀在墙上走得很慢。三个名字刻完，天刚好亮，雪停了。",
+          "next": "ch4_beacon_19"
+        },
+        {
+          "id": "ch4_beacon_18",
+          "type": "narration",
+          "text": "你回头看了一眼那块空墙。有些名字，又要再等一年。",
+          "next": "ch4_beacon_19"
+        },
+        {
+          "id": "ch4_beacon_19",
+          "type": "narration",
+          "text": "你把简册重新裹好。从今天起，它不再只是一册名籍，是一封要递到郡府去的东西。",
+          "effects": [
+            { "set_flag": "ch4_beacon_done", "value": true }
+          ],
+          "next": "ch4_beacon_20"
+        },
+        {
+          "id": "ch4_beacon_20",
+          "type": "end",
+          "text": "",
+          "exit": "beacon"
+        }
+      ]
+    },
+    {
+      "id": "scene_4_indict",
+      "title": "落笔劾状",
+      "background": "bg_station_interior",
+      "entry": "ch4_indict_01",
+      "trigger": { "flag": "ch4_beacon_done" },
+      "nodes": [
+        {
+          "id": "ch4_indict_01",
+          "type": "narration",
+          "text": "回到置上，你闭门写劾状。窗外有人走过，脚步声在雪里很轻，你还是停了两次笔。",
+          "next": "ch4_indict_02"
+        },
+        {
+          "id": "ch4_indict_02",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "劾状写到哪一层，堂上就有几个人站在你对面。落笔之前，想清楚。",
+          "next": "ch4_indict_03"
+        },
+        {
+          "id": "ch4_indict_03",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "这一纸劾状，落到谁头上？",
+          "choices": [
+            {
+              "id": "scope_weichang",
+              "text": "只劾卫敞一人，层层交代都写在他名下",
+              "effects": [
+                { "set_var": "ch4_indict_scope", "value": "weichang" },
+                { "add_var": "num_reputation", "value": 1 }
+              ],
+              "next": "ch4_indict_04"
+            },
+            {
+              "id": "scope_both",
+              "text": "连赵钦一起劾，督邮与仓曹并坐",
+              "effects": [
+                { "set_var": "ch4_indict_scope", "value": "both" },
+                { "add_var": "num_zhaoqin_pressure", "value": 1 },
+                { "add_var": "num_prefecture_suspicion", "value": 1 }
+              ],
+              "next": "ch4_indict_05"
+            },
+            {
+              "id": "scope_names",
+              "text": "把三十七人的名字一一写进劾状",
+              "effects": [
+                { "set_var": "ch4_indict_scope", "value": "names" },
+                { "add_var": "num_reputation", "value": 1 }
+              ],
+              "next": "ch4_indict_06"
+            }
+          ]
+        },
+        {
+          "id": "ch4_indict_04",
+          "type": "narration",
+          "text": "你把所有的线都收到卫敞一人身上。这样的劾状最稳，也最冷——上面的人看完，只需点一个头。",
+          "next": "ch4_indict_07"
+        },
+        {
+          "id": "ch4_indict_05",
+          "type": "narration",
+          "text": "督邮与仓曹并坐。写到赵钦的名字时，你的笔顿了一下。这一顿，就是把自己的退路也削掉了一截。",
+          "next": "ch4_indict_07"
+        },
+        {
+          "id": "ch4_indict_06",
+          "type": "narration",
+          "text": "三十七个名字，你一个一个写进劾状。写完最后一笔，简已经不够用了，你又续了一束。",
+          "next": "ch4_indict_07"
+        },
+        {
+          "id": "ch4_indict_07",
+          "type": "narration",
+          "text": "劾状写完，封检、结绳、按泥。每一个动作你都做过千百遍，只有这一次，手是热的。",
+          "effects": [
+            { "set_flag": "ch4_indict_written", "value": true },
+            { "give_item": "item_sealed_document" }
+          ],
+          "next": "ch4_indict_08"
+        },
+        {
+          "id": "ch4_indict_08",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "这一封递上去，就没有回头路了。去吧，我替你看着置上。",
+          "next": "ch4_indict_09"
+        },
+        {
+          "id": "ch4_indict_09",
+          "type": "narration",
+          "text": "邮车出置的时候，雪又开始下。你望着那封公文的背影，忽然想起张季第一次把廪食簿递给你的那个下午。",
+          "effects": [
+            { "set_flag": "ch4_indict_done", "value": true }
+          ],
+          "next": "ch4_indict_10"
+        },
+        {
+          "id": "ch4_indict_10",
+          "type": "end",
+          "text": "",
+          "exit": "indict"
+        }
+      ]
+    },
+    {
+      "id": "scene_4_hall",
+      "title": "郡府正堂",
+      "background": "bg_commandery_hall",
+      "entry": "ch4_hall_01",
+      "trigger": { "flag": "ch4_indict_done" },
+      "nodes": [
+        {
+          "id": "ch4_hall_01",
+          "type": "narration",
+          "text": "敦煌郡府正堂，高梁粗柱，地铺青席。郡守严崇坐在主位，深青官袍，须发半白。案上摆着你递上去的劾状，封泥已经拆了。",
+          "next": "ch4_hall_02"
+        },
+        {
+          "id": "ch4_hall_02",
+          "type": "line",
+          "speaker": "gongcao",
+          "text": "悬泉置书佐冯安，劾仓曹史卫敞等，擅更名籍、冒领廪食。证物一一呈堂。",
+          "next": "ch4_hall_03"
+        },
+        {
+          "id": "ch4_hall_03",
+          "type": "line",
+          "speaker": "taishou",
+          "text": "冯安。你告的是仓曹，还是这二十年的账？",
+          "next": "ch4_hall_04"
+        },
+        {
+          "id": "ch4_hall_04",
+          "type": "narration",
+          "text": "你把名籍、抄件、证词与口供一一呈上。每呈一样，堂下就安静一分。",
+          "next": "ch4_hall_05"
+        },
+        {
+          "id": "ch4_hall_05",
+          "type": "branch",
+          "branches": [
+            {
+              "condition": {
+                "any": [
+                  { "var": "num_zhaoqin_pressure", "op": "gte", "value": 2 },
+                  { "var": "ch3_ending", "op": "eq", "value": "stand" },
+                  { "flag": "ch3_zhaoqin_flipped" }
+                ]
+              },
+              "next": "ch4_hall_06"
+            },
+            { "next": "ch4_hall_08" }
+          ]
+        },
+        {
+          "id": "ch4_hall_06",
+          "type": "narration",
+          "text": "赵钦出列。他在堂下站了很久，忽然转身向严崇长揖，把自己在过关文书上署名的事，一五一十说了出来。",
+          "effects": [
+            { "set_flag": "ch4_zhaoqin_recanted", "value": true },
+            { "add_clue": "clue_zhaoqin_recant" },
+            { "add_var": "num_evidence", "value": 1 }
+          ],
+          "next": "ch4_hall_07"
+        },
+        {
+          "id": "ch4_hall_07",
+          "type": "line",
+          "speaker": "zhaoqin",
+          "text": "下官……愿作证。下官也是被人推到台前署名的。",
+          "next": "ch4_hall_09"
+        },
+        {
+          "id": "ch4_hall_08",
+          "type": "line",
+          "speaker": "zhaoqin",
+          "text": "一派胡言。印是旧的，账也是旧的，拿一册抄本就想翻二十年的案？",
+          "next": "ch4_hall_09"
+        },
+        {
+          "id": "ch4_hall_09",
+          "type": "line",
+          "speaker": "taishou",
+          "text": "证据我看见了。现在，你说说，你要一个什么结果。",
+          "next": "ch4_hall_10"
+        },
+        {
+          "id": "ch4_hall_10",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "正堂上所有人都看着你。这一句话，你等了一年。",
+          "choices": [
+            {
+              "id": "final_names",
+              "text": "具名：把三十七人写回名籍，下官署名担责",
+              "effects": [
+                { "set_flag": "ch4_chose_names", "value": true },
+                { "set_flag": "ch4_final_choice", "value": true }
+              ],
+              "next": "ch4_hall_11"
+            },
+            {
+              "id": "final_deal",
+              "text": "交人：只办卫敞一人，换名籍更正",
+              "effects": [
+                { "set_flag": "ch4_chose_deal", "value": true },
+                { "set_flag": "ch4_final_choice", "value": true }
+              ],
+              "next": "ch4_hall_11"
+            },
+            {
+              "id": "final_road",
+              "text": "出关：名册我带走，从此与郡府无关",
+              "effects": [
+                { "set_flag": "ch4_chose_road", "value": true },
+                { "set_flag": "ch4_final_choice", "value": true }
+              ],
+              "next": "ch4_hall_11"
+            }
+          ]
+        },
+        {
+          "id": "ch4_hall_11",
+          "type": "branch",
+          "branches": [
+            {
+              "condition": { "flag": "ch4_chose_road" },
+              "next": "ch4_hall_15"
+            },
+            {
+              "condition": { "flag": "ch4_chose_deal" },
+              "next": "ch4_hall_14"
+            },
+            {
+              "condition": {
+                "all": [
+                  { "flag": "ch4_chose_names" },
+                  { "var": "num_evidence", "op": "gte", "value": 4 },
+                  { "flag": "ch4_archive_saved" }
+                ]
+              },
+              "next": "ch4_hall_12"
+            },
+            { "next": "ch4_hall_13" }
+          ]
+        },
+        {
+          "id": "ch4_hall_12",
+          "type": "narration",
+          "text": "严崇把名籍、底本、证词和口供一一翻过，翻到最后一页，提起笔来。笔在砚里蘸了三次，他终于落下第一个字。",
+          "effects": [
+            { "set_var": "ch4_ending", "value": "names" },
+            { "set_flag": "ch4_names_restored", "value": true },
+            { "set_flag": "ch4_hall_done", "value": true }
+          ],
+          "next": "ch4_hall_16"
+        },
+        {
+          "id": "ch4_hall_13",
+          "type": "narration",
+          "text": "严崇翻完证物，沉默了很久。名籍可以抄，削痕可以赖，底本可以说是私造。他合上简册，唤来了堂下的隶卒。",
+          "effects": [
+            { "set_var": "ch4_ending", "value": "exile" },
+            { "set_flag": "ch4_hall_done", "value": true }
+          ],
+          "next": "ch4_hall_17"
+        },
+        {
+          "id": "ch4_hall_14",
+          "type": "narration",
+          "text": "卫敞被当堂收监，赵钦降职调离。严崇准了名籍更正，却在“三十七人”那一栏上，只圈了一半。",
+          "effects": [
+            { "set_var": "ch4_ending", "value": "exile" },
+            { "set_flag": "ch4_hall_done", "value": true }
+          ],
+          "next": "ch4_hall_18"
+        },
+        {
+          "id": "ch4_hall_15",
+          "type": "narration",
+          "text": "你抱起名册，向严崇长揖，退出正堂。没有人拦你。郡府的大门在身后合上时，你听见自己的名字被从吏籍上划掉了。",
+          "effects": [
+            { "set_var": "ch4_ending", "value": "road" },
+            { "set_flag": "ch4_hall_done", "value": true }
+          ],
+          "next": "ch4_hall_19"
+        },
+        {
+          "id": "ch4_hall_16",
+          "type": "line",
+          "speaker": "taishou",
+          "text": "写回去。一个字也不许少。你的罪，本官记着；你的功，本官也记着。",
+          "next": "ch4_hall_20"
+        },
+        {
+          "id": "ch4_hall_17",
+          "type": "line",
+          "speaker": "taishou",
+          "text": "诬告上官，先收押。名册……容后再议。",
+          "next": "ch4_hall_20"
+        },
+        {
+          "id": "ch4_hall_18",
+          "type": "line",
+          "speaker": "taishou",
+          "text": "卫敞收监，余者不问。你，好自为之。",
+          "next": "ch4_hall_20"
+        },
+        {
+          "id": "ch4_hall_19",
+          "type": "line",
+          "speaker": "taishou",
+          "text": "出了这道门，你就不是汉家的吏了。名册上的名字，你打算带到哪里去？",
+          "next": "ch4_hall_20"
+        },
+        {
+          "id": "ch4_hall_20",
+          "type": "end",
+          "text": "",
+          "exit": "hall"
+        }
+      ]
+    },
+    {
+      "id": "scene_4_end_names",
+      "title": "名籍落笔",
+      "background": "cg_ending_names",
+      "entry": "ch4_names_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch4_hall_done" },
+          { "var": "ch4_ending", "op": "eq", "value": "names" }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch4_names_01",
+          "type": "narration",
+          "text": "雪后初晴，名籍架阁的窗纸上透进晨光。长案上摊开着新修的名籍，墨还没干。",
+          "next": "ch4_names_02"
+        },
+        {
+          "id": "ch4_names_02",
+          "type": "register",
+          "title": "名籍",
+          "subtitle": "悬泉置 · 三十七人",
+          "names": [
+            "张季", "陈舍", "李戍", "王奉", "赵如意", "孙他", "吴粱", "郑当",
+            "冯不识", "褚少", "卫广", "韩他", "蒋满", "沈咸", "曹宗", "朱偃",
+            "秦忠", "尤何", "许哆", "施寄", "张幼", "孔良", "谢多", "严他",
+            "华定", "戚阳", "苏不识", "陶芒", "鲁满", "柏仁", "樊他", "任武",
+            "石他", "唐武", "宋始", "杜他", "郭买"
+          ],
+          "next": "ch4_names_03"
+        },
+        {
+          "id": "ch4_names_03",
+          "type": "narration",
+          "text": "每个名字后面都补了一行小字：原籍、卒年、更正的日期。写完最后一个名字，你把笔搁在案上，手一直在抖。",
+          "next": "ch4_names_04"
+        },
+        {
+          "id": "ch4_names_04",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "这一笔，我等了二十年。",
+          "next": "ch4_names_05"
+        },
+        {
+          "id": "ch4_names_05",
+          "type": "seal",
+          "title": "结局 · 名籍",
+          "text": "三十七个名字，重新写回名籍。",
+          "seal": "ui_ending_seal",
+          "next": "ch4_names_06"
+        },
+        {
+          "id": "ch4_names_06",
+          "type": "narration",
+          "text": "后来有人问起那年冬天，悬泉置的人只说一件事：名籍上的字，有一个是一个，都是真的。",
+          "effects": [
+            { "set_flag": "ch4_done", "value": true }
+          ],
+          "next": "ch4_names_07"
+        },
+        {
+          "id": "ch4_names_07",
+          "type": "end",
+          "text": "",
+          "exit": "ch04_names"
+        }
+      ]
+    },
+    {
+      "id": "scene_4_end_exile",
+      "title": "押解东行",
+      "background": "cg_ending_exile",
+      "entry": "ch4_exile_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch4_hall_done" },
+          { "var": "ch4_ending", "op": "eq", "value": "exile" }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch4_exile_01",
+          "type": "narration",
+          "text": "冬日官道向东，路旁枯苇上挂着霜。押解的队伍走得很慢，车辙在雪里拖出两道深沟。",
+          "next": "ch4_exile_02"
+        },
+        {
+          "id": "ch4_exile_02",
+          "type": "branch",
+          "branches": [
+            {
+              "condition": { "flag": "ch4_chose_deal" },
+              "next": "ch4_exile_03"
+            },
+            { "next": "ch4_exile_04" }
+          ]
+        },
+        {
+          "id": "ch4_exile_03",
+          "type": "narration",
+          "text": "卫敞在囚车里，你在路边。他经过你身边时看了你一眼，什么也没说。你的官身保住了，名籍更正了一半，另一半还压在郡府的案头。",
+          "next": "ch4_exile_05"
+        },
+        {
+          "id": "ch4_exile_04",
+          "type": "narration",
+          "text": "你在囚车里。名册被收入郡府库房，钥匙在别人腰间。你隔着木栏回望，敦煌城的轮廓在雪里一点一点淡下去。",
+          "next": "ch4_exile_05"
+        },
+        {
+          "id": "ch4_exile_05",
+          "type": "narration",
+          "text": "三十七个名字，这个冬天没能写完。可你知道，只要还有人记得，事情就没有真的过去。",
+          "next": "ch4_exile_06"
+        },
+        {
+          "id": "ch4_exile_06",
+          "type": "branch",
+          "branches": [
+            {
+              "condition": { "flag": "ch4_chose_deal" },
+              "next": "ch4_exile_07"
+            },
+            { "next": "ch4_exile_08" }
+          ]
+        },
+        {
+          "id": "ch4_exile_07",
+          "type": "seal",
+          "title": "结局 · 东行",
+          "text": "有人担下了罪名，名字只写回了一半。",
+          "seal": "ui_ending_seal",
+          "next": "ch4_exile_09"
+        },
+        {
+          "id": "ch4_exile_08",
+          "type": "seal",
+          "title": "结局 · 东行",
+          "text": "证据不足，你担下了诬告的罪名。",
+          "seal": "ui_ending_seal",
+          "next": "ch4_exile_09"
+        },
+        {
+          "id": "ch4_exile_09",
+          "type": "narration",
+          "text": "队伍走远以后，官道上只剩车辙。雪落进去，要很久才能填平。",
+          "effects": [
+            { "set_flag": "ch4_done", "value": true }
+          ],
+          "next": "ch4_exile_10"
+        },
+        {
+          "id": "ch4_exile_10",
+          "type": "end",
+          "text": "",
+          "exit": "ch04_exile"
+        }
+      ]
+    },
+    {
+      "id": "scene_4_end_road",
+      "title": "关外长路",
+      "background": "cg_ending_road",
+      "entry": "ch4_road_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch4_hall_done" },
+          { "var": "ch4_ending", "op": "eq", "value": "road" }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch4_road_01",
+          "type": "narration",
+          "text": "关外雪原，一行车辙向西。你回头望了一眼，关楼在地平线上只剩一个黑点。",
+          "next": "ch4_road_02"
+        },
+        {
+          "id": "ch4_road_02",
+          "type": "branch",
+          "branches": [
+            {
+              "condition": {
+                "any": [
+                  { "var": "num_aqi_trust", "op": "gte", "value": 2 },
+                  { "flag": "ch2_duyan_deal" }
+                ]
+              },
+              "next": "ch4_road_03"
+            },
+            { "next": "ch4_road_04" }
+          ]
+        },
+        {
+          "id": "ch4_road_03",
+          "type": "line",
+          "speaker": "aqi",
+          "text": "走驼道，别走官道。名字带在身上，比带在简上轻。",
+          "next": "ch4_road_05"
+        },
+        {
+          "id": "ch4_road_04",
+          "type": "narration",
+          "text": "没有人来送你。风把脚印一层层抹掉，像名籍上那些被削去的字。",
+          "next": "ch4_road_05"
+        },
+        {
+          "id": "ch4_road_05",
+          "type": "seal",
+          "title": "结局 · 长路",
+          "text": "名册随你出关，名字在路上。",
+          "seal": "ui_ending_seal",
+          "next": "ch4_road_06"
+        },
+        {
+          "id": "ch4_road_06",
+          "type": "narration",
+          "text": "你打算找一处有人的村落，把三十七个名字再抄一遍，请他们认一认。总有人认得其中一个。",
+          "effects": [
+            { "set_flag": "ch4_done", "value": true }
+          ],
+          "next": "ch4_road_07"
+        },
+        {
+          "id": "ch4_road_07",
+          "type": "end",
+          "text": "",
+          "exit": "ch04_road"
+        }
+      ]
+    }
+  ]
+}
