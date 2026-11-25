@@ -2,6 +2,7 @@
   "schema_version": 1,
   "chapter_id": "ch07",
   "title": "第七章 附籍",
+  "next_chapter": "ch08",
   "carryover": {
     "from": "ch06",
     "variables": ["ch6_ending"]

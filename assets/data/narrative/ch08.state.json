@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch08",
+  "title": "第八章 马簿",
+  "carryover": {
+    "from": "ch07",
+    "variables": ["ch7_ending"]
+  },
+  "initial": {
+    "flags": {
+      "ch8_start": true,
+      "ch8_open_done": false,
+      "ch8_stable_done": false,
+      "ch8_feed_done": false,
+      "ch8_postroad_done": false,
+      "ch8_beacon_checked": false,
+      "ch8_caravan_done": false,
+      "ch8_horses_taken": false,
+      "ch8_hall_done": false,
+      "ch8_chose_indict": false,
+      "ch8_chose_settle": false,
+      "ch8_chose_pursue": false,
+      "ch8_final_choice": false,
+      "ch8_finished": false,
+      "ch8_done": false,
+      "sq8_01_done": false,
+      "sq8_02_done": false,
+      "sq8_03_done": false
+    },
+    "variables": {
+      "ch7_ending": "none",
+      "ch8_ending": "none",
+      "num_horses": 0,
+      "num_ledger": 0
+    }
+  },
+  "variables": {
+    "ch7_ending": {
+      "type": "enum",
+      "values": ["none", "annex", "fine", "leave"],
+      "description": "第七章结局，决定本章从哪一头接到秋计"
+    },
+    "ch8_ending": {
+      "type": "enum",
+      "values": ["none", "indict", "settle", "pursue"],
+      "description": "本章结局：举劾 / 弥缝 / 追马"
+    },
+    "num_horses": {
+      "type": "int",
+      "min": 0,
+      "max": 8,
+      "description": "已核实或追回的驿马数目"
+    },
+    "num_ledger": {
+      "type": "int",
+      "min": 0,
+      "max": 5,
+      "description": "马料账与马簿之间对上的证据"
+    }
+  },
+  "clues": {
+    "clue_horse_register": "驿马簿：记着三十六匹马的毛色、齿岁与烙印，三匹已死却未除籍。",
+    "clue_feed_ledger": "马料账：死马名下月月支粟，五个月四十五石，签收的笔迹是仿的。",
+    "clue_brand_mark": "重烙的印：新烙底下压着半截旧印，悬泉置的“泉”字少了一点。",
+    "clue_beacon_delay": "烽燧传警簿：七月有一夜记着“马缺，警迟一个时辰”，字是事后补的。",
+    "clue_caravan_horse": "商队货单：三匹驿马被写作私马卖给白姬，货单上的日子在秋计之前。",
+    "clue_groom_testimony": "马夫巩四的口供：死马不除籍是为支料，料夜里装车出关，吩咐来自厩佐。"
+  },
+  "items": {
+    "item_horse_register": {
+      "name": "驿马簿",
+      "icon": "item_bamboo_slip",
+      "description": "悬泉置驿马簿，毛色、齿岁与烙印俱全"
+    },
+    "item_feed_ledger": {
+      "name": "马料账",
+      "icon": "item_hemp_paper",
+      "description": "厩中五个月的马料账，死者仍在支粮"
+    },
+    "item_horse_brand": {
+      "name": "烙马木牌",
+      "icon": "item_gate_token",
+      "description": "记着驿马烙印式样的木牌，旧印已对不上"
+    }
+  }
+}

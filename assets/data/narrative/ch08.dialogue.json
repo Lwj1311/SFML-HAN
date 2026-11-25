@@ -1,0 +1,891 @@
+{
+  "schema_version": 1,
+  "chapter_id": "ch08",
+  "title": "第八章 马簿",
+  "speakers": {
+    "narrator": { "name": "旁白", "portrait": null },
+    "fengan": { "name": "冯安", "portrait": "char_fengan" },
+    "hanbo": { "name": "韩伯", "portrait": "char_hanbo" },
+    "suhe": { "name": "苏娘", "portrait": "char_suhe" },
+    "guowang": { "name": "郭望", "portrait": "char_guowang" },
+    "aqi": { "name": "阿耆", "portrait": "char_aqi" },
+    "baiji": { "name": "白姬", "portrait": "char_baiji" },
+    "taishou": { "name": "严崇", "portrait": "char_taishou" },
+    "gongcao": { "name": "郡府功曹", "portrait": "char_gongcao" },
+    "mamu": { "name": "马夫巩四", "portrait": null }
+  },
+  "encounters": {
+    "enc_ch8_horses": {
+      "name": "任氏抢马的家丁",
+      "enemies": [
+        { "id": "manor_guard", "count": 3 },
+        { "id": "manor_archer", "count": 1 }
+      ],
+      "terrain": "postroad",
+      "note": "家丁要赶马出滩，击退即可；马比人重要。"
+    }
+  },
+  "scenes": [
+    {
+      "id": "scene_8_open",
+      "title": "秋计",
+      "background": "bg_station_courtyard",
+      "entry": "ch8_open_01",
+      "trigger": { "flag": "ch8_start" },
+      "nodes": [
+        {
+          "id": "ch8_open_01",
+          "type": "narration",
+          "text": "秋分过后，郡府秋计的文书送到悬泉置。驿马、传车、廪食，十日内上报实数，一匹也不能含糊。",
+          "next": "ch8_open_02"
+        },
+        {
+          "id": "ch8_open_02",
+          "type": "branch",
+          "branches": [
+            {
+              "condition": { "var": "ch7_ending", "op": "eq", "value": "annex" },
+              "next": "ch8_open_03"
+            },
+            {
+              "condition": { "var": "ch7_ending", "op": "eq", "value": "fine" },
+              "next": "ch8_open_04"
+            },
+            {
+              "condition": { "var": "ch7_ending", "op": "eq", "value": "leave" },
+              "next": "ch8_open_05"
+            },
+            { "next": "ch8_open_06" }
+          ]
+        },
+        {
+          "id": "ch8_open_03",
+          "type": "narration",
+          "text": "附籍的户版刚归架，秋计又追上门。新附的三十七户免了追缴，可他们的过冬口粮，要从驿马草料里匀。",
+          "next": "ch8_open_07"
+        },
+        {
+          "id": "ch8_open_04",
+          "type": "narration",
+          "text": "追缴之后，广至空了几户，厩里也少了三匹马。厩佐说马是病死的，马簿上却还留着名字。",
+          "next": "ch8_open_07"
+        },
+        {
+          "id": "ch8_open_05",
+          "type": "narration",
+          "text": "徙边的人出了关，关内的驿马也跟着少了几匹。商队说，路上见过悬泉置的烙印。",
+          "next": "ch8_open_07"
+        },
+        {
+          "id": "ch8_open_06",
+          "type": "narration",
+          "text": "文书到的时候，厩里正往外抬一匹死马。马夫说，这是这个月第三匹。",
+          "next": "ch8_open_07"
+        },
+        {
+          "id": "ch8_open_07",
+          "type": "line",
+          "speaker": "gongcao",
+          "text": "秋计考课，马簿与实数不符者，厩佐免职，悬泉置考课下等。",
+          "next": "ch8_open_08"
+        },
+        {
+          "id": "ch8_open_08",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "马簿上三十六匹。后厩我数过，只有三十三匹。",
+          "next": "ch8_open_09"
+        },
+        {
+          "id": "ch8_open_09",
+          "type": "narration",
+          "text": "马簿记着每一匹马的毛色、齿岁与烙印。三匹注着“在厩”的马，厩里没有。",
+          "next": "ch8_open_10"
+        },
+        {
+          "id": "ch8_open_10",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "秋计不等人。先查哪一头？",
+          "choices": [
+            {
+              "id": "count_stable",
+              "text": "先进厩，一匹一匹数",
+              "next": "ch8_open_11"
+            },
+            {
+              "id": "read_book",
+              "text": "先翻马簿，看那三匹记在哪里",
+              "next": "ch8_open_12"
+            }
+          ]
+        },
+        {
+          "id": "ch8_open_11",
+          "type": "narration",
+          "text": "你进后厩，一匹一匹看牙口。三道空槽，槽底还留着没吃完的料。",
+          "next": "ch8_open_12"
+        },
+        {
+          "id": "ch8_open_12",
+          "type": "narration",
+          "text": "你翻开马簿。三匹死马的注销栏是空的，草料却月月支着。",
+          "next": "ch8_open_13"
+        },
+        {
+          "id": "ch8_open_13",
+          "type": "narration",
+          "text": "你把马簿夹在腋下，往后厩去。",
+          "effects": [
+            { "set_flag": "ch8_open_done", "value": true }
+          ],
+          "next": "ch8_open_14"
+        },
+        {
+          "id": "ch8_open_14",
+          "type": "end",
+          "text": "",
+          "exit": "ch08_open"
+        }
+      ]
+    },
+    {
+      "id": "scene_8_stable",
+      "title": "后厩",
+      "background": "bg_station_interior",
+      "entry": "ch8_stable_01",
+      "trigger": { "flag": "ch8_open_done" },
+      "nodes": [
+        {
+          "id": "ch8_stable_01",
+          "type": "narration",
+          "text": "后厩比前院更暗。草料堆得整齐，槽却空着三道，墙上挂着的马具也少了几副。",
+          "next": "ch8_stable_02"
+        },
+        {
+          "id": "ch8_stable_02",
+          "type": "line",
+          "speaker": "mamu",
+          "text": "这三匹，入夏就死了。厩佐让我别声张，说秋计过了再报。",
+          "next": "ch8_stable_03"
+        },
+        {
+          "id": "ch8_stable_03",
+          "type": "narration",
+          "text": "马夫巩四的手上有新烫的疤，说话时一直看着槽底。",
+          "next": "ch8_stable_04"
+        },
+        {
+          "id": "ch8_stable_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "他怕的不是死马。",
+          "choices": [
+            {
+              "id": "press_groom",
+              "text": "追问手上的烫疤",
+              "effects": [
+                { "set_flag": "sq8_01_done", "value": true },
+                { "add_clue": "clue_groom_testimony" }
+              ],
+              "next": "ch8_stable_05"
+            },
+            {
+              "id": "check_tack",
+              "text": "先清点剩下的马具",
+              "effects": [
+                { "add_var": "num_horses", "value": 1 }
+              ],
+              "next": "ch8_stable_06"
+            }
+          ]
+        },
+        {
+          "id": "ch8_stable_05",
+          "type": "line",
+          "speaker": "mamu",
+          "text": "死马不除籍，草料才能照领。领出来的料，夜里装车往关外去了。吩咐的是厩佐，我只管套车。",
+          "next": "ch8_stable_07"
+        },
+        {
+          "id": "ch8_stable_06",
+          "type": "narration",
+          "text": "三十六副马具，只有三十三套有人用过。空出来的三副，革带是新换的。",
+          "next": "ch8_stable_07"
+        },
+        {
+          "id": "ch8_stable_07",
+          "type": "narration",
+          "text": "你把马具、槽位与料单一一对上。巩四的嘴很紧，可空槽与少掉的马具不会说谎。",
+          "next": "ch8_stable_08"
+        },
+        {
+          "id": "ch8_stable_08",
+          "type": "line",
+          "speaker": "aqi",
+          "text": "夜里往关外去的车，走的是驿道。驿道上的车，按理都该有传符。",
+          "next": "ch8_stable_09"
+        },
+        {
+          "id": "ch8_stable_09",
+          "type": "narration",
+          "text": "你让阿耆去查传符存根，自己回屋把马簿与料账并排铺开。",
+          "effects": [
+            { "set_flag": "ch8_stable_done", "value": true },
+            { "add_clue": "clue_horse_register" },
+            { "add_var": "num_horses", "value": 3 }
+          ],
+          "next": "ch8_stable_10"
+        },
+        {
+          "id": "ch8_stable_10",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "三匹死马，三份草料，三条出关的车辙。这不是病死的。",
+          "next": "ch8_stable_11"
+        },
+        {
+          "id": "ch8_stable_11",
+          "type": "end",
+          "text": "",
+          "exit": "ch08_stable"
+        }
+      ]
+    },
+    {
+      "id": "scene_8_feed",
+      "title": "马料账",
+      "background": "bg_register_archive",
+      "entry": "ch8_feed_01",
+      "trigger": { "flag": "ch8_stable_done" },
+      "nodes": [
+        {
+          "id": "ch8_feed_01",
+          "type": "narration",
+          "text": "马料账归仓曹管，厩佐只记日领。两本账一合，差额就出来了。",
+          "next": "ch8_feed_02"
+        },
+        {
+          "id": "ch8_feed_02",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "一匹马一个月食粟三石。三匹死马领了五个月，就是四十五石。",
+          "next": "ch8_feed_03"
+        },
+        {
+          "id": "ch8_feed_03",
+          "type": "narration",
+          "text": "账上的签收人都写着“厩佐代领”。可厩佐的字，最后一笔从不带钩，这几本的钩都带得很重。",
+          "next": "ch8_feed_04"
+        },
+        {
+          "id": "ch8_feed_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "四十五石粟，不是一个小数。",
+          "choices": [
+            {
+              "id": "compare_hand",
+              "text": "找出厩佐从前的文书对笔迹",
+              "effects": [
+                { "add_clue": "clue_feed_ledger" },
+                { "add_var": "num_ledger", "value": 1 }
+              ],
+              "next": "ch8_feed_05"
+            },
+            {
+              "id": "follow_ruts",
+              "text": "先去后院看车辙",
+              "effects": [
+                { "add_var": "num_horses", "value": 1 }
+              ],
+              "next": "ch8_feed_06"
+            }
+          ]
+        },
+        {
+          "id": "ch8_feed_05",
+          "type": "narration",
+          "text": "你翻出厩佐从前的文书比对。签收的笔迹是仿的，仿的人写惯了“任”字的竖钩。",
+          "next": "ch8_feed_07"
+        },
+        {
+          "id": "ch8_feed_06",
+          "type": "narration",
+          "text": "车辙从后厩一直通到关外，辙里混着黑色的马毛。你捻起一根，比悬泉置的马毛粗。",
+          "next": "ch8_feed_07"
+        },
+        {
+          "id": "ch8_feed_07",
+          "type": "narration",
+          "text": "韩伯把五个月的料账都搬了出来。四十五石粟，三辆车，每一笔都签着同一个名字。",
+          "effects": [
+            { "set_flag": "ch8_feed_done", "value": true },
+            { "add_clue": "clue_feed_ledger" },
+            { "add_var": "num_ledger", "value": 1 }
+          ],
+          "next": "ch8_feed_08"
+        },
+        {
+          "id": "ch8_feed_08",
+          "type": "line",
+          "speaker": "suhe",
+          "text": "四十五石粮，够广至那些人家吃一冬。",
+          "next": "ch8_feed_09"
+        },
+        {
+          "id": "ch8_feed_09",
+          "type": "narration",
+          "text": "你把料账卷起，往驿路上去。",
+          "next": "ch8_feed_10"
+        },
+        {
+          "id": "ch8_feed_10",
+          "type": "end",
+          "text": "",
+          "exit": "ch08_feed"
+        }
+      ]
+    },
+    {
+      "id": "scene_8_postroad",
+      "title": "驿路",
+      "background": "bg_gobi_postroad",
+      "entry": "ch8_postroad_01",
+      "trigger": { "flag": "ch8_feed_done" },
+      "nodes": [
+        {
+          "id": "ch8_postroad_01",
+          "type": "narration",
+          "text": "出悬泉置往西三十里，是秋草最盛的一段驿路。车辙在碱地上压得很深，一直延伸到烽燧底下。",
+          "next": "ch8_postroad_02"
+        },
+        {
+          "id": "ch8_postroad_02",
+          "type": "line",
+          "speaker": "aqi",
+          "text": "传符存根上没有那三趟车。夜里出关的，是私车。",
+          "next": "ch8_postroad_03"
+        },
+        {
+          "id": "ch8_postroad_03",
+          "type": "narration",
+          "text": "烽燧下的空地上有马粪，已经干透。旁边的拴马桩上，留着三道新磨的绳痕。",
+          "next": "ch8_postroad_04"
+        },
+        {
+          "id": "ch8_postroad_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "烽燧、车辙，都在这条路上。",
+          "choices": [
+            {
+              "id": "climb_beacon",
+              "text": "上烽燧，查那一夜的传警簿",
+              "effects": [
+                { "set_flag": "sq8_02_done", "value": true },
+                { "set_flag": "ch8_beacon_checked", "value": true },
+                { "add_clue": "clue_beacon_delay" },
+                { "add_var": "num_ledger", "value": 1 }
+              ],
+              "next": "ch8_postroad_05"
+            },
+            {
+              "id": "chase_ruts",
+              "text": "顺着车辙往前追",
+              "effects": [
+                { "add_var": "num_horses", "value": 1 }
+              ],
+              "next": "ch8_postroad_06"
+            }
+          ]
+        },
+        {
+          "id": "ch8_postroad_05",
+          "type": "narration",
+          "text": "烽燧的传警簿上，七月有一夜记着“马缺，警迟一个时辰”。那一行字是潦草补上去的，墨色比前后都新。",
+          "next": "ch8_postroad_07"
+        },
+        {
+          "id": "ch8_postroad_06",
+          "type": "narration",
+          "text": "车辙在半里外分岔，一道往关外，一道绕回任氏旧庄。岔口的路面被扫过，扫得很急。",
+          "next": "ch8_postroad_07"
+        },
+        {
+          "id": "ch8_postroad_07",
+          "type": "narration",
+          "text": "你蹲在拴马桩旁，从土里抠出一枚马蹄铁。铁上的钉孔是悬泉置的式样，比私马的小一号。",
+          "next": "ch8_postroad_08"
+        },
+        {
+          "id": "ch8_postroad_08",
+          "type": "line",
+          "speaker": "guowang",
+          "text": "前头有车。车上盖着麻布，露出来的马腿上有烙印。",
+          "next": "ch8_postroad_09"
+        },
+        {
+          "id": "ch8_postroad_09",
+          "type": "narration",
+          "text": "车队见你亮出郡符，反而催马快走。麻布被风掀开一角，露出悬泉置的烙印。",
+          "effects": [
+            { "set_flag": "ch8_postroad_done", "value": true },
+            { "add_clue": "clue_caravan_horse" }
+          ],
+          "next": "ch8_postroad_10"
+        },
+        {
+          "id": "ch8_postroad_10",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "追。",
+          "next": "ch8_postroad_11"
+        },
+        {
+          "id": "ch8_postroad_11",
+          "type": "narration",
+          "text": "你让阿耆回置调人，自己缀在车队后面，一路跟到红柳滩。",
+          "next": "ch8_postroad_12"
+        },
+        {
+          "id": "ch8_postroad_12",
+          "type": "end",
+          "text": "",
+          "exit": "ch08_postroad"
+        }
+      ]
+    },
+    {
+      "id": "scene_8_caravan",
+      "title": "红柳滩",
+      "background": "bg_oasis",
+      "entry": "ch8_caravan_01",
+      "trigger": { "flag": "ch8_postroad_done" },
+      "nodes": [
+        {
+          "id": "ch8_caravan_01",
+          "type": "narration",
+          "text": "白姬的营地扎在红柳滩边。三十几匹马拴成一排，其中三匹的毛色，与你马簿上记的一模一样。",
+          "next": "ch8_caravan_02"
+        },
+        {
+          "id": "ch8_caravan_02",
+          "type": "line",
+          "speaker": "baiji",
+          "text": "这三匹是我拿粮换的。卖马的人说是私马，烙印是后来烫上去的。",
+          "next": "ch8_caravan_03"
+        },
+        {
+          "id": "ch8_caravan_03",
+          "type": "narration",
+          "text": "她让人把马牵近。三匹马里有两匹的烙印明显重烙过，旧印的边还在。",
+          "next": "ch8_caravan_04"
+        },
+        {
+          "id": "ch8_caravan_04",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "烙印新旧，一验便知。",
+          "choices": [
+            {
+              "id": "check_brand",
+              "text": "刮开新烙，验底下的旧印",
+              "effects": [
+                { "set_flag": "sq8_03_done", "value": true },
+                { "add_clue": "clue_brand_mark" },
+                { "add_var": "num_ledger", "value": 1 }
+              ],
+              "next": "ch8_caravan_05"
+            },
+            {
+              "id": "ask_seller",
+              "text": "先问卖马的人是谁",
+              "effects": [
+                { "add_var": "num_ledger", "value": 1 }
+              ],
+              "next": "ch8_caravan_06"
+            }
+          ]
+        },
+        {
+          "id": "ch8_caravan_05",
+          "type": "narration",
+          "text": "你用指甲刮开新烙的焦痕，底下露出半截旧印。悬泉置的“泉”字，少了一点。",
+          "next": "ch8_caravan_07"
+        },
+        {
+          "id": "ch8_caravan_06",
+          "type": "line",
+          "speaker": "baiji",
+          "text": "卖马的人姓任，说是替人抵债。同来的还有一个厩佐打扮的人，数钱时手上有烫疤。",
+          "next": "ch8_caravan_07"
+        },
+        {
+          "id": "ch8_caravan_07",
+          "type": "narration",
+          "text": "营地外忽然起了马蹄声。任家的家丁围了上来，要把马连夜赶走。",
+          "next": "ch8_caravan_08"
+        },
+        {
+          "id": "ch8_caravan_08",
+          "type": "line",
+          "speaker": "aqi",
+          "text": "他们人多。马比人快。",
+          "next": "ch8_caravan_09"
+        },
+        {
+          "id": "ch8_caravan_09",
+          "type": "combat",
+          "encounter": "enc_ch8_horses",
+          "on_win": "ch8_caravan_10",
+          "on_lose": "ch8_caravan_11"
+        },
+        {
+          "id": "ch8_caravan_10",
+          "type": "narration",
+          "text": "家丁被击退。三匹马被夺了回来，其中一匹前腿受了伤，走得一瘸一拐。",
+          "effects": [
+            { "set_flag": "ch8_horses_taken", "value": true },
+            { "add_var": "num_horses", "value": 3 }
+          ],
+          "next": "ch8_caravan_12"
+        },
+        {
+          "id": "ch8_caravan_11",
+          "type": "narration",
+          "text": "乱中两匹马被赶走，只剩一匹被截下。你从马具上认出了悬泉置的编号。",
+          "effects": [
+            { "set_flag": "ch8_horses_taken", "value": true },
+            { "add_var": "num_horses", "value": 1 }
+          ],
+          "next": "ch8_caravan_12"
+        },
+        {
+          "id": "ch8_caravan_12",
+          "type": "narration",
+          "text": "白姬没有拦你。她只说：这批马的事，我不会替你瞒。",
+          "effects": [
+            { "set_flag": "ch8_caravan_done", "value": true }
+          ],
+          "next": "ch8_caravan_13"
+        },
+        {
+          "id": "ch8_caravan_13",
+          "type": "end",
+          "text": "",
+          "exit": "ch08_caravan"
+        }
+      ]
+    },
+    {
+      "id": "scene_8_hall",
+      "title": "秋计堂上",
+      "background": "bg_commandery_hall",
+      "entry": "ch8_hall_01",
+      "trigger": { "flag": "ch8_caravan_done" },
+      "nodes": [
+        {
+          "id": "ch8_hall_01",
+          "type": "narration",
+          "text": "郡府秋计堂上，马簿、料账、烙痕与商队货单并排铺开。厩佐跪在堂下，巩四站在门边。",
+          "next": "ch8_hall_02"
+        },
+        {
+          "id": "ch8_hall_02",
+          "type": "line",
+          "speaker": "gongcao",
+          "text": "马簿三十六匹，实数三十三匹。料账多支四十五石，去向不明。",
+          "next": "ch8_hall_03"
+        },
+        {
+          "id": "ch8_hall_03",
+          "type": "line",
+          "speaker": "taishou",
+          "text": "马是官马，料是官料。你要给这件事一个什么了结？",
+          "next": "ch8_hall_04"
+        },
+        {
+          "id": "ch8_hall_04",
+          "type": "line",
+          "speaker": "fengan",
+          "text": "举劾，则马政清而考课下等；弥缝，则考课全而账上留一笔；追马，则马回而人结怨。",
+          "next": "ch8_hall_05"
+        },
+        {
+          "id": "ch8_hall_05",
+          "type": "choice",
+          "speaker": "fengan",
+          "prompt": "堂上等着你落笔。",
+          "choices": [
+            {
+              "id": "choose_indict",
+              "text": "举劾马政，连厩佐一并问罪",
+              "effects": [
+                { "set_var": "ch8_ending", "value": "indict" },
+                { "set_flag": "ch8_chose_indict", "value": true },
+                { "set_flag": "ch8_final_choice", "value": true }
+              ],
+              "next": "ch8_hall_06"
+            },
+            {
+              "id": "choose_settle",
+              "text": "补足马数与粮账，保住考课",
+              "effects": [
+                { "set_var": "ch8_ending", "value": "settle" },
+                { "set_flag": "ch8_chose_settle", "value": true },
+                { "set_flag": "ch8_final_choice", "value": true }
+              ],
+              "next": "ch8_hall_07"
+            },
+            {
+              "id": "choose_pursue",
+              "text": "请命出关，追回剩下的马",
+              "effects": [
+                { "set_var": "ch8_ending", "value": "pursue" },
+                { "set_flag": "ch8_chose_pursue", "value": true },
+                { "set_flag": "ch8_final_choice", "value": true }
+              ],
+              "next": "ch8_hall_08"
+            }
+          ]
+        },
+        {
+          "id": "ch8_hall_06",
+          "type": "narration",
+          "text": "你把料账推上前：请郡府彻查马政，厩佐以下一并问罪。堂下有人抬起了头。",
+          "effects": [
+            { "set_flag": "ch8_hall_done", "value": true }
+          ],
+          "next": "ch8_hall_09"
+        },
+        {
+          "id": "ch8_hall_07",
+          "type": "narration",
+          "text": "你按下料账，只报实数与补足之数：三匹马已追回，粮由任氏折钱赔补。",
+          "effects": [
+            { "set_flag": "ch8_hall_done", "value": true }
+          ],
+          "next": "ch8_hall_09"
+        },
+        {
+          "id": "ch8_hall_08",
+          "type": "narration",
+          "text": "你请求连夜出关，追回剩下的马与卖马的人。严崇看了你很久，没有立刻答话。",
+          "effects": [
+            { "set_flag": "ch8_hall_done", "value": true }
+          ],
+          "next": "ch8_hall_09"
+        },
+        {
+          "id": "ch8_hall_09",
+          "type": "line",
+          "speaker": "taishou",
+          "text": "准。落笔吧。",
+          "next": "ch8_hall_10"
+        },
+        {
+          "id": "ch8_hall_10",
+          "type": "narration",
+          "text": "功曹铺开秋计册，笔尖悬在“马政”一栏上。",
+          "next": "ch8_hall_11"
+        },
+        {
+          "id": "ch8_hall_11",
+          "type": "end",
+          "text": "",
+          "exit": "ch08_hall"
+        }
+      ]
+    },
+    {
+      "id": "scene_8_end_indict",
+      "title": "举劾",
+      "background": "bg_commandery_hall",
+      "entry": "ch8_indict_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch8_hall_done" },
+          { "var": "ch8_ending", "op": "eq", "value": "indict" }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch8_indict_01",
+          "type": "narration",
+          "text": "郡府的劾书发下去，厩佐与任氏的管事都被收押。悬泉置这一年的考课，列了下等。",
+          "next": "ch8_indict_02"
+        },
+        {
+          "id": "ch8_indict_02",
+          "type": "line",
+          "speaker": "hanbo",
+          "text": "考课下等，俸禄要削。可马簿从此是干净的。",
+          "next": "ch8_indict_03"
+        },
+        {
+          "id": "ch8_indict_03",
+          "type": "narration",
+          "text": "巩四被留在厩里喂马。他说，死了的马，总得有人记得。",
+          "next": "ch8_indict_04"
+        },
+        {
+          "id": "ch8_indict_04",
+          "type": "seal",
+          "title": "第八章 · 举劾",
+          "text": "马政清了，考课薄了。",
+          "seal": "ui_ending_seal",
+          "next": "ch8_indict_05"
+        },
+        {
+          "id": "ch8_indict_05",
+          "type": "narration",
+          "text": "你把新马簿挂回厩墙。三十六匹，一匹不少。",
+          "effects": [
+            { "set_flag": "ch8_finished", "value": true },
+            { "set_flag": "ch8_done", "value": true }
+          ],
+          "next": "ch8_indict_06"
+        },
+        {
+          "id": "ch8_indict_06",
+          "type": "narration",
+          "text": "冬天来之前，悬泉置再没有少过一匹马。",
+          "next": "ch8_indict_07"
+        },
+        {
+          "id": "ch8_indict_07",
+          "type": "end",
+          "text": "",
+          "exit": "ch08_indict"
+        }
+      ]
+    },
+    {
+      "id": "scene_8_end_settle",
+      "title": "弥缝",
+      "background": "bg_station_interior",
+      "entry": "ch8_settle_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch8_hall_done" },
+          { "var": "ch8_ending", "op": "eq", "value": "settle" }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch8_settle_01",
+          "type": "narration",
+          "text": "三匹马补回厩里，料账上的四十五石由任氏折钱赔补。秋计的册子上，悬泉置仍是中等。",
+          "next": "ch8_settle_02"
+        },
+        {
+          "id": "ch8_settle_02",
+          "type": "line",
+          "speaker": "suhe",
+          "text": "账平了。可那四十五石粮，本来该给广至的人家。",
+          "next": "ch8_settle_03"
+        },
+        {
+          "id": "ch8_settle_03",
+          "type": "narration",
+          "text": "厩佐换了人。巩四还在喂马，只是不再提那三匹死马。",
+          "next": "ch8_settle_04"
+        },
+        {
+          "id": "ch8_settle_04",
+          "type": "seal",
+          "title": "第八章 · 弥缝",
+          "text": "账平了，事没有完。",
+          "seal": "ui_ending_seal",
+          "next": "ch8_settle_05"
+        },
+        {
+          "id": "ch8_settle_05",
+          "type": "narration",
+          "text": "你把料账锁进柜底。夜里听见马嘶，起身看过两次。",
+          "effects": [
+            { "set_flag": "ch8_finished", "value": true },
+            { "set_flag": "ch8_done", "value": true }
+          ],
+          "next": "ch8_settle_06"
+        },
+        {
+          "id": "ch8_settle_06",
+          "type": "narration",
+          "text": "冬天再来的时候，商队里的人换了一副面孔。",
+          "next": "ch8_settle_07"
+        },
+        {
+          "id": "ch8_settle_07",
+          "type": "end",
+          "text": "",
+          "exit": "ch08_settle"
+        }
+      ]
+    },
+    {
+      "id": "scene_8_end_pursue",
+      "title": "追马",
+      "background": "bg_gobi_postroad",
+      "entry": "ch8_pursue_01",
+      "trigger": {
+        "all": [
+          { "flag": "ch8_hall_done" },
+          { "not": { "flag": "ch8_finished" } }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "ch8_pursue_01",
+          "type": "narration",
+          "text": "你带着驿骑连夜出关，在红柳滩外截住了那批马。卖马的人弃车而逃。",
+          "next": "ch8_pursue_02"
+        },
+        {
+          "id": "ch8_pursue_02",
+          "type": "line",
+          "speaker": "aqi",
+          "text": "马追回来了，人没追回来。驿道上的车，往后要多留一道心。",
+          "next": "ch8_pursue_03"
+        },
+        {
+          "id": "ch8_pursue_03",
+          "type": "narration",
+          "text": "白姬的车队被扣了三日。她没有再说什么，只把货单上“私马”两个字划掉。",
+          "next": "ch8_pursue_04"
+        },
+        {
+          "id": "ch8_pursue_04",
+          "type": "seal",
+          "title": "第八章 · 追马",
+          "text": "马回了厩，人结了怨。",
+          "seal": "ui_ending_seal",
+          "next": "ch8_pursue_05"
+        },
+        {
+          "id": "ch8_pursue_05",
+          "type": "narration",
+          "text": "厩里的槽又满了。你数了两遍，三十六匹。",
+          "effects": [
+            { "set_flag": "ch8_finished", "value": true },
+            { "set_flag": "ch8_done", "value": true }
+          ],
+          "next": "ch8_pursue_06"
+        },
+        {
+          "id": "ch8_pursue_06",
+          "type": "narration",
+          "text": "关外的路还长，商队的车辙一直通到看不见的地方。",
+          "next": "ch8_pursue_07"
+        },
+        {
+          "id": "ch8_pursue_07",
+          "type": "end",
+          "text": "",
+          "exit": "ch08_pursue"
+        }
+      ]
+    }
+  ]
+}
