@@ -30,9 +30,11 @@ endif()
 option(HAN_BUILD_TESTS "Build headless narrative tests" ON)
 option(HAN_ENABLE_SFML "Build the SFML client layer (milestone M2+)" ON)
 set(HAN_SFML_ROOT "" CACHE PATH "SFML 2.6 SDK root (extracted official zip); empty uses find_package")
-set(HAN_DATA_DIR "${CMAKE_CURRENT_SOURCE_DIR}/assets/data/narrative"
+# Keep these relative: han_client anchors relative paths to its own directory,
+# so the build output and the release package share the same layout.
+set(HAN_DATA_DIR "assets/data/narrative"
     CACHE PATH "Chapter data directory compiled into han_client")
-set(HAN_ASSET_DIR "${CMAKE_CURRENT_SOURCE_DIR}/game-assets"
+set(HAN_ASSET_DIR "game-assets"
     CACHE PATH "Art asset root compiled into han_client")
 
 if(HAN_BUILD_TESTS)
@@ -86,6 +88,33 @@ if(HAN_ENABLE_SFML)
         HAN_DATA_DIR="${HAN_DATA_DIR}"
         HAN_ASSET_DIR="${HAN_ASSET_DIR}"
     )
+
+    # Ship runtime files next to the executable so build/Debug, build/Release
+    # and the packaged zip all keep the same layout.
+    set(HAN_DATA_DIR_SRC "${HAN_DATA_DIR}")
+    if(NOT IS_ABSOLUTE "${HAN_DATA_DIR_SRC}")
+        set(HAN_DATA_DIR_SRC "${CMAKE_CURRENT_SOURCE_DIR}/${HAN_DATA_DIR_SRC}")
+    endif()
+    set(HAN_ASSET_DIR_SRC "${HAN_ASSET_DIR}")
+    if(NOT IS_ABSOLUTE "${HAN_ASSET_DIR_SRC}")
+        set(HAN_ASSET_DIR_SRC "${CMAKE_CURRENT_SOURCE_DIR}/${HAN_ASSET_DIR_SRC}")
+    endif()
+
+    if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.26")
+        set(HAN_COPY_DIR_CMD "${CMAKE_COMMAND}" -E copy_directory_if_different)
+    else()
+        set(HAN_COPY_DIR_CMD "${CMAKE_COMMAND}" -E copy_directory)
+    endif()
+
+    add_custom_command(TARGET han_client POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E make_directory
+            "$<TARGET_FILE_DIR:han_client>/assets/data"
+        COMMAND ${HAN_COPY_DIR_CMD} "${HAN_DATA_DIR_SRC}"
+            "$<TARGET_FILE_DIR:han_client>/assets/data/narrative"
+        COMMAND ${HAN_COPY_DIR_CMD} "${HAN_ASSET_DIR_SRC}"
+            "$<TARGET_FILE_DIR:han_client>/game-assets"
+        COMMENT "Copying runtime data and assets next to han_client"
+        VERBATIM)
 
     if(HAN_SFML_ROOT)
         add_custom_command(TARGET han_client POST_BUILD
